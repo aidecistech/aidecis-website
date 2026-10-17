@@ -170,3 +170,4 @@ body .europe-section .europe-points span { color: #9b6820; }
 /* Preserve contrast on the pale comparison column and the light header. */
 .comparison-labels .aidecis-column { color: var(--navy) !important; background: #e8eeeb !important; }
 .site-header .header-contact:hover { color: var(--navy) !important; background: transparent !important; }
+.site-header .header-contact { color: #fff !important; background: var(--navy) !important; border-color: var(--navy) !important; }
