@@ -432,7 +432,7 @@ window.AIDECIS_TRANSLATIONS = {
     "Discuss a pilot": "Bespreek een pilot",
     "Built for the operating realities of European industry.": "Gebouwd voor de operationele realiteit van de Europese industrie.",
     "European supply chains run across sites, languages, jurisdictions and highly specific local operating rules. Aidecis is designed around that reality: local authority is visible, policy reuse is governed, and an operating practice is never pushed enterprise-wide without the right conditions and acceptance.": "Europese supply chains omvatten locaties, talen, rechtsgebieden en zeer specifieke lokale bedrijfsregels. Aidecis is daarop ontworpen: lokale bevoegdheden zijn zichtbaar, hergebruik van beleid is gereguleerd en een werkwijze wordt nooit organisatiebreed ingevoerd zonder de juiste voorwaarden en acceptatie.",
-    "Product design and deployment approach centred on European industrial operations.": "Productontwerp en implementatie gemaakt voor wereldwijde industriële supply netwerken.",
+    "Product design and deployment approach centred on European industrial operations.": "Productontwerp en implementatie afgestemd op de Europese industrie.",
     "European hosting and regional data residency are core deployment principles.": "Europese hosting en regionale dataresidentie zijn kernprincipes voor implementatie.",
     "Policies can travel with evidence; local sites remain accountable for activation.": "Corporate beleid kan met onderbouwing in het netwerk worden gedeeld; lokale locaties blijven verantwoordelijk voor activering.",
     "The next operational advantage": "Het volgende operationele voordeel",

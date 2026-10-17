@@ -171,3 +171,37 @@ body .europe-section .europe-points span { color: #9b6820; }
 .comparison-labels .aidecis-column { color: var(--navy) !important; background: #e8eeeb !important; }
 .site-header .header-contact:hover { color: var(--navy) !important; background: transparent !important; }
 .site-header .header-contact { color: #fff !important; background: var(--navy) !important; border-color: var(--navy) !important; }
+
+
+/* European principles rows: give headings and explanations deliberate, responsive columns. */
+body .europe-section .europe-points > div {
+  display: grid;
+  grid-template-columns: minmax(180px, .72fr) minmax(0, 1.28fr);
+  align-items: start;
+  column-gap: clamp(20px, 3vw, 48px);
+  row-gap: 6px;
+  padding: 22px 0;
+}
+body .europe-section .europe-points > div > strong {
+  grid-column: 1;
+  min-width: 0;
+  font-size: 16px;
+  line-height: 1.4;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+body .europe-section .europe-points > div > p {
+  grid-column: 2;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+}
+@media (max-width: 640px) {
+  body .europe-section .europe-points > div {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 6px;
+    padding: 18px 0;
+  }
+  body .europe-section .europe-points > div > strong,
+  body .europe-section .europe-points > div > p { grid-column: 1; }
+}
