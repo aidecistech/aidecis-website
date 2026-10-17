@@ -1,0 +1,172 @@
+/* Aidecis icon markers — warm brass, deep navy and the live site's light surface. */
+.aidecis-icon-mark {
+  --aidecis-icon-ink: #173f57;
+  --aidecis-icon-accent: #a66b2a;
+  position: relative;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  color: var(--aidecis-icon-ink) !important;
+  font-size: 0 !important;
+  line-height: 1 !important;
+  vertical-align: middle;
+  isolation: isolate;
+}
+.aidecis-icon-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  color: inherit;
+  animation: aidecis-icon-arrive 520ms cubic-bezier(.2,.75,.25,1) both;
+}
+.aidecis-icon-svg g {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.aidecis-icon-svg g path:nth-of-type(2n) { stroke: var(--aidecis-icon-accent); }
+.aidecis-icon-source { display: none !important; }
+
+/* Keep the footer compact and align its brand, tagline and links. */
+body > footer { grid-template-columns:130px minmax(0,1fr) auto; align-items:center; gap:clamp(12px,2vw,30px); padding-top:14px; padding-bottom:14px; }
+body > footer > .footer-legal { grid-column:auto; align-items:center; justify-content:flex-end; gap:clamp(12px,1.5vw,24px); }
+body > footer > span { text-align:left; }
+@media (max-width:900px) { body > footer { grid-template-columns:110px minmax(0,1fr); gap:10px 18px; } body > footer > .footer-legal { grid-column:1 / -1; justify-content:flex-start; } }
+
+.aidecis-icon-label {
+  color: inherit;
+  font-size: .74rem;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: .045em;
+}
+
+/* Decision lifecycle: replace the five ordinal markers with a visual control path. */
+.lifecycle-grid > li > .aidecis-icon-mark {
+  width: 3.1rem;
+  height: 3.1rem;
+  margin-bottom: 1.15rem;
+  padding: .67rem;
+  border: 1px solid rgba(166, 107, 42, .3);
+  border-radius: 50%;
+  background: linear-gradient(145deg, rgba(255,255,255,.92), rgba(238,241,237,.72));
+  box-shadow: 0 7px 18px rgba(23,63,87,.07);
+}
+.lifecycle-grid > li:nth-child(2) > .aidecis-icon-mark { animation-delay: 80ms; }
+.lifecycle-grid > li:nth-child(3) > .aidecis-icon-mark { animation-delay: 150ms; }
+.lifecycle-grid > li:nth-child(4) > .aidecis-icon-mark { animation-delay: 220ms; }
+.lifecycle-grid > li:nth-child(5) > .aidecis-icon-mark { animation-delay: 290ms; }
+
+/* Operational examples: compact line drawings support each use case. */
+.use-case .case-no.aidecis-icon-mark {
+  width: 2.65rem;
+  height: 2.65rem;
+  padding: .5rem;
+  border: 1px solid rgba(166, 107, 42, .28);
+  border-radius: 50%;
+  background: rgba(255,255,255,.68);
+}
+
+/* European design principles: a consistent, quiet icon set. */
+.europe-points > div > span.aidecis-icon-mark {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: .85rem;
+  padding: .42rem;
+  border: 1px solid rgba(166, 107, 42, .26);
+  border-radius: 50%;
+  background: rgba(255,255,255,.64);
+}
+
+/* Industry list: icons replace ordinal labels while leaving each client-facing name intact. */
+.industry-teaser > a > span:first-child.aidecis-icon-mark {
+  width: 2rem;
+  height: 2rem;
+  margin-right: .85rem;
+  padding: .24rem;
+  color: #173f57 !important;
+}
+.industry-teaser > a > span:first-child .aidecis-icon-svg { width: 100%; height: 100%; }
+
+/* Demo process: icon + unchanged Explore / Decide / Simulate labels. */
+.demo-panel-steps > .aidecis-icon-mark {
+  gap: .45rem;
+  font-size: initial !important;
+  justify-content: flex-start;
+}
+.demo-panel-steps > .aidecis-icon-mark .aidecis-icon-svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: 0 0 1.25rem;
+}
+.demo-panel-steps > .aidecis-icon-mark .aidecis-icon-label { font-size: inherit; }
+
+@keyframes aidecis-icon-arrive {
+  from { opacity: 0; transform: translateY(5px) scale(.88); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aidecis-icon-svg { animation: none !important; }
+}
+@media (max-width: 640px) {
+  .lifecycle-grid > li > .aidecis-icon-mark { width: 2.7rem; height: 2.7rem; padding: .56rem; }
+  .europe-points > div > span.aidecis-icon-mark { width: 2.25rem; height: 2.25rem; }
+}
+
+
+/* Accountability article: ten distinct issue icons replace card numbering. */
+.crisis-card > .crisis-number.aidecis-icon-mark {
+  width: 2.9rem;
+  height: 2.9rem;
+  padding: .58rem;
+  margin-bottom: .9rem;
+  border: 1px solid rgba(166, 107, 42, .3);
+  border-radius: 50%;
+  color: #173f57 !important;
+  background: linear-gradient(145deg, rgba(255,255,255,.92), rgba(238,241,237,.72));
+  box-shadow: 0 7px 18px rgba(23,63,87,.07);
+}
+
+/* Benefits calculator: keep all euro amounts and assumptions intact. */
+.result > .label.aidecis-icon-mark {
+  width: 100%;
+  min-height: 2.2rem;
+  gap: .7rem;
+  justify-content: flex-start;
+  font-size: .78rem !important;
+  font-weight: 650;
+  letter-spacing: .055em;
+  text-transform: uppercase;
+}
+.result > .label.aidecis-icon-mark .aidecis-icon-svg {
+  width: 1.7rem;
+  height: 1.7rem;
+  flex: 0 0 1.7rem;
+  padding: .15rem;
+  border: 1px solid rgba(166,107,42,.28);
+  border-radius: 50%;
+  background: rgba(255,255,255,.72);
+}
+.result > .label.aidecis-icon-mark .aidecis-icon-label { font-size: inherit; letter-spacing: inherit; }
+
+/* Industry directory uses the same symbols as the homepage teaser. */
+.industry-row > .industry-no.aidecis-icon-mark {
+  width: 2.3rem;
+  height: 2.3rem;
+  margin-right: 1rem;
+  padding: .32rem;
+  border: 1px solid rgba(166,107,42,.26);
+  border-radius: 50%;
+  color: #173f57 !important;
+  background: rgba(255,255,255,.72);
+}
+
+/* Keep the European principles icon in its own grid column so it never covers copy. */
+.europe-points > div { display:grid; grid-template-columns:2.5rem minmax(0,1fr); column-gap:.85rem; align-items:start; }
+.europe-points > div > :not(:first-child) { grid-column:2; }
+.europe-points > div > span.aidecis-icon-mark { grid-column:1; grid-row:1 / span 2; margin-right:0; }
+@media (max-width:640px) { .europe-points > div { grid-template-columns:2.25rem minmax(0,1fr); column-gap:.75rem; } }
