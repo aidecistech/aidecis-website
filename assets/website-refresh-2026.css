@@ -19,7 +19,7 @@ h1, h2, h3, .film-message { font-family: Georgia, "Times New Roman", serif; lett
 .site-header nav { gap: clamp(13px, 1.7vw, 26px); }
 .site-header nav a { color: #365964; }
 .site-header nav a:hover, .site-header nav a:focus-visible { color: var(--navy); text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 7px; }
-.button, .booking-button, .contact-submit, .btn-cookie, #film-toggle, .menu-toggle, .benefits-calculator .cta { border-radius: 4px !important; }
+.button, .booking-button, .contact-submit, .btn-cookie, .benefits-calculator .cta { border-radius: 4px !important; }
 .button { background: var(--navy); border-color: var(--navy); }
 .button:hover { background: var(--navy-deep); }
 .hero-copy .hero-lead { max-width: 880px; font-size: clamp(18px, 1.7vw, 23px); line-height: 1.55; color: #365964; }
@@ -46,14 +46,14 @@ h1, h2, h3, .film-message { font-family: Georgia, "Times New Roman", serif; lett
 .shared-workflow li { position: relative; min-height: 90px; padding: 30px 12px 12px; border-top: 1px solid rgba(255,255,255,.45); color: #f7f4ed; font-size: 13px; }
 .shared-workflow li::before { position: absolute; top: 8px; left: 12px; color: #ffd27c; font-size: 11px; font-weight: 800; counter-increment: workflow; content: "0" counter(workflow); }
 .use-case-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; padding: 0 clamp(22px, 6vw, 88px); }
-.use-case-detail { display: grid; grid-template-columns: 46px minmax(0, 1fr); gap: 19px; align-content: start; padding: 26px; background: white; border: 1px solid var(--line); border-top: 3px solid #b8d4da; scroll-margin-top: 105px; }
+.use-case-detail { display: grid; grid-template-columns: minmax(0, 1fr); gap: 19px; align-content: start; padding: 26px; background: white; border: 1px solid var(--line); border-top: 3px solid #b8d4da; scroll-margin-top: 105px; }
 .case-number { color: #9b6820; font: 700 16px/1 system-ui, sans-serif; font-variant-numeric: tabular-nums; }
 .case-category { margin: 0 0 8px; color: #667f86; font: 700 11px/1.4 system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; }
 .case-content h2 { margin: 0 0 18px; color: var(--navy); font-size: clamp(24px, 2.4vw, 32px); line-height: 1.12; }
 .case-content > p:not(.case-category), .case-columns > p { display: grid; grid-template-columns: 122px 1fr; gap: 13px; margin: 0; padding: 13px 0; border-top: 1px solid #e5ebea; color: #48636d; font-size: 14px; line-height: 1.55; }
 .case-content strong { color: var(--navy); font-size: 12px; }
 .case-featured { grid-column: 1 / -1; }
-.use-case-featured { padding: 32px; color: white; background: var(--navy); border-color: var(--navy); border-top-color: var(--gold); }
+.use-case-featured { grid-column: 1 / -1; padding: 32px; color: white; background: var(--navy); border-color: var(--navy); border-top-color: var(--gold); }
 .use-case-featured .case-number, .use-case-featured .case-category { color: #ffd27c; }
 .use-case-featured .case-content h2, .use-case-featured .case-content strong { color: white; }
 .use-case-featured .case-content > p, .use-case-featured .case-columns > p { color: #d8e6e8; border-top-color: rgba(255,255,255,.22); }
@@ -105,7 +105,7 @@ h1, h2, h3, .film-message { font-family: Georgia, "Times New Roman", serif; lett
   .shared-workflow li::before { top: 0; }
   .use-case-close { margin-right: 18px; margin-left: 18px; padding: 28px; }
   .use-case-detail, .use-case-featured { padding: 22px; }
-  .use-case-detail { grid-template-columns: 34px minmax(0, 1fr); gap: 10px; }
+  .use-case-detail { grid-template-columns: minmax(0, 1fr); gap: 10px; }
   .dossier-flow { gap: 6px; }
   .dossier-flow i { display: none; }
   .business-case-inputs, .business-case-results { padding: 20px; }
@@ -128,3 +128,40 @@ h1, h2, h3, .film-message { font-family: Georgia, "Times New Roman", serif; lett
 .benefits-calculator input[type=number] { color: var(--ink) !important; background: #fdfbf8 !important; border: 1px solid #b9cdd1 !important; border-radius: 3px !important; color-scheme: light !important; }
 .benefits-calculator .panel { border-radius: 4px !important; }
 .benefits-calculator .benefit { border-radius: 4px !important; }
+
+/* Film copy uses the site display face; the Aidecis mark remains the original logo artwork. */
+.film-story .film-message { color:#fff; font-family:Georgia, "Times New Roman", serif; font-size:clamp(32px,3.6vw,52px); font-weight:400; letter-spacing:-.025em; line-height:1.15; }
+.film-story .film-message-detail { max-width:1150px; }
+.film-wordmark-pad { color:#d7a35b; font:inherit; }
+.shared-workflow li { padding-top:38px; }
+.shared-workflow li::before { content:none; }
+.shared-workflow .workflow-icon { position:absolute; top:7px; left:12px; width:24px; height:24px; }
+.shared-workflow .workflow-icon .aidecis-icon-svg { width:24px; height:24px; color:#ffd27c; }
+.proof-icon { display:block; width:30px; height:30px; margin-bottom:16px; color:#173f57; }
+.decision-proof-grid article > .proof-icon .aidecis-icon-svg { width:30px; height:30px; }
+.case-number { display:none; }
+body .europe-section {
+  color: #183943;
+  background: #fff;
+}
+body .europe-section h2,
+body .europe-section .europe-points strong { color: #0d3f52; }
+body .europe-section .eyebrow { color: #88601f; }
+body .europe-section > div:nth-child(2) > p:last-child,
+body .europe-section .europe-points p { color: #526f79; }
+body .europe-section .europe-points { border-color: #d8e2e3; }
+body .europe-section .europe-points div { border-color: #d8e2e3; }
+body .europe-section .europe-points span { color: #9b6820; }
+@media (max-width: 480px) {
+  .film-story .film-message { font-size: 32px; }
+}
+
+/* Keep the full site navigation visible; links wrap across the header on smaller screens. */
+.menu-toggle { display:none !important; }
+@media (max-width: 860px) {
+  .site-header { height:auto; min-height:78px; flex-wrap:wrap; justify-content:space-between; padding-top:12px; padding-bottom:12px; }
+  .site-header nav { position:static; display:flex !important; order:3; flex:1 0 100%; width:100%; flex-direction:row; flex-wrap:wrap; justify-content:flex-start; gap:10px 20px; margin:0; padding:10px 0 0; background:transparent; border:0; }
+  .site-header nav a, .site-header nav summary { font-size:12px; }
+}
+@media (max-width: 480px) { .film-story .film-message { font-size:32px; } .site-header nav { gap:9px 14px; } }
+.shared-workflow { scroll-margin-top: 120px; }

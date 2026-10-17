@@ -15,7 +15,7 @@
     if (values.some((value, index) => !Number.isFinite(value) || value < Number(fields[index].min) || value > Number(fields[index].max))) {
       error.textContent = t('Enter values within the field limits to see the scenario estimate.');
       valueOutputs.forEach((id) => { document.getElementById(id).textContent = '—'; });
-      ['first-year-cost', 'first-year-net', 'value-cost-ratio'].forEach((id) => { document.getElementById(id).textContent = '—'; });
+      ['annual-cost', 'annual-net', 'annual-value-cost-ratio'].forEach((id) => { document.getElementById(id).textContent = '—'; });
       return;
     }
     error.textContent = '';
@@ -25,18 +25,18 @@
     const subscriptionAnnual = pricing.annualSubscription;
     const onboardingLow = pricing.onboardingLow;
     const onboardingHigh = pricing.onboardingHigh;
-    const costLow = subscriptionAnnual + onboardingLow;
-    const costHigh = subscriptionAnnual + onboardingHigh;
+    const costLow = subscriptionAnnual + onboardingLow / 5;
+    const costHigh = subscriptionAnnual + onboardingHigh / 5;
     const netLow = annualValue - costHigh;
     const netHigh = annualValue - costLow;
     const lang = window.AidecisI18n?.language || 'en';
     valueOutputs.forEach((id) => { document.getElementById(id).textContent = currency(annualValue, lang); });
-    document.getElementById('first-year-cost').textContent = `${currency(costLow, lang)} – ${currency(costHigh, lang)}`;
-    document.getElementById('first-year-net').textContent = `${currency(netLow, lang)} – ${currency(netHigh, lang)}`;
+    document.getElementById('annual-cost').textContent = `${currency(costLow, lang)} – ${currency(costHigh, lang)}`;
+    document.getElementById('annual-net').textContent = `${currency(netLow, lang)} – ${currency(netHigh, lang)}`;
     const ratioLow = costHigh > 0 ? annualValue / costHigh : 0;
     const ratioHigh = costLow > 0 ? annualValue / costLow : 0;
     const number = (value) => new Intl.NumberFormat({ en: 'en-IE', nl: 'nl-NL', es: 'es-ES' }[lang] || 'en-IE', { maximumFractionDigits: 1 }).format(value);
-    document.getElementById('value-cost-ratio').textContent = `${number(ratioLow)}× – ${number(ratioHigh)}×`;
+    document.getElementById('annual-value-cost-ratio').textContent = `${number(ratioLow)}× – ${number(ratioHigh)}×`;
   };
   fields.forEach((field) => field.addEventListener('input', render));
   document.addEventListener('aidecis:languagechange', render);

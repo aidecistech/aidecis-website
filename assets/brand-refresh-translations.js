@@ -2,6 +2,7 @@ window.AIDECIS_TRANSLATIONS = window.AIDECIS_TRANSLATIONS || {};
 Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
   "Aidecis | Decision intelligence and accountability for supply chains": "Aidecis | Inteligencia decisional y responsabilidad en las cadenas de suministro",
   "Aidecis. Intelligence into every decision. Accountability behind every action.": "Aidecis. Inteligencia en cada decisión. Responsabilidad detrás de cada acción.",
+  "Intelligence into every decision. Accountability behind every action.": "Inteligencia en cada decisión. Responsabilidad detrás de cada acción.",
   "The intelligent operating layer for consequential supply-chain decisions and actions.": "La capa inteligente para decisiones y acciones críticas en la cadena de suministro.",
   "AI decision intelligence for consequential supply-chain decisions. Govern people and bots with clear authority, evidence and outcomes—from the first signal through execution and learning.": "Inteligencia de decisiones con IA para decisiones críticas en la cadena de suministro. Gobierna a las personas y los bots con autoridad, pruebas y resultados claros, desde la primera señal hasta la ejecución y el aprendizaje.",
   "People and bots, governed": "Personas y bots, bajo gobernanza",
@@ -103,17 +104,30 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
 Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
   "Aidecis | Decision intelligence and accountability for supply chains": "Aidecis | Besluitintelligentie en verantwoordelijkheid in supply chains",
   "Aidecis. Intelligence into every decision. Accountability behind every action.": "Aidecis. Intelligentie in elke beslissing. Verantwoording achter elke actie.",
+  "Intelligence into every decision. Accountability behind every action.": "Intelligentie in elke beslissing. Verantwoording achter elke actie.",
   "The intelligent operating layer for consequential supply-chain decisions and actions.": "De intelligente besturingslaag voor ingrijpende beslissingen en acties in supply chains.",
   "AI decision intelligence for consequential supply-chain decisions. Govern people and bots with clear authority, evidence and outcomes—from the first signal through execution and learning.": "AI-besluitintelligentie voor ingrijpende beslissingen in supply chains. Begeleid mensen en bots met duidelijke bevoegdheid, bewijs en resultaten, van het eerste signaal tot uitvoering en leren.",
   "People and bots, governed": "Mensen en bots, verantwoord aangestuurd",
   "Authority, evidence and outcome stay connected across every action": "Bevoegdheid, bewijs en resultaat blijven verbonden met elke actie",
   "Explore the 10 use cases": "Bekijk de 10 use cases",
-  "Build a business case": "Stel een businesscase op",
+  "Build a business case": "Stel een business case op",
   "Explore all ten consequential supply-chain decisions": "Bekijk alle tien ingrijpende supplychainbeslissingen",
-  "Build a transparent business case": "Stel een transparante businesscase op",
+  "Build a transparent business case": "Stel een transparante business case op",
   "Ten supply-chain use cases | Aidecis": "Tien use cases voor supply chains | Aidecis",
-  "Decision intelligence, applied where it matters": "Besluitintelligentie toegepast waar het ertoe doet",
-  "Ten consequential supply-chain decisions. One accountable workflow.": "Tien ingrijpende supplychainbeslissingen. Eén verantwoord workflow.",
+  "Decision intelligence, applied where it matters": "Decision intelligence, toegepast waar het ertoe doet",
+  "Ten consequential supply-chain decisions. One accountable workflow.": "Tien use cases. Één verantwoordingsworkflow.",
+  "Build your business case": "Stel je business case op",
+  "Expedite freight": "Spoedtransport",
+  "Inventory": "Voorraad",
+  "Demand": "Vraag",
+  "Supplier": "Leverancier",
+  "Quality": "Kwaliteit",
+  "Production": "Productie",
+  "Logistics": "Logistiek",
+  "Customer promise": "Klantbelofte",
+  "Procurement": "Inkoop",
+  "Invoice": "Factuur",
+  "Industries": "Sectoren",
   "AI helps people and bots see the context, compare options and learn from outcomes. Aidecis governs who can approve each action, what can execute, and what evidence follows.": "AI helpt mensen en bots de context te begrijpen, opties te vergelijken en van resultaten te leren. Aidecis bepaalt wie acties mag goedkeuren, wat uitgevoerd mag worden en welk bewijs wordt vastgelegd.",
   "See the shared workflow": "Bekijk de gedeelde workflow",
   "Jump to a use case": "Ga naar een use case",
@@ -187,9 +201,18 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "Start with the decision that costs you the most when it goes wrong.": "Begin bij de beslissing die je het meest kost als het misgaat.",
   "Use client-defined authority, policies and approved data. Keep people accountable as automation grows, and measure outcomes before increasing a bot's decision scope.": "Gebruik bevoegdheden, beleid en goedgekeurde gegevens van de klant. Houd mensen verantwoordelijk terwijl automatisering groeit en meet resultaten voordat je de beslisruimte van een bot uitbreidt.",
   "Potential annual value opportunity": "Potentiële jaarlijkse waardekans",
-  "Estimated first-year costs": "Geschatte kosten in het eerste jaar",
-  "Estimated net first-year value": "Geschatte netto waarde in het eerste jaar",
-  "Value / first-year cost": "Waarde / kosten eerste jaar",
+  "Use your own operating evidence": "Gebruik je eigen operationele gegevens",
+  "Connect the decisions you want to improve with the costs they affect. Edit each assumption, then compare the scenario value with the network subscription and onboarding estimate above.": "Koppel de beslissingen die je wilt verbeteren aan de kosten waarop ze invloed hebben. Pas de aannames aan en vergelijk de scenario-opbrengst met het netwerkabonnement en de geschatte implementatie hierboven.",
+  "Use the annual cost of stoppages that may be affected by the selected decision.": "Gebruik de jaarlijkse kosten van stilstand waarop de geselecteerde beslissing invloed kan hebben.",
+  "Include only costs that are not already included in downtime exposure.": "Neem alleen kosten mee die nog niet in de blootstelling aan stilstand zijn opgenomen.",
+  "Use reconciled historical variance and claims where available.": "Gebruik waar mogelijk gereconcilieerde historische verschillen en claims.",
+  "Estimate the share of the listed cost connected to the decisions in scope.": "Schat welk deel van de genoemde kosten samenhangt met de beslissingen binnen de scope.",
+  "Replace this illustrative assumption with a pilot-backed estimate when available.": "Vervang deze illustratieve aanname zodra er een schatting op basis van een pilot beschikbaar is.",
+  "Calculated from the editable cost and improvement assumptions below. This is a scenario, not a savings forecast.": "Berekend op basis van de aanpasbare kosten- en verbeteringsaannames hieronder. Dit is een scenario, geen besparingsprognose.",
+  "Illustrative inputs only. These are user-defined assumptions, not a forecast, customer result, or guarantee. Avoid double counting. Validate the baseline and outcome with operational and finance owners.": "Alleen illustratieve invoer. Dit zijn aannames van jou, geen prognose, klantresultaat of garantie. Tel niets dubbel. Valideer de uitgangssituatie en uitkomst samen met de operationele en financiële verantwoordelijken.",
+  "Estimated annual costs (subscription + implementation / 5)": "Geschatte jaarlijkse kosten (abonnement + implementatie / 5)",
+  "Estimated annual net value": "Geschatte jaarlijkse nettowaarde",
+  "Value / annual costs": "Waarde / jaarlijkse kosten",
   "Annual downtime exposure (€)": "Jaarlijkse blootstelling aan stilstand (€)",
   "Annual premium freight and rerouting spend (€)": "Jaarlijkse kosten voor spoedvervoer en omleidingen (€)",
   "Annual invoice variance and recoverable leakage (€)": "Jaarlijkse factuurverschillen en terugwinbare kostenlekken (€)",
@@ -197,7 +220,7 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "Estimated reduction in addressed cost (%)": "Geschatte verlaging van aan te pakken kosten (%)",
   "Use your own historical figures. Avoid counting the same loss twice.": "Gebruik je eigen historische cijfers. Tel hetzelfde verlies niet dubbel.",
   "Illustrative inputs only. These are user-defined assumptions, not a forecast, customer result, or guarantee.": "Alleen illustratieve invoer. Dit zijn aannames van de gebruiker, geen prognose, klantresultaat of garantie.",
-  "The value estimate uses: annual costs at risk × addressable share × expected reduction. First-year costs combine the network subscription and estimated onboarding range shown above.": "De waardeschatting gebruikt: jaarlijkse kosten in gevaar × aanpakbaar deel × verwachte verlaging. De kosten voor het eerste jaar combineren het netwerkabonnement en de geschatte onboarding hierboven.",
+  "The estimate multiplies annual costs at risk by the addressable share and the expected reduction. Annual costs combine the network subscription and one fifth of the estimated implementation costs, amortised over five years. No competitor price is assumed.": "De schatting vermenigvuldigt jaarlijkse kostenrisico’s met het aanpakbare deel en de verwachte verlaging. De jaarlijkse kosten bestaan uit het netwerkabonnement plus een vijfde van de geschatte implementatiekosten, verdeeld over vijf jaar. Er is geen prijs van concurrenten aangenomen.",
   "Compare the same scope when evaluating alternatives. This calculator does not estimate competitor prices.": "Vergelijk dezelfde scope als je alternatieven beoordeelt. Deze calculator schat geen prijzen van concurrenten."
 });
 Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
@@ -222,7 +245,7 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
 Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
   "Supply-chain network showing port congestion, an alternate route, and recovery": "Supplychainnetwerk met havencongestie, een alternatieve route en herstel.",
   "Open the animation full screen": "Open de animatie op volledig scherm",
-  "Business-case panel below uses editable exposure, addressable-share and reduction assumptions. It is a scenario estimate, not a savings forecast.": "Het businesscasepaneel hieronder gebruikt aanpasbare aannames over blootstelling, aanpakbaar deel en verlaging. Het is een scenario-inschatting, geen besparingsprognose.",
+  "Business-case panel below uses editable exposure, addressable-share and reduction assumptions. It is a scenario estimate, not a savings forecast.": "Het business case-paneel hieronder gebruikt aanpasbare aannames over blootstelling, aanpakbaar deel en verlaging. Het is een scenario-inschatting, geen besparingsprognose.",
   "Illustrative scenario · user-defined assumptions": "Illustratief scenario · aannames van de gebruiker",
   "Scenario estimate": "Scenario-inschatting",
   "Enter values within the field limits to see the scenario estimate.": "Vul waarden binnen de grenzen in om de scenario-inschatting te zien."
@@ -231,5 +254,5 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
   "The business-case panel below uses editable exposure, addressable-share and reduction assumptions. It is a scenario estimate, not a savings forecast.": "El panel del caso de negocio usa supuestos editables de exposición, proporción abordable y reducción. Es una estimación de escenario, no una previsión de ahorro."
 });
 Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
-  "The business-case panel below uses editable exposure, addressable-share and reduction assumptions. It is a scenario estimate, not a savings forecast.": "Het businesscasepaneel hieronder gebruikt aanpasbare aannames over blootstelling, aanpakbaar deel en verlaging. Het is een scenario-inschatting, geen besparingsprognose."
+  "The business-case panel below uses editable exposure, addressable-share and reduction assumptions. It is a scenario estimate, not a savings forecast.": "Het business case-paneel hieronder gebruikt aanpasbare aannames over blootstelling, aanpakbaar deel en verlaging. Het is een scenario-inschatting, geen besparingsprognose."
 });

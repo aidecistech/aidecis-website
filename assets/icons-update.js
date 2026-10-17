@@ -74,13 +74,15 @@
     if (label) {
       const visibleLabel = document.createElement('span');
       visibleLabel.className = 'aidecis-icon-label';
-      visibleLabel.textContent = label;
+      visibleLabel.textContent = window.AidecisI18n?.t(label) || label;
       el.append(visibleLabel);
     }
   }
 
   function enhance() {
     document.querySelectorAll('.lifecycle-grid > li > span:first-child').forEach((el, i) => setIcon(el, ['proposal', 'evaluate', 'approve', 'execute', 'learn'][i]));
+    document.querySelectorAll('.shared-workflow [data-workflow-icon]').forEach((el) => setIcon(el, ['evidence', 'evaluate', 'control', 'execute', 'learn'][Number(el.dataset.workflowIcon) - 1] || 'control'));
+    document.querySelectorAll('.decision-proof-grid .proof-icon[data-proof-icon]').forEach((el) => setIcon(el, el.dataset.proofIcon));
     document.querySelectorAll('.use-case .case-no').forEach((el, i) => setIcon(el, ['logistics', 'manufacturing', 'procurement'][i]));
     document.querySelectorAll('.crisis-card .crisis-number').forEach((el, i) => setIcon(el, crisisIcons[i] || 'control'));
 
