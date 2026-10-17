@@ -41,7 +41,7 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
   "Out-of-envelope decisions route to the accountable owner with the evidence needed to decide.": "Si una decisión supera los límites establecidos, se remite a la persona responsable junto con la evidencia necesaria para resolverla.",
   "A customer-side gateway controls the scoped hand-off to the protected workflow.": "Una pasarela en el entorno del cliente controla el traspaso autorizado al sistema protegido.",
   "Aidecis makes that impact explicit before execution, then makes the learning reusable across plants, warehouses, lanes and regions.": "Aidecis muestra esas consecuencias antes de ejecutar la acción y permite aplicar lo aprendido en otras plantas, almacenes, rutas y regiones.",
-  "Start with one consequential decision. Prove the control pattern before scaling it.": "Empiece con una decisión crítica y valide el modelo de control antes de ampliarlo.",
+  "Start with one decision-making process. Prove that Aidecis works before you scale.": "Empiece con un proceso de toma de decisiones. Compruebe que Aidecis funciona antes de ampliar el alcance.",
   "Test the working before you scale.": "Valide el flujo de trabajo antes de ampliarlo.",
   "Start with a focused pilot using your approval rules and a real operational case. Agree the evidence, system connection and success measures before work begins.": "Empiece con un piloto acotado, basado en sus reglas de aprobación y un caso operativo real. Antes de comenzar, acuerde la evidencia, la conexión con el sistema y las métricas de éxito.",
   "The estimate updates as you change your network.": "La estimación se actualiza al modificar los datos de la red.",
