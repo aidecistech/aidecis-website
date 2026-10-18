@@ -84,7 +84,8 @@ jobs:
           BASE: ${{ steps.pr.outputs.base }}
         run: |
           set -euo pipefail
-          git fetch --no-tags origin "$BASE"
+          # The checkout fetched every branch (fetch-depth 0) and keeps no credentials, so no fetch here: just make sure the base is present.
+          git rev-parse --verify --quiet "origin/${BASE}" >/dev/null || { echo "Base branch origin/${BASE} missing from the checkout"; exit 1; }
           cat > /tmp/prompt.txt <<PROMPT
           You are a careful code reviewer for a private repository. Review the changes of this
           pull request: the diff between origin/${BASE} and HEAD (use: git diff origin/${BASE}...HEAD).
@@ -107,9 +108,11 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           NUMBER: ${{ steps.pr.outputs.number }}
           SHA: ${{ steps.pr.outputs.sha }}
+          EVENT: ${{ github.event_name }}
         run: |
+          if [ "$EVENT" = "workflow_dispatch" ]; then TITLE="Claude review (manual run)"; else TITLE="Claude review (fallback: Codex had no credits)"; fi
           {
-            echo "### Claude review (fallback: Codex had no credits)"
+            echo "### ${TITLE}"
             echo
             cat /tmp/review.txt
             echo
