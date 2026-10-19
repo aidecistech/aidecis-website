@@ -8,6 +8,12 @@ const reviewStorage = (() => { const fallback={}; try { const s=window.localStor
     const saved = reviewStorage.getItem(storageKey);
     if (saved === 'es' || saved === 'nl') selected = saved;
   } catch (_) { /* language selection still works for restricted storage */ }
+  // A link from the story demo (demo.app.aidecis.com) brings the visitor's language along as ?lang=.
+  const fromLink = new URLSearchParams(window.location.search).get('lang');
+  const linked = fromLink === 'en' || fromLink === 'es' || fromLink === 'nl' ? fromLink : null;
+  if (linked) selected = linked;
+  // The story demo runs on its own site and cannot see this one's choice, so its links carry it.
+  const tourLinks = [...document.querySelectorAll('a[href^="https://demo.app.aidecis.com/#/tour"]')];
   const textNodes = [];
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
     acceptNode(node) {
@@ -36,6 +42,7 @@ const reviewStorage = (() => { const fallback={}; try { const s=window.localStor
     document.title = dictionary[sourceTitle] || sourceTitle;
     document.documentElement.lang = language === 'en' ? 'en' : language === 'es' ? 'es' : 'nl';
     buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.language === language)));
+    tourLinks.forEach((link) => { link.href = 'https://demo.app.aidecis.com/#/tour?lang=' + language; });
     selected = language;
     if (persist) {
       try { reviewStorage.setItem(storageKey, language); } catch (_) { /* selection remains active until navigation */ }
@@ -44,7 +51,7 @@ const reviewStorage = (() => { const fallback={}; try { const s=window.localStor
   };
   buttons.forEach((button) => button.addEventListener('click', () => applyLanguage(button.dataset.language)));
   window.AidecisI18n = { get language() { return selected; }, t: (source) => (catalog[selected] || {})[source] || source };
-  applyLanguage(selected, false);
+  applyLanguage(selected, Boolean(linked));
 })();
 
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
