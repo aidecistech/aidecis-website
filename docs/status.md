@@ -63,7 +63,7 @@ Storage Box checks recursively list regular-file metadata over SFTP on port 23, 
 
 CRM/CSM directory components match `crm`, `csm`, or those names followed by `-`, `_` or `.`, ignoring case. Empty subtrees fail independently. Encrypted names cannot identify a service. Missing matching evidence is **Failed**, evidence at or beyond the age limit is **Stale**, and a file dated more than five minutes in the future is **Failed**. The Mac's 26-hour default assumes a daily job; set the limit to match each actual schedule before relying on those tiers. An archive with a longer cadence must send its own success-age limit and refresh its report at least every 36 hours, retaining the actual last-success timestamp.
 
-The overall banner shows an incident for a down system, failed backup or started unresolved incident. Otherwise degraded, stale or unknown evidence produces the degraded banner; active maintenance follows, then all operational. Active system maintenance changes the displayed system state to `maintenance` while keeping the measured state. Backup evidence retains its own state during maintenance. Maintenance messages always remain visible, including when another failure takes banner priority.
+The overall banner shows an incident for a down system, failed backup or started unresolved incident. Otherwise degraded or stale evidence produces the degraded banner; active maintenance follows; then all operational, with a note when some backup tiers have no evidence yet ("No data" never counts as degraded).
 
 ## JSON contract
 

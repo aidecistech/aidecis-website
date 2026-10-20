@@ -114,12 +114,13 @@ jobs:
         run: |
           set -euo pipefail
           # TransIP needs a few seconds before a freshly uploaded file is served (a 404 or the old
-          # file comes back first), so compare again every 10 seconds for up to 2 minutes.
+          # file comes back first), so compare again every 10 seconds, 12 attempts at most (about
+          # two minutes plus the request time).
           for file in index.html status.json; do
             ok=0
             for attempt in $(seq 1 12); do
-              if curl --max-time 30 -fsS "https://aidecis.com/status/$file?v=$GITHUB_RUN_ID-$attempt" | cmp -s - "public-status/status/$file"; then ok=1; break; fi
+              if curl --max-time 10 -fsS "https://aidecis.com/status/$file?v=$GITHUB_RUN_ID-$attempt" | cmp -s - "public-status/status/$file"; then ok=1; break; fi
               sleep 10
             done
-            [ "$ok" = 1 ] || { echo "$file is not served as published after 2 minutes"; exit 1; }
+            [ "$ok" = 1 ] || { echo "$file is not served as published after 12 attempts"; exit 1; }
           done
