@@ -398,7 +398,12 @@ class RenderTests(unittest.TestCase):
         self.assertEqual(render.overall(data, NOW)[0], "up")
         data["systems"][0]["state"] = "maintenance"
         self.assertEqual(render.overall(data, NOW)[0], "maintenance")
+        data["systems"][0]["state"] = "up"
         data["backups"][0]["state"] = "unknown"
+        state, label = render.overall(data, NOW)
+        self.assertEqual(state, "up")
+        self.assertIn("no data", label)
+        data["backups"][0]["state"] = "stale"
         self.assertEqual(render.overall(data, NOW)[0], "degraded")
         data["backups"][0]["state"] = "failed"
         self.assertEqual(render.overall(data, NOW)[0], "down")

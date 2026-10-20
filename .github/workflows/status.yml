@@ -104,7 +104,7 @@ jobs:
             set sftp:connect-program 'ssh $SSH_OPTS';
             set net:max-retries 3; set net:timeout 30;
             open --env-password -u \"$SFTP_USER\" sftp://$HOST;
-            mkdir -p \"$REMOTE/status\";
+            set cmd:fail-exit no; mkdir -p \"$REMOTE/status\"; set cmd:fail-exit yes;
             put public-status/status/index.html -o \"$REMOTE/status/index.html\";
             put public-status/status/status.json -o \"$REMOTE/status/status.json\"
           "
@@ -113,6 +113,14 @@ jobs:
         if: github.ref == 'refs/heads/main' && vars.TRANSIP_SFTP_HOST != ''
         run: |
           set -euo pipefail
+          # TransIP needs a few seconds before a freshly uploaded file is served (a 404 or the old
+          # file comes back first), so compare again every 10 seconds, 12 attempts at most (about
+          # two minutes plus the request time).
           for file in index.html status.json; do
-            curl --retry 3 --retry-delay 5 --max-time 30 -fsS "https://aidecis.com/status/$file?v=$GITHUB_RUN_ID" | cmp -s - "public-status/status/$file"
+            ok=0
+            for attempt in $(seq 1 12); do
+              if curl --max-time 10 -fsS "https://aidecis.com/status/$file?v=$GITHUB_RUN_ID-$attempt" | cmp -s - "public-status/status/$file"; then ok=1; break; fi
+              sleep 10
+            done
+            [ "$ok" = 1 ] || { echo "$file is not served as published after 12 attempts"; exit 1; }
           done

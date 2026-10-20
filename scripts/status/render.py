@@ -70,10 +70,14 @@ def overall(data, now):
             or any(parse_time(row["started"]) <= now and (not row.get("resolved") or parse_time(row["resolved"]) > now)
                    for row in data.get("incidents", []))):
         return "down", "Incident in progress"
-    if any(state in ("degraded", "stale", "unknown") for state in states):
-        return "degraded", "Degraded service or incomplete data"
+    # "unknown" means no evidence for a tier (no reporter yet); it is shown as "No data" on the row
+    # and must not turn the whole page amber. Only measured degradation or stale evidence does.
+    if any(state in ("degraded", "stale") for state in states):
+        return "degraded", "Degraded service or stale backup evidence"
     if "maintenance" in states or active_maintenance(data.get("maintenance", []), now):
         return "maintenance", "Maintenance in progress"
+    if "unknown" in states:
+        return "up", "All systems operational; some backup tiers have no data yet"
     return "up", "All systems operational"
 
 
