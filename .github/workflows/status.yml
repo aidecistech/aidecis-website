@@ -113,6 +113,13 @@ jobs:
         if: github.ref == 'refs/heads/main' && vars.TRANSIP_SFTP_HOST != ''
         run: |
           set -euo pipefail
+          # TransIP needs a few seconds before a freshly uploaded file is served (a 404 or the old
+          # file comes back first), so compare again every 10 seconds for up to 2 minutes.
           for file in index.html status.json; do
-            curl --retry 3 --retry-delay 5 --max-time 30 -fsS "https://aidecis.com/status/$file?v=$GITHUB_RUN_ID" | cmp -s - "public-status/status/$file"
+            ok=0
+            for attempt in $(seq 1 12); do
+              if curl --max-time 30 -fsS "https://aidecis.com/status/$file?v=$GITHUB_RUN_ID-$attempt" | cmp -s - "public-status/status/$file"; then ok=1; break; fi
+              sleep 10
+            done
+            [ "$ok" = 1 ] || { echo "$file is not served as published after 2 minutes"; exit 1; }
           done
