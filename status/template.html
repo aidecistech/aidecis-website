@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="300">
+  <meta name="description" content="Current status of Aidecis public systems and backup evidence.">
+  <title>Aidecis · System status</title>
+  <link rel="stylesheet" href="https://aidecis.com/assets/styles.css">
+  <link rel="stylesheet" href="https://aidecis.com/assets/status.css">
+</head>
+<body class="status-page">
+  <a class="skip-link" href="#main">Skip to status</a>
+  <header class="status-header">
+    <a class="brand" href="https://aidecis.com/" aria-label="Aidecis home"><img src="https://aidecis.com/assets/aidecis-logo.png" alt="Aidecis" width="124" height="48"></a>
+    <a href="https://aidecis.com/">Back to Aidecis <span aria-hidden="true">↗</span></a>
+  </header>
+  <main id="main" class="status-main">
+    <div class="status-intro"><p class="eyebrow">Aidecis operations</p><h1>System status</h1><p>Public systems and backup evidence, checked every 15 minutes.</p></div>
+    $sample_notice
+    <div class="status-banner $overall_state"><span aria-hidden="true">●</span><div><strong>$overall_label</strong><p>Updated $updated</p></div></div>
+    <p class="freshness-note">All times are UTC. This page refreshes every five minutes. If the update is over 45 minutes old, treat the results as out of date.</p>
+    $maintenance
+    <section aria-labelledby="systems-title"><div class="section-heading"><h2 id="systems-title">Public systems</h2><span>HTTPS · TLS certificates</span></div><div class="systems-grid">$systems</div></section>
+    <section aria-labelledby="backups-title"><div class="section-heading"><h2 id="backups-title">Backups</h2><span>Freshness of available evidence</span></div><p>Fresh files do not prove a successful restore. “No data” means this tier has no identifiable evidence or has not reported yet.</p><div class="backup-list">$backups</div></section>
+    <section aria-labelledby="history-title"><h2 id="history-title">Reading the history</h2><p>Each bar shows one UTC day, coloured by its worst hourly state. Missing hours count as no data. Hover or use a screen reader for the date and coverage.</p>
+      <ul class="history-legend"><li><i class="up"></i>Operational / OK</li><li><i class="degraded"></i>Degraded / stale</li><li><i class="down"></i>Down / failed</li><li><i class="maintenance"></i>Maintenance</li><li><i class="unknown"></i>No data</li></ul>
+    </section>
+    <section aria-labelledby="incidents-title"><h2 id="incidents-title">Incidents</h2>$incidents</section>
+  </main>
+  <footer class="status-footer"><span>Intelligence into every decision. Accountability behind every action.</span><a href="status.json">Status data (JSON)</a><span>Updated $updated</span></footer>
+</body>
+</html>

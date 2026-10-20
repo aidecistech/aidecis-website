@@ -7,3 +7,7 @@
 backups/
 node_modules/
 dist/
+__pycache__/
+.venv/
+status/index.html
+status/status.json

@@ -1,0 +1,32 @@
+name: Status tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Unit tests (no network or secrets)
+        run: python3 -m unittest discover -s tests -v -b
+      - name: Parse workflow YAML and check shell syntax
+        run: ruby scripts/status/validate_workflows.rb
+      - name: Render the offline sample
+        run: python3 scripts/status/render.py --sample --output "$RUNNER_TEMP/preview/status/index.html"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: status-preview
+          path: ${{ runner.temp }}/preview/
+          if-no-files-found: error

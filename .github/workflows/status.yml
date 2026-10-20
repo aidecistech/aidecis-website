@@ -1,0 +1,118 @@
+name: Update public status
+
+on:
+  push:
+    branches: [main]
+    paths: ['status/reports/*.json']
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+  workflow_dispatch:
+  repository_dispatch:
+    types: [status-update]
+
+permissions:
+  contents: read
+
+# Serialize read/merge/write cycles to preserve history. Reports persist in Git,
+# so replacing a pending run cannot discard an external update.
+concurrency:
+  group: public-status
+  cancel-in-progress: false
+
+jobs:
+  status:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Read the latest reports even when this run waited in the concurrency group.
+          ref: ${{ github.ref }}
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run status tests
+        run: python3 -m unittest discover -s tests -v -b
+
+      - name: Download the previous public state
+        run: python3 scripts/status/check.py --download-previous "$RUNNER_TEMP/previous-status.json"
+
+      - name: Install SFTP support in a virtual environment
+        run: |
+          python3 -m venv .venv
+          .venv/bin/python -m pip install --disable-pip-version-check -r scripts/status/requirements.txt
+
+      - name: Check systems and merge backup reports
+        env:
+          STORAGEBOX_READONLY_KEY: ${{ secrets.STORAGEBOX_READONLY_KEY }}
+          STORAGEBOX_KNOWN_HOSTS: ${{ vars.STORAGEBOX_KNOWN_HOSTS }}
+        run: .venv/bin/python scripts/status/check.py --previous "$RUNNER_TEMP/previous-status.json"
+
+      - name: Render and stage the generated files only
+        run: |
+          set -euo pipefail
+          python3 scripts/status/render.py
+          mkdir -p public-status/status
+          cp status/index.html status/status.json public-status/status/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: status-page
+          path: public-status/
+          retention-days: 7
+          if-no-files-found: error
+
+      # A branch workflow_dispatch produces an artifact only. Publishing starts after merge.
+      - name: Install lftp
+        if: github.ref == 'refs/heads/main' && vars.TRANSIP_SFTP_HOST != ''
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp >/dev/null
+
+      - name: Pin the TransIP host key
+        if: github.ref == 'refs/heads/main' && vars.TRANSIP_SFTP_HOST != ''
+        env:
+          KNOWN_HOSTS: ${{ vars.TRANSIP_SFTP_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+          test -n "$KNOWN_HOSTS" || { echo "TRANSIP_SFTP_KNOWN_HOSTS is not set; refusing an unpinned connection."; exit 1; }
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts && chmod 600 ~/.ssh/known_hosts
+
+      - name: Upload only generated status files over SFTP
+        if: github.ref == 'refs/heads/main' && vars.TRANSIP_SFTP_HOST != ''
+        env:
+          SFTP_KEY: ${{ secrets.TRANSIP_SFTP_KEY }}
+          LFTP_PASSWORD: ${{ secrets.TRANSIP_SFTP_PASSWORD }}
+          HOST: ${{ vars.TRANSIP_SFTP_HOST }}
+          SFTP_USER: ${{ vars.TRANSIP_SFTP_USER }}
+          REMOTE: ${{ vars.TRANSIP_SFTP_PATH }}
+        run: |
+          set -euo pipefail
+          test -n "$REMOTE" || { echo "TRANSIP_SFTP_PATH is not set."; exit 1; }
+          SSH_OPTS="-a -x -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts"
+          if [ -n "$SFTP_KEY" ]; then
+            printf '%s\n' "$SFTP_KEY" > ~/.ssh/publish_key && chmod 600 ~/.ssh/publish_key
+            SSH_OPTS="$SSH_OPTS -i $HOME/.ssh/publish_key -o IdentitiesOnly=yes"
+            export LFTP_PASSWORD=unused
+          fi
+          test -n "$LFTP_PASSWORD" || { echo "Set TRANSIP_SFTP_KEY or TRANSIP_SFTP_PASSWORD."; exit 1; }
+          # Put JSON last: readers of status.json must see the completed HTML publication.
+          lftp -c "
+            set cmd:fail-exit yes;
+            set sftp:connect-program 'ssh $SSH_OPTS';
+            set net:max-retries 3; set net:timeout 30;
+            open --env-password -u \"$SFTP_USER\" sftp://$HOST;
+            mkdir -p \"$REMOTE/status\";
+            put public-status/status/index.html -o \"$REMOTE/status/index.html\";
+            put public-status/status/status.json -o \"$REMOTE/status/status.json\"
+          "
+
+      - name: Verify the published status files
+        if: github.ref == 'refs/heads/main' && vars.TRANSIP_SFTP_HOST != ''
+        run: |
+          set -euo pipefail
+          for file in index.html status.json; do
+            curl --retry 3 --retry-delay 5 --max-time 30 -fsS "https://aidecis.com/status/$file?v=$GITHUB_RUN_ID" | cmp -s - "public-status/status/$file"
+          done
