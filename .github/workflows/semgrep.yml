@@ -1,0 +1,91 @@
+name: Semgrep
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  schedule:
+    - cron: '23 5 * * 1' # Mondays at 05:23 UTC
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    container:
+      # Semgrep 1.181.0; official multi-platform image index digest.
+      # https://hub.docker.com/layers/semgrep/semgrep/1.181.0/images/sha256-c47e426f7f0cfa19af6d7877560d0a7135f683b8090ad0efc97c4ec7810dc435
+      image: semgrep/semgrep:1.181.0@sha256:81474464c1f07483ba0682a44787fd93c91397419762a04abe2bafaae396304b
+    defaults:
+      run:
+        shell: bash
+    env:
+      SEMGREP_SEND_METRICS: 'off'
+      SEMGREP_ENABLE_VERSION_CHECK: '0'
+      REPORT_DIR: ${{ runner.temp }}/semgrep
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Scan the PR head, with its base commit available for comparison.
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Scan and print findings
+        env:
+          BASE_COMMIT: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          # Container jobs can have a different owner from the checkout.
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          scan_args=(
+            --oss-only --metrics=off --disable-version-check --strict
+            --config p/default
+            --config p/security-audit
+            --config p/secrets
+            --config p/javascript
+            --config p/typescript
+          )
+          if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+            git cat-file -e "${BASE_COMMIT}^{commit}"
+            scan_args+=(--baseline-commit "$BASE_COMMIT")
+          fi
+          mkdir -p "$REPORT_DIR"
+          # Keep all severities in the log and reports; gate ERROR separately.
+          semgrep scan "${scan_args[@]}" \
+            --text \
+            --text-output "$REPORT_DIR/semgrep.txt" \
+            --sarif-output "$REPORT_DIR/semgrep.sarif" \
+            --json-output "$REPORT_DIR/semgrep.json" \
+            .
+
+      - name: Fail on ERROR findings
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          import os
+          import sys
+          from pathlib import Path
+
+          report = json.loads((Path(os.environ["REPORT_DIR"]) / "semgrep.json").read_text())
+          findings = [r for r in report["results"] if not r["extra"].get("is_ignored", False)]
+          errors = sum(r["extra"]["severity"] == "ERROR" for r in findings)
+          warnings = sum(r["extra"]["severity"] == "WARNING" for r in findings)
+          print(f"Semgrep: {errors} ERROR, {warnings} WARNING findings. See the scan log for details.")
+          sys.exit(1 if errors else 0)
+          PY
+
+      - name: Save full scan reports
+        if: ${{ !cancelled() && github.event_name != 'pull_request' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: semgrep-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/semgrep/semgrep.sarif
+            ${{ runner.temp }}/semgrep/semgrep.txt
+          retention-days: 30
+          if-no-files-found: error
