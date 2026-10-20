@@ -1,0 +1,10 @@
+{
+  "id": "mac-mirror",
+  "name": "Mac mirror",
+  "state": "ok",
+  "reported_at": "2026-10-20T12:46:43Z",
+  "size_bytes": 22113176000,
+  "note": "Mirror of the Storage Box completed on Neil's Mac (GNU rsync, 2 minutes).",
+  "max_age_minutes": 1560,
+  "last_success": "2026-10-20T10:17:08Z"
+}
