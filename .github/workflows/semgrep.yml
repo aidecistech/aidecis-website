@@ -1,0 +1,85 @@
+name: Semgrep
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  schedule:
+    - cron: "55 5 * * 1" # Mondays 05:55 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: semgrep-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Semgrep 1.181.0, official multi-platform image, pinned to its index digest.
+  SEMGREP_IMAGE: semgrep/semgrep:1.181.0@sha256:81474464c1f07483ba0682a44787fd93c91397419762a04abe2bafaae396304b
+
+jobs:
+  scan:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0 # The PR base and merge base must be available for the baseline scan.
+          persist-credentials: false
+
+      - name: Scan with the community rules (all severities in the log)
+        env:
+          EVENT: ${{ github.event_name }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scan_args=(semgrep scan)
+          if [ "$EVENT" = pull_request ]; then
+            git cat-file -e "${PR_BASE}^{commit}"
+            scan_args+=(--baseline-commit "$PR_BASE")
+          fi
+          mkdir -p "$RUNNER_TEMP/semgrep-report"
+          # No account or credentials are passed to the container. Reports stay outside the scan.
+          # scan returns nonzero on scanner failures; findings are gated separately below.
+          docker run --rm \
+            -v "$GITHUB_WORKSPACE:/src" \
+            -v "$RUNNER_TEMP/semgrep-report:/report" \
+            -w /src "$SEMGREP_IMAGE" \
+            "${scan_args[@]}" --oss-only --strict --metrics=off --disable-version-check \
+            --config p/default --config p/security-audit --config p/secrets \
+            --config p/javascript --config p/typescript \
+            --text --text-output /report/semgrep.txt \
+            --sarif-output /report/semgrep.sarif --json-output /report/semgrep.json .
+
+      - name: Fail on unsuppressed ERROR findings only
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - "$RUNNER_TEMP/semgrep-report/semgrep.json" <<'PY'
+          import json
+          import sys
+          from collections import Counter
+
+          with open(sys.argv[1]) as report:
+              results = json.load(report)["results"]
+          counts = Counter(
+              finding["extra"]["severity"]
+              for finding in results
+              if not finding["extra"].get("is_ignored", False)
+          )
+          print(f"Unsuppressed findings: ERROR={counts['ERROR']}, WARNING={counts['WARNING']}, INFO={counts['INFO']}")
+          sys.exit(1 if counts["ERROR"] else 0)
+          PY
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: always() && github.event_name != 'pull_request'
+        with:
+          name: semgrep-report
+          path: ${{ runner.temp }}/semgrep-report/
+          if-no-files-found: error
+          retention-days: 30

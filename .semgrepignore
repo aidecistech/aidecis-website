@@ -1,0 +1,7 @@
+# Vendored dependencies and generated output only. First-party scripts under assets/ ARE scanned.
+node_modules/
+dist/
+build/
+demo-v9.1/
+assets/vendor/
+assets/*.min.js
