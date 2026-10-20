@@ -31,6 +31,7 @@ BACKUPS = {
 }
 EXTERNAL = {"mac-mirror", "internxt-archive"}
 EXTERNAL_LIMIT = 26 * 60
+REPORT_LIMIT = 36 * 60
 RANK = {"up": 0, "ok": 0, "maintenance": 1, "unknown": 2,
         "degraded": 3, "stale": 3, "down": 4, "failed": 4}
 
@@ -215,7 +216,7 @@ def refresh_external(item, now):
     report_age = (now - parse_time(item["reported_at"])).total_seconds() / 60
     state = item["reported_state"]
     limit = item.get("max_age_minutes", EXTERNAL_LIMIT)
-    if state == "ok" and (age is None or age >= limit or report_age >= limit):
+    if report_age > REPORT_LIMIT or (state == "ok" and (age is None or age >= limit)):
         state = "stale"
     if age is not None and age < -5:
         state = "failed"
@@ -229,11 +230,21 @@ def merge_external(backups, payload, now):
         if old["id"] != incoming["id"]:
             continue
         if old.get("reported_at") and parse_time(old["reported_at"]) >= parse_time(incoming["reported_at"]):
-            return  # Retries and out-of-order dispatches cannot replace newer evidence.
+            return  # Retries and out-of-order reports cannot replace newer evidence.
         if incoming["last_success"] is None:
             incoming.update(last_success=old.get("last_success"), size_bytes=old.get("size_bytes"))
         backups[index] = refresh_external(incoming, now)
         return
+
+
+def read_reports(directory):
+    reports = []
+    for path in sorted(directory.glob("*.json")):
+        report = json.loads(path.read_text())
+        if not isinstance(report, dict) or report.get("id") != path.stem:
+            raise ValueError(f"report id must match filename: {path.name}")
+        reports.append(report)
+    return reports
 
 
 def validate_notices(maintenance, incidents):
@@ -275,12 +286,12 @@ def roll_history(previous, items, now):
     return result
 
 
-def build_status(previous, now, maintenance, incidents, payload=None):
+def build_status(previous, now, maintenance, incidents, reports=()):
     validate_notices(maintenance, incidents)
     systems = check_systems(now)
     backups = check_backups(previous, now)
-    if payload is not None:
-        merge_external(backups, payload, now)
+    for report in reports:
+        merge_external(backups, report, now)
     active = active_maintenance(maintenance, now)
     for system in systems:
         if any(row["id"] in ("all", system["id"]) for row in active):
@@ -315,18 +326,16 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--download-previous", type=Path)
     parser.add_argument("--previous", type=Path)
+    parser.add_argument("--reports", type=Path, default=ROOT / "status/reports")
     parser.add_argument("--output", type=Path, default=ROOT / "status/status.json")
     args = parser.parse_args()
     if args.download_previous:
         download_previous(args.download_previous)
         return
     previous = json.loads(args.previous.read_text()) if args.previous else {}
-    payload = None
-    if os.environ.get("GITHUB_EVENT_NAME") == "repository_dispatch":
-        payload = json.loads(Path(os.environ["GITHUB_EVENT_PATH"]).read_text())["client_payload"]
     status = build_status(previous, datetime.now(UTC),
                           json.loads((ROOT / "status/maintenance.json").read_text()),
-                          json.loads((ROOT / "status/incidents.json").read_text()), payload)
+                          json.loads((ROOT / "status/incidents.json").read_text()), read_reports(args.reports))
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(status, indent=2, allow_nan=False) + "\n")
 

@@ -167,8 +167,34 @@ class ExternalTests(unittest.TestCase):
 
     def test_sender_can_declare_archive_cadence_instead_of_using_daily_default(self):
         row = check.validate_external(external("internxt-archive", max_age_minutes=32 * 24 * 60), NOW)
-        self.assertEqual(check.refresh_external(row, NOW + timedelta(days=15))["state"], "ok")
+        self.assertEqual(check.refresh_external(row, NOW + timedelta(hours=36))["state"], "ok")
+        self.assertEqual(check.refresh_external(row, NOW + timedelta(hours=36, seconds=1))["state"], "stale")
         self.assertEqual(check.refresh_external(row, NOW + timedelta(days=32))["state"], "stale")
+
+    def test_report_freshness_is_independent_of_success_age_and_sender_state(self):
+        for state in ("ok", "failed", "unknown", "stale"):
+            with self.subTest(state=state):
+                row = check.validate_external(external(state=state, max_age_minutes=32 * 24 * 60), NOW)
+                self.assertEqual(check.refresh_external(row, NOW + timedelta(hours=36))["state"], state)
+                later = check.refresh_external(row, NOW + timedelta(hours=36, seconds=1))
+                self.assertEqual(later["state"], "stale")
+                self.assertEqual(later["reported_state"], state)
+        # Fresh reports still cannot make old successes healthy.
+        row = check.validate_external(external(last_success=check.stamp(NOW - timedelta(hours=27))), NOW)
+        self.assertEqual(row["state"], "stale")
+
+    def test_report_files_require_matching_ids_and_valid_json(self):
+        with tempfile.TemporaryDirectory() as folder:
+            directory = Path(folder)
+            self.assertEqual(check.read_reports(directory), [])
+            (directory / "README.md").write_text("Ignored non-report file")
+            report = directory / "mac-mirror.json"
+            for content in ('{', '[]', json.dumps(external("internxt-archive"))):
+                report.write_text(content)
+                with self.subTest(content=content), self.assertRaises(ValueError):
+                    check.read_reports(directory)
+            report.write_text(json.dumps(external()))
+            self.assertEqual(check.read_reports(directory), [external()])
 
     def test_validate_only_expected_external_contract(self):
         for changes in ({"id": "app-nightly"}, {"state": "up"}, {"size_bytes": -1}, {"size_bytes": True},
@@ -183,6 +209,8 @@ class ExternalTests(unittest.TestCase):
         rows = [check.validate_external(external(), NOW)]
         original = dict(rows[0])
         check.merge_external(rows, external(reported_at=check.stamp(NOW - timedelta(minutes=1))), NOW)
+        self.assertEqual(rows[0], original)
+        check.merge_external(rows, external(state="failed"), NOW)
         self.assertEqual(rows[0], original)
         check.merge_external(rows, external(state="failed", last_success=None, reported_at=check.stamp(NOW + timedelta(minutes=1))), NOW)
         self.assertEqual(rows[0]["state"], "failed")
@@ -231,13 +259,13 @@ class StateTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             check.validate_notices([], [{"title": "Issue", "started": check.stamp(NOW), "resolved": check.stamp(NOW - timedelta(hours=1)), "message": "Work"}])
 
-    def test_end_to_end_fake_checks_dispatch_and_history(self):
+    def test_end_to_end_fake_checks_reports_and_history(self):
         systems = [{"id": "demo", "state": "down"}]
         backups = [check.empty_backup(item_id) for item_id in check.BACKUPS]
         maintenance = [{"id": "demo", "from": check.stamp(NOW), "until": check.stamp(NOW + timedelta(hours=1)), "message": "Work"}]
         previous = {"history": {"demo": [{"hour": check.stamp(NOW - timedelta(hours=1)), "state": "up"}]}}
         with patch.object(check, "check_systems", return_value=systems), patch.object(check, "check_backups", return_value=backups):
-            data = check.build_status(previous, NOW, maintenance, [], external("internxt-archive"))
+            data = check.build_status(previous, NOW, maintenance, [], [external("internxt-archive")])
         self.assertEqual(data["systems"][0]["state"], "maintenance")
         self.assertEqual(data["systems"][0]["measured_state"], "down")
         self.assertEqual(data["backups"][-1]["state"], "ok")
@@ -261,18 +289,22 @@ class StateTests(unittest.TestCase):
                 check.download_previous(output)
             self.assertEqual(json.loads(output.read_text()), {})
 
-    def test_producer_command_reads_dispatch_event_and_writes_renderable_json(self):
+    def test_producer_command_reads_all_report_files_and_ignores_dispatch_payload(self):
         with tempfile.TemporaryDirectory() as folder:
             folder = Path(folder)
             previous, event, output = folder / "previous.json", folder / "event.json", folder / "status.json"
+            reports = folder / "reports"
+            reports.mkdir()
             previous.write_text('{}')
-            event.write_text(json.dumps({"client_payload": external("internxt-archive")}))
+            event.write_text(json.dumps({"client_payload": external("internxt-archive", state="failed")}))
+            (reports / "internxt-archive.json").write_text(json.dumps(external("internxt-archive")))
+            (reports / "mac-mirror.json").write_text(json.dumps(external()))
             responses = [(200, "", b'{"ok":true,"database":"reachable"}'),
                          (302, "https://demo.app.aidecis.com/", b""), (200, "", b""),
                          (302, "/google-login.php", b""), (302, "/google-login.php", b""), (302, "/desk", b"")]
             with patch.dict(os.environ, {"GITHUB_EVENT_NAME": "repository_dispatch", "GITHUB_EVENT_PATH": str(event),
                                          "STORAGEBOX_READONLY_KEY": "", "STORAGEBOX_KNOWN_HOSTS": ""}), \
-                    patch("sys.argv", ["check.py", "--previous", str(previous), "--output", str(output)]), \
+                    patch("sys.argv", ["check.py", "--previous", str(previous), "--reports", str(reports), "--output", str(output)]), \
                     patch.object(check, "datetime", wraps=datetime) as clock, \
                     patch.object(check.monitor, "http_probe", side_effect=responses), \
                     patch.object(check.monitor, "tls_expiry", return_value=NOW.timestamp() + 30 * 86400):
@@ -280,10 +312,56 @@ class StateTests(unittest.TestCase):
                 check.main()
             data = json.loads(output.read_text())
             self.assertEqual(data["backups"][-1]["state"], "ok")
+            self.assertEqual(data["backups"][-2]["state"], "ok")
             self.assertEqual(len(data["history"]), 12)
             html = render.render(data, (check.ROOT / "status/template.html").read_text())
             self.assertIn("Internxt archive", html)
             self.assertNotIn("Sample preview", html)
+
+    def test_files_merge_with_previous_public_state_and_age_on_later_runs(self):
+        with tempfile.TemporaryDirectory() as folder:
+            reports = Path(folder)
+            (reports / "internxt-archive.json").write_text(json.dumps(external("internxt-archive", max_age_minutes=46080)))
+            (reports / "mac-mirror.json").write_text(json.dumps(external()))
+            with patch.object(check, "check_systems", return_value=[]), \
+                    patch.dict(os.environ, {"STORAGEBOX_READONLY_KEY": "", "STORAGEBOX_KNOWN_HOSTS": ""}):
+                first = check.build_status({}, NOW, [], [], check.read_reports(reports))
+                # An older checkout cannot replace the newer report already published.
+                (reports / "mac-mirror.json").write_text(json.dumps(external(state="failed", reported_at=check.stamp(NOW - timedelta(minutes=1)))))
+                second = check.build_status(first, NOW + timedelta(hours=1), [], [], check.read_reports(reports))
+                self.assertEqual(second["backups"][-2]["state"], "ok")
+                self.assertEqual(second["backups"][-2]["reported_at"], check.stamp(NOW))
+                self.assertEqual(second["backups"][-2]["age_minutes"], 90)
+                # A newer file wins and preserves the last known success on failure.
+                failure = external(state="failed", last_success=None, size_bytes=None,
+                                   reported_at=check.stamp(NOW + timedelta(hours=1)))
+                (reports / "mac-mirror.json").write_text(json.dumps(failure))
+                third = check.build_status(second, NOW + timedelta(hours=1), [], [], check.read_reports(reports))
+                self.assertEqual(third["backups"][-2]["state"], "failed")
+                self.assertEqual(third["backups"][-2]["last_success"], external()["last_success"])
+                self.assertEqual(third["backups"][-2]["size_bytes"], 1234)
+                later = NOW + timedelta(hours=38)
+                for files in (check.read_reports(reports), []):
+                    stale = check.build_status(third, later, [], [], files)
+                    self.assertEqual([row["state"] for row in stale["backups"][-2:]], ["stale", "stale"])
+                    self.assertEqual(stale["history"]["internxt-archive"][-1]["state"], "stale")
+
+    def test_schedule_and_payload_free_dispatch_read_default_checkout_reports(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            reports = root / "status/reports"
+            reports.mkdir(parents=True)
+            (reports / "mac-mirror.json").write_text(json.dumps(external()))
+            (root / "status/maintenance.json").write_text('[]')
+            (root / "status/incidents.json").write_text('[]')
+            event = root / "event.json"
+            event.write_text('{"event_type": "status-update"}')
+            for trigger in ("schedule", "repository_dispatch"):
+                with self.subTest(trigger=trigger), patch.object(check, "ROOT", root), \
+                        patch.dict(os.environ, {"GITHUB_EVENT_NAME": trigger, "GITHUB_EVENT_PATH": str(event)}), \
+                        patch("sys.argv", ["check.py"]), patch.object(check, "build_status", return_value={}) as build:
+                    check.main()
+                    self.assertEqual(build.call_args.args[-1], [external()])
 
 
 class RenderTests(unittest.TestCase):

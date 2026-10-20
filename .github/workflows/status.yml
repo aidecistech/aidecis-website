@@ -1,6 +1,9 @@
 name: Update public status
 
 on:
+  push:
+    branches: [main]
+    paths: ['status/reports/*.json']
   schedule:
     - cron: '7,22,37,52 * * * *'
   workflow_dispatch:
@@ -10,7 +13,8 @@ on:
 permissions:
   contents: read
 
-# Serialize read/merge/write cycles, including Mac dispatches, to preserve history.
+# Serialize read/merge/write cycles to preserve history. Reports persist in Git,
+# so replacing a pending run cannot discard an external update.
 concurrency:
   group: public-status
   cancel-in-progress: false
@@ -22,6 +26,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          # Read the latest reports even when this run waited in the concurrency group.
+          ref: ${{ github.ref }}
           persist-credentials: false
 
       - uses: actions/setup-python@v5

@@ -4,19 +4,19 @@
 
 ## Runs and publication
 
-`.github/workflows/status.yml` runs at minutes 7, 22, 37 and 52 of every hour, on `workflow_dispatch`, and on `repository_dispatch` with event type `status-update`. GitHub schedules can be delayed; this is a 15-minute target, not a real-time guarantee. The page refreshes every five minutes without JavaScript. Times are UTC.
+`.github/workflows/status.yml` runs at minutes 7, 22, 37 and 52 of every hour, on pushes to `main` that change `status/reports/*.json`, on `workflow_dispatch`, and on payload-free `repository_dispatch` with event type `status-update`. GitHub schedules can be delayed; this is a 15-minute target, not a real-time guarantee. The page refreshes every five minutes without JavaScript. Times are UTC.
 
 Each run:
 
 1. Runs the unit tests and downloads the previous `https://aidecis.com/status/status.json`. A 404 starts empty history. Other download errors or invalid JSON stop the run, preserving the published history.
 2. Creates a Python virtual environment with the pinned Paramiko dependency for SFTP. The HTTP checks, JSON handling and renderer use the standard library.
-3. Runs `scripts/status/check.py`, carries forward Mac reports, applies any dispatch update and active maintenance, and rolls up hourly history.
+3. Runs `scripts/status/check.py`, reads every `status/reports/*.json` from the checkout, merges those reports with the previous public backup state (newest `reported_at` wins), applies freshness and active maintenance, and rolls up hourly history.
 4. Runs `scripts/status/render.py` with `status/template.html` and uploads a `status-page` Actions artifact containing `status/index.html` and `status/status.json`.
 5. On `main` only, if TransIP is configured, uploads those two generated files over SFTP to `${TRANSIP_SFTP_PATH}/status/` (normally `www/status/`) and compares them with the public responses. Branch dispatches produce an artifact without publishing.
 
-There are no generated-data commits. Runs share one concurrency group with `queue: max`, so scheduled runs and Mac dispatches wait for each other instead of overwriting history or replacing a pending update. GitHub permits up to 100 pending runs in this mode; see [GitHub's concurrency documentation](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency).
+Generated HTML, status JSON and history are never committed. External reporters each commit their own JSON report on `main`. Runs share the `public-status` concurrency group with `cancel-in-progress: false` to serialize the download/merge/publication of history. A later trigger can replace a pending run, but the reports persist in Git. Checkout reads the latest branch contents when the job starts, so a surviving run sees all committed reports even if its triggering commit was older. A report committed after checkout is picked up by a subsequent push, schedule or manual run.
 
-The website workflow publishes the site's assets, including `assets/status.css`. Its SFTP mirror explicitly excludes `status/`, and its live comparison prunes that directory. It never stages or publishes `status/template.html`, `status/maintenance.json` or `status/incidents.json`; those are inputs to generation. Both workflows can run without overwriting each other's files.
+The website workflow publishes the site's assets, including `assets/status.css`. Its SFTP mirror explicitly excludes `status/`, and its live comparison prunes that directory. Each report commit also triggers that website publish workflow, which leaves the public `status/` directory alone. It never stages or publishes `status/template.html`, `status/maintenance.json`, `status/incidents.json` or `status/reports/`; those are inputs to generation. Both workflows can run without overwriting each other's files.
 
 ## Configuration
 
@@ -33,7 +33,7 @@ Set these in **aidecistech/aidecis-website → Settings → Secrets and variable
 | Secret | `STORAGEBOX_READONLY_KEY` | Private SSH key without a passphrase, registered for both read-only Storage Box sub-accounts. Read-only access must be enforced by Storage Box. Never reuse a backup writer key. |
 | Variable | `STORAGEBOX_KNOWN_HOSTS` | Verified OpenSSH host-key entries for `[u690159-sub1.your-storagebox.de]:23` and `[u690159-sub2.your-storagebox.de]:23`. |
 
-No credentials belong in source files, public notes, dispatch payloads or logs. SSH host keys are pinned; neither workflow accepts a new server key automatically. Missing either Storage Box input produces **No data** for its tiers without attempting a connection. Configured but failed connections produce **Failed**, with last known timestamps retained where available.
+No credentials belong in source files, public reports, notes or logs. SSH host keys are pinned; neither workflow accepts a new server key automatically. Missing either Storage Box input produces **No data** for its tiers without attempting a connection. Configured but failed connections produce **Failed**, with last known timestamps retained where available.
 
 ## What is checked
 
@@ -58,10 +58,10 @@ Storage Box checks recursively list regular-file metadata over SFTP on port 23, 
 | `libi-base` | LIBI dumps and base backups | **No data** until a separate, identifiable source is specified. The current app monitor has no distinct dump/base check; WAL freshness cannot establish it. |
 | `libi-wal` | LIBI WAL | Newest regular file anywhere under sub2, strictly under 60 minutes, matching the app monitor's existing WAL-copy proxy. An unrelated fresh file can satisfy this proxy; it does not independently establish a complete WAL chain. |
 | `crm-csm` | CRM/CSM | Every visible CRM/CSM subtree under sub2 must have evidence strictly under 26 hours. Display the worst subtree. No readable subtree means **No data**. |
-| `mac-mirror` | Mac mirror | Mac dispatch report; both its report and last success must be under the sender's `max_age_minutes`, default 26 hours. |
-| `internxt-archive` | Internxt archive | Mac dispatch report; both its report and last success must be under the sender's `max_age_minutes`, default 26 hours. |
+| `mac-mirror` | Mac mirror | `status/reports/mac-mirror.json`; report older than 36 hours is stale; last success must be under `max_age_minutes`, default 26 hours. |
+| `internxt-archive` | Internxt archive | `status/reports/internxt-archive.json`; report older than 36 hours is stale; last success must be under `max_age_minutes`, default 26 hours. |
 
-CRM/CSM directory components match `crm`, `csm`, or those names followed by `-`, `_` or `.`, ignoring case. Empty subtrees fail independently. Encrypted names cannot identify a service. Missing matching evidence is **Failed**, evidence at or beyond the age limit is **Stale**, and a file dated more than five minutes in the future is **Failed**. The Mac's 26-hour default assumes a daily job; set the limit to match each actual schedule before relying on those tiers. An archive with a longer cadence must send its own limit.
+CRM/CSM directory components match `crm`, `csm`, or those names followed by `-`, `_` or `.`, ignoring case. Empty subtrees fail independently. Encrypted names cannot identify a service. Missing matching evidence is **Failed**, evidence at or beyond the age limit is **Stale**, and a file dated more than five minutes in the future is **Failed**. The Mac's 26-hour default assumes a daily job; set the limit to match each actual schedule before relying on those tiers. An archive with a longer cadence must send its own success-age limit and refresh its report at least every 36 hours, retaining the actual last-success timestamp.
 
 The overall banner shows an incident for a down system, failed backup or started unresolved incident. Otherwise degraded, stale or unknown evidence produces the degraded banner; active maintenance follows, then all operational. Active system maintenance changes the displayed system state to `maintenance` while keeping the measured state. Backup evidence retains its own state during maintenance. Maintenance messages always remain visible, including when another failure takes banner priority.
 
@@ -112,31 +112,65 @@ These are examples, not reports of actual events. Leave the checked-in lists emp
 
 ## Sending a Mac report
 
-The Mac needs `gh` authenticated to an account or token permitted to create repository dispatches for this repository. A fine-grained token needs repository **Contents: write** for that API, even though the status workflow itself has read-only repository permissions. Keep the token in the Mac's existing credential store, never in this repository.
+The Mac's mirror and Internxt archive jobs each write a small JSON file through the GitHub contents API: `status/reports/mac-mirror.json` and `status/reports/internxt-archive.json`. Authenticate `gh` with a token allowed to commit directly to `main` in this repository (fine-grained repository **Contents: write**, subject to branch rules). The status workflow itself retains read-only repository permissions. Keep the token in the Mac's existing credential store.
 
-After a successful mirror, send one report with this exact command. Replace the timestamp and size with the actual job result; this example is not meant to assert a success that did not happen:
+After a successful mirror, use this command in a shell script. Replace the timestamps and size with the actual job result; these example values do not assert a real success. The report schema is unchanged: `id`, canonical `name` (optional on input), `last_success`, `reported_at`, `size_bytes`, `state`, `note`, and optional `max_age_minutes`. The producer derives `age_minutes` from `last_success`; do not refresh evidence by changing that success timestamp.
 
 ```sh
-gh api --method POST repos/aidecistech/aidecis-website/dispatches --input - <<'JSON'
+set -eu
+reporter_id=mac-mirror
+report_file=$(mktemp)
+cat > "$report_file" <<'JSON'
 {
-  "event_type": "status-update",
-  "client_payload": {
-    "id": "mac-mirror",
-    "state": "ok",
-    "last_success": "2026-10-20T10:00:00Z",
-    "reported_at": "2026-10-20T10:01:00Z",
-    "size_bytes": 123456789,
-    "note": "Mirror completed."
-  }
+  "id": "mac-mirror",
+  "name": "Mac mirror",
+  "state": "ok",
+  "last_success": "2026-10-20T10:00:00Z",
+  "reported_at": "2026-10-20T10:01:00Z",
+  "size_bytes": 123456789,
+  "note": "Mirror completed."
 }
 JSON
+
+# The reports directory exists in main, including before the first report.
+# Read the current file's blob SHA from main. No match means first creation;
+# authentication/network errors fail the script rather than implying no file.
+report_sha=$(gh api --method GET \
+  repos/aidecistech/aidecis-website/contents/status/reports \
+  -f ref=main --jq ".[] | select(.name == \"${reporter_id}.json\") | .sha")
+
+# Exactly one PUT creates one report commit on main. Omit sha for creation;
+# for updates, sha must be the existing file's blob SHA, not a commit SHA.
+set -- --method PUT \
+  "repos/aidecistech/aidecis-website/contents/status/reports/$reporter_id.json" \
+  -f branch=main \
+  -f "message=Update $reporter_id status report" \
+  -f "content=$(base64 < "$report_file" | tr -d '\n')"
+if [ -n "$report_sha" ]; then
+  set -- "$@" -f "sha=$report_sha"
+fi
+gh api "$@"
+rm -f "$report_file"
 ```
 
-For the Internxt job, use `id: "internxt-archive"` with its own actual timestamp, size and note. Add `max_age_minutes` to declare the permitted interval between successes and reports (integer minutes, from 1 to 527040; default 1560). For example, a chosen 32-day allowance would be `46080`; use that only if it matches the actual job policy. Include the same limit in failure reports too. `reported_at` is when the job produced the report, not when a retry sends it. Use timezone-aware timestamps; UTC with `Z` is preferred. Size is bytes, or null if the job cannot measure it. Notes are public and limited to 500 characters; use a short result, without local paths, credentials or customer data.
+For Internxt, set `reporter_id=internxt-archive` and use `id: "internxt-archive"`, `name: "Internxt archive"`, and that job's actual result. The filename must match `id`. Never submit report data in a dispatch payload. Use timezone-aware timestamps; UTC with `Z` is preferred. `reported_at` is when the source measured the result, unchanged on transport retries. Sizes are bytes or null; public notes are limited to 500 characters and must omit local paths, credentials and customer data.
 
-On failure, send `state: "failed"`, the failure's `reported_at`, `last_success: null`, `size_bytes: null` and a short public note. The merge keeps the previous success and size if available, but shows the failure. `ok` requires a non-null last success. Only the two Mac IDs can be updated this way; dispatches cannot overwrite probed services or Storage Box evidence. Newer reports win, retries with the same timestamp are ignored, and reports more than five minutes in the future are rejected. Old successes become stale without another Mac dispatch.
+The directory lookup obtains the current SHA for either creation or update without suppressing API errors. Serialize writes from the two Mac jobs; a concurrent commit can cause a conflict. On a 409 or SHA conflict, fetch the latest file and SHA before retrying the same report. If the stored `reported_at` is equal or newer, skip the retry; never overwrite a newer report with an older result. Keep the local report until its commit succeeds. GitHub's [contents API documentation](https://docs.github.com/en/rest/repos/contents#create-or-update-file-contents) describes the base64 content and update SHA fields.
 
-A successful `gh api` response means GitHub accepted the event, not that the page was published. Check the corresponding Actions run. The workflow must already exist on the default branch for repository dispatch to trigger it. API permission details: [GitHub repository dispatch API](https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event).
+`max_age_minutes` controls last-success freshness (integer minutes from 1 to 527040; default 1560). Include the same limit in failure reports. Report freshness has a separate fixed limit: any report older than 36 hours marks its tier **Stale**, including an old failure or unknown result, even when the success-age allowance is longer. Jobs with a long backup cadence must still write a current measurement at least every 36 hours, preserving the real `last_success`.
+
+On failure, write `state: "failed"`, the failure's `reported_at`, `last_success: null`, `size_bytes: null` and a short public note. The merge retains the previous public success and size if available. `ok` requires a non-null last success. Only the two Mac IDs accept external reports; reports cannot overwrite probed services or Storage Box evidence. Newer reports win against the previous public state; equal timestamps are ignored. Reports more than five minutes in the future are rejected. Missing reports preserve previous public evidence and still age it. Malformed JSON, a mismatched filename/ID or an invalid report stops publication, preserving the published state.
+
+A successful contents API response means the report was committed, not that the page was published. The report push triggers the status workflow and the website publish workflow; the latter excludes `status/` from staging, upload and comparison. Check **Actions → Update public status** and the public timestamp for publication.
+
+For an immediate refresh of already committed reports, the existing `repository_dispatch` event remains a trigger only. It carries no `client_payload`, and any payload sent by an old reporter is ignored:
+
+```sh
+gh api --method POST repos/aidecistech/aidecis-website/dispatches \
+  -f event_type=status-update
+```
+
+The workflow must exist on the default branch for this trigger. A dispatch is optional after a report commit because its push already triggers a run. Scheduled and manual runs use the same files.
 
 ## Preview and tests
 
