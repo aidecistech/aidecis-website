@@ -3,8 +3,8 @@ name: Publish website to TransIP
 # Every merge to main publishes the website to aidecis.com (TransIP web hosting) over SFTP, then
 # checks that the live site serves exactly the files in main. Files on the server that are not in
 # the repository are never deleted (for example server-side scripts), so publishing only adds and
-# overwrites. A manual run can do a dry run first: Actions > Publish website to TransIP > Run
-# workflow, with "dry_run" ticked.
+# overwrites. A manual run can do a dry run first, or publish an earlier commit to roll back:
+# Actions > Publish website to TransIP > Run workflow.
 #
 # Setup, once (see docs/publishing.md):
 #   repository variables  TRANSIP_SFTP_HOST, TRANSIP_SFTP_USER, TRANSIP_SFTP_PATH (e.g. www),
@@ -21,6 +21,10 @@ on:
         description: Only list what would be uploaded
         type: boolean
         default: true
+      ref:
+        description: Commit, tag or branch to publish (empty = main). Use an earlier commit to roll back.
+        type: string
+        default: ''
 
 permissions:
   contents: read
@@ -36,6 +40,8 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.ref || github.sha }}
 
       - name: Collect the publishable files
         run: |
@@ -80,9 +86,13 @@ jobs:
           set -euo pipefail
           sleep 5
           bad=0
-          for f in site/*.html site/assets/*.js site/assets/*.css; do
+          n=0
+          # Every published file, nested folders included; paths are URL-encoded.
+          while IFS= read -r -d '' f; do
             rel="${f#site/}"
-            if ! curl -fsS "https://aidecis.com/${rel}?v=${GITHUB_SHA}" | cmp -s - "$f"; then echo "differs on the live site: $rel"; bad=1; fi
-          done
-          test $bad = 0 && echo "aidecis.com serves exactly what is in main ($GITHUB_SHA)."
+            url="https://aidecis.com/$(python3 -c 'import sys,urllib.parse;print(urllib.parse.quote(sys.argv[1]))' "$rel")?v=${GITHUB_RUN_ID}"
+            n=$((n+1))
+            if ! curl -fsS "$url" | cmp -s - "$f"; then echo "differs on the live site: $rel"; bad=1; fi
+          done < <(find site -type f -print0)
+          test $bad = 0 && echo "aidecis.com serves exactly the $n published files of $(git rev-parse --short HEAD)."
           exit $bad

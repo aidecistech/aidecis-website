@@ -15,4 +15,6 @@ Until `TRANSIP_SFTP_HOST` is set, the workflow does nothing, so merging it chang
 
 ## Rolling back
 
-Revert the pull request on GitHub. The revert is a merge to `main` too, so the previous version is published the same way.
+- **A content change:** revert that pull request on GitHub. The revert is a merge to `main`, so the previous content is published the same way.
+- **Directly to an earlier version:** Actions → *Publish website to TransIP* → Run workflow. Untick **dry run** and enter the earlier commit under **ref**. This publishes that commit's files and checks them, whatever the workflow's own history.
+- Never roll back by reverting the publishing workflow itself: without it, nothing is published. Use the run above instead.
