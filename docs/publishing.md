@@ -7,7 +7,9 @@ What is published: the HTML pages, `robots.txt`, `sitemap.xml`, `assets/`, `demo
 ## One-time setup
 
 1. **TransIP** (Neil): in the control panel, open web hosting for aidecis.com, then the SSH/SFTP settings. Switch SFTP on and set a password for the SFTP user. Note the **host name**, the **user name** and the folder that holds the site, usually `www`.
-2. **GitHub, the password** (Neil): in aidecistech/aidecis-website, open **Settings → Secrets and variables → Actions → New repository secret**. Name it `TRANSIP_SFTP_PASSWORD` and paste the SFTP password. Nobody else ever sees it, including Claude.
+2. **Access, preferably a key:**
+   - **Key:** Claude makes a dedicated publish key on Neil's Mac and stores its private half directly as the repository secret `TRANSIP_SFTP_KEY`, never shown. Neil pastes only the public half into TransIP (SFTP/SSH settings, SSH keys). It can be withdrawn there at any time.
+   - **Or a password:** Neil opens **Settings → Secrets and variables → Actions → New repository secret** in aidecistech/aidecis-website, names it `TRANSIP_SFTP_PASSWORD` and pastes the SFTP password. Nobody else ever sees it, including Claude.
 3. **GitHub, the rest** (Claude, once Neil sends the host name and user name, which are not secret): set the repository variables `TRANSIP_SFTP_HOST`, `TRANSIP_SFTP_USER` and `TRANSIP_SFTP_PATH`, and `TRANSIP_SFTP_KNOWN_HOSTS`, which pins the server's host key so the workflow never talks to an impostor.
 4. **First run:** Actions → *Publish website to TransIP* → Run workflow with **dry run** ticked. It lists what would be uploaded and changes nothing. Then run it once without dry run, or merge a pull request.
 

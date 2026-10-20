@@ -9,7 +9,8 @@ name: Publish website to TransIP
 # Setup, once (see docs/publishing.md):
 #   repository variables  TRANSIP_SFTP_HOST, TRANSIP_SFTP_USER, TRANSIP_SFTP_PATH (e.g. www),
 #                         TRANSIP_SFTP_KNOWN_HOSTS (the server's host key line, pinned)
-#   repository secret     TRANSIP_SFTP_PASSWORD (entered by Neil; never in the repository)
+#   repository secret     TRANSIP_SFTP_KEY (a dedicated publish key, preferred) or
+#                         TRANSIP_SFTP_PASSWORD (entered by Neil); never in the repository
 # Until TRANSIP_SFTP_HOST is set, this workflow does nothing.
 
 on:
@@ -65,6 +66,7 @@ jobs:
 
       - name: Upload over SFTP
         env:
+          SFTP_KEY: ${{ secrets.TRANSIP_SFTP_KEY }}
           LFTP_PASSWORD: ${{ secrets.TRANSIP_SFTP_PASSWORD }}
           HOST: ${{ vars.TRANSIP_SFTP_HOST }}
           SFTP_USER: ${{ vars.TRANSIP_SFTP_USER }}
@@ -72,9 +74,16 @@ jobs:
           DRY: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '--dry-run' || '' }}
         run: |
           set -euo pipefail
-          test -n "$LFTP_PASSWORD" || { echo "The TRANSIP_SFTP_PASSWORD secret is not set."; exit 1; }
+          # A dedicated publish key (preferred) or the SFTP password; one of the two secrets must be set.
+          SSH_OPTS="-a -x -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts"
+          if [ -n "$SFTP_KEY" ]; then
+            printf '%s\n' "$SFTP_KEY" > ~/.ssh/publish_key && chmod 600 ~/.ssh/publish_key
+            SSH_OPTS="$SSH_OPTS -i $HOME/.ssh/publish_key -o IdentitiesOnly=yes"
+            export LFTP_PASSWORD=unused
+          fi
+          test -n "$LFTP_PASSWORD" || { echo "Set the TRANSIP_SFTP_KEY or TRANSIP_SFTP_PASSWORD secret."; exit 1; }
           lftp -c "
-            set sftp:connect-program 'ssh -a -x -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts';
+            set sftp:connect-program 'ssh $SSH_OPTS';
             set net:max-retries 3; set net:timeout 30;
             open --env-password -u \"$SFTP_USER\" sftp://$HOST;
             mirror --reverse --verbose=1 --parallel=4 $DRY site \"$REMOTE\"
