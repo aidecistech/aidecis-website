@@ -19,6 +19,9 @@ concurrency:
   group: public-status
   cancel-in-progress: false
 
+# The page is published only when the repository variable STATUS_PAGE_PUBLIC is "true".
+# Otherwise (the default, closed on 20 Oct 2026) each run on main replaces www/status/ with a short
+# "not public" notice and removes status.json, so no system or backup detail is served.
 jobs:
   status:
     runs-on: ubuntu-latest
@@ -38,20 +41,24 @@ jobs:
         run: python3 -m unittest discover -s tests -v -b
 
       - name: Download the previous public state
+        if: vars.STATUS_PAGE_PUBLIC == 'true'
         run: python3 scripts/status/check.py --download-previous "$RUNNER_TEMP/previous-status.json"
 
       - name: Install SFTP support in a virtual environment
+        if: vars.STATUS_PAGE_PUBLIC == 'true'
         run: |
           python3 -m venv .venv
           .venv/bin/python -m pip install --disable-pip-version-check -r scripts/status/requirements.txt
 
       - name: Check systems and merge backup reports
+        if: vars.STATUS_PAGE_PUBLIC == 'true'
         env:
           STORAGEBOX_READONLY_KEY: ${{ secrets.STORAGEBOX_READONLY_KEY }}
           STORAGEBOX_KNOWN_HOSTS: ${{ vars.STORAGEBOX_KNOWN_HOSTS }}
         run: .venv/bin/python scripts/status/check.py --previous "$RUNNER_TEMP/previous-status.json"
 
       - name: Render and stage the generated files only
+        if: vars.STATUS_PAGE_PUBLIC == 'true'
         run: |
           set -euo pipefail
           python3 scripts/status/render.py
@@ -59,6 +66,7 @@ jobs:
           cp status/index.html status/status.json public-status/status/
 
       - uses: actions/upload-artifact@v4
+        if: vars.STATUS_PAGE_PUBLIC == 'true'
         with:
           name: status-page
           path: public-status/
@@ -81,7 +89,7 @@ jobs:
           printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts && chmod 600 ~/.ssh/known_hosts
 
       - name: Upload only generated status files over SFTP
-        if: github.ref == 'refs/heads/main' && vars.TRANSIP_SFTP_HOST != ''
+        if: github.ref == 'refs/heads/main' && vars.TRANSIP_SFTP_HOST != '' && vars.STATUS_PAGE_PUBLIC == 'true'
         env:
           SFTP_KEY: ${{ secrets.TRANSIP_SFTP_KEY }}
           LFTP_PASSWORD: ${{ secrets.TRANSIP_SFTP_PASSWORD }}
@@ -110,7 +118,7 @@ jobs:
           "
 
       - name: Verify the published status files
-        if: github.ref == 'refs/heads/main' && vars.TRANSIP_SFTP_HOST != ''
+        if: github.ref == 'refs/heads/main' && vars.TRANSIP_SFTP_HOST != '' && vars.STATUS_PAGE_PUBLIC == 'true'
         run: |
           set -euo pipefail
           # TransIP needs a few seconds before a freshly uploaded file is served (a 404 or the old
@@ -124,3 +132,45 @@ jobs:
             done
             [ "$ok" = 1 ] || { echo "$file is not served as published after 12 attempts"; exit 1; }
           done
+
+      - name: Closed - replace the page with a notice and remove the data file
+        if: github.ref == 'refs/heads/main' && vars.TRANSIP_SFTP_HOST != '' && vars.STATUS_PAGE_PUBLIC != 'true'
+        env:
+          SFTP_KEY: ${{ secrets.TRANSIP_SFTP_KEY }}
+          LFTP_PASSWORD: ${{ secrets.TRANSIP_SFTP_PASSWORD }}
+          HOST: ${{ vars.TRANSIP_SFTP_HOST }}
+          SFTP_USER: ${{ vars.TRANSIP_SFTP_USER }}
+          REMOTE: ${{ vars.TRANSIP_SFTP_PATH }}
+        run: |
+          set -euo pipefail
+          test -n "$REMOTE" || { echo "TRANSIP_SFTP_PATH is not set."; exit 1; }
+          SSH_OPTS="-a -x -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts"
+          if [ -n "$SFTP_KEY" ]; then
+            printf '%s\n' "$SFTP_KEY" > ~/.ssh/publish_key && chmod 600 ~/.ssh/publish_key
+            SSH_OPTS="$SSH_OPTS -i $HOME/.ssh/publish_key -o IdentitiesOnly=yes"
+            export LFTP_PASSWORD=unused
+          fi
+          test -n "$LFTP_PASSWORD" || { echo "Set TRANSIP_SFTP_KEY or TRANSIP_SFTP_PASSWORD."; exit 1; }
+          lftp -c "
+            set cmd:fail-exit yes;
+            set sftp:connect-program 'ssh $SSH_OPTS';
+            set net:max-retries 3; set net:timeout 30;
+            open --env-password -u \"$SFTP_USER\" sftp://$HOST;
+            set cmd:fail-exit no; mkdir -p \"$REMOTE/status\"; set cmd:fail-exit yes;
+            put status/closed.html -o \"$REMOTE/status/index.html\";
+            set cmd:fail-exit no; rm \"$REMOTE/status/status.json\"; set cmd:fail-exit yes
+          "
+
+      - name: Closed - verify that no status data is served
+        if: github.ref == 'refs/heads/main' && vars.TRANSIP_SFTP_HOST != '' && vars.STATUS_PAGE_PUBLIC != 'true'
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 12); do
+            page_ok=0; json_gone=0
+            curl --max-time 10 -fsS "https://aidecis.com/status/?v=$GITHUB_RUN_ID-$attempt" | cmp -s - status/closed.html && page_ok=1
+            code=$(curl --max-time 10 -s -o /dev/null -w '%{http_code}' "https://aidecis.com/status/status.json?v=$GITHUB_RUN_ID-$attempt")
+            [ "$code" = 404 ] && json_gone=1
+            if [ $page_ok = 1 ] && [ $json_gone = 1 ]; then echo "Closed: notice served, status.json gone."; exit 0; fi
+            sleep 10
+          done
+          echo "Closed mode not confirmed (notice served: $page_ok, status.json HTTP $code)"; exit 1

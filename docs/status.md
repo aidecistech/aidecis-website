@@ -18,6 +18,12 @@ Generated HTML, status JSON and history are never committed. External reporters 
 
 The website workflow publishes the site's assets, including `assets/status.css`. Its SFTP mirror explicitly excludes `status/`, and its live comparison prunes that directory. Each report commit also triggers that website publish workflow, which leaves the public `status/` directory alone. It never stages or publishes `status/template.html`, `status/maintenance.json`, `status/incidents.json` or `status/reports/`; those are inputs to generation. Both workflows can run without overwriting each other's files.
 
+## Public or closed
+
+The page is published only when the repository variable `STATUS_PAGE_PUBLIC` is `true` (Settings, Secrets and variables, Actions, Variables). Without it, the default since 20 October 2026, every run on `main` replaces `www/status/index.html` with the short notice in `status/closed.html` (noindex) and removes `www/status/status.json`, then verifies both. Checks and reports are not collected while closed; history starts fresh when the page is opened again.
+
+Reason for closing: the full page showed internal detail (backup locations and sizes, staff-only tools). The plan is a public page with client-facing services only and a separate internal page with the full detail.
+
 ## Configuration
 
 Set these in **aidecistech/aidecis-website → Settings → Secrets and variables → Actions**. Names are shared with the existing publishing and app-monitor workflows, but values must exist in this repository too.
