@@ -104,7 +104,7 @@ jobs:
             set sftp:connect-program 'ssh $SSH_OPTS';
             set net:max-retries 3; set net:timeout 30;
             open --env-password -u \"$SFTP_USER\" sftp://$HOST;
-            mkdir -p \"$REMOTE/status\";
+            set cmd:fail-exit no; mkdir -p \"$REMOTE/status\"; set cmd:fail-exit yes;
             put public-status/status/index.html -o \"$REMOTE/status/index.html\";
             put public-status/status/status.json -o \"$REMOTE/status/status.json\"
           "
