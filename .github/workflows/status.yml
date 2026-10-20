@@ -3,7 +3,7 @@ name: Update public status
 on:
   push:
     branches: [main]
-    paths: ['status/reports/*.json']
+    paths: ['status/reports/*.json', 'status/closed.html', '.github/workflows/status.yml']
   schedule:
     - cron: '7,22,37,52 * * * *'
   workflow_dispatch:
@@ -168,7 +168,7 @@ jobs:
           for attempt in $(seq 1 12); do
             page_ok=0; json_gone=0
             curl --max-time 10 -fsS "https://aidecis.com/status/?v=$GITHUB_RUN_ID-$attempt" | cmp -s - status/closed.html && page_ok=1
-            code=$(curl --max-time 10 -s -o /dev/null -w '%{http_code}' "https://aidecis.com/status/status.json?v=$GITHUB_RUN_ID-$attempt")
+            code=$(curl --max-time 10 -s -o /dev/null -w '%{http_code}' "https://aidecis.com/status/status.json?v=$GITHUB_RUN_ID-$attempt" || true)
             [ "$code" = 404 ] && json_gone=1
             if [ $page_ok = 1 ] && [ $json_gone = 1 ]; then echo "Closed: notice served, status.json gone."; exit 0; fi
             sleep 10
