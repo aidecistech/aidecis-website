@@ -1,7 +1,7 @@
-# Vendored and generated directories, at any depth.
-.git/
+# Vendored dependencies and generated output only. First-party scripts under assets/ ARE scanned.
 node_modules/
 dist/
 build/
 demo-v9.1/
-assets/
+assets/vendor/
+assets/*.min.js
