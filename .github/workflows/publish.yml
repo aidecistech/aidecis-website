@@ -1,0 +1,88 @@
+name: Publish website to TransIP
+
+# Every merge to main publishes the website to aidecis.com (TransIP web hosting) over SFTP, then
+# checks that the live site serves exactly the files in main. Files on the server that are not in
+# the repository are never deleted (for example server-side scripts), so publishing only adds and
+# overwrites. A manual run can do a dry run first: Actions > Publish website to TransIP > Run
+# workflow, with "dry_run" ticked.
+#
+# Setup, once (see docs/publishing.md):
+#   repository variables  TRANSIP_SFTP_HOST, TRANSIP_SFTP_USER, TRANSIP_SFTP_PATH (e.g. www),
+#                         TRANSIP_SFTP_KNOWN_HOSTS (the server's host key line, pinned)
+#   repository secret     TRANSIP_SFTP_PASSWORD (entered by Neil; never in the repository)
+# Until TRANSIP_SFTP_HOST is set, this workflow does nothing.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Only list what would be uploaded
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-website
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: vars.TRANSIP_SFTP_HOST != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Collect the publishable files
+        run: |
+          set -euo pipefail
+          mkdir -p site
+          cp ./*.html robots.txt sitemap.xml site/
+          cp -R assets demo demo-v9.1 site/
+          find site -type f | wc -l | xargs echo "files to publish:"
+
+      - name: Install lftp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp >/dev/null
+
+      - name: Pin the server's host key
+        env:
+          KNOWN_HOSTS: ${{ vars.TRANSIP_SFTP_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+          test -n "$KNOWN_HOSTS" || { echo "TRANSIP_SFTP_KNOWN_HOSTS is not set; refusing to connect without a pinned host key."; exit 1; }
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts && chmod 600 ~/.ssh/known_hosts
+
+      - name: Upload over SFTP
+        env:
+          LFTP_PASSWORD: ${{ secrets.TRANSIP_SFTP_PASSWORD }}
+          HOST: ${{ vars.TRANSIP_SFTP_HOST }}
+          SFTP_USER: ${{ vars.TRANSIP_SFTP_USER }}
+          REMOTE: ${{ vars.TRANSIP_SFTP_PATH }}
+          DRY: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '--dry-run' || '' }}
+        run: |
+          set -euo pipefail
+          test -n "$LFTP_PASSWORD" || { echo "The TRANSIP_SFTP_PASSWORD secret is not set."; exit 1; }
+          lftp -c "
+            set sftp:connect-program 'ssh -a -x -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts';
+            set net:max-retries 3; set net:timeout 30;
+            open --env-password -u \"$SFTP_USER\" sftp://$HOST;
+            mirror --reverse --verbose=1 --parallel=4 $DRY site \"$REMOTE\"
+          "
+
+      - name: Check the live site
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
+        run: |
+          set -euo pipefail
+          sleep 5
+          bad=0
+          for f in site/*.html site/assets/*.js site/assets/*.css; do
+            rel="${f#site/}"
+            if ! curl -fsS "https://aidecis.com/${rel}?v=${GITHUB_SHA}" | cmp -s - "$f"; then echo "differs on the live site: $rel"; bad=1; fi
+          done
+          test $bad = 0 && echo "aidecis.com serves exactly what is in main ($GITHUB_SHA)."
+          exit $bad
