@@ -1,8 +1,9 @@
 name: Publish website to TransIP
 
 # Every merge to main publishes the website to aidecis.com (TransIP web hosting) over SFTP, then
-# checks that the live site serves exactly the files in main. Files on the server that are not in
-# the repository are never deleted (for example server-side scripts), so publishing only adds and
+# checks that the live site serves the published files in main (excluding generated status/).
+# Files on the server that are not in the repository are never deleted (for example server-side
+# scripts), so publishing only adds and
 # overwrites. A manual run can do a dry run first, or publish an earlier commit to roll back:
 # Actions > Publish website to TransIP > Run workflow.
 #
@@ -86,7 +87,7 @@ jobs:
             set sftp:connect-program 'ssh $SSH_OPTS';
             set net:max-retries 3; set net:timeout 30;
             open --env-password -u \"$SFTP_USER\" sftp://$HOST;
-            mirror --reverse --verbose=1 --parallel=4 $DRY site \"$REMOTE\"
+            mirror --reverse --verbose=1 --parallel=4 --exclude '^status(/|$)' $DRY site \"$REMOTE\"
           "
 
       - name: Check the live site
@@ -96,12 +97,13 @@ jobs:
           sleep 5
           bad=0
           n=0
-          # Every published file, nested folders included; paths are URL-encoded.
+          # status/ is independently generated. Never compare its live files to main.
+          # Every other published file, nested folders included; paths are URL-encoded.
           while IFS= read -r -d '' f; do
             rel="${f#site/}"
             url="https://aidecis.com/$(python3 -c 'import sys,urllib.parse;print(urllib.parse.quote(sys.argv[1]))' "$rel")?v=${GITHUB_RUN_ID}"
             n=$((n+1))
             if ! curl -fsS "$url" | cmp -s - "$f"; then echo "differs on the live site: $rel"; bad=1; fi
-          done < <(find site -type f -print0)
-          test $bad = 0 && echo "aidecis.com serves exactly the $n published files of $(git rev-parse --short HEAD)."
+          done < <(find site -path site/status -prune -o -type f -print0)
+          test $bad = 0 && echo "aidecis.com serves the $n published files of $(git rev-parse --short HEAD) (status/ excluded)."
           exit $bad
