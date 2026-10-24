@@ -71,6 +71,52 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
   const analytics = document.getElementById('pref-analytics');
   const marketing = document.getElementById('pref-marketing');
   const storageKey = 'aidecis_consent';
+  // Consent-gated visit counter for the Aidecis CRM (Web visitors). Sends only an anonymous
+  // random token, the page path and the referring host, and only after analytics consent.
+  // Runs on every page, also those without the consent banner.
+  const trackUrl = 'https://crm.aidecis.com/track.php';
+  const visitorKey = 'aidecis_visitor';
+  const pendingRevokeKey = 'aidecis_visitor_revoke';
+  const liveSite = /^(www\.)?aidecis\.com$/.test(location.hostname);
+  const sendVisitEvent = (body) => {
+    if (!liveSite || !window.fetch) return Promise.resolve(false);
+    return fetch(trackUrl, { method: 'POST', mode: 'cors', credentials: 'omit', keepalive: true, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+      .then((response) => response.ok, () => false);
+  };
+  const visitorToken = () => {
+    let token = reviewStorage.getItem(visitorKey);
+    if (!token || !/^[A-Za-z0-9_-]{32,64}$/.test(token)) {
+      const bytes = new Uint8Array(24);
+      crypto.getRandomValues(bytes);
+      token = Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('');
+      reviewStorage.setItem(visitorKey, token);
+    }
+    return token;
+  };
+  const referrerHost = () => {
+    try { return document.referrer ? new URL(document.referrer).host.toLowerCase().slice(0, 190) : ''; } catch (_) { return ''; }
+  };
+  const trackVisit = () => sendVisitEvent({ session: visitorToken(), path: (location.pathname || '/').slice(0, 300), referrer: referrerHost() });
+  // Withdrawal stops tracking at once; the deletion request is kept and retried until the CRM confirms it.
+  const flushRevoke = () => {
+    const token = reviewStorage.getItem(pendingRevokeKey);
+    if (!token) return;
+    sendVisitEvent({ session: token, path: '', revoke: true }).then((ok) => {
+      if (ok && reviewStorage.getItem(pendingRevokeKey) === token) reviewStorage.removeItem(pendingRevokeKey);
+    });
+  };
+  const revokeVisits = () => {
+    const token = reviewStorage.getItem(visitorKey);
+    if (token) reviewStorage.setItem(pendingRevokeKey, token);
+    reviewStorage.removeItem(visitorKey);
+    flushRevoke();
+  };
+  const hasAnalyticsConsent = () => {
+    try { return Boolean(JSON.parse(reviewStorage.getItem(storageKey) || '{}').analytics); } catch (_) { return false; }
+  };
+  flushRevoke();
+  if (hasAnalyticsConsent()) trackVisit();
+
   if (!banner || !modal || !trigger) return;
 
   const stored = reviewStorage.getItem(storageKey);
@@ -85,8 +131,12 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 
   const openModal = () => { modal.hidden = false; };
   const closeModal = () => { modal.hidden = true; };
+
   const saveConsent = (consent) => {
+    const before = hasAnalyticsConsent();
     reviewStorage.setItem(storageKey, JSON.stringify(consent));
+    if (consent.analytics && !before) trackVisit();
+    if (!consent.analytics && before) revokeVisits();
     banner.hidden = true;
     closeModal();
   };
