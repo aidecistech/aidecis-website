@@ -85,8 +85,44 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 
   const openModal = () => { modal.hidden = false; };
   const closeModal = () => { modal.hidden = true; };
+  // Consent-gated visit counter for the Aidecis CRM (Web visitors). Sends only an anonymous
+  // random token, the page path and the referring host, and only after analytics consent.
+  const trackUrl = 'https://crm.aidecis.com/track.php';
+  const visitorKey = 'aidecis_visitor';
+  const liveSite = /^(www\.)?aidecis\.com$/.test(location.hostname);
+  const sendVisitEvent = (body) => {
+    if (!liveSite || !window.fetch) return;
+    fetch(trackUrl, { method: 'POST', mode: 'cors', credentials: 'omit', keepalive: true, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).catch(() => {});
+  };
+  const visitorToken = () => {
+    let token = reviewStorage.getItem(visitorKey);
+    if (!token || !/^[A-Za-z0-9_-]{32,64}$/.test(token)) {
+      const bytes = new Uint8Array(24);
+      crypto.getRandomValues(bytes);
+      token = Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('');
+      reviewStorage.setItem(visitorKey, token);
+    }
+    return token;
+  };
+  const referrerHost = () => {
+    try { return document.referrer ? new URL(document.referrer).host.toLowerCase().slice(0, 190) : ''; } catch (_) { return ''; }
+  };
+  const trackVisit = () => sendVisitEvent({ session: visitorToken(), path: (location.pathname || '/').slice(0, 300), referrer: referrerHost() });
+  const revokeVisits = () => {
+    const token = reviewStorage.getItem(visitorKey);
+    if (token) sendVisitEvent({ session: token, path: '', revoke: true });
+    reviewStorage.removeItem(visitorKey);
+  };
+  const hasAnalyticsConsent = () => {
+    try { return Boolean(JSON.parse(reviewStorage.getItem(storageKey) || '{}').analytics); } catch (_) { return false; }
+  };
+  if (hasAnalyticsConsent()) trackVisit();
+
   const saveConsent = (consent) => {
+    const before = hasAnalyticsConsent();
     reviewStorage.setItem(storageKey, JSON.stringify(consent));
+    if (consent.analytics && !before) trackVisit();
+    if (!consent.analytics && before) revokeVisits();
     banner.hidden = true;
     closeModal();
   };
