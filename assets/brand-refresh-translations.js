@@ -106,7 +106,7 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "Aidecis. Intelligence into every decision. Accountability behind every action.": "Aidecis. Intelligentie in elke beslissing. Verantwoording achter elke actie.",
   "Intelligence into every decision. Accountability behind every action.": "Intelligentie in elke beslissing. Verantwoording achter elke actie.",
   "The intelligent operating layer for consequential supply-chain decisions and actions.": "De intelligente besturingslaag voor ingrijpende beslissingen en acties in supply chains.",
-  "AI decision intelligence for consequential supply-chain decisions. Govern people and bots with clear authority, evidence and outcomes—from the first signal through execution and learning.": "AI-besluitintelligentie voor ingrijpende beslissingen in supply chains. Begeleid mensen en bots met duidelijke bevoegdheid, bewijs en resultaten, van het eerste signaal tot uitvoering en leren.",
+  "AI decision intelligence for consequential supply-chain decisions. Govern people and bots with clear authority, evidence and outcomes—from the first signal through execution and learning.": "AI-besluitintelligentie voor ingrijpende beslissingen in supply chains. Begeleidt mensen en bots met duidelijke bevoegdheid, bewijs en resultaten, van het eerste signaal tot uitvoering en leren.",
   "People and bots, governed": "Mensen en bots, verantwoord aangestuurd",
   "Authority, evidence and outcome stay connected across every action": "Bevoegdheid, bewijs en resultaat blijven verbonden met elke actie",
   "Explore the 10 use cases": "Bekijk de 10 use cases",
@@ -245,7 +245,7 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
 Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
   "Supply-chain network showing port congestion, an alternate route, and recovery": "Supplychainnetwerk met havencongestie, een alternatieve route en herstel.",
   "Open the animation full screen": "Open de animatie op volledig scherm",
-  "Business-case panel below uses editable exposure, addressable-share and reduction assumptions. It is a scenario estimate, not a savings forecast.": "Het business case-paneel hieronder gebruikt aanpasbare aannames over blootstelling, aanpakbaar deel en verlaging. Het is een scenario-inschatting, geen besparingsprognose.",
+  "Business-case panel below uses editable exposure, addressable-share and reduction assumptions. It is a scenario estimate, not a savings forecast.": "Het businesscasepaneel hieronder gebruikt aanpasbare aannames over blootstelling, aanpakbaar deel en verlaging. Het is een scenario-inschatting, geen besparingsprognose.",
   "Illustrative scenario · user-defined assumptions": "Illustratief scenario · aannames van de gebruiker",
   "Scenario estimate": "Scenario-inschatting",
   "Enter values within the field limits to see the scenario estimate.": "Vul waarden binnen de grenzen in om de scenario-inschatting te zien."
@@ -254,7 +254,7 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
   "The business-case panel below uses editable exposure, addressable-share and reduction assumptions. It is a scenario estimate, not a savings forecast.": "El panel del caso de negocio usa supuestos editables de exposición, proporción abordable y reducción. Es una estimación de escenario, no una previsión de ahorro."
 });
 Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
-  "The business-case panel below uses editable exposure, addressable-share and reduction assumptions. It is a scenario estimate, not a savings forecast.": "Het business case-paneel hieronder gebruikt aanpasbare aannames over blootstelling, aanpakbaar deel en verlaging. Het is een scenario-inschatting, geen besparingsprognose."
+  "The business-case panel below uses editable exposure, addressable-share and reduction assumptions. It is a scenario estimate, not a savings forecast.": "Het businesscasepaneel hieronder gebruikt aanpasbare aannames over blootstelling, aanpakbaar deel en verlaging. Het is een scenario-inschatting, geen besparingsprognose."
 });
 
 // People, bots or both (decision modes), 25 Oct 2026
