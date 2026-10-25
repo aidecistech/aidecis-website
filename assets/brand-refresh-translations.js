@@ -256,3 +256,43 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
 Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
   "The business-case panel below uses editable exposure, addressable-share and reduction assumptions. It is a scenario estimate, not a savings forecast.": "Het business case-paneel hieronder gebruikt aanpasbare aannames over blootstelling, aanpakbaar deel en verlaging. Het is een scenario-inschatting, geen besparingsprognose."
 });
+
+// People, bots or both (decision modes), 25 Oct 2026
+Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
+  "People, bots or both": "Personas, bots o ambos",
+  "Every consequential decision, whoever or whatever takes it.": "Cada decisión crítica, la tome una persona, un sistema o ambos.",
+  "Your company already runs software that decides: MRP runs that create orders, replenishment rules that move stock, planning tools that change schedules, and now AI agents. Aidecis brings your people, your existing bots and our agents into one visible decision chain, governs each of them with the same authority and evidence, and tells you when a decision should change hands.": "Su empresa ya utiliza software que decide: ejecuciones de MRP que crean pedidos, reglas de reposición que mueven stock, herramientas de planificación que cambian programas y, ahora, agentes de IA. Aidecis reúne a sus personas, sus bots existentes y nuestros agentes en una cadena de decisión visible, gobierna a cada uno con la misma autoridad y evidencia, y le avisa cuando una decisión debería cambiar de manos.",
+  "People": "Personas",
+  "A person with the right authority decides. Agents can prepare the evidence and the options.": "Decide una persona con la autoridad adecuada. Los agentes pueden preparar la evidencia y las opciones.",
+  "Hybrid": "Híbrido",
+  "A bot proposes and a person approves, or the bot decides within a set limit and a person decides above it.": "Un bot propone y una persona aprueba, o el bot decide dentro de un límite fijado y una persona decide por encima de él.",
+  "Bot": "Bot",
+  "The bot decides and acts, only for reversible actions within limits you approve, with monitoring and a way to stop.": "El bot decide y actúa solo en acciones reversibles, dentro de los límites que usted aprueba, con supervisión y una forma de detenerlo.",
+  "Your agents and algorithms, in view": "Sus agentes y algoritmos, a la vista",
+  "Each bot is registered with its owner, its role in the chain, its limits and its version. It keeps its own logic; Aidecis governs what it may do.": "Cada bot se registra con su responsable, su papel en la cadena, sus límites y su versión. Conserva su propia lógica; Aidecis gobierna lo que puede hacer.",
+  "Every role change on record": "Cada cambio de papel, registrado",
+  "A new algorithm version, a higher limit or a step that moves from a person to a bot is approved, dated and visible in the chain.": "Una nueva versión de un algoritmo, un límite más alto o un paso que pasa de una persona a un bot se aprueba, se fecha y queda visible en la cadena.",
+  "Advice before you ask": "Recomendaciones antes de que las pida",
+  "When a decision has become stable, Aidecis shows the evidence that it can move from people to a bot. When a bot drifts, it advises moving the decision back to people.": "Cuando una decisión se ha vuelto estable, Aidecis muestra la evidencia de que puede pasar de las personas a un bot. Cuando un bot se desvía, aconseja devolver la decisión a las personas.",
+  "Your people, your own algorithms and our agents in one accountable chain": "Sus personas, sus propios algoritmos y nuestros agentes en una cadena responsable",
+  "The result stays connected to the decision. When a decision proves stable, Aidecis shows when it can move from people to a bot.": "El resultado queda vinculado a la decisión. Cuando una decisión demuestra ser estable, Aidecis indica cuándo puede pasar de las personas a un bot."
+});
+Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
+  "People, bots or both": "Mensen, bots of allebei",
+  "Every consequential decision, whoever or whatever takes it.": "Elke ingrijpende beslissing, wie of wat haar ook neemt.",
+  "Your company already runs software that decides: MRP runs that create orders, replenishment rules that move stock, planning tools that change schedules, and now AI agents. Aidecis brings your people, your existing bots and our agents into one visible decision chain, governs each of them with the same authority and evidence, and tells you when a decision should change hands.": "Uw bedrijf gebruikt al software die beslist: MRP-runs die bestellingen aanmaken, aanvulregels die voorraad verplaatsen, planningstools die schema's aanpassen, en nu ook AI-agents. Aidecis brengt uw mensen, uw bestaande bots en onze agents samen in één zichtbare beslisketen, houdt ze allemaal aan dezelfde bevoegdheden en hetzelfde bewijs, en laat u weten wanneer een beslissing van eigenaar moet wisselen.",
+  "People": "Mensen",
+  "A person with the right authority decides. Agents can prepare the evidence and the options.": "Een persoon met de juiste bevoegdheid beslist. Agents kunnen het bewijs en de opties voorbereiden.",
+  "Hybrid": "Hybride",
+  "A bot proposes and a person approves, or the bot decides within a set limit and a person decides above it.": "Een bot doet een voorstel en een persoon keurt goed, of de bot beslist binnen een vaste grens en een persoon beslist daarboven.",
+  "Bot": "Bot",
+  "The bot decides and acts, only for reversible actions within limits you approve, with monitoring and a way to stop.": "De bot beslist en handelt, alleen bij omkeerbare acties binnen grenzen die u goedkeurt, met bewaking en een manier om te stoppen.",
+  "Your agents and algorithms, in view": "Uw agents en algoritmen in beeld",
+  "Each bot is registered with its owner, its role in the chain, its limits and its version. It keeps its own logic; Aidecis governs what it may do.": "Elke bot wordt vastgelegd met zijn eigenaar, zijn rol in de keten, zijn grenzen en zijn versie. Hij houdt zijn eigen logica; Aidecis bepaalt wat hij mag.",
+  "Every role change on record": "Elke rolwijziging vastgelegd",
+  "A new algorithm version, a higher limit or a step that moves from a person to a bot is approved, dated and visible in the chain.": "Een nieuwe versie van een algoritme, een hogere grens of een stap die van een persoon naar een bot gaat, wordt goedgekeurd, gedateerd en is zichtbaar in de keten.",
+  "Advice before you ask": "Advies voordat u erom vraagt",
+  "When a decision has become stable, Aidecis shows the evidence that it can move from people to a bot. When a bot drifts, it advises moving the decision back to people.": "Als een beslissing stabiel is geworden, laat Aidecis met bewijs zien dat die van mensen naar een bot kan. Als een bot afwijkt, adviseert Aidecis om de beslissing terug te geven aan mensen.",
+  "Your people, your own algorithms and our agents in one accountable chain": "Uw mensen, uw eigen algoritmen en onze agents in één verantwoorde keten",
+  "The result stays connected to the decision. When a decision proves stable, Aidecis shows when it can move from people to a bot.": "Het resultaat blijft gekoppeld aan de beslissing. Als een beslissing stabiel blijkt, laat Aidecis zien wanneer die van mensen naar een bot kan."
+});
