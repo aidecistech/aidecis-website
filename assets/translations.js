@@ -337,7 +337,7 @@ window.AIDECIS_TRANSLATIONS = {
     "03 Your decision": "03 Uw besluit",
     "The pattern": "Het patroon",
     "European application · European data residency": "Europees platform · Europese dataresidentie",
-    "The operating control layer for consequential supply-chain decisions.": "Het operationele beheersplatform voor consequentiele supply chain besluiten en acties.",
+    "The operating control layer for consequential supply-chain decisions.": "Het operationele beheersplatform voor consequentiële supply chain besluiten en acties.",
     "Aidecis replaces fragmented approval loops with one accountable decision record: authority, policy, approval, protected execution and operational outcome.": "Aidecis vervangt versnipperde goedkeuringsrondes door één verantwoord besluitrecord met bevoegdheid, beleid, goedkeuring, beschermde uitvoering en operationeel resultaat.",
     "Why decisions lack accountability": "Waarom besluiten geen duidelijke verantwoordelijkheid hebben",
     "See a typical pilot": "Bekijk een typische pilot",

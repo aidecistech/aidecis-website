@@ -106,7 +106,7 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "Aidecis. Intelligence into every decision. Accountability behind every action.": "Aidecis. Intelligentie in elke beslissing. Verantwoording achter elke actie.",
   "Intelligence into every decision. Accountability behind every action.": "Intelligentie in elke beslissing. Verantwoording achter elke actie.",
   "The intelligent operating layer for consequential supply-chain decisions and actions.": "De intelligente besturingslaag voor ingrijpende beslissingen en acties in supply chains.",
-  "AI decision intelligence for consequential supply-chain decisions. Govern people and bots with clear authority, evidence and outcomes—from the first signal through execution and learning.": "AI-besluitintelligentie voor ingrijpende beslissingen in supply chains. Begeleid mensen en bots met duidelijke bevoegdheid, bewijs en resultaten, van het eerste signaal tot uitvoering en leren.",
+  "AI decision intelligence for consequential supply-chain decisions. Govern people and bots with clear authority, evidence and outcomes—from the first signal through execution and learning.": "AI-besluitintelligentie voor ingrijpende beslissingen in supply chains. Begeleidt mensen en bots met duidelijke bevoegdheid, bewijs en resultaten, van het eerste signaal tot uitvoering en leren.",
   "People and bots, governed": "Mensen en bots, verantwoord aangestuurd",
   "Authority, evidence and outcome stay connected across every action": "Bevoegdheid, bewijs en resultaat blijven verbonden met elke actie",
   "Explore the 10 use cases": "Bekijk de 10 use cases",

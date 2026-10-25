@@ -237,7 +237,7 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "Explore the 10 use cases": "Bekijk de 10 use cases",
   "Explore the ten use cases": "Bekijk de tien use cases",
   "Aidecis | Decision intelligence and accountability for supply chains": "Aidecis | Decision intelligence en verantwoording in supply chains",
-  "AI decision intelligence for consequential supply-chain decisions. Govern people and bots with clear authority, evidence and outcomes—from the first signal through execution and learning.": "AI-gedreven decision intelligence voor ingrijpende beslissingen in supply chains. Begeleid mensen en bots met duidelijke bevoegdheden, bewijs en resultaten, van het eerste signaal tot uitvoering en leren.",
+  "AI decision intelligence for consequential supply-chain decisions. Govern people and bots with clear authority, evidence and outcomes—from the first signal through execution and learning.": "AI-gedreven decision intelligence voor ingrijpende beslissingen in supply chains. Begeleidt mensen en bots met duidelijke bevoegdheden, bewijs en resultaten, van het eerste signaal tot uitvoering en leren.",
   "The world keeps moving.": "De wereld blijft in beweging.",
   "Intelligence into every decision. Accountability behind every action.": "Intelligentie in elke beslissing. Verantwoording achter elke actie.",
   "Explore potential benefits and your investment.": "Bekijk de mogelijke voordelen en je investering.",
