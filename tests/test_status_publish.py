@@ -25,7 +25,7 @@ class PublishTests(unittest.TestCase):
             root = Path(folder)
             for name in ("assets", "demo", "demo-v9.1", "status", "bin", "server"):
                 (root / name).mkdir()
-            for name in ("index.html", "robots.txt", "sitemap.xml", "assets/style.css", "demo/index.html", "demo-v9.1/index.html"):
+            for name in ("index.html", "robots.txt", "llms.txt", "sitemap.xml", "assets/style.css", "demo/index.html", "demo-v9.1/index.html"):
                 (root / name).write_text("published " + name)
             (root / "status/template.html").write_text("private template")
             (root / "status/reports").mkdir()
@@ -58,7 +58,7 @@ sys.stdout.buffer.write((root / 'server' / path).read_bytes())
                 executable.chmod(0o755)
             result = subprocess.run(["bash", "-c", self.steps["Check the live site"]["run"]], cwd=root, env=env, capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-            self.assertEqual(len((root / "requests").read_text().splitlines()), 6)
+            self.assertEqual(len((root / "requests").read_text().splitlines()), 7)
             self.assertNotIn("status/", (root / "requests").read_text())
             env.update(SFTP_KEY="", LFTP_PASSWORD="fake-password", HOST="fake.example", SFTP_USER="fake", REMOTE="www", DRY="--dry-run")
             subprocess.run(["bash", "-c", self.steps["Upload over SFTP"]["run"]], cwd=root, env=env, check=True, capture_output=True)

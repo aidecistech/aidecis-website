@@ -49,7 +49,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p site
-          cp ./*.html robots.txt sitemap.xml site/
+          cp ./*.html ./*.txt sitemap.xml site/
           cp -R assets demo demo-v9.1 site/
           find site -type f | wc -l | xargs echo "files to publish:"
 
