@@ -228,3 +228,17 @@ body .europe-section .europe-points > div > p {
 @keyframes site-page-out{to{opacity:0;transform:translateY(-6px)}}
 @keyframes site-page-in{from{opacity:0;transform:translateY(10px)}}
 @media(prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation-duration:1ms}}
+
+/* People, bots or both (decision modes), 25 Oct 2026 */
+.decision-modes { padding: 100px var(--space, 28px); background: #fff; color: var(--navy); }
+.decision-modes-head { max-width: 900px; }
+.decision-modes-head h2 { margin: 8px 0 18px; color: var(--navy); }
+.decision-modes-head > p:last-child { max-width: 780px; color: #45545d; font-size: 18px; }
+.decision-modes-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 40px; }
+.decision-modes-grid article { padding: 22px; background: var(--cream); border-top: 2px solid var(--gold); }
+.decision-modes-grid article > span { color: #94641f; font: 700 12px/1 system-ui, sans-serif; }
+.decision-modes-grid h3 { margin: 14px 0 8px; color: var(--navy); }
+.decision-modes-grid p, .decision-modes-points p { margin: 0; color: #5a7680; font-size: 15px; }
+.decision-modes-points { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px; margin-top: 44px; padding-top: 28px; border-top: 1px solid var(--line, #d8e1e5); }
+.decision-modes-points h3 { margin: 0 0 8px; color: var(--navy); font-size: 20px; }
+@media (max-width: 860px) { .decision-modes { padding: 64px 24px; } .decision-modes-grid, .decision-modes-points { grid-template-columns: 1fr; gap: 14px; } .decision-modes-points { gap: 24px; } }
