@@ -28,8 +28,7 @@ class PublishTests(unittest.TestCase):
             for name in ("index.html", "robots.txt", "llms.txt", "sitemap.xml", "assets/style.css", "demo/index.html", "demo-v9.1/index.html", "news/example.html"):
                 (root / name).write_text("published " + name)
             (root / "status/template.html").write_text("private template")
-            (root / "status/reports").mkdir()
-            (root / "status/reports/mac-mirror.json").write_text('{"id": "mac-mirror"}')
+            (root / "status/incidents.json").write_text("[]")
             env = dict(os.environ, PATH=str(root / "bin") + os.pathsep + os.environ["PATH"],
                        FAKE_ROOT=str(root), GITHUB_RUN_ID="123")
             subprocess.run(["bash", "-c", self.steps["Collect the publishable files"]["run"]], cwd=root, env=env, check=True, capture_output=True)

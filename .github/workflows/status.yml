@@ -3,25 +3,24 @@ name: Update public status
 on:
   push:
     branches: [main]
-    paths: ['status/reports/*.json', 'status/closed.html', '.github/workflows/status.yml']
+    paths: ['status/closed.html', 'status/template.html', 'scripts/status/**', '.github/workflows/status.yml']
   schedule:
     - cron: '7,22,37,52 * * * *'
   workflow_dispatch:
-  repository_dispatch:
-    types: [status-update]
 
 permissions:
   contents: read
 
-# Serialize read/merge/write cycles to preserve history. Reports persist in Git,
-# so replacing a pending run cannot discard an external update.
+# Serialize read/merge/write cycles to preserve history.
 concurrency:
   group: public-status
   cancel-in-progress: false
 
 # The page is published only when the repository variable STATUS_PAGE_PUBLIC is "true".
 # Otherwise (the default, closed on 20 Oct 2026) each run on main replaces www/status/ with a short
-# "not public" notice and removes status.json, so no system or backup detail is served.
+# "not public" notice and removes status.json.
+# The public page shows the website only. Internal systems and backups are monitored privately
+# (aidecis-app monitor workflow); nothing about them is checked, published or stored here.
 jobs:
   status:
     runs-on: ubuntu-latest
@@ -29,7 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # Read the latest reports even when this run waited in the concurrency group.
+          # Read the latest notices even when this run waited in the concurrency group.
           ref: ${{ github.ref }}
           persist-credentials: false
 
@@ -44,18 +43,9 @@ jobs:
         if: vars.STATUS_PAGE_PUBLIC == 'true'
         run: python3 scripts/status/check.py --download-previous "$RUNNER_TEMP/previous-status.json"
 
-      - name: Install SFTP support in a virtual environment
+      - name: Check the website
         if: vars.STATUS_PAGE_PUBLIC == 'true'
-        run: |
-          python3 -m venv .venv
-          .venv/bin/python -m pip install --disable-pip-version-check -r scripts/status/requirements.txt
-
-      - name: Check systems and merge backup reports
-        if: vars.STATUS_PAGE_PUBLIC == 'true'
-        env:
-          STORAGEBOX_READONLY_KEY: ${{ secrets.STORAGEBOX_READONLY_KEY }}
-          STORAGEBOX_KNOWN_HOSTS: ${{ vars.STORAGEBOX_KNOWN_HOSTS }}
-        run: .venv/bin/python scripts/status/check.py --previous "$RUNNER_TEMP/previous-status.json"
+        run: python3 scripts/status/check.py --previous "$RUNNER_TEMP/previous-status.json"
 
       - name: Render and stage the generated files only
         if: vars.STATUS_PAGE_PUBLIC == 'true'
