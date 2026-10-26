@@ -55,6 +55,27 @@ The full decision library (71 decision types) is on the use cases page.
 - [Machinery and industrial equipment](https://www.aidecis.com/industry-machinery.html)
 - [Fashion, textiles and retail](https://www.aidecis.com/industry-fashion-retail.html)
 
+## News and articles
+
+- [Modernizing Oracle E-Business Suite supply chain management with real-time decision intelligence](https://www.aidecis.com/news/oracle-ebs-supply-chain-decision-intelligence.html)
+- [Aligning information technology and supply chain management through decision governance](https://www.aidecis.com/news/it-supply-chain-decision-governance.html)
+- [The evolving artificial intelligence in supply chain market: prioritizing operational control](https://www.aidecis.com/news/ai-supply-chain-market-operational-control.html)
+- [AI supply management: balancing inventory risk with automated order governance](https://www.aidecis.com/news/ai-supply-management-order-governance.html)
+- [Governing AI supplier management: automated risk mitigation and allocation](https://www.aidecis.com/news/ai-supplier-management-governance.html)
+- [Upgrading logistics management system software with automated decision authority](https://www.aidecis.com/news/logistics-management-system-decision-authority.html)
+- [Managing the electronics supply chain: decision intelligence under component volatility](https://www.aidecis.com/news/electronics-supply-chain-component-volatility.html)
+- [Architecting supply-chain automation solutions with human oversight](https://www.aidecis.com/news/supply-chain-automation-human-oversight.html)
+- [The operational limits of ERP software for logistics industry workflows](https://www.aidecis.com/news/erp-software-logistics-industry-workflows.html)
+- [Governing AI in warehouse management: managing automated exception handling](https://www.aidecis.com/news/ai-warehouse-management-exception-handling.html)
+- [The strategic role of artificial intelligence in supply-chain management](https://www.aidecis.com/news/role-of-ai-in-supply-chain-management.html)
+- [Enhancing SAP supply-chain management solutions with external decision governance](https://www.aidecis.com/news/sap-supply-chain-management-decision-governance.html)
+- [Industrial engineering supply-chain management: operationalizing complex planning logic](https://www.aidecis.com/news/industrial-engineering-supply-chain-decision-governance.html)
+- [Cloud computing for supply-chain management: powering real-time multi-agent decisioning](https://www.aidecis.com/news/cloud-computing-supply-chain-multi-agent-decisioning.html)
+- [Rethinking supply-chain and information systems: building the operational governance tier](https://www.aidecis.com/news/supply-chain-information-systems-governance-tier.html)
+- [Artificial intelligence in warehouse management: governing automated slotting and wave planning](https://www.aidecis.com/news/ai-warehouse-slotting-wave-planning.html)
+- [Augmenting legacy ERP systems for supply-chain management with decision layers](https://www.aidecis.com/news/augment-legacy-erp-supply-chain-decision-layer.html)
+- [Why traditional supply-chain optimization software fails under dynamic volatility](https://www.aidecis.com/news/supply-chain-optimization-software-dynamic-volatility.html)
+
 ## Product demo
 
 - [90-second story](https://demo.app.aidecis.com/#/tour): a late cocoa delivery for the fictional company De Boer BV, recorded from a real run of the product. The company and data are fictional.

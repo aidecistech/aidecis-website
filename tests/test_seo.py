@@ -37,7 +37,7 @@ class SeoTests(unittest.TestCase):
 
     def test_sitemap_lists_every_public_page_with_lastmod(self):
         listed = {("index.html" if u == BASE else u[len(BASE):]) for u in self.urls}
-        self.assertEqual(listed, {p.name for p in ROOT.glob("*.html")})
+        self.assertEqual(listed, {p.name for p in ROOT.glob("*.html")} | {"news/" + p.name for p in ROOT.glob("news/*.html")})
         self.assertEqual(len(re.findall(r"<lastmod>\d{4}-\d{2}-\d{2}</lastmod>", (ROOT / "sitemap.xml").read_text())), len(self.urls))
 
     def test_each_page_has_unique_title_description_and_canonical(self):
@@ -77,6 +77,8 @@ class SeoTests(unittest.TestCase):
         if catalog is None:
             self.skipTest("Node is needed to read the translation files")
         for url, html in self.pages.items():
+            if "/news/" in url:  # articles are published in English only
+                continue
             for text in (head_value(html, r"<title>(.*?)</title>"), head_value(html, r'<meta name="description" content="([^"]*)"')):
                 for language in ("es", "nl"):
                     with self.subTest(url=url, language=language, text=text[:40]):
