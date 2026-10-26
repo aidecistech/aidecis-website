@@ -24,18 +24,22 @@ Key facts:
 - [Industries](https://www.aidecis.com/industries.html): how the same decision accountability applies across ten industries.
 - [Contact](https://www.aidecis.com/contact.html): request a demo or discuss a pilot.
 
-## The ten use cases
+## Twelve decision families and their flagship decisions
 
-1. Expedite freight after disruption
-2. Inventory reallocation
-3. Demand surge allocation
-4. Supplier disruption and alternate source
-5. Quality hold, release or substitute
-6. Production rescheduling
-7. Logistics reroute or carrier choice
-8. Customer promise and backorder priority
-9. Procurement price, quantity or PO exception
-10. Invoice variance, claim and close-out
+1. Logistics and transport: expedite freight after disruption
+2. Planning and inventory: inventory reallocation between sites
+3. Demand and customer commitments: customer promise and backorder priority
+4. Procurement and supply: ingredient or material price beyond envelope
+5. Quality and product compliance: quality hold, release or substitute
+6. Production and operations: production rescheduling
+7. Maintenance and assets: unplanned failure, run reduced or stop to repair
+8. Trading and commodity positions: buy or sell a cargo, with its downstream chain
+9. Warehousing and terminals: tank or storage allocation
+10. Energy and utilities: curtail or shift production on an energy price spike
+11. Health, safety and environment: permit or emission limit exceedance
+12. Finance and close-out: invoice variance, claim and close-out
+
+The full decision library (71 decision types) is on the use cases page.
 
 ## Industries
 
@@ -47,6 +51,7 @@ Key facts:
 - [Semiconductors and electronics](https://www.aidecis.com/industry-semiconductors-electronics.html)
 - [Medical devices](https://www.aidecis.com/industry-medical-devices.html)
 - [Chemicals and specialty chemicals](https://www.aidecis.com/industry-chemicals.html)
+- [Refining and energy](https://www.aidecis.com/industry-refining-energy.html)
 - [Machinery and industrial equipment](https://www.aidecis.com/industry-machinery.html)
 - [Fashion, textiles and retail](https://www.aidecis.com/industry-fashion-retail.html)
 
