@@ -18,7 +18,7 @@ Key facts:
 ## Main pages
 
 - [Home](https://www.aidecis.com/): what Aidecis is, people/bots/hybrid decisions, the decision lifecycle, architecture and how to start.
-- [Ten use cases](https://www.aidecis.com/use-cases.html): the ten consequential supply-chain decisions Aidecis governs, each with trigger, action and value evidence.
+- [Use cases and decision library](https://www.aidecis.com/use-cases.html): twelve families and 71 consequential supply-chain decisions Aidecis governs (trading, procurement, demand, planning, production, maintenance, energy, quality, HSE, logistics, warehousing, finance), with twelve worked use cases.
 - [Decision accountability](https://www.aidecis.com/accountability.html): ten common supply-chain decision crises and how authority, policy, approval, execution and outcome are kept in one chain.
 - [Benefits and business case](https://www.aidecis.com/benefits.html): a calculator to model subscription, onboarding and a business case with your own assumptions.
 - [Industries](https://www.aidecis.com/industries.html): how the same decision accountability applies across ten industries.
