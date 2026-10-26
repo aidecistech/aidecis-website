@@ -23,9 +23,9 @@ class PublishTests(unittest.TestCase):
     def test_status_survives_publish_and_is_excluded_from_live_comparison(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
-            for name in ("assets", "demo", "demo-v9.1", "status", "bin", "server"):
+            for name in ("assets", "demo", "demo-v9.1", "news", "status", "bin", "server"):
                 (root / name).mkdir()
-            for name in ("index.html", "robots.txt", "llms.txt", "sitemap.xml", "assets/style.css", "demo/index.html", "demo-v9.1/index.html"):
+            for name in ("index.html", "robots.txt", "llms.txt", "sitemap.xml", "assets/style.css", "demo/index.html", "demo-v9.1/index.html", "news/example.html"):
                 (root / name).write_text("published " + name)
             (root / "status/template.html").write_text("private template")
             (root / "status/reports").mkdir()
