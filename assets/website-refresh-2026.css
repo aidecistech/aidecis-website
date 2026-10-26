@@ -256,3 +256,7 @@ body .europe-section .europe-points > div > p {
 .decision-library-note { max-width: 760px; margin-top: 22px; color: #667f86; font-size: 14px; line-height: 1.55; }
 @media (max-width: 1000px) { .decision-families { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 640px) { .decision-families { grid-template-columns: minmax(0, 1fr); } }
+
+.decision-family-names { list-style: none; padding: 0; margin: 0 0 24px; display: flex; flex-wrap: wrap; gap: 8px; max-width: 980px; }
+.decision-family-names li { border: 1px solid #bec9ca; border-radius: 999px; padding: 6px 14px; font-size: 14px; color: #173f57; background: #fff; }
+.decision-library-cta { margin: 0 0 8px; }
