@@ -1,0 +1,61 @@
+# Aidecis
+
+> Aidecis is decision intelligence and a cross-system decision-accountability layer for consequential supply-chain decisions. It governs decisions taken by people, by a company's existing bots and algorithms, and by AI agents with the same authority, policy, approval and evidence, from the first signal through execution and the recorded outcome.
+
+Aidecis does not replace ERP systems such as SAP, technical authorization or AI model governance tools. It adds the business-control layer across existing workflows and answers: who had authority, which operating policy applied, who approved the exception, what executed and what happened next.
+
+Key facts:
+
+- Category: supply-chain decision intelligence; decision accountability and governance for people, bots and AI agents.
+- Decision modes: people decide (agents prepare evidence and options); hybrid (a bot proposes and a person approves, or the bot decides within a set limit); bot (only reversible actions within approved limits, with monitoring and a way to stop).
+- Lifecycle: propose, evaluate (authority, constraints and policy), approve or escalate to the accountable owner, execute through a customer-side gateway, learn from the recorded outcome.
+- Architecture: policies and decision logic are managed in the Aidecis European cloud. A gateway runs inside the customer's IT environment and carries out only actions permitted by policy and within the proposer's authority, in systems such as ERP, WMS, TMS, MES and quality systems.
+- European application with European data residency.
+- Getting started: a fixed-scope pilot of about four weeks on one decision process (decision discovery, gateway and control design, controlled pilot). Indicative pilot support is EUR 16,000 to 24,000; a scoped proposal confirms the final scope.
+- Company: Aidecis is an Angeleus SLU company, based in Escaldes-Engordany, Andorra.
+- Languages on the website: English, Spanish and Dutch.
+
+## Main pages
+
+- [Home](https://www.aidecis.com/): what Aidecis is, people/bots/hybrid decisions, the decision lifecycle, architecture and how to start.
+- [Ten use cases](https://www.aidecis.com/use-cases.html): the ten consequential supply-chain decisions Aidecis governs, each with trigger, action and value evidence.
+- [Decision accountability](https://www.aidecis.com/accountability.html): ten common supply-chain decision crises and how authority, policy, approval, execution and outcome are kept in one chain.
+- [Benefits and business case](https://www.aidecis.com/benefits.html): a calculator to model subscription, onboarding and a business case with your own assumptions.
+- [Industries](https://www.aidecis.com/industries.html): how the same decision accountability applies across ten industries.
+- [Contact](https://www.aidecis.com/contact.html): request a demo or discuss a pilot.
+
+## The ten use cases
+
+1. Expedite freight after disruption
+2. Inventory reallocation
+3. Demand surge allocation
+4. Supplier disruption and alternate source
+5. Quality hold, release or substitute
+6. Production rescheduling
+7. Logistics reroute or carrier choice
+8. Customer promise and backorder priority
+9. Procurement price, quantity or PO exception
+10. Invoice variance, claim and close-out
+
+## Industries
+
+- [Automotive](https://www.aidecis.com/industry-automotive.html)
+- [Pharma and biotech](https://www.aidecis.com/industry-pharma-biotech.html)
+- [Food and beverage](https://www.aidecis.com/industry-food-beverage.html)
+- [Contract logistics](https://www.aidecis.com/industry-contract-logistics.html)
+- [Aerospace and defense](https://www.aidecis.com/industry-aerospace-defense.html)
+- [Semiconductors and electronics](https://www.aidecis.com/industry-semiconductors-electronics.html)
+- [Medical devices](https://www.aidecis.com/industry-medical-devices.html)
+- [Chemicals and specialty chemicals](https://www.aidecis.com/industry-chemicals.html)
+- [Machinery and industrial equipment](https://www.aidecis.com/industry-machinery.html)
+- [Fashion, textiles and retail](https://www.aidecis.com/industry-fashion-retail.html)
+
+## Product demo
+
+- [90-second story](https://demo.app.aidecis.com/#/tour): a late cocoa delivery for the fictional company De Boer BV, recorded from a real run of the product. The company and data are fictional.
+
+## Optional
+
+- [Privacy policy](https://www.aidecis.com/privacy-policy.html)
+- [Cookie policy](https://www.aidecis.com/cookie-policy.html)
+- [Terms of service](https://www.aidecis.com/terms.html)

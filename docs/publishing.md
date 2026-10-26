@@ -2,7 +2,7 @@
 
 aidecis.com runs on TransIP web hosting. Every merge to `main` publishes it automatically over SFTP (`.github/workflows/publish.yml`), then checks that the live site serves the published files in `main`, excluding the independently generated `status/` folder. The run fails if any compared file differs. Files that exist only on the server are never deleted.
 
-What is published: the HTML pages, `robots.txt`, `sitemap.xml`, `assets/`, `demo/` and `demo-v9.1/`. Not published: `docs/`, `.github/`, `README.md`, or the source files in `status/`. The separate [status workflow](status.md) owns `status/index.html` and `status/status.json` on the server. The website mirror and live comparison explicitly exclude that folder.
+What is published: the HTML pages, the root text files (`robots.txt`, `llms.txt`), `sitemap.xml`, `assets/`, `demo/` and `demo-v9.1/`. Not published: `docs/`, `.github/`, `README.md`, or the source files in `status/`. The separate [status workflow](status.md) owns `status/index.html` and `status/status.json` on the server. The website mirror and live comparison explicitly exclude that folder.
 
 ## One-time setup
 
