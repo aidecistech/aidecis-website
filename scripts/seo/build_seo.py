@@ -3,6 +3,7 @@ Edit the titles and descriptions here, add their Spanish and Dutch versions to a
 `python3 scripts/seo/build_seo.py` from the repository root and `python3 -m unittest tests.test_seo`. Idempotent: the
 generated block sits between the seo:start and seo:end markers and is replaced on every run."""
 import json
+from html import unescape
 import re
 import subprocess
 import sys
@@ -87,6 +88,19 @@ PAGES = {
 }
 for file, name, title, desc in INDUSTRIES:
     PAGES[file] = (title, desc, name, [('Industries', 'industries.html')])
+PAGES['news.html'] = ('Supply-chain decision intelligence news and insights | Aidecis',
+                      'Articles on AI in supply-chain management, decision governance and accountable automation, each with a PDF to keep.',
+                      'News', [])
+
+# News articles (news/*.html) keep the title and description written in the page; they are published in English only.
+ARTICLES = []
+for path in sorted((ROOT / 'news').glob('*.html')):
+    text = path.read_text()
+    a_title = unescape(re.search(r'<title>(.*?)</title>', text, re.S).group(1))
+    a_desc = unescape(re.search(r'<meta name="description" content="([^"]*)"', text).group(1))
+    file = 'news/' + path.name
+    ARTICLES.append(file)
+    PAGES[file] = (a_title, a_desc, a_title.rsplit(' | ', 1)[0], [('News', 'news.html')])
 
 ORG = {
     '@type': 'Organization', '@id': BASE + '#organization', 'name': 'Aidecis', 'url': BASE,
@@ -126,6 +140,10 @@ def jsonld(file, title, desc, crumb, parents):
     if file == 'contact.html':
         page['@type'] = 'ContactPage'
     graph = [ORG, WEBSITE, page]
+    if file.startswith('news/'):
+        graph.append({'@type': 'Article', 'headline': crumb, 'description': desc, 'url': url, 'inLanguage': 'en',
+                      'mainEntityOfPage': {'@id': url + '#webpage'}, 'author': {'@id': BASE + '#organization'},
+                      'publisher': {'@id': BASE + '#organization'}, 'image': IMAGE})
     if file == 'index.html':
         graph.append(PRODUCT)
     if crumb:
@@ -159,7 +177,7 @@ for file, (title, desc, crumb, parents) in PAGES.items():
     block = '\n'.join([
         START,
         f'<link rel="canonical" href="{url}">',
-        '<meta property="og:type" content="website">',
+        f'<meta property="og:type" content="{"article" if file.startswith("news/") else "website"}">',
         '<meta property="og:site_name" content="Aidecis">',
         f'<meta property="og:title" content="{attr(title)}">',
         f'<meta property="og:description" content="{attr(desc)}">',
@@ -182,7 +200,7 @@ for file, (title, desc, crumb, parents) in PAGES.items():
         html = html.replace('</head>', block + '\n</head>', 1)
     # The new titles and descriptions get their Spanish and Dutch versions from seo-translations.js, loaded just before site.js.
     if 'assets/seo-translations.js' not in html:
-        html, n = re.subn(r'(<script src="assets/site\.js)', r'<script src="assets/seo-translations.js?v=20261026-seo1"></script>\1', html, count=1)
+        html, n = re.subn(r'(<script src="((?:\.\./)?)assets/site\.js)', r'<script src="\2assets/seo-translations.js?v=20261026-seo1"></script>\1', html, count=1)
         assert n == 1, file
     path.write_text(html)
 
@@ -192,7 +210,7 @@ def lastmod(file):
     return out or '2026-10-26'
 
 order = ['index.html', 'use-cases.html', 'benefits.html', 'industries.html', 'accountability.html', 'contact.html'] + \
-        [f for f, *_ in INDUSTRIES] + ['privacy-policy.html', 'cookie-policy.html', 'terms.html']
+        [f for f, *_ in INDUSTRIES] + ['news.html'] + ARTICLES + ['privacy-policy.html', 'cookie-policy.html', 'terms.html']
 lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
 for f in order:
     lines.append(f'  <url><loc>{page_url(f)}</loc><lastmod>{lastmod(f)}</lastmod></url>')
