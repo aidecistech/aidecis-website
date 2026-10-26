@@ -172,8 +172,9 @@ footer { display: grid; grid-template-columns: 130px 1fr auto; gap: 30px; align-
 body.flow-viewer-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) { .hero-gif-prompt { transition: none; } }
 .contact-trap { position: absolute !important; left: -10000px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
-.contact-form-note.contact-form-success { color: #237a54; font-weight: 700; }
-.contact-form-note.contact-form-error { color: #a33d35; font-weight: 700; }
+.contact-form-note.contact-form-success, .contact-form-note.contact-form-error { font-size: 18px; line-height: 1.45; font-weight: 700; padding: 12px 16px; border-radius: 6px; border-left: 4px solid; }
+.contact-form-note.contact-form-success { color: #1E7A4C; background: #e3f1e8; border-left-color: #1E7A4C; }
+.contact-form-note.contact-form-error { color: #a33d35; background: #f9e1de; border-left-color: #a33d35; }
 .lead-message { margin-top: 6px; white-space: normal; }
 .lead-message summary { color: #526990; cursor: pointer; font-size: 11px; }
 .lead-message p { min-width: 220px; max-width: 420px; white-space: pre-wrap; overflow-wrap: anywhere; }
