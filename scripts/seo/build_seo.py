@@ -49,15 +49,16 @@ INDUSTRIES = [
 USE_CASES = ['Expedite freight after disruption', 'Inventory reallocation', 'Demand surge allocation',
              'Supplier disruption and alternate source', 'Quality hold, release or substitute', 'Production rescheduling',
              'Logistics reroute or carrier choice', 'Customer promise and backorder priority',
-             'Procurement price, quantity or PO exception', 'Invoice variance, claim and close-out']
+             'Procurement price, quantity or PO exception', 'Invoice variance, claim and close-out',
+    'Unplanned failure: run reduced or stop to repair', 'Buy a cargo, and the decisions it sets in motion']
 
 # file: (title, description, breadcrumb name or None for the home page, parent [(name, file)])
 PAGES = {
     'index.html': ('Aidecis | Supply-chain decision intelligence and accountability',
                    'Decision intelligence and accountability for supply chains. Govern people, bots and AI agents with clear authority, evidence and outcomes in one decision chain.',
                    None, []),
-    'use-cases.html': ('10 supply-chain decision intelligence use cases | Aidecis',
-                       'Ten supply-chain decisions governed end to end: expedited freight, inventory reallocation, supplier disruption, quality holds, PO and invoice exceptions.',
+    'use-cases.html': ('Supply-chain decision intelligence use cases | Aidecis',
+                       'Twelve families, 71 consequential supply-chain decisions governed end to end: expedited freight, maintenance, trading, procurement, quality, inventory and more.',
                        'Use cases', []),
     'benefits.html': ('Business case and ROI calculator | Aidecis',
                       'Model a transparent business case for supply-chain decision intelligence with your own assumptions: subscription, onboarding and pilot investment.',
@@ -130,7 +131,7 @@ def jsonld(file, title, desc, crumb, parents):
         graph.append({'@type': 'BreadcrumbList', '@id': url + '#breadcrumb', 'itemListElement': [
             {'@type': 'ListItem', 'position': i + 1, 'name': n, 'item': page_url(f)} for i, (n, f) in enumerate(items)]})
     if file == 'use-cases.html':
-        graph.append({'@type': 'ItemList', 'name': 'Ten consequential supply-chain decisions', 'itemListElement': [
+        graph.append({'@type': 'ItemList', 'name': 'Consequential supply-chain decisions', 'itemListElement': [
             {'@type': 'ListItem', 'position': i + 1, 'name': n, 'url': f'{url}#decision-{i + 1}'} for i, n in enumerate(USE_CASES)]})
     if file == 'industries.html':
         graph.append({'@type': 'ItemList', 'name': 'Industries', 'itemListElement': [
