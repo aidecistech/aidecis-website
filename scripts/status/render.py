@@ -9,11 +9,10 @@ from pathlib import Path
 import shutil
 from string import Template
 
-from check import (BACKUPS, ROOT, SYSTEMS, UTC, active_maintenance, empty_backup,
-                   parse_time, roll_history, stamp, worst)
+from check import ROOT, SYSTEMS, UTC, active_maintenance, parse_time, roll_history, stamp, worst
 
 LABELS = {"up": "Operational", "degraded": "Degraded", "down": "Down", "maintenance": "Maintenance",
-          "unknown": "No data", "ok": "OK", "stale": "Stale", "failed": "Failed"}
+          "unknown": "No data"}
 
 
 def time_html(value):
@@ -25,28 +24,6 @@ def time_html(value):
 
 def badge(state):
     return f'<span class="state {state}"><span aria-hidden="true">●</span> {LABELS[state]}</span>'
-
-
-def age_text(value):
-    if value is None:
-        return "No data"
-    if value < 0:
-        return "Future timestamp"
-    if value < 60:
-        return f"{value:.0f} min"
-    if value < 1440:
-        return f"{value / 60:.1f} h"
-    return f"{value / 1440:.1f} days"
-
-
-def size_text(value):
-    if value is None:
-        return "No data"
-    size = float(value)
-    for unit in ("B", "KiB", "MiB", "GiB", "TiB"):
-        if size < 1024 or unit == "TiB":
-            return f"{size:.0f} {unit}" if unit == "B" else f"{size:.1f} {unit}"
-        size /= 1024
 
 
 def history_html(rows, now):
@@ -65,19 +42,17 @@ def history_html(rows, now):
 
 
 def overall(data, now):
-    states = [row["state"] for row in data["systems"] + data["backups"]]
-    if (any(state in ("down", "failed") for state in states)
+    states = [row["state"] for row in data["systems"]]
+    if (any(state == "down" for state in states)
             or any(parse_time(row["started"]) <= now and (not row.get("resolved") or parse_time(row["resolved"]) > now)
                    for row in data.get("incidents", []))):
         return "down", "Incident in progress"
-    # "unknown" means no evidence for a tier (no reporter yet); it is shown as "No data" on the row
-    # and must not turn the whole page amber. Only measured degradation or stale evidence does.
-    if any(state in ("degraded", "stale") for state in states):
-        return "degraded", "Degraded service or stale backup evidence"
+    if any(state == "degraded" for state in states):
+        return "degraded", "Degraded service"
     if "maintenance" in states or active_maintenance(data.get("maintenance", []), now):
         return "maintenance", "Maintenance in progress"
-    if "unknown" in states:
-        return "up", "All systems operational; some backup tiers have no data yet"
+    if not states or "unknown" in states:
+        return "unknown", "No data"
     return "up", "All systems operational"
 
 
@@ -94,18 +69,9 @@ def render(data, template):
           <p>{escape(item['measured'])}</p><p class="expectation">Expected: {escape(item['expected'])}</p>
           <p class="tls">TLS certificate: {tls} remaining</p>
           {history_html(history.get(item['id'], []), now)}</article>''')
-    backup_rows = []
-    for item in data["backups"]:
-        backup_rows.append(f'''<article class="backup-row" aria-labelledby="{escape(item['id'])}-title">
-          <div class="item-heading"><h3 id="{escape(item['id'])}-title">{escape(item['name'])}</h3>{badge(item['state'])}</div>
-          <dl class="backup-facts"><div><dt>Last success / evidence</dt><dd>{time_html(item.get('last_success'))}</dd></div>
-          <div><dt>Age at update</dt><dd>{age_text(item.get('age_minutes'))}</dd></div>
-          <div><dt>Evidence size</dt><dd>{size_text(item.get('size_bytes'))}</dd></div></dl>
-          <p class="backup-note">{escape(item.get('note', ''))}</p>
-          {history_html(history.get(item['id'], []), now)}</article>''')
     notices = []
     for row in active_maintenance(data.get("maintenance", []), now):
-        target = dict(SYSTEMS).get(row["id"], BACKUPS.get(row["id"], "All systems and backups"))
+        target = dict(SYSTEMS).get(row["id"], "All systems")
         notices.append(f'<aside class="maintenance-notice"><h2>Maintenance · {escape(target)}</h2><p>{escape(row["message"])}</p><p>{time_html(row["from"])} – {time_html(row["until"])}</p></aside>')
     incidents = []
     for row in sorted(data.get("incidents", []), key=lambda item: parse_time(item["started"]), reverse=True):
@@ -113,7 +79,7 @@ def render(data, template):
         incidents.append(f'<article class="incident"><h3>{escape(row["title"])}</h3><p>Started {time_html(row["started"])} · {resolution}</p><p>{escape(row["message"])}</p></article>')
     return Template(template).substitute(
         overall_state=overall_state, overall_label=overall_label, updated=time_html(data["generated_at"]),
-        systems="\n".join(tiles), backups="\n".join(backup_rows), maintenance="\n".join(notices),
+        systems="\n".join(tiles), maintenance="\n".join(notices),
         incidents="\n".join(incidents) or '<p>No published incidents.</p>',
         sample_notice='<p class="sample-notice">Sample preview · fictional data, not live service status.</p>' if data.get("sample") else "",
     )
@@ -121,24 +87,16 @@ def render(data, template):
 
 def sample_status():
     now = datetime.now(UTC).replace(second=0, microsecond=0)
-    systems = [{"id": item_id, "name": name, "state": "up", "measured": "HTTP 200; expected response",
-                "expected": "Expected HTTPS response; TLS >= 14 days", "tls_days": 65,
+    systems = [{"id": item_id, "name": name, "state": "up", "measured": "HTTP 200",
+                "expected": "HTTP 200; TLS >= 14 days, valid trusted certificate", "tls_days": 65,
                 "checked_at": stamp(now)} for item_id, name in SYSTEMS]
-    systems[-1].update(state="maintenance", measured="HTTP 302, Location=https://libi.aidecis.com/desk")
-    backups = [empty_backup(item_id) for item_id in BACKUPS]
-    for row in backups:
-        row.update(last_success=stamp(now - timedelta(minutes=35)), age_minutes=35,
-                   size_bytes=128 * 1024 * 1024, state="ok", note="Fictional preview evidence.")
-    backups[1].update(last_success=None, age_minutes=None, size_bytes=None, state="unknown", note="No separate dump/base evidence available in this sample.")
-    backups[-1].update(last_success=stamp(now - timedelta(hours=30)), age_minutes=1800, state="stale")
     history = {}
     for hour in range(719, -1, -1):
-        when = now - timedelta(hours=hour)
-        history = roll_history(history, systems + backups, when)
-    return {"sample": True, "generated_at": stamp(now), "systems": systems, "backups": backups, "history": history,
-            "maintenance": [{"id": "libi", "from": stamp(now - timedelta(minutes=10)),
+        history = roll_history(history, systems, now - timedelta(hours=hour))
+    return {"sample": True, "generated_at": stamp(now), "systems": systems, "history": history,
+            "maintenance": [{"id": "website", "from": stamp(now - timedelta(minutes=10)),
                              "until": stamp(now + timedelta(minutes=50)), "message": "Scheduled preview maintenance."}],
-            "incidents": [{"title": "Sample delayed archive", "started": stamp(now - timedelta(hours=3)),
+            "incidents": [{"title": "Sample incident", "started": stamp(now - timedelta(hours=3)),
                            "resolved": None, "message": "Fictional incident for previewing the page."}]}
 
 
