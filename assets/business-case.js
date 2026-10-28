@@ -21,12 +21,9 @@
     error.textContent = '';
     const [downtime, expedite, leakage, addressable, reduction] = values;
     const annualValue = (downtime + expedite + leakage) * addressable / 100 * reduction / 100;
-    const pricing = window.aidecisPricingEstimate || { annualSubscription: 0, monthly: 0, onboardingLow: 0, onboardingHigh: 0 };
-    const subscriptionAnnual = pricing.annualSubscription;
-    const onboardingLow = pricing.onboardingLow;
-    const onboardingHigh = pricing.onboardingHigh;
-    const costLow = subscriptionAnnual + onboardingLow / 5;
-    const costHigh = subscriptionAnnual + onboardingHigh / 5;
+    const pricing = window.aidecisPricingEstimate || { annualLow: 0, annualHigh: 0, onboardingLow: 0, onboardingHigh: 0 };
+    const costLow = pricing.annualLow + pricing.onboardingLow / 5;
+    const costHigh = pricing.annualHigh + pricing.onboardingHigh / 5;
     const netLow = annualValue - costHigh;
     const netHigh = annualValue - costLow;
     const lang = window.AidecisI18n?.language || 'en';
@@ -40,5 +37,6 @@
   };
   fields.forEach((field) => field.addEventListener('input', render));
   document.addEventListener('aidecis:languagechange', render);
+  document.addEventListener('aidecis:pricingchange', render);
   render();
 })();
