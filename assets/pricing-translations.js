@@ -126,3 +126,5 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl, {
 Object.assign(window.AIDECIS_TRANSLATIONS.es, {
   "Connect the decisions you want to improve with the costs they affect. Edit each assumption, then compare the scenario value with the platform programme and implementation estimate above.": "Relacione las decisiones que quiere mejorar con los costes a los que afectan. Ajuste cada supuesto y compare el valor del escenario con la estimación del programa de plataforma y de la implantación de arriba."
 });
+Object.assign(window.AIDECIS_TRANSLATIONS.nl, { "{months} months": "{months} maanden", "1 month": "1 maand" });
+Object.assign(window.AIDECIS_TRANSLATIONS.es, { "{months} months": "{months} meses", "1 month": "1 mes" });

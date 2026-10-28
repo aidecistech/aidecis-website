@@ -45,7 +45,9 @@
     document.getElementById('annual-value-cost-ratio').textContent = `${number(ratioLow)}× – ${number(ratioHigh)}×`;
     document.getElementById('payback').textContent = paybackWorst === Infinity
       ? t('No payback at these assumptions')
-      : t('{low}–{high} months').replace('{low}', paybackBest).replace('{high}', paybackWorst);
+      : paybackBest === paybackWorst
+        ? (paybackWorst === 1 ? t('1 month') : t('{months} months').replace('{months}', paybackWorst))
+        : t('{low}–{high} months').replace('{low}', paybackBest).replace('{high}', paybackWorst);
     const meets = ratioLow >= MIN_VALUE_RATIO && paybackWorst <= MAX_PAYBACK_MONTHS;
     const check = document.getElementById('business-case-check');
     check.classList.toggle('is-below', !meets);
