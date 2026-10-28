@@ -17,7 +17,7 @@ const reviewStorage = (() => { const fallback={}; try { const s=window.localStor
   const textNodes = [];
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
     acceptNode(node) {
-      if (!node.nodeValue.trim() || node.parentElement.closest('script,style,#benefits,#monthly,#onboarding,#days,#monthly-per-site,#onboarding-per-site,#error,.film-index,#film-toggle,#intro-sound-toggle')) return NodeFilter.FILTER_REJECT;
+      if (!node.nodeValue.trim() || node.parentElement.closest('script,style,#benefits,#monthly,#onboarding,#days,#monthly-per-site,#onboarding-per-site,#annual,#annual-per-site,#sprint,#error,.film-index,#film-toggle,#intro-sound-toggle')) return NodeFilter.FILTER_REJECT;
       return NodeFilter.FILTER_ACCEPT;
     }
   });
