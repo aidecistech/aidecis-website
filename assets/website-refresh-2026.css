@@ -279,3 +279,7 @@ body .europe-section .europe-points > div > p {
 @media (max-width: 680px) { .pricing-actions .button { width: 100%; justify-content: center; } }
 .benefits-calculator .range-note { margin-top: 6px; }
 .benefits-calculator .sprint-row .big { font-size: clamp(24px, 2.7vw, 37px); }
+.business-case-check { margin: 18px 0 0; padding: 10px 12px; border-left: 3px solid #7fc8b4; background: rgba(255,255,255,.08); color: #fff; font-size: 14px; line-height: 1.5; }
+.business-case-check.is-below { border-left-color: #ffd27c; }
+.business-case-check:empty { display: none; }
+@media (max-width: 680px) { .benefits-calculator h1 { overflow-wrap: anywhere; hyphens: auto; } }
