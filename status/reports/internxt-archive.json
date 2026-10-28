@@ -1,0 +1,10 @@
+{
+  "id": "internxt-archive",
+  "name": "Internxt archive",
+  "state": "ok",
+  "reported_at": "2026-10-28T09:00:05Z",
+  "size_bytes": 26596000,
+  "note": "1348 files archived at Internxt; copy only, never deleted.",
+  "max_age_minutes": 1560,
+  "last_success": "2026-10-28T09:00:04Z"
+}
