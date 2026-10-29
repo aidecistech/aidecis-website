@@ -37,6 +37,11 @@
     alert: '<path d="m24 6 20 35H4z"/><path d="M24 18v11M24 35h.01"/>',
     automation: '<rect x="10" y="14" width="28" height="25" rx="5"/><path d="M18 25h.01M30 25h.01M18 32h12M24 8v6M7 23h3M38 23h3"/>',
     handoff: '<path d="M7 14h13a5 5 0 0 1 5 5v10M41 34H28a5 5 0 0 1-5-5V19"/><path d="m16 9 5 5-5 5M32 29l-5 5 5 5"/>',
+    people: '<circle cx="24" cy="15" r="7"/><path d="M10 41c1-9 7-14 14-14s13 5 14 14"/>',
+    hybrid: '<circle cx="16" cy="16" r="6"/><path d="M5 38c1-7 5-11 11-11 3 0 6 1 8 3"/><rect x="27" y="24" width="15" height="15" rx="3"/><path d="M31 31h7M34.5 20v4"/>',
+    bot: '<rect x="11" y="15" width="26" height="22" rx="4"/><path d="M18 24h3M27 24h3M19 31h10"/><path d="M24 9v6M7 24v6M41 24v6"/>',
+    enforced: '<rect x="11" y="21" width="26" height="19" rx="3"/><path d="M17 21v-5a7 7 0 0 1 14 0v5"/><path d="M24 28v5"/>',
+    observed: '<path d="M5 24c5-8 11-12 19-12s14 4 19 12c-5 8-11 12-19 12S10 32 5 24z"/><circle cx="24" cy="24" r="6"/>',
     benefit: '<path d="M8 38V25h8v13M20 38V17h8v21M32 38V9h8v29"/><path d="m9 18 9-7 8 3L39 7"/>',
     subscription: '<circle cx="24" cy="24" r="17"/><path d="M30 17c-2-3-10-4-12 0-3 6 12 5 12 11 0 5-8 7-13 3M24 11v26M8 24a16 16 0 0 1 3-9M40 24a16 16 0 0 1-3 9"/>',
     implementation: '<path d="M8 36 26 18M22 11a10 10 0 0 0 13 13l-7 7 9 9 7-7a10 10 0 0 0-13-13M7 28l13 13"/><circle cx="14" cy="34" r="3"/>'
@@ -80,6 +85,11 @@
   }
 
   function enhance() {
+    document.querySelectorAll('.decision-modes-grid > article > span:first-child').forEach((el) => {
+      const control = el.closest('.control-levels');
+      const index = [...el.closest('.decision-modes-grid').children].indexOf(el.parentElement);
+      setIcon(el, (control ? ['enforced', 'observed'] : ['people', 'hybrid', 'bot'])[index] || 'control');
+    });
     document.querySelectorAll('.lifecycle-grid > li > span:first-child').forEach((el, i) => setIcon(el, ['proposal', 'evaluate', 'approve', 'execute', 'learn'][i]));
     document.querySelectorAll('.shared-workflow [data-workflow-icon]').forEach((el) => setIcon(el, ['evidence', 'evaluate', 'control', 'execute', 'learn'][Number(el.dataset.workflowIcon) - 1] || 'control'));
     document.querySelectorAll('.decision-proof-grid .proof-icon[data-proof-icon]').forEach((el) => setIcon(el, el.dataset.proofIcon));

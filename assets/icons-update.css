@@ -170,3 +170,15 @@ body > footer > span { text-align:left; }
 .europe-points > div > :not(:first-child) { grid-column:2; }
 .europe-points > div > span.aidecis-icon-mark { grid-column:1; grid-row:1 / span 2; margin-right:0; }
 @media (max-width:640px) { .europe-points > div { grid-template-columns:2.25rem minmax(0,1fr); column-gap:.75rem; } }
+
+/* Decision modes and the two levels of control: icons in place of 01, 02, 03 (29 Oct 2026). */
+.decision-modes-grid > article > .aidecis-icon-mark {
+  width: 3.1rem;
+  height: 3.1rem;
+  margin-bottom: .9rem;
+  padding: .67rem;
+  border: 1px solid rgba(166, 107, 42, .3);
+  border-radius: 50%;
+  background: linear-gradient(145deg, rgba(255,255,255,.92), rgba(238,241,237,.72));
+  box-shadow: 0 7px 18px rgba(23,63,87,.07);
+}
