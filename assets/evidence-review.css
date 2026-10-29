@@ -47,7 +47,7 @@
 .decision-map-flow > li:nth-child(5) { border-top-color: var(--gold); }
 .decision-map-flow > li:not(:last-child)::after { position: absolute; top: 26px; right: -11px; z-index: 1; width: 10px; height: 10px; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); transform: rotate(45deg); content: ""; }
 .decision-map-step { margin: 0 0 8px; color: var(--navy); font-size: 15px; font-weight: 700; line-height: 1.25; }
-.decision-map-step::before { display: block; margin-bottom: 4px; color: #88601f; font-size: 11px; font-weight: 800; content: "0" counter(decision-map); }
+.decision-map-step::before { display: block; width: 18px; height: 3px; margin-bottom: 8px; background: var(--gold); content: ""; }
 .decision-map-text { flex: 1; margin: 0 0 12px; color: #48636d; font-size: 13px; line-height: 1.5; }
 .decision-map-flow dl { margin: 0; padding-top: 10px; border-top: 1px solid #e5ebea; }
 .decision-map-flow dl > div + div { margin-top: 8px; }
