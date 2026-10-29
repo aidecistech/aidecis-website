@@ -73,6 +73,12 @@ PAGES = {
     'accountability.html': ('Where supply-chain decisions lose their owner | Aidecis',
                             'People, your own algorithms and vendors\' agents take supply-chain decisions. Aidecis gives them one authority model and one decision record, linked to outcomes.',
                             'Decision accountability', []),
+    'security.html': ('Security and data: architecture, hosting and subprocessors | Aidecis',
+                      'How Aidecis handles your data: architecture, data flows, deployment options, EU hosting, subprocessors, control coverage, continuity and certification status.',
+                      'Security and data', []),
+    'company.html': ('Company: who stands behind Aidecis | Aidecis',
+                     'Aidecis is an Angeleus SLU company in Andorra, founded and led by Neil Webers. How we work with clients, who owns what, and how results are published.',
+                     'Company', []),
     'contact.html': ('Contact Aidecis | Request a demo or pilot',
                      'Contact Aidecis in Andorra to request a product demo, discuss a fixed-scope pilot or ask about decision accountability in your supply chain.',
                      'Contact', []),
@@ -146,6 +152,9 @@ def jsonld(file, title, desc, crumb, parents):
                       'publisher': {'@id': BASE + '#organization'}, 'image': IMAGE})
     if file == 'index.html':
         graph.append(PRODUCT)
+    if file == 'company.html':
+        graph.append({'@type': 'Person', '@id': BASE + 'company.html#neil-webers', 'name': 'Neil Webers',
+                      'jobTitle': 'Founder and CEO', 'worksFor': {'@id': BASE + '#organization'}})
     if crumb:
         items = [('Home', 'index.html')] + parents + [(crumb, file)]
         page['breadcrumb'] = {'@id': url + '#breadcrumb'}
@@ -209,7 +218,7 @@ def lastmod(file):
     out = subprocess.run(['git', 'log', '-1', '--format=%cs', '--', file], cwd=ROOT, capture_output=True, text=True).stdout.strip()
     return out or '2026-10-26'
 
-order = ['index.html', 'use-cases.html', 'benefits.html', 'industries.html', 'accountability.html', 'contact.html'] + \
+order = ['index.html', 'use-cases.html', 'benefits.html', 'industries.html', 'accountability.html', 'security.html', 'company.html', 'contact.html'] + \
         [f for f, *_ in INDUSTRIES] + ['news.html'] + ARTICLES + ['privacy-policy.html', 'cookie-policy.html', 'terms.html']
 lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
 for f in order:
