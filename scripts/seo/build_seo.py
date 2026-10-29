@@ -77,7 +77,7 @@ PAGES = {
                       'How Aidecis handles your data: architecture, data flows, deployment options, EU hosting, subprocessors, control coverage, continuity and certification status.',
                       'Security and data', []),
     'company.html': ('Company: who stands behind Aidecis | Aidecis',
-                     'Aidecis is an Angeleus SLU company in Andorra, founded and led by Neil Webers. How we work with clients, who owns what, and how results are published.',
+                     'Aidecis is an Angeleus SLU company in Andorra. How we work with clients, who owns what, and how results are published.',
                      'Company', []),
     'contact.html': ('Contact Aidecis | Request a demo or pilot',
                      'Contact Aidecis in Andorra to request a product demo, discuss a fixed-scope pilot or ask about decision accountability in your supply chain.',
@@ -152,9 +152,6 @@ def jsonld(file, title, desc, crumb, parents):
                       'publisher': {'@id': BASE + '#organization'}, 'image': IMAGE})
     if file == 'index.html':
         graph.append(PRODUCT)
-    if file == 'company.html':
-        graph.append({'@type': 'Person', '@id': BASE + 'company.html#neil-webers', 'name': 'Neil Webers',
-                      'jobTitle': 'Founder and CEO', 'worksFor': {'@id': BASE + '#organization'}})
     if crumb:
         items = [('Home', 'index.html')] + parents + [(crumb, file)]
         page['breadcrumb'] = {'@id': url + '#breadcrumb'}
