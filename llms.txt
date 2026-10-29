@@ -1,17 +1,21 @@
 # Aidecis
 
-> Aidecis is decision intelligence and a cross-system decision-accountability layer for consequential supply-chain decisions. It governs decisions taken by people, by a company's existing bots and algorithms, and by AI agents with the same authority, policy, approval and evidence, from the first signal through execution and the recorded outcome.
+> Aidecis is supply-chain decision intelligence with one authority model and one decision record for every consequential supply-chain decision, whoever or whatever takes it: a company's people, its own algorithms, its vendors' agents and Aidecis's own agents. The record runs from the first signal through execution and is linked to the outcome.
 
-Aidecis does not replace ERP systems such as SAP, technical authorization or AI model governance tools. It adds the business-control layer across existing workflows and answers: who had authority, which operating policy applied, who approved the exception, what executed and what happened next.
+Aidecis does not replace ERP systems such as SAP, access control or AI model governance tools. It sets who and what may decide each consequential decision, before it runs, and keeps one record of it across every system and vendor.
 
 Key facts:
 
-- Category: supply-chain decision intelligence; decision accountability and governance for people, bots and AI agents.
+- Category: supply-chain decision intelligence; one authority model and one decision record across people, client algorithms and vendors' agents.
+- Status: prototype. The public demo runs on fictional data (De Boer BV). Capabilities and live connections are agreed for each project.
+- Two levels of control. Enforced: the action runs only through the Aidecis gateway with a single-use grant, so Aidecis can prove it was authorised before it ran. Observed (in development, not yet built): an agent or algorithm that writes in its own system with its own credentials is detected afterwards from the systems' change records, matched against its registered role, limits and mode, recorded, and flagged within minutes if it went outside them. Observed control does not prevent an action; it shows it.
+- Market vocabulary: operating models human-to-agent, agent-to-human and agent-to-agent (agent-to-agent chains are not offered at launch); autonomy scale 1 assisted, 2 co-adaptive, 3 self-directing, 4 self-managing. The client's maturity in each decision family caps how far automation may go.
 - Decision modes: people decide (agents prepare evidence and options); hybrid (a bot proposes and a person approves, or the bot decides within a set limit); bot (only reversible actions within approved limits, with monitoring and a way to stop).
 - Lifecycle: propose, evaluate (authority, constraints and policy), approve or escalate to the accountable owner, execute through a customer-side gateway, learn from the recorded outcome.
-- Architecture: policies and decision logic are managed in the Aidecis European cloud. A gateway runs inside the customer's IT environment and carries out only actions permitted by policy and within the proposer's authority, in systems such as ERP, WMS, TMS, MES and quality systems.
+- Architecture (proposed; the demo runs a prototype of the gateway against simulated systems): policies and decision logic are managed in the Aidecis European cloud. A gateway runs inside the customer's IT environment and carries out only actions permitted by policy and within the proposer's authority, in systems such as ERP, WMS, TMS, MES and quality systems.
 - European application with European data residency.
-- Getting started: a fixed-scope pilot of about four weeks on one decision process (decision discovery, gateway and control design, controlled pilot). Indicative pilot support is EUR 16,000 to 24,000; a scoped proposal confirms the final scope.
+- Getting started: a paid pilot or evidence sprint on one decision type, EUR 16,000 to 24,000 (10 to 15 engineer days at EUR 1,600). Fixed deliverables at weeks 0, 2 and 4, a shadow report at week 8 and an assist report at week 12. The first slice is read-only. Each pilot has one hard measure in the buyer's own terms, such as response time to a disruption, premium freight spend, stockout hours or price variance.
+- Published prices, indicative and excluding taxes: subscription EUR 45,000 per year, including the first site and two regions; extra sites EUR 4,750 per site per year for sites 2 to 50 and EUR 1,850 per site from site 51; warehouses EUR 600 each per year; implementation EUR 1,600 per day, 50 days base plus 0.25 day per extra site; no per-user fee. Example: 10 sites cost EUR 87,750 per year with implementation of about EUR 83,600; 50 sites cost EUR 277,750 per year with implementation of about EUR 99,600.
 - Company: Aidecis is an Angeleus SLU company, based in Escaldes-Engordany, Andorra.
 - Languages on the website: English, Spanish and Dutch.
 
@@ -19,9 +23,9 @@ Key facts:
 
 - [Home](https://www.aidecis.com/): what Aidecis is, people/bots/hybrid decisions, the decision lifecycle, architecture and how to start.
 - [Use cases and decision library](https://www.aidecis.com/use-cases.html): the twelve families of consequential supply-chain decisions Aidecis governs (trading, procurement, demand, planning, production, maintenance, energy, quality, HSE, logistics, warehousing, finance), with twelve worked use cases.
-- [Decision accountability](https://www.aidecis.com/accountability.html): ten common supply-chain decision crises and how authority, policy, approval, execution and outcome are kept in one chain.
-- [Benefits and business case](https://www.aidecis.com/benefits.html): a calculator to model subscription, onboarding and a business case with your own assumptions.
-- [Industries](https://www.aidecis.com/industries.html): how the same decision accountability applies across ten industries.
+- [Decision accountability](https://www.aidecis.com/accountability.html): ten common supply-chain decision scenarios and how authority, policy, approval, execution and outcome are kept in one chain.
+- [Benefits and business case](https://www.aidecis.com/benefits.html): a calculator for the pilot, subscription and implementation at the published prices, and a business case with your own assumptions, net of review effort and compute, with today's response time to a disruption as the resilience baseline.
+- [Industries](https://www.aidecis.com/industries.html): how the same decision accountability applies across eleven industries.
 - [Contact](https://www.aidecis.com/contact.html): request a demo or discuss a pilot.
 
 ## Twelve decision families and their flagship decisions

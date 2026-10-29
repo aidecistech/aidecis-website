@@ -2,6 +2,8 @@
 // site.js looks these up by the exact English text, so keep both sides in sync with the <title> and description of each page.
 window.AIDECIS_TRANSLATIONS = window.AIDECIS_TRANSLATIONS || {};
 Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
+  "Where supply-chain decisions lose their owner | Aidecis": "Dónde las decisiones de la cadena de suministro pierden a su responsable | Aidecis",
+  "People, your own algorithms and vendors' agents take supply-chain decisions. Aidecis gives them one authority model and one decision record, linked to outcomes.": "Personas, sus propios algoritmos y los agentes de sus proveedores toman las decisiones de la cadena de suministro. Aidecis les da un solo modelo de autoridad y un solo registro de decisiones, vinculado a los resultados.",
   "Aidecis | Supply-chain decision intelligence and accountability": "Aidecis | Inteligencia y responsabilidad en las decisiones de la cadena de suministro",
   "Decision intelligence and accountability for supply chains. Govern people, bots and AI agents with clear authority, evidence and outcomes in one decision chain.": "Inteligencia y responsabilidad en las decisiones de la cadena de suministro. Gobierne personas, bots y agentes de IA con autoridad, evidencias y resultados claros, en una sola cadena de decisión.",
   "10 supply-chain decision intelligence use cases | Aidecis": "10 casos de uso de inteligencia decisional en la cadena de suministro | Aidecis",
@@ -67,6 +69,8 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
   "Fashion, textile and retail supply-chain decisions on late shipments, air freight and sourcing due diligence, with authority and evidence on record.": "Decisiones de la cadena de suministro de moda, textil y retail sobre envíos retrasados, transporte aéreo y diligencia debida en el abastecimiento, con autoridad y evidencias registradas."
 });
 Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
+  "Where supply-chain decisions lose their owner | Aidecis": "Waar supply-chainbeslissingen hun eigenaar kwijtraken | Aidecis",
+  "People, your own algorithms and vendors' agents take supply-chain decisions. Aidecis gives them one authority model and one decision record, linked to outcomes.": "Mensen, uw eigen algoritmen en de agents van leveranciers nemen supply-chainbeslissingen. Aidecis geeft ze één bevoegdhedenmodel en één beslisdossier, gekoppeld aan resultaten.",
   "Aidecis | Supply-chain decision intelligence and accountability": "Aidecis | Decision intelligence en verantwoording voor supply chains",
   "Decision intelligence and accountability for supply chains. Govern people, bots and AI agents with clear authority, evidence and outcomes in one decision chain.": "Decision intelligence en verantwoording voor supply chains. Bestuur mensen, bots en AI-agents met duidelijke bevoegdheid, bewijs en uitkomsten, in één beslisketen.",
   "10 supply-chain decision intelligence use cases | Aidecis": "10 use cases voor decision intelligence in de supply chain | Aidecis",
