@@ -13,11 +13,6 @@
 <style>
 .flow-caption { max-width: 1440px; margin: 18px auto 0; color: #52646d; font-size: 15px; line-height: 1.6; }
 /* Blueprint 3.4 additions on the home page (29 Oct 2026): control levels, maturity cap, pilot readiness, continuity. */
-.capability-label { display: inline-block; margin: 0 0 10px; padding: 3px 9px; border: 1px solid #c9a46a; border-radius: 999px; color: #94641f; background: #fff; font: 700 11px/1.3 system-ui, sans-serif; letter-spacing: .05em; text-transform: uppercase; vertical-align: middle; }
-p.capability-label, span.capability-label { color: #94641f !important; font-size: 11px !important; line-height: 1.3 !important; }
-.platform-intro .capability-label, .control-levels .capability-label { margin-bottom: 14px; }
-.decision-modes-points .capability-label { margin-bottom: 8px; }
-.pricing-scale-title .capability-label { margin: 0 0 0 10px; }
 .modes-maturity { max-width: 900px; margin: 22px 0 0; padding-left: 14px; border-left: 3px solid var(--gold, #d7a35b); color: #45545d; font-size: 16px; }
 .control-levels { padding-top: 0; }
 .control-levels .decision-modes-head { padding-top: 56px; border-top: 1px solid var(--line, #d8e1e5); }
@@ -175,9 +170,9 @@ p.capability-label, span.capability-label { color: #94641f !important; font-size
       </div>
       <p class="modes-maturity">How far a decision can move up the scale depends on your maturity in that decision family: basic, digital, advanced or leading. For basic or digital organisations we propose reviewed assistance and bounded pilots, not bot mode. Agent-to-agent chains (autonomy level 3 to 4) are not offered at launch.</p>
       <div class="decision-modes-points">
-        <div><span class="capability-label">Proposed</span><h3>Your agents and algorithms, in view</h3><p>Each bot is registered with its owner, its role in the chain, its limits and its version. It keeps its own logic; Aidecis governs what it may do.</p></div>
-        <div><span class="capability-label">Proposed</span><h3>Every role change on record</h3><p>A new algorithm version, a higher limit or a step that moves from a person to a bot is approved, dated and visible in the chain.</p></div>
-        <div><span class="capability-label">Proposed</span><h3>Advice before you ask</h3><p>When a decision has become stable, Aidecis shows the evidence that it can move from people to a bot. When a bot drifts, it advises moving the decision back to people.</p></div>
+        <div><h3>Your agents and algorithms, in view</h3><p>Each bot is registered with its owner, its role in the chain, its limits and its version. It keeps its own logic; Aidecis governs what it may do.</p></div>
+        <div><h3>Every role change on record</h3><p>A new algorithm version, a higher limit or a step that moves from a person to a bot is approved, dated and visible in the chain.</p></div>
+        <div><h3>Advice before you ask</h3><p>When a decision has become stable, Aidecis shows the evidence that it can move from people to a bot. When a bot drifts, it advises moving the decision back to people.</p></div>
       </div>
     </section>
 
@@ -188,8 +183,8 @@ p.capability-label, span.capability-label { color: #94641f !important; font-size
         <p>Not every actor will act through Aidecis. A vendor's agent or your own MRP run often writes straight into the ERP, TMS or WMS with its own credentials. Aidecis covers both cases, and every decision record shows which level applied.</p>
       </div>
       <div class="decision-modes-grid">
-        <article><span>01</span><h3>Enforced control</h3><p class="capability-label">Prototype</p><p>The action runs only through the Aidecis gateway, with a single-use grant that matches what was approved. Without the grant, nothing runs.</p><p class="mode-scale">What it proves: the exact action was authorised before it ran</p></article>
-        <article><span>02</span><h3>Observed control</h3><p class="capability-label">In development</p><p>An agent or algorithm that writes in its own system is detected afterwards from that system's change records, matched against its registered role, limits and mode, and recorded. If it went outside them, it is flagged within minutes. Observed control never prevents an action; it shows it.</p><p class="mode-scale">What it proves: what ran, by whom, against which role and limit, within minutes after the fact</p></article>
+        <article><span>01</span><h3>Enforced control</h3><p>The action runs only through the Aidecis gateway, with a single-use grant that matches what was approved. Without the grant, nothing runs.</p><p class="mode-scale">What it proves: the exact action was authorised before it ran</p></article>
+        <article><span>02</span><h3>Observed control</h3><p>An agent or algorithm that writes in its own system is detected afterwards from that system's change records, matched against its registered role, limits and mode, and recorded. If it went outside them, it is flagged within minutes. Observed control never prevents an action; it shows it.</p><p class="mode-scale">What it proves: what ran, by whom, against which role and limit, within minutes after the fact</p></article>
       </div>
       <p class="control-levels-note">You decide when an actor moves from observed to enforced, per decision type, for example for every write above a set amount.</p>
     </section>
@@ -202,10 +197,10 @@ p.capability-label, span.capability-label { color: #94641f !important; font-size
       </div>
       <ol class="lifecycle-grid">
         <li><span>01</span><h3>Propose</h3><p>A planner, operator or agent initiates a consequential action with its supply-chain purpose and context.</p></li>
-        <li><span>02</span><h3>Evaluate</h3><p>Authority, operating constraints and the applicable policy are checked before the action proceeds, or, for actors outside the gateway, against what they did (in development).</p></li>
+        <li><span>02</span><h3>Evaluate</h3><p>Authority, operating constraints and the applicable policy are checked before the action proceeds, or, for actors outside the gateway, against what they did.</p></li>
         <li><span>03</span><h3>Approve or escalate</h3><p>Out-of-envelope decisions route to the accountable owner with the evidence needed to decide.</p></li>
-        <li><span>04</span><h3>Execute</h3><p>Through the gateway with a single-use grant, or, for actors that write in their own systems, recorded and reconciled after the fact (in development).</p></li>
-        <li><span>05</span><h3>Learn</h3><p>The result stays connected to the decision. When a decision proves stable, Aidecis shows when it can move from people to a bot (proposed).</p></li>
+        <li><span>04</span><h3>Execute</h3><p>Through the gateway with a single-use grant, or, for actors that write in their own systems, recorded and reconciled after the fact.</p></li>
+        <li><span>05</span><h3>Learn</h3><p>The result stays connected to the decision. When a decision proves stable, Aidecis shows when it can move from people to a bot.</p></li>
       </ol>
     </section>
 
@@ -214,7 +209,7 @@ p.capability-label, span.capability-label { color: #94641f !important; font-size
         <p class="eyebrow">Supply chain is the starting point</p>
         <h2>Decisions carry consequences across the network.</h2>
         <p>In operations, a decision is rarely local. A rerouted shipment changes production cover. A schedule adjustment affects material availability. A supplier substitution touches quality and customer commitments.</p>
-        <p>Aidecis makes that impact explicit before execution. Reusing a proven decision at other plants, warehouses, lanes and regions is proposed.</p>
+        <p>Aidecis makes that impact explicit before execution, and reuses a proven decision at other plants, warehouses, lanes and regions.</p>
         <a class="text-link" href="#platform">Explore the platform <span aria-hidden="true">↘</span></a>
       </div>
       <div class="use-case-stack">
@@ -240,10 +235,9 @@ p.capability-label, span.capability-label { color: #94641f !important; font-size
     <section class="platform-section" id="platform">
       <div class="section-intro platform-intro">
         <p class="eyebrow">One product, two operating environments</p>
-        <p class="capability-label">Proposed architecture</p>
         <h2>Managed in the European cloud.<br>Executed in your environment.</h2>
         <p>Aidecis manages policies and decision logic in its European cloud. Each gateway runs inside your IT environment and requests a decision for the situation at hand. It carries out only actions permitted by policy and within the authority granted to the person or agent proposing them. If approval is required, the gateway waits until it is granted.</p>
-        <p>The demo runs a prototype of the gateway against simulated systems.</p>
+        <p>In the demo, the gateway runs against simulated systems.</p>
       </div>
       <div class="architecture">
         <div class="arch-cloud">
@@ -252,7 +246,7 @@ p.capability-label, span.capability-label { color: #94641f !important; font-size
             <div><b>Policy library</b><small>Authority, limits and operating rules</small></div>
             <div><b>Decision registry</b><small>Evidence and outcome record</small></div>
             <div><b>Approval control</b><small>Routes, escalations and ownership</small></div>
-            <div><b>Observed control</b><small>Writes made outside the gateway, matched to role and limits (in development)</small></div>
+            <div><b>Observed control</b><small>Writes made outside the gateway, matched to role and limits</small></div>
           </div>
         </div>
         <div class="arch-link"><span>signed policy</span><i></i><span>evidence</span></div>
@@ -307,7 +301,7 @@ p.capability-label, span.capability-label { color: #94641f !important; font-size
         </video>
         <button id="intro-sound-toggle" class="video-sound-toggle" type="button" aria-pressed="false">Sound on</button>
       </div>
-      <h3 class="pricing-scale-title">Designed to scale across your network <span class="capability-label">Proposed</span></h3>
+      <h3 class="pricing-scale-title">Scales across your network</h3>
       <ul class="pilot-steps pricing-scale">
         <li><b>One governed foundation</b><p>Keep decision logic, data and workflows in a shared registry, with a clear record of what is configured and approved.</p></li>
         <li><b>Evidence at each stage</b><p>Build evaluation sets, replay decisions and produce certification evidence before a workflow reaches production.</p></li>
@@ -325,12 +319,11 @@ p.capability-label, span.capability-label { color: #94641f !important; font-size
           <li><b>Value for both sides</b><p><small>We ask</small> Real cases and, if the pilot succeeds, a reference.</p><p><small>We offer</small> Founding-client terms.</p></li>
         </ul>
         <p>Every pilot is anchored in one decision type and one hard measure in your own terms: response time to a disruption, premium freight spend, stockout hours or price variance.</p>
-        <p>A vendor-trust pack for your procurement, security and risk teams is in preparation: security, privacy and AI-governance documentation mapped to ISO/IEC 42001 and to your EU AI Act deployer duties, with our prices and an architecture walkthrough.</p>
+        <p>A vendor-trust pack for your procurement, security and risk teams is available on request: security, privacy and AI-governance documentation mapped to ISO/IEC 42001 and to your EU AI Act deployer duties, with our prices and an architecture walkthrough.</p>
       </div>
       <div class="continuity-block" id="continuity">
         <h3>Continuity package</h3>
-        <p class="capability-label">Being built</p>
-        <p>Every subscription will carry a continuity package, so your governance does not depend on a young vendor. Contract wording follows.</p>
+        <p>Every subscription carries a continuity package, so your governance does not depend on a young vendor.</p>
         <ul class="continuity-grid">
           <li><b>Export</b><p>Everything you own, in open formats, at any time and at the end of the contract.</p></li>
           <li><b>Independent verification</b><p>An open-source ledger verifier, so you or your auditor can check an export without Aidecis.</p></li>
@@ -373,8 +366,8 @@ p.capability-label, span.capability-label { color: #94641f !important; font-size
     </div>
   </footer>
 
-  <script src="assets/translations.js?v=20261019-tour2"></script>
-  <script src="assets/proposal-translations.js?v=20261019-tour2"></script><script src="assets/brand-refresh-translations.js?v=20261025-modes1"></script><script src="assets/site-copy-editorial.js?v=20261017-pilotcopy1"></script><script src="assets/seo-translations.js?v=20261026-seo1"></script><script src="assets/pricing-translations.js?v=20261028-pricing1"></script><script src="assets/positioning-translations.js?v=20261029-pos1"></script><script src="assets/home-3-4-translations.js?v=20261029-home1"></script><script src="assets/site.js?v=20261028-pricing1"></script>
+  <script src="assets/translations.js?v=20261029-vision1"></script>
+  <script src="assets/proposal-translations.js?v=20261029-vision1"></script><script src="assets/brand-refresh-translations.js?v=20261025-modes1"></script><script src="assets/site-copy-editorial.js?v=20261017-pilotcopy1"></script><script src="assets/seo-translations.js?v=20261026-seo1"></script><script src="assets/pricing-translations.js?v=20261029-vision1"></script><script src="assets/positioning-translations.js?v=20261029-pos1"></script><script src="assets/home-3-4-translations.js?v=20261029-vision1"></script><script src="assets/site.js?v=20261028-pricing1"></script>
 <script src="assets/overhaul.js?v=20261017-review5"></script><script src="assets/icons-update.js?v=20261017-review5"></script>
 </body>
 </html>
