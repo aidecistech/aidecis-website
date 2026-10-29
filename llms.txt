@@ -1,15 +1,16 @@
 # Aidecis
 
-> Aidecis is supply-chain decision intelligence with one authority model and one decision record for every consequential supply-chain decision, whoever or whatever takes it: a company's people, its own algorithms, its vendors' agents and Aidecis's own agents. The record runs from the first signal through execution and is linked to the outcome.
+> Aidecis is the decision intelligence and control layer for consequential supply-chain decisions. It gives one authority model and one decision record to every consequential supply-chain decision, whoever or whatever takes it: a company's people, its own algorithms, its vendors' agents and Aidecis's own agents. The record runs from the first signal through execution and is linked to the outcome.
 
 Aidecis does not replace ERP systems such as SAP, access control or AI model governance tools. It sets who and what may decide each consequential decision, before it runs, and keeps one record of it across every system and vendor.
 
 Key facts:
 
-- Category: supply-chain decision intelligence; one authority model and one decision record across people, client algorithms and vendors' agents.
+- Category: the decision intelligence and control layer for consequential supply-chain decisions; one authority model and one decision record across people, client algorithms and vendors' agents.
 - Demo: the public demo runs on fictional data (De Boer BV). Capabilities and live connections are agreed for each project.
+- Coverage: enforced before execution through the Aidecis gateway; observed and reconciled after execution for registered actors outside it.
 - Two levels of control. Enforced: the action runs only through the Aidecis gateway with a single-use grant, so Aidecis can prove it was authorised before it ran. Observed: an agent or algorithm that writes in its own system with its own credentials is detected afterwards from the systems' change records, matched against its registered role, limits and mode, recorded, and flagged within minutes if it went outside them. Observed control does not prevent an action; it shows it.
-- Market vocabulary: operating models human-to-agent, agent-to-human and agent-to-agent (agent-to-agent chains are not offered at launch); autonomy scale 1 assisted, 2 co-adaptive, 3 self-directing, 4 self-managing. The client's maturity in each decision family caps how far automation may go.
+- Market vocabulary: operating models human-to-agent, agent-to-human and agent-to-agent (agent-to-agent chains are not offered at launch); autonomy scale 1 assisted, 2 co-adaptive, 3 self-directing, 4 self-managing. The client's maturity in each decision family caps how far automation may go. A decision moves up the scale only when its performance is stable, it has a named owner, its exception rate is accepted, its actions are reversible, and monitoring and rollback are in place; otherwise it moves back down. Market scenario (WEF and Accenture, 2026), not an Aidecis result: most supply-chain domains are at autonomy level 1 to 2 now and are expected to reach 3.5 or more over the next five years and beyond.
 - Decision modes: people decide (agents prepare evidence and options); hybrid (a bot proposes and a person approves, or the bot decides within a set limit); bot (only reversible actions within approved limits, with monitoring and a way to stop).
 - Lifecycle: propose, evaluate (authority, constraints and policy), approve or escalate to the accountable owner, execute through a customer-side gateway, learn from the recorded outcome.
 - Architecture: policies and decision logic are managed in the Aidecis European cloud. A gateway runs inside the customer's IT environment and carries out only actions permitted by policy and within the proposer's authority, in systems such as ERP, WMS, TMS, MES and quality systems. In the demo, the gateway runs against simulated systems.
@@ -28,7 +29,7 @@ Key facts:
 - [Decision accountability](https://www.aidecis.com/accountability.html): ten common supply-chain decision scenarios and how authority, policy, approval, execution and outcome are kept in one chain.
 - [Benefits and business case](https://www.aidecis.com/benefits.html): a calculator for the pilot, subscription and implementation at the published prices, and a business case with your own assumptions, net of review effort and compute, with today's response time to a disruption as the resilience baseline.
 - [Industries](https://www.aidecis.com/industries.html): how the same decision accountability applies across eleven industries.
-- [Contact](https://www.aidecis.com/contact.html): request a demo or discuss a pilot.
+- [Contact](https://www.aidecis.com/contact.html): ask a question, request a demo, or ask about a pilot or evidence sprint.
 
 ## Twelve decision families and their flagship decisions
 
