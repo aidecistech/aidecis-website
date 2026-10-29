@@ -46,7 +46,7 @@
     `<svg class="aidecis-icon-svg" viewBox="0 0 48 48" focusable="false" aria-hidden="true"><g>${path}</g></svg>`
   ]));
 
-  const crisisIcons = ['approve', 'control', 'evidence', 'rules', 'owner', 'variation', 'repeat', 'alert', 'automation', 'handoff'];
+  const crisisIcons = ['approve', 'control', 'evidence', 'rules', 'owner', 'variation', 'repeat', 'alert', 'automation', 'handoff', 'procurement'];
 
   const industryIcons = [
     ['auto', /automotive/], ['pharma', /pharma/], ['food', /food/],
