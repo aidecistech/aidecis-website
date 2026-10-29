@@ -135,3 +135,17 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "Fashion and retail supply-chain decision intelligence | Aidecis": "Decision intelligence voor de supply chain in mode en retail | Aidecis",
   "Fashion, textile and retail supply-chain decisions on late shipments, air freight and sourcing due diligence, with authority and evidence on record.": "Supply-chainbeslissingen in mode, textiel en retail over late zendingen, luchtvracht en due diligence bij inkoop, met bevoegdheid en bewijs vastgelegd."
 });
+
+// Security and data page and Company page (website review, 29 Oct 2026).
+Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
+  "Security and data: architecture, hosting and subprocessors | Aidecis": "Seguridad y datos: arquitectura, alojamiento y subencargados | Aidecis",
+  "How Aidecis handles your data: architecture, data flows, deployment options, EU hosting, subprocessors, control coverage, continuity and certification status.": "Cómo trata Aidecis sus datos: arquitectura, flujos de datos, opciones de despliegue, alojamiento en la UE, subencargados, cobertura del control, continuidad y certificación.",
+  "Company: who stands behind Aidecis | Aidecis": "Empresa: quién está detrás de Aidecis | Aidecis",
+  "Aidecis is an Angeleus SLU company in Andorra. How we work with clients, who owns what, and how results are published.": "Aidecis es una empresa de Angeleus SLU en Andorra. Cómo trabajamos con los clientes, quién es propietario de qué y cómo se publican los resultados."
+});
+Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
+  "Security and data: architecture, hosting and subprocessors | Aidecis": "Beveiliging en data: architectuur, hosting en subverwerkers | Aidecis",
+  "How Aidecis handles your data: architecture, data flows, deployment options, EU hosting, subprocessors, control coverage, continuity and certification status.": "Hoe Aidecis met uw data omgaat: architectuur, datastromen, implementatieopties, hosting in de EU, subverwerkers, reikwijdte van de controle, continuïteit en certificering.",
+  "Company: who stands behind Aidecis | Aidecis": "Bedrijf: wie er achter Aidecis staat | Aidecis",
+  "Aidecis is an Angeleus SLU company in Andorra. How we work with clients, who owns what, and how results are published.": "Aidecis is een bedrijf van Angeleus SLU in Andorra. Hoe we met klanten werken, wie wat bezit en hoe resultaten worden gepubliceerd."
+});
