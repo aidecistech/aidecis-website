@@ -2,6 +2,7 @@
 // site.js looks these up by the exact English text. Keys that another translation file already defines are not repeated here.
 window.AIDECIS_TRANSLATIONS = window.AIDECIS_TRANSLATIONS || {};
 Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
+  "Read its source code on GitHub": "Lea su código fuente en GitHub",
   "Company": "Empresa",
   "Security and data": "Seguridad y datos",
   "How Aidecis protects": "Cómo protege Aidecis",
@@ -161,6 +162,7 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
   "Ask for the vendor-trust pack, or read how Aidecis handles security and data.": "Solicite el paquete de confianza para proveedores o lea cómo gestiona Aidecis la seguridad y los datos."
 });
 Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
+  "Read its source code on GitHub": "Lees de broncode op GitHub",
   "Company": "Bedrijf",
   "Security and data": "Beveiliging en data",
   "How Aidecis protects": "Hoe Aidecis",
