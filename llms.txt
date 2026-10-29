@@ -61,7 +61,7 @@ The full decision library (71 decision types) is used with clients in a guided d
 
 ## News and articles
 
-- [Modernizing Oracle E-Business Suite supply chain management with real-time decision intelligence](https://www.aidecis.com/news/oracle-ebs-supply-chain-decision-intelligence.html)
+- [Modernizing Oracle E-Business Suite supply chain management with decision intelligence](https://www.aidecis.com/news/oracle-ebs-supply-chain-decision-intelligence.html)
 - [Aligning information technology and supply chain management through decision governance](https://www.aidecis.com/news/it-supply-chain-decision-governance.html)
 - [The evolving artificial intelligence in supply chain market: prioritizing operational control](https://www.aidecis.com/news/ai-supply-chain-market-operational-control.html)
 - [AI supply management: balancing inventory risk with automated order governance](https://www.aidecis.com/news/ai-supply-management-order-governance.html)
@@ -74,7 +74,7 @@ The full decision library (71 decision types) is used with clients in a guided d
 - [The strategic role of artificial intelligence in supply-chain management](https://www.aidecis.com/news/role-of-ai-in-supply-chain-management.html)
 - [Enhancing SAP supply-chain management solutions with external decision governance](https://www.aidecis.com/news/sap-supply-chain-management-decision-governance.html)
 - [Industrial engineering supply-chain management: operationalizing complex planning logic](https://www.aidecis.com/news/industrial-engineering-supply-chain-decision-governance.html)
-- [Cloud computing for supply-chain management: powering real-time multi-agent decisioning](https://www.aidecis.com/news/cloud-computing-supply-chain-multi-agent-decisioning.html)
+- [Cloud computing for supply-chain management: designing safe agent hand-offs](https://www.aidecis.com/news/cloud-computing-supply-chain-multi-agent-decisioning.html)
 - [Rethinking supply-chain and information systems: building the operational governance tier](https://www.aidecis.com/news/supply-chain-information-systems-governance-tier.html)
 - [Artificial intelligence in warehouse management: governing automated slotting and wave planning](https://www.aidecis.com/news/ai-warehouse-slotting-wave-planning.html)
 - [Augmenting legacy ERP systems for supply-chain management with decision layers](https://www.aidecis.com/news/augment-legacy-erp-supply-chain-decision-layer.html)
