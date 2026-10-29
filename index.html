@@ -10,6 +10,33 @@
   <link rel="stylesheet" href="assets/styles.css">
 <meta name="robots" content="index,follow"><link rel="stylesheet" href="assets/overhaul.css?v=20261017-review6"><link rel="stylesheet" href="assets/icons-update.css?v=20261017-review5">
 <link rel="stylesheet" href="assets/website-refresh-2026.css?v=20261028-pricing1">
+<style>
+/* Blueprint 3.4 additions on the home page (29 Oct 2026): control levels, maturity cap, pilot readiness, continuity. */
+.capability-label { display: inline-block; margin: 0 0 10px; padding: 3px 9px; border: 1px solid #c9a46a; border-radius: 999px; color: #94641f; background: #fff; font: 700 11px/1.3 system-ui, sans-serif; letter-spacing: .05em; text-transform: uppercase; vertical-align: middle; }
+p.capability-label, span.capability-label { color: #94641f !important; font-size: 11px !important; line-height: 1.3 !important; }
+.platform-intro .capability-label, .control-levels .capability-label { margin-bottom: 14px; }
+.decision-modes-points .capability-label { margin-bottom: 8px; }
+.pricing-scale-title .capability-label { margin: 0 0 0 10px; }
+.modes-maturity { max-width: 900px; margin: 22px 0 0; padding-left: 14px; border-left: 3px solid var(--gold, #d7a35b); color: #45545d; font-size: 16px; }
+.control-levels { padding-top: 0; }
+.control-levels .decision-modes-head { padding-top: 56px; border-top: 1px solid var(--line, #d8e1e5); }
+.control-levels .decision-modes-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.control-levels .decision-modes-grid article .mode-scale { margin-top: 12px; color: #94641f; font: 600 12px/1.4 system-ui, sans-serif; }
+.control-levels-note { max-width: 900px; margin: 22px 0 0; color: #45545d; font-size: 16px; }
+.pilot-readiness, .continuity-block { grid-column: 1 / -1; margin-top: 56px; }
+.pilot-readiness h3, .continuity-block h3 { margin: 0 0 10px; color: var(--navy); }
+.pilot-readiness > p, .continuity-block > p { max-width: 860px; margin: 0 0 10px; color: #4b5a63; font-size: 16px; }
+.readiness-grid, .continuity-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin: 22px 0 18px; padding: 0; list-style: none; }
+.readiness-grid li, .continuity-grid li { padding: 18px; background: #fff; border-top: 2px solid var(--gold, #d7a35b); }
+.readiness-grid b, .continuity-grid b { display: block; margin-bottom: 8px; color: var(--navy); font-size: 17px; }
+.readiness-grid p, .continuity-grid p { margin: 6px 0 0; color: #5a6870; font-size: 14px; line-height: 1.45; }
+.readiness-grid small { display: block; color: #94641f; font: 700 11px/1.3 system-ui, sans-serif; letter-spacing: .05em; text-transform: uppercase; }
+.continuity-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 1100px) { .readiness-grid, .continuity-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 940px) { .pilot-readiness, .continuity-block { grid-column: 1; margin-top: 28px; } }
+@media (max-width: 860px) { .control-levels .decision-modes-head { padding-top: 40px; } .control-levels .decision-modes-grid { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .readiness-grid, .continuity-grid { grid-template-columns: 1fr; } }
+</style>
 <!-- seo:start -->
 <link rel="canonical" href="https://www.aidecis.com/">
 <meta property="og:type" content="website">
@@ -89,7 +116,7 @@
       <img src="assets/media/aidecis-supply-chain-interruption.gif" alt="Supply-chain network showing port congestion, an alternate route, and recovery" width="1400" height="700">
     </div>
 
-    <section class="decision-proof" aria-label="A connected decision"><div class="decision-proof-heading"><p class="eyebrow">A connected decision</p><h2>From a signal to an authorised action.</h2><p>A delayed shipment becomes a controlled recovery decision. People, evidence and permissions stay connected.</p></div><div class="decision-proof-grid"><article><span class="proof-icon" data-proof-icon="evidence" aria-hidden="true"></span><h3>See the impact</h3><p>Stock cover, customer commitments and downstream exposure.</p></article><article><span class="proof-icon" data-proof-icon="approve" aria-hidden="true"></span><h3>Check the authority</h3><p>The proposed action, its cost and the responsible approver.</p></article><article><span class="proof-icon" data-proof-icon="handoff" aria-hidden="true"></span><h3>Follow the action</h3><p>The approved instruction, execution response and outcome.</p></article></div><a class="round-link" href="use-cases.html">Explore the ten use cases <span aria-hidden="true">↗</span></a></section><section class="flow-feature"><button class="hero-gif" id="flow-animation-open" type="button" aria-label="Open the animation full screen" aria-haspopup="dialog" aria-controls="flow-animation-viewer">
+    <section class="decision-proof" aria-label="A connected decision"><div class="decision-proof-heading"><p class="eyebrow">A connected decision</p><h2>From a signal to an authorised action.</h2><p>A delayed shipment becomes a controlled recovery decision. People, evidence and permissions stay connected.</p></div><div class="decision-proof-grid"><article><span class="proof-icon" data-proof-icon="evidence" aria-hidden="true"></span><h3>See the impact</h3><p>Stock cover, customer commitments and downstream exposure.</p></article><article><span class="proof-icon" data-proof-icon="approve" aria-hidden="true"></span><h3>Check the authority</h3><p>The proposed action, its cost and the responsible approver.</p></article><article><span class="proof-icon" data-proof-icon="handoff" aria-hidden="true"></span><h3>Follow the action</h3><p>The approved instruction, execution response and outcome.</p></article></div><a class="round-link" href="use-cases.html">Explore the twelve use cases <span aria-hidden="true">↗</span></a></section><section class="flow-feature"><button class="hero-gif" id="flow-animation-open" type="button" aria-label="Open the animation full screen" aria-haspopup="dialog" aria-controls="flow-animation-viewer">
         <img src="assets/media/aidecis-supply-chain-interruption.gif" alt="Supply-chain network showing port congestion, an alternate route, and recovery" width="1400" height="700" fetchpriority="high" decoding="async">
         <span class="hero-gif-prompt">Click to view full screen <span aria-hidden="true">⤢</span></span>
       </button></section><section class="comparison-section">
@@ -145,11 +172,25 @@
         <article><span>02</span><h3>Hybrid</h3><p>A bot proposes and a person approves, or the bot decides within a set limit and a person decides above it.</p><p class="mode-scale">Agent-to-human · autonomy level 2, co-adaptive</p></article>
         <article><span>03</span><h3>Bot</h3><p>The bot decides and acts, only for reversible actions within limits you approve, with monitoring and a way to stop.</p><p class="mode-scale">Bounded agent-to-human · autonomy level 3, self-directing, for one decision type and site</p></article>
       </div>
+      <p class="modes-maturity">How far a decision can move up the scale depends on your maturity in that decision family: basic, digital, advanced or leading. For basic or digital organisations we propose reviewed assistance and bounded pilots, not bot mode. Agent-to-agent chains (autonomy level 3 to 4) are not offered at launch.</p>
       <div class="decision-modes-points">
-        <div><h3>Your agents and algorithms, in view</h3><p>Each bot is registered with its owner, its role in the chain, its limits and its version. It keeps its own logic; Aidecis governs what it may do.</p></div>
-        <div><h3>Every role change on record</h3><p>A new algorithm version, a higher limit or a step that moves from a person to a bot is approved, dated and visible in the chain.</p></div>
-        <div><h3>Advice before you ask</h3><p>When a decision has become stable, Aidecis shows the evidence that it can move from people to a bot. When a bot drifts, it advises moving the decision back to people.</p></div>
+        <div><span class="capability-label">Proposed</span><h3>Your agents and algorithms, in view</h3><p>Each bot is registered with its owner, its role in the chain, its limits and its version. It keeps its own logic; Aidecis governs what it may do.</p></div>
+        <div><span class="capability-label">Proposed</span><h3>Every role change on record</h3><p>A new algorithm version, a higher limit or a step that moves from a person to a bot is approved, dated and visible in the chain.</p></div>
+        <div><span class="capability-label">Proposed</span><h3>Advice before you ask</h3><p>When a decision has become stable, Aidecis shows the evidence that it can move from people to a bot. When a bot drifts, it advises moving the decision back to people.</p></div>
       </div>
+    </section>
+
+    <section class="decision-modes control-levels" id="control-levels" aria-label="Two levels of control">
+      <div class="decision-modes-head">
+        <p class="eyebrow">Two levels of control</p>
+        <h2>Enforced where the action runs through Aidecis. Observed where it does not.</h2>
+        <p>Not every actor will act through Aidecis. A vendor's agent or your own MRP run often writes straight into the ERP, TMS or WMS with its own credentials. Aidecis covers both cases, and every decision record shows which level applied.</p>
+      </div>
+      <div class="decision-modes-grid">
+        <article><span>01</span><h3>Enforced control</h3><p class="capability-label">Prototype</p><p>The action runs only through the Aidecis gateway, with a single-use grant that matches what was approved. Without the grant, nothing runs.</p><p class="mode-scale">What it proves: the exact action was authorised before it ran</p></article>
+        <article><span>02</span><h3>Observed control</h3><p class="capability-label">In development</p><p>An agent or algorithm that writes in its own system is detected afterwards from that system's change records, matched against its registered role, limits and mode, and recorded. If it went outside them, it is flagged within minutes. Observed control never prevents an action; it shows it.</p><p class="mode-scale">What it proves: what ran, by whom, against which role and limit, within minutes after the fact</p></article>
+      </div>
+      <p class="control-levels-note">You decide when an actor moves from observed to enforced, per decision type, for example for every write above a set amount.</p>
     </section>
 
     <section class="decision-lifecycle" id="how-it-works">
@@ -162,8 +203,8 @@
         <li><span>01</span><h3>Propose</h3><p>A planner, operator or agent initiates a consequential action with its supply-chain purpose and context.</p></li>
         <li><span>02</span><h3>Evaluate</h3><p>Authority, operating constraints and the applicable policy are checked before the action proceeds.</p></li>
         <li><span>03</span><h3>Approve or escalate</h3><p>Out-of-envelope decisions route to the accountable owner with the evidence needed to decide.</p></li>
-        <li><span>04</span><h3>Execute</h3><p>A customer-side gateway controls the scoped hand-off to the protected workflow.</p></li>
-        <li><span>05</span><h3>Learn</h3><p>The result stays connected to the decision. When a decision proves stable, Aidecis shows when it can move from people to a bot.</p></li>
+        <li><span>04</span><h3>Execute</h3><p>Through the gateway with a single-use grant, or, for actors that write in their own systems, recorded and reconciled after the fact (in development).</p></li>
+        <li><span>05</span><h3>Learn</h3><p>The result stays connected to the decision. When a decision proves stable, Aidecis shows when it can move from people to a bot (proposed).</p></li>
       </ol>
     </section>
 
@@ -172,7 +213,7 @@
         <p class="eyebrow">Supply chain is the starting point</p>
         <h2>Decisions carry consequences across the network.</h2>
         <p>In operations, a decision is rarely local. A rerouted shipment changes production cover. A schedule adjustment affects material availability. A supplier substitution touches quality and customer commitments.</p>
-        <p>Aidecis makes that impact explicit before execution, then makes the learning reusable across plants, warehouses, lanes and regions.</p>
+        <p>Aidecis makes that impact explicit before execution. Reusing a proven decision at other plants, warehouses, lanes and regions is proposed.</p>
         <a class="text-link" href="#platform">Explore the platform <span aria-hidden="true">↘</span></a>
       </div>
       <div class="use-case-stack">
@@ -198,8 +239,10 @@
     <section class="platform-section" id="platform">
       <div class="section-intro platform-intro">
         <p class="eyebrow">One product, two operating environments</p>
+        <p class="capability-label">Proposed architecture</p>
         <h2>Managed in the European cloud.<br>Executed in your environment.</h2>
         <p>Aidecis manages policies and decision logic in its European cloud. Each gateway runs inside your IT environment and requests a decision for the situation at hand. It carries out only actions permitted by policy and within the authority granted to the person or agent proposing them. If approval is required, the gateway waits until it is granted.</p>
+        <p>The demo runs a prototype of the gateway against simulated systems.</p>
       </div>
       <div class="architecture">
         <div class="arch-cloud">
@@ -208,7 +251,7 @@
             <div><b>Policy library</b><small>Authority, limits and operating rules</small></div>
             <div><b>Decision registry</b><small>Evidence and outcome record</small></div>
             <div><b>Approval control</b><small>Routes, escalations and ownership</small></div>
-            <div><b>Network view</b><small>Cross-site exposure and learning</small></div>
+            <div><b>Observed control</b><small>Writes made outside the gateway, matched to role and limits (in development)</small></div>
           </div>
         </div>
         <div class="arch-link"><span>signed policy</span><i></i><span>evidence</span></div>
@@ -251,10 +294,10 @@
         <h2>Make critical decisions repeatable across every site.</h2>
         <p>Aidecis turns operational data into decision workflows your teams can evaluate, govern and deploy across sites, regions and warehouses.</p>
         <p>Prove a workflow against evidence. Put it into production with clear controls. Extend it across your network through certified configurations.</p>
-        <p class="pricing-floor"><strong>Enterprise platform programmes from €180,000 per year.</strong> <span>Implementation is scoped to the workflows, integrations and operating footprint.</span></p>
+        <p class="pricing-floor"><strong>Subscription €45,000 per year, including the first site and two regions.</strong> <span>Indicative, excluding taxes. Implementation is scoped to the workflows, integrations and operating footprint.</span></p>
         <div class="pricing-actions"><a class="button" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2GZUHegTJNbo0VcacIBEsJk_lzfPDV1ZuB3p6vQmXanArwQWCJSLzIMvceqElmLSjCFWDVEKs8" target="_blank" rel="noopener noreferrer">Scope an evidence sprint</a><a class="button button-outline" href="contact.html">Discuss an enterprise deployment</a></div>
 
-        <div class="pilot-investment"><h3>Prove the decision before you scale it</h3><p>Start with a focused evidence sprint around one operational decision. Aidecis helps establish a baseline, evaluate the workflow against historical evidence, replay decisions and document the results.</p><p>You leave with a clear view of what the workflow can support, what needs to be addressed, and what a production rollout requires.</p><p><strong>Evidence sprints from €35,000.</strong></p><a class="round-link" href="benefits.html">Estimate the investment for your network <span aria-hidden="true">↗</span></a></div>
+        <div class="pilot-investment"><h3>Prove the decision before you scale it</h3><p>Start with a focused evidence sprint around one operational decision. Aidecis helps establish a baseline, evaluate the workflow against historical evidence, replay decisions and document the results.</p><p>You leave with a clear view of what the workflow can support, what needs to be addressed, and what a production rollout requires.</p><p><strong>Pilot or evidence sprint: €16,000 to €24,000 (10 to 15 days).</strong></p><a class="round-link" href="benefits.html">Estimate the investment for your network <span aria-hidden="true">↗</span></a></div>
       </div>
       <div class="pilot-video" aria-label="Aidecis introduction video">
         <video id="intro-video" autoplay muted loop playsinline preload="metadata" aria-label="Aidecis introduction video">
@@ -263,13 +306,38 @@
         </video>
         <button id="intro-sound-toggle" class="video-sound-toggle" type="button" aria-pressed="false">Sound on</button>
       </div>
-      <h3 class="pricing-scale-title">Designed to scale across your network</h3>
+      <h3 class="pricing-scale-title">Designed to scale across your network <span class="capability-label">Proposed</span></h3>
       <ul class="pilot-steps pricing-scale">
         <li><b>One governed foundation</b><p>Keep decision logic, data and workflows in a shared registry, with a clear record of what is configured and approved.</p></li>
         <li><b>Evidence at each stage</b><p>Build evaluation sets, replay decisions and produce certification evidence before a workflow reaches production.</p></li>
         <li><b>Consistent deployment</b><p>Deploy certified workflows across sites and regions while keeping local configurations within defined controls.</p></li>
         <li><b>More users, wider adoption</b><p>Give operational, technical and partner teams access without making user count the pricing meter.</p></li>
       </ul>
+      <div class="pilot-readiness" id="pilot-readiness">
+        <h3>Ready for a pilot</h3>
+        <p>Most pilots fail on the client side, not on the technology. At the assessment we check five conditions with you. A pilot without a named owner does not start.</p>
+        <ul class="readiness-grid">
+          <li><b>Speed to decision</b><p><small>We ask</small> A go or no-go within 4 to 8 weeks of the assessment.</p><p><small>We offer</small> A fixed-scope, fixed-price evidence sprint.</p></li>
+          <li><b>Dedicated ownership</b><p><small>We ask</small> A named executive owner, and a process owner for each decision type.</p><p><small>We offer</small> Weekly progress in the decision record and the value record.</p></li>
+          <li><b>Adapted procurement</b><p><small>We ask</small> A short pilot contract, a standard DPA and balanced IP terms.</p><p><small>We offer</small> The pilot contract, DPA and subprocessor list, ready to sign.</p></li>
+          <li><b>Tolerance for risk</b><p><small>We ask</small> Agreement that the first slice is read-only and that shadow is a valid result.</p><p><small>We offer</small> No write to any of your systems before the agreed gates are passed.</p></li>
+          <li><b>Value for both sides</b><p><small>We ask</small> Real cases and, if the pilot succeeds, a reference.</p><p><small>We offer</small> Founding-client terms.</p></li>
+        </ul>
+        <p>Every pilot is anchored in one decision type and one hard measure in your own terms: response time to a disruption, premium freight spend, stockout hours or price variance.</p>
+        <p>A vendor-trust pack is available for your procurement, security and risk teams: security, privacy and AI-governance documentation mapped to ISO/IEC 42001 and to your EU AI Act deployer duties, with our prices and an architecture walkthrough.</p>
+      </div>
+      <div class="continuity-block" id="continuity">
+        <h3>Continuity package</h3>
+        <p class="capability-label">Being built</p>
+        <p>Every subscription will carry a continuity package, so your governance does not depend on a young vendor. Contract wording follows.</p>
+        <ul class="continuity-grid">
+          <li><b>Export</b><p>Everything you own, in open formats, at any time and at the end of the contract.</p></li>
+          <li><b>Independent verification</b><p>An open-source ledger verifier, so you or your auditor can check an export without Aidecis.</p></li>
+          <li><b>Escrow</b><p>Source code of the control kernel and the gateway, held by an escrow agent.</p></li>
+          <li><b>Exit assistance</b><p>Agreed days at the published day rate to move your policies and records to the platform you choose.</p></li>
+        </ul>
+        <p>Option: a dedicated control plane for your organisation.</p>
+      </div>
       <div class="pilot-cta pricing-cta">
         <div><b>Start with a decision. Expand with evidence.</b><p>Aidecis works with your team to scope the first workflow, measure it against a baseline, and plan its path into production. As the evidence and operating case grow, you can extend the platform to more workflows and locations.</p></div>
         <a class="button" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2GZUHegTJNbo0VcacIBEsJk_lzfPDV1ZuB3p6vQmXanArwQWCJSLzIMvceqElmLSjCFWDVEKs8" target="_blank" rel="noopener noreferrer">Plan an evidence sprint</a>
@@ -288,7 +356,7 @@
       <div class="europe-points">
         <div><strong>European application</strong><p>Product design and deployment approach centred on European industrial operations.</p></div>
         <div><strong>European data residency</strong><p>European hosting and regional data residency are core deployment principles.</p></div>
-        <div><strong>Local control, proactive network learning</strong><p>Policies can travel with evidence; local sites remain accountable for activation.</p></div>
+        <div><strong>Local control, governed reuse</strong><p>Policies can travel with evidence; local sites remain accountable for activation.</p></div>
       </div>
     </section>
   </main>
@@ -305,7 +373,7 @@
   </footer>
 
   <script src="assets/translations.js?v=20261019-tour2"></script>
-  <script src="assets/proposal-translations.js?v=20261019-tour2"></script><script src="assets/brand-refresh-translations.js?v=20261025-modes1"></script><script src="assets/site-copy-editorial.js?v=20261017-pilotcopy1"></script><script src="assets/seo-translations.js?v=20261026-seo1"></script><script src="assets/pricing-translations.js?v=20261028-pricing1"></script><script src="assets/positioning-translations.js?v=20261029-pos1"></script><script src="assets/site.js?v=20261028-pricing1"></script>
+  <script src="assets/proposal-translations.js?v=20261019-tour2"></script><script src="assets/brand-refresh-translations.js?v=20261025-modes1"></script><script src="assets/site-copy-editorial.js?v=20261017-pilotcopy1"></script><script src="assets/seo-translations.js?v=20261026-seo1"></script><script src="assets/pricing-translations.js?v=20261028-pricing1"></script><script src="assets/positioning-translations.js?v=20261029-pos1"></script><script src="assets/home-3-4-translations.js?v=20261029-home1"></script><script src="assets/site.js?v=20261028-pricing1"></script>
 <script src="assets/overhaul.js?v=20261017-review5"></script><script src="assets/icons-update.js?v=20261017-review5"></script>
 </body>
 </html>
