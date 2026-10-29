@@ -283,3 +283,5 @@ body .europe-section .europe-points > div > p {
 .business-case-check.is-below { border-left-color: #ffd27c; }
 .business-case-check:empty { display: none; }
 @media (max-width: 680px) { .benefits-calculator h1 { overflow-wrap: anywhere; hyphens: auto; } }
+/* The market's autonomy scale under each mode (blueprint 3.4, 29 Oct 2026). */
+.decision-modes-grid article .mode-scale { margin-top: 12px; color: #94641f; font: 600 12px/1.4 system-ui, sans-serif; }
