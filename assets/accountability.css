@@ -61,3 +61,4 @@
   .site-header .button { display: none; }
   .site-header .header-contact { display: inline-flex; }
 }
+.crisis-card p + p { margin-top: 9px; }
