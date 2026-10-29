@@ -211,7 +211,6 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "Calculated from the editable cost and improvement assumptions below. This is a scenario, not a savings forecast.": "Berekend op basis van de aanpasbare kosten- en verbeteringsaannames hieronder. Dit is een scenario, geen besparingsprognose.",
   "Illustrative inputs only. These are user-defined assumptions, not a forecast, customer result, or guarantee. Avoid double counting. Validate the baseline and outcome with operational and finance owners.": "Alleen illustratieve invoer. Dit zijn aannames van jou, geen prognose, klantresultaat of garantie. Tel niets dubbel. Valideer de uitgangssituatie en uitkomst samen met de operationele en financiële verantwoordelijken.",
   "Estimated annual costs (subscription + implementation / 5)": "Geschatte jaarlijkse kosten (abonnement + implementatie / 5)",
-  "Estimated annual net value": "Geschatte jaarlijkse nettowaarde",
   "Value / annual costs": "Waarde / jaarlijkse kosten",
   "Annual downtime exposure (€)": "Jaarlijkse blootstelling aan stilstand (€)",
   "Annual premium freight and rerouting spend (€)": "Jaarlijkse kosten voor spoedvervoer en omleidingen (€)",
