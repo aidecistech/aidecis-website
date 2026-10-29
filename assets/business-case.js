@@ -1,3 +1,29 @@
+// First-year economics next to the separate pilot, subscription and implementation figures:
+// year one = pilot + annual subscription + one-time implementation; year two and later = subscription only.
+(() => {
+  const firstYear = document.getElementById('first-year');
+  const yearTwo = document.getElementById('year-two');
+  if (!firstYear || !yearTwo) return;
+  const render = () => {
+    const pricing = window.aidecisPricingEstimate;
+    if (!pricing) return;
+    const lang = window.AidecisI18n?.language || 'en';
+    const t = (source) => window.AidecisI18n?.t(source) || source;
+    const eur = new Intl.NumberFormat({ en: 'en-IE', nl: 'nl-NL', es: 'es-ES' }[lang] || 'en-IE',
+      { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+    const low = pricing.sprintLow + pricing.annualLow + pricing.onboardingLow;
+    const high = pricing.sprintHigh + pricing.annualHigh + pricing.onboardingHigh;
+    firstYear.textContent = low === high ? eur.format(low) : `${eur.format(low)} – ${eur.format(high)}`;
+    const recurring = pricing.annualLow === pricing.annualHigh
+      ? eur.format(pricing.annualLow)
+      : `${eur.format(pricing.annualLow)} – ${eur.format(pricing.annualHigh)}`;
+    yearTwo.textContent = t('{amount} per year').replace('{amount}', recurring);
+  };
+  document.addEventListener('aidecis:languagechange', render);
+  document.addEventListener('aidecis:pricingchange', render);
+  render();
+})();
+
 (() => {
   const WRITE_OFF_YEARS = 3;
   const MIN_VALUE_RATIO = 3;
@@ -7,6 +33,7 @@
   const fields = ids.map((id) => document.getElementById(id));
   const valueOutputs = ['business-value', 'business-value-detail'];
   const resultOutputs = ['trust-cost', 'net-after-trust', 'annual-cost', 'annual-net', 'annual-value-cost-ratio', 'payback', 'response-today'];
+  const assumptionOutputs = ['assume-value', 'assume-trust', 'assume-payback'];
   if (fields.some((field) => !field)) return;
 
   const locale = (language) => ({ en: 'en-IE', nl: 'nl-NL', es: 'es-ES' }[language] || 'en-IE');
@@ -23,6 +50,7 @@
       error.textContent = t('Enter values within the field limits to see the scenario estimate.');
       [...valueOutputs, ...resultOutputs].forEach((id) => { document.getElementById(id).textContent = '—'; });
       document.getElementById('business-case-check').textContent = '';
+      assumptionOutputs.forEach((id) => { const item = document.getElementById(id); if (item) item.textContent = ''; });
       return;
     }
     error.textContent = '';
@@ -59,6 +87,20 @@
     document.getElementById('response-today').textContent = responseDays === 1
       ? t('1 day')
       : t('{days} days').replace('{days}', number(responseDays));
+    // The assumptions behind value and payback, in plain words and with the current inputs.
+    const fill = (id, text) => { const item = document.getElementById(id); if (item) item.textContent = text; };
+    const fill2 = (template, values) => Object.entries(values).reduce((text, [key, value]) => text.replace(`{${key}}`, value), t(template));
+    fill('assume-value', fill2('Value: {exposure} in annual costs at risk × {share}% addressable × {reduction}% reduction = {value} a year. It moves with these three inputs only.', {
+      exposure: currency(downtime + expedite + leakage, lang), share: number(addressable), reduction: number(reduction), value: currency(grossValue, lang) }));
+    fill('assume-trust', fill2('Cost of trust: {decisions} decisions × ({minutes} minutes of review at {rate} an hour + {compute} compute) = {trust} a year, deducted from the value.', {
+      decisions: number(decisions, 0), minutes: number(reviewMinutes), rate: currency(reviewRate, lang),
+      compute: new Intl.NumberFormat(locale(lang), { style: 'currency', currency: 'EUR', maximumFractionDigits: 2 }).format(compute), trust: currency(trustCost, lang) }));
+    const upfront = between(pricing.onboardingLow + pricing.sprintLow, pricing.onboardingHigh + pricing.sprintHigh, lang);
+    const subscription = between(pricing.annualLow, pricing.annualHigh, lang);
+    fill('assume-payback', paybackWorst === Infinity
+      ? fill2('Payback: the one-time pilot and implementation ({upfront}) are recovered only from net value left after the {subscription} subscription. At these inputs the net value does not cover the subscription.', { upfront, subscription })
+      : fill2('Payback: the one-time pilot and implementation ({upfront}) divided by the monthly net value left after review, compute and the {subscription} subscription ({monthly} a month).', {
+        upfront, subscription, monthly: between((netValue - pricing.annualHigh) / 12, (netValue - pricing.annualLow) / 12, lang) }));
     const meets = ratioLow >= MIN_VALUE_RATIO && paybackWorst <= MAX_PAYBACK_MONTHS;
     const check = document.getElementById('business-case-check');
     check.classList.toggle('is-below', !meets);

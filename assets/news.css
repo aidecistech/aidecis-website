@@ -21,3 +21,6 @@
 .news-source{margin:34px 0 26px;padding:22px 26px;background:#F1F5F6;border:1px solid #D3DDE1;border-left:3px solid #1A5973}
 .news-source p{margin:0 0 8px}.news-source p:last-child{margin:0}.news-source .news-source-note{font-size:14px;color:#52646d}
 .news-source a{color:#1A5973;font-weight:600;text-underline-offset:3px}
+/* Spanish and Dutch: articles are in English only (assets/news-language.js adds these). */
+.news-lang-badge{display:block;width:fit-content;margin:0 0 8px;padding:2px 9px;border:1px solid #bec9ca;border-radius:999px;color:#1A5973;font-size:12px;font-weight:600;line-height:1.6;letter-spacing:.02em}
+.news-lang-notice{width:fit-content;max-width:100%;margin:14px 0 22px;padding:8px 14px;background:#F1F5F6;border:1px solid #D3DDE1;border-left:3px solid #1A5973;color:#1A5973;font-size:15px;font-weight:600}

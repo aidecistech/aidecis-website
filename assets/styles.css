@@ -178,3 +178,17 @@ body.flow-viewer-open { overflow: hidden; }
 .lead-message { margin-top: 6px; white-space: normal; }
 .lead-message summary { color: #526990; cursor: pointer; font-size: 11px; }
 .lead-message p { min-width: 220px; max-width: 420px; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* Website review 29 Oct 2026. */
+/* The canonical product line on use cases, industries and contact. */
+.use-case-lead.product-line, .industry-lead.product-line { margin-bottom: 0; color: var(--navy); font-weight: 500; }
+.contact-product-line { max-width: 760px; margin: 18px auto 0; color: var(--navy); font-size: 16px; line-height: 1.5; font-weight: 500; }
+/* Three inquiry types wrap on narrow screens. */
+.contact-type { flex-wrap: wrap; row-gap: 10px; }
+/* At narrow widths the fixed cookie-settings control covered form fields and text. Below 860px it sits at the
+   end of the page, in space the footer reserves for it, so it stays available without covering content. */
+@media (max-width: 860px) {
+  body { position: relative; }
+  .cookie-settings-trigger { position: absolute; bottom: 16px; left: 16px; width: 36px; height: 36px; font-size: 16px; }
+  html body > footer { padding-bottom: 68px !important; }
+}

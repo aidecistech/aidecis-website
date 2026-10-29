@@ -28,6 +28,7 @@
     medical: '<path d="M24 41s-16-9-16-21a9 9 0 0 1 16-6 9 9 0 0 1 16 6c0 12-16 21-16 21z"/><path d="M17 24h5l3-6 4 12 3-6h4"/>',
     chemicals: '<path d="M18 7h12M21 7v13L11 36a4 4 0 0 0 4 6h18a4 4 0 0 0 4-6L27 20V7"/><path d="M16 33h16M20 28h8"/>',
     machinery: '<circle cx="24" cy="24" r="7"/><path d="m24 6 3 4 5 1 1 5 4 3-2 5 2 5-4 3-1 5-5 1-3 4-5-2-5 2-3-4-5-1-1-5-4-3 2-5-2-5 4-3 1-5 5-1 3-4z"/>',
+    energy: '<path d="M7 41h34M12 41V19h7v22M24 41V12h8v29"/><path d="M12 26h7M12 33h7M24 20h8M24 27h8M24 34h8"/><path d="M38 17c-3-2-3-6 0-10 1 3 4 4 3 8a3 3 0 0 1-3 2z"/>',
     fashion: '<path d="m17 8 7 4 7-4 8 6-5 7-4-3v22H18V18l-4 3-5-7z"/><path d="M20 13c0 5 8 5 8 0"/>',
     evidence: '<circle cx="20" cy="20" r="11"/><path d="m28 28 11 11M15 20h10M20 15v10"/>',
     rules: '<path d="M13 7h16l7 7v27H13z"/><path d="M29 7v8h7M19 23h11M19 29h11M19 35h5"/><path d="m30 32 3 3 6-7"/>',
@@ -56,7 +57,7 @@
   const industryIcons = [
     ['auto', /automotive/], ['pharma', /pharma/], ['food', /food/],
     ['logisticsIndustry', /logistics/], ['aerospace', /aerospace/], ['electronics', /semiconductor|electronics/],
-    ['medical', /medical/], ['chemicals', /chemical/], ['machinery', /machinery/], ['fashion', /fashion|retail/]
+    ['medical', /medical/], ['chemicals', /chemical/], ['energy', /refining|energy/], ['machinery', /machinery/], ['fashion', /fashion|retail/]
   ];
 
   function setIcon(el, name, keepTextHidden = true) {

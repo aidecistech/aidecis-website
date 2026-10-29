@@ -1,0 +1,82 @@
+/* Website review, 29 Oct 2026: first-year economics (benefits.html), decision-effectiveness
+   scorecard and the reference decision map (use-cases.html). */
+
+/* Benefits calculator: first-year investment and year two */
+.benefits-calculator .first-year-result { margin-top: 4px; padding: 22px 18px; background: #f3efe4; border-left: 3px solid var(--gold); border-bottom: 0; }
+.benefits-calculator .first-year-result .big { font-size: clamp(24px, 2.7vw, 37px); font-variant-numeric: tabular-nums; }
+.benefits-calculator .first-year-result .muted { margin: 6px 0 0; }
+.benefits-calculator .first-year-recurring { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; padding-top: 14px; border-top: 1px solid #ddd3bd; }
+.benefits-calculator .first-year-recurring span { font-size: 13px; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; }
+.benefits-calculator .first-year-recurring strong { font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.business-case-assumptions { margin-top: 22px; }
+.business-case-assumptions h3.business-case-subhead { margin-top: 0 !important; }
+.business-case-assumptions ul { margin: 0; padding: 0 0 0 18px; color: #e5eef0; font-size: 13px; line-height: 1.55; }
+.business-case-assumptions li { margin: 0 0 8px; }
+.business-case-assumptions li:empty { display: none; }
+.business-case-assumptions .muted { margin-top: 10px !important; }
+
+/* Use cases: the decision-effectiveness scorecard */
+.scorecard-intro { margin: 0 clamp(22px, 6vw, 88px) 50px; padding: 30px 34px; background: white; border: 1px solid var(--line); border-top: 3px solid var(--gold); scroll-margin-top: 105px; }
+.scorecard-intro .eyebrow { color: #88601f; }
+.scorecard-intro h2 { max-width: 860px; margin: 8px 0 10px; color: var(--navy); font-size: clamp(25px, 3vw, 36px); line-height: 1.15; }
+.scorecard-intro-head > p:not(.eyebrow) { max-width: 820px; margin: 0; color: #526f79; }
+.scorecard-groups { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 24px 0 0; padding: 0; list-style: none; }
+.scorecard-groups li { padding: 14px 0 0; border-top: 2px solid #b8d4da; color: #48636d; font-size: 14px; line-height: 1.5; }
+.scorecard-groups strong, .scorecard-groups span { display: block; }
+.scorecard-groups strong { margin-bottom: 6px; color: var(--navy); font-size: 15px; }
+.case-scorecard { margin-top: 6px; padding-top: 13px; border-top: 1px solid #e5ebea; }
+.case-scorecard-title { margin: 0 0 8px; color: var(--navy); font-size: 12px; font-weight: 700; }
+.case-scorecard dl { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 0; }
+.case-scorecard dl > div { min-width: 0; padding: 9px 10px; background: #f1f6f7; }
+.case-scorecard dt { margin: 0 0 3px; color: #667f86; font: 700 10px/1.3 system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+.case-scorecard dd { margin: 0; color: #173d4a; font-size: 13px; line-height: 1.4; overflow-wrap: anywhere; }
+.use-case-detail:not(.use-case-featured) .case-scorecard dl { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.use-case-featured .case-scorecard { border-top-color: rgba(255,255,255,.22); }
+.use-case-featured .case-scorecard-title { color: white; }
+.use-case-featured .case-scorecard dl > div { background: rgba(255,255,255,.09); }
+.use-case-featured .case-scorecard dt { color: #ffd27c; }
+.use-case-featured .case-scorecard dd { color: #eef5f6; }
+
+/* Use cases: the reference decision map */
+.decision-map { grid-column: 1 / -1; padding: 30px 32px; background: var(--cream); border: 1px solid var(--line); border-left: 4px solid var(--gold); scroll-margin-top: 105px; }
+.decision-map .eyebrow { color: #88601f; }
+.decision-map h2 { margin: 8px 0 10px; color: var(--navy); font-size: clamp(24px, 2.6vw, 32px); line-height: 1.15; }
+.decision-map-head > p:not(.eyebrow) { max-width: 860px; margin: 0; color: #526f79; }
+.decision-map-flow { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; margin: 24px 0 0; padding: 0; list-style: none; counter-reset: decision-map; }
+.decision-map-flow > li { position: relative; display: flex; flex-direction: column; min-width: 0; padding: 16px 14px; background: white; border: 1px solid var(--line); border-top: 3px solid #b8d4da; counter-increment: decision-map; }
+.decision-map-flow > li:nth-child(5) { border-top-color: var(--gold); }
+.decision-map-flow > li:not(:last-child)::after { position: absolute; top: 26px; right: -11px; z-index: 1; width: 10px; height: 10px; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); transform: rotate(45deg); content: ""; }
+.decision-map-step { margin: 0 0 8px; color: var(--navy); font-size: 15px; font-weight: 700; line-height: 1.25; }
+.decision-map-step::before { display: block; width: 18px; height: 3px; margin-bottom: 8px; background: var(--gold); content: ""; }
+.decision-map-text { flex: 1; margin: 0 0 12px; color: #48636d; font-size: 13px; line-height: 1.5; }
+.decision-map-flow dl { margin: 0; padding-top: 10px; border-top: 1px solid #e5ebea; }
+.decision-map-flow dl > div + div { margin-top: 8px; }
+.decision-map-flow dt { color: #667f86; font: 700 10px/1.3 system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+.decision-map-flow dd { margin: 2px 0 0; color: #173d4a; font-size: 13px; font-weight: 600; line-height: 1.4; }
+
+@media (max-width: 1180px) {
+  .decision-map-flow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .decision-map-flow > li:nth-child(3)::after { display: none; }
+}
+@media (max-width: 900px) {
+  /* Long Dutch labels widened the one-column business case past a phone screen. */
+  .business-case-grid { grid-template-columns: minmax(0, 1fr); }
+  .business-case-grid > * { min-width: 0; overflow-wrap: break-word; }
+  .business-case-results .result-row { flex-wrap: wrap; }
+  .business-case-results .result-row strong { margin-left: auto; }
+  .scorecard-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .case-scorecard dl { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 680px) {
+  .scorecard-intro { margin-right: 18px; margin-left: 18px; padding: 24px 22px; }
+  .scorecard-groups { grid-template-columns: 1fr; }
+  .decision-map { padding: 22px; }
+  .decision-map-flow { grid-template-columns: 1fr; gap: 14px; }
+  .decision-map-flow > li::after { display: none; }
+  .decision-map-flow > li:not(:last-child)::after { display: block; top: auto; right: auto; bottom: -11px; left: 22px; transform: rotate(135deg); }
+  .decision-map-flow > li:nth-child(3)::after { display: block; }
+}
+@media (max-width: 420px) {
+  .case-scorecard dl { grid-template-columns: 1fr; }
+  .use-case-detail:not(.use-case-featured) .case-scorecard dl { grid-template-columns: 1fr; }
+}
