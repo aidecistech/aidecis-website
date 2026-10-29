@@ -2,8 +2,8 @@
 // pilot readiness, one hard measure, the vendor-trust pack, the continuity package, the section 19 prices and
 // capability labels (Prototype, In development, Proposed, Proposed architecture, Being built).
 window.AIDECIS_TRANSLATIONS = window.AIDECIS_TRANSLATIONS || {};
-Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {
-  "Authority, operating constraints and the applicable policy are checked before the action proceeds, or, for actors outside the gateway, against what they did (in development).": "La autoridad, las restricciones operativas y la política aplicable se comprueban antes de que la acción continúe o, para los actores fuera de la pasarela, frente a lo que hicieron (en desarrollo).",}), {
+Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
+  "Authority, operating constraints and the applicable policy are checked before the action proceeds, or, for actors outside the gateway, against what they did (in development).": "La autoridad, las restricciones operativas y la política aplicable se comprueban antes de que la acción continúe o, para los actores fuera de la pasarela, frente a lo que hicieron (en desarrollo).",
   "Explore the twelve use cases": "Explore los doce casos de uso",
   "How far a decision can move up the scale depends on your maturity in that decision family: basic, digital, advanced or leading. For basic or digital organisations we propose reviewed assistance and bounded pilots, not bot mode. Agent-to-agent chains (autonomy level 3 to 4) are not offered at launch.": "Hasta dónde puede subir una decisión en la escala depende de su madurez en esa familia de decisiones: básica, digital, avanzada o líder. Para organizaciones básicas o digitales proponemos asistencia revisada y pilotos acotados, no el modo bot. Las cadenas de agente a agente (nivel de autonomía 3 a 4) no se ofrecen en el lanzamiento.",
   "Proposed": "Propuesto",
@@ -63,8 +63,8 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
   "Agreed days at the published day rate to move your policies and records to the platform you choose.": "Días acordados a la tarifa diaria publicada para trasladar sus políticas y registros a la plataforma que elija.",
   "Option: a dedicated control plane for your organisation.": "Opción: un plano de control dedicado para su organización.",
 });
-Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {
-  "Authority, operating constraints and the applicable policy are checked before the action proceeds, or, for actors outside the gateway, against what they did (in development).": "Bevoegdheid, operationele beperkingen en het geldende beleid worden gecontroleerd voordat de actie doorgaat, of, voor actoren buiten de gateway, tegen wat zij deden (in ontwikkeling).",}), {
+Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
+  "Authority, operating constraints and the applicable policy are checked before the action proceeds, or, for actors outside the gateway, against what they did (in development).": "Bevoegdheid, operationele beperkingen en het geldende beleid worden gecontroleerd voordat de actie doorgaat, of, voor actoren buiten de gateway, tegen wat zij deden (in ontwikkeling).",
   "Explore the twelve use cases": "Bekijk de twaalf use cases",
   "How far a decision can move up the scale depends on your maturity in that decision family: basic, digital, advanced or leading. For basic or digital organisations we propose reviewed assistance and bounded pilots, not bot mode. Agent-to-agent chains (autonomy level 3 to 4) are not offered at launch.": "Hoe ver een beslissing op de schaal kan stijgen, hangt af van uw volwassenheid in die beslisfamilie: basis, digitaal, gevorderd of leidend. Voor organisaties op basis- of digitaal niveau stellen we beoordeelde ondersteuning en begrensde pilots voor, geen botmodus. Ketens van agent naar agent (autonomieniveau 3 tot 4) bieden we bij de lancering niet aan.",
   "Proposed": "Voorgesteld",
