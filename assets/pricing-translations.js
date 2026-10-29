@@ -63,12 +63,12 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl, {
 Object.assign(window.AIDECIS_TRANSLATIONS.es, {
 });
 Object.assign(window.AIDECIS_TRANSLATIONS.nl, {
-  "Payback period (implementation + evidence sprint)": "Terugverdientijd (implementatie + evidence sprint)",
+  "Payback on one-time costs (pilot + implementation)": "Terugverdientijd van de eenmalige kosten (pilot + implementatie)",
   "No payback at these assumptions": "Niet terugverdiend bij deze aannames",
   "{low}–{high} months": "{low}–{high} maanden",
 });
 Object.assign(window.AIDECIS_TRANSLATIONS.es, {
-  "Payback period (implementation + evidence sprint)": "Plazo de recuperación (implantación + sprint de evidencia)",
+  "Payback on one-time costs (pilot + implementation)": "Plazo de recuperación de los costes únicos (piloto + implantación)",
   "No payback at these assumptions": "Sin recuperación con estos supuestos",
   "{low}–{high} months": "{low}–{high} meses",
 });
