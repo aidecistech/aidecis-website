@@ -18,3 +18,6 @@
 .news-download .round-link span{width:48px;height:48px;font-size:20px}
 .news-download .round-link:hover span{transform:none}
 @media(max-width:860px){.news-directory .industry-row h2{font-size:22px}.news-download{margin-bottom:50px}}
+.news-source{margin:34px 0 26px;padding:22px 26px;background:#F1F5F6;border:1px solid #D3DDE1;border-left:3px solid #1A5973}
+.news-source p{margin:0 0 8px}.news-source p:last-child{margin:0}.news-source .news-source-note{font-size:14px;color:#52646d}
+.news-source a{color:#1A5973;font-weight:600;text-underline-offset:3px}
