@@ -28,6 +28,8 @@ Key facts:
 - [Decision accountability](https://www.aidecis.com/accountability.html): ten common supply-chain decision scenarios and how authority, policy, approval, execution and outcome are kept in one chain.
 - [Benefits and business case](https://www.aidecis.com/benefits.html): a calculator for the pilot, subscription and implementation at the published prices, and a business case with your own assumptions, net of review effort and compute, with today's response time to a disruption as the resilience baseline.
 - [Industries](https://www.aidecis.com/industries.html): how the same decision accountability applies across eleven industries.
+- [Security and data](https://www.aidecis.com/security.html): architecture, data flows, deployment options, EU hosting and subprocessors, control coverage, continuity and exit, and certification status (no certification claimed; penetration test scheduled for December 2026).
+- [Company](https://www.aidecis.com/company.html): the company (an Angeleus SLU company in Andorra), founder and CEO Neil Webers, how Aidecis works with clients, and how case studies are published.
 - [Contact](https://www.aidecis.com/contact.html): request a demo or discuss a pilot.
 
 ## Twelve decision families and their flagship decisions
