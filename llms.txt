@@ -31,6 +31,7 @@ Key facts:
 - [Industries](https://www.aidecis.com/industries.html): how the same decision accountability applies across eleven industries.
 - [Security and data](https://www.aidecis.com/security.html): architecture, data flows, deployment options, EU hosting and subprocessors, control coverage, continuity and exit, and certification status (no certification claimed; penetration test scheduled for December 2026).
 - [Company](https://www.aidecis.com/company.html): the company (an Angeleus SLU company in Andorra), how Aidecis works with clients, and how case studies are published.
+- [Team](https://www.aidecis.com/team.html): the founding team and the advisory board.
 - [Contact](https://www.aidecis.com/contact.html): ask a question, request a demo, or ask about a pilot or evidence sprint.
 
 ## Twelve decision families and their flagship decisions
