@@ -72,11 +72,27 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
   const marketing = document.getElementById('pref-marketing');
   const storageKey = 'aidecis_consent';
   // Consent-gated visit counter for the Aidecis CRM (Web visitors). Sends only an anonymous
-  // random token, the page path and the referring host, and only after analytics consent.
-  // Runs on every page, also those without the consent banner.
+  // random token, the page path, the referring host and whether marketing cookies were accepted,
+  // and only after analytics consent. Runs on every page, also those without the consent banner.
+  // With marketing consent it also sends the reference of a personal link (?aidref=...) that the
+  // Aidecis team sent, so the CRM can recognise this visitor as that contact.
   const trackUrl = 'https://crm.aidecis.com/track.php';
   const visitorKey = 'aidecis_visitor';
   const pendingRevokeKey = 'aidecis_visitor_revoke';
+  const refKey = 'aidecis_visitor_ref';
+  const tabStorage = (() => { try { return window.sessionStorage; } catch (_) { return null; } })();
+  // A personal link reference leaves the address bar at once and is kept for this tab only.
+  (() => {
+    try {
+      const url = new URL(location.href);
+      const ref = url.searchParams.get('aidref');
+      if (ref === null) return;
+      url.searchParams.delete('aidref');
+      history.replaceState(history.state, '', url.pathname + url.search + url.hash);
+      if (/^[a-f0-9]{32}$/.test(ref) && tabStorage) tabStorage.setItem(refKey, ref);
+    } catch (_) { /* no reference kept */ }
+  })();
+  const pendingRef = () => { try { return tabStorage ? tabStorage.getItem(refKey) : null; } catch (_) { return null; } };
   const liveSite = /^(www\.)?aidecis\.com$/.test(location.hostname);
   const sendVisitEvent = (body) => {
     if (!liveSite || !window.fetch) return Promise.resolve(false);
@@ -96,7 +112,20 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
   const referrerHost = () => {
     try { return document.referrer ? new URL(document.referrer).host.toLowerCase().slice(0, 190) : ''; } catch (_) { return ''; }
   };
-  const trackVisit = () => sendVisitEvent({ session: visitorToken(), path: (location.pathname || '/').slice(0, 300), referrer: referrerHost() });
+  const trackVisit = () => {
+    const marketing = hasMarketingConsent();
+    const body = { session: visitorToken(), path: (location.pathname || '/').slice(0, 300), referrer: referrerHost(), marketing };
+    const ref = marketing ? pendingRef() : null;
+    if (ref) body.ref = ref;
+    return sendVisitEvent(body).then((ok) => {
+      if (ok && ref) try { tabStorage.removeItem(refKey); } catch (_) { /* sent again on the next page */ }
+    });
+  };
+  // Marketing consent withdrawn (analytics kept): the CRM forgets which contact this visitor is.
+  const unlinkVisitor = () => {
+    const token = reviewStorage.getItem(visitorKey);
+    if (token) sendVisitEvent({ session: token, path: '', unlink: true });
+  };
   // Withdrawal stops tracking at once; the deletion request is kept and retried until the CRM confirms it.
   const flushRevoke = () => {
     const token = reviewStorage.getItem(pendingRevokeKey);
@@ -114,8 +143,24 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
   const hasAnalyticsConsent = () => {
     try { return Boolean(JSON.parse(reviewStorage.getItem(storageKey) || '{}').analytics); } catch (_) { return false; }
   };
+  function hasMarketingConsent() {
+    try { const c = JSON.parse(reviewStorage.getItem(storageKey) || '{}'); return Boolean(c.analytics && c.marketing); } catch (_) { return false; }
+  }
   flushRevoke();
   if (hasAnalyticsConsent()) trackVisit();
+  // The contact form carries the anonymous visitor token only with marketing consent, so the CRM can
+  // show this visitor's pages with the message.
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) contactForm.addEventListener('submit', () => {
+    contactForm.querySelectorAll('input[data-visitor-field]').forEach((el) => el.remove());
+    if (!hasMarketingConsent()) return;
+    [['visitor', visitorToken()], ['visitor_marketing', '1']].forEach(([name, value]) => {
+      const input = document.createElement('input');
+      Object.assign(input, { type: 'hidden', name, value });
+      input.dataset.visitorField = '';
+      contactForm.append(input);
+    });
+  });
 
   if (!banner || !modal || !trigger) return;
 
@@ -134,9 +179,11 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 
   const saveConsent = (consent) => {
     const before = hasAnalyticsConsent();
+    const beforeMarketing = hasMarketingConsent();
     reviewStorage.setItem(storageKey, JSON.stringify(consent));
-    if (consent.analytics && !before) trackVisit();
+    if (consent.analytics && (!before || (consent.marketing && !beforeMarketing && pendingRef()))) trackVisit();
     if (!consent.analytics && before) revokeVisits();
+    else if (consent.analytics && beforeMarketing && !consent.marketing) unlinkVisitor();
     banner.hidden = true;
     closeModal();
   };
