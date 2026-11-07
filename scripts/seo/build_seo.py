@@ -103,6 +103,10 @@ PAGES = {
     'finance-audit.html': ('For finance and audit | Aidecis',
                            'For finance and audit: the delegation of authority run as executable decision rights, every write checked against it, with an open-source ledger verifier.',
                            'For finance and audit', []),
+    'decision-intelligence-software-supply-chain.html': (
+        'Decision intelligence software for supply chain (2026) | Aidecis',
+        "A 2026 buyer's guide to decision intelligence software for supply chain, and where Aidecis, Aera, o9, Kinaxis, Blue Yonder, SAP IBP and others each fit.",
+        'Decision intelligence software', []),
 }
 for file, name, title, desc in INDUSTRIES:
     PAGES[file] = (title, desc, name, [('Industries', 'industries.html')])
@@ -227,7 +231,7 @@ def lastmod(file):
     out = subprocess.run(['git', 'log', '-1', '--format=%cs', '--', file], cwd=ROOT, capture_output=True, text=True).stdout.strip()
     return out or '2026-10-26'
 
-order = ['index.html', 'use-cases.html', 'benefits.html', 'industries.html', 'accountability.html', 'security.html', 'company.html', 'team.html', 'contact.html', 'assessment.html', 'platform-adjacent.html', 'finance-audit.html'] + \
+order = ['index.html', 'use-cases.html', 'benefits.html', 'industries.html', 'accountability.html', 'security.html', 'company.html', 'team.html', 'contact.html', 'assessment.html', 'platform-adjacent.html', 'finance-audit.html', 'decision-intelligence-software-supply-chain.html'] + \
         [f for f, *_ in INDUSTRIES] + ['news.html'] + ARTICLES + ['privacy-policy.html', 'cookie-policy.html', 'terms.html']
 lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
 for f in order:

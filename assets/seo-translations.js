@@ -2,6 +2,9 @@
 // site.js looks these up by the exact English text, so keep both sides in sync with the <title> and description of each page.
 window.AIDECIS_TRANSLATIONS = window.AIDECIS_TRANSLATIONS || {};
 Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
+  "Decision intelligence software for supply chain (2026) | Aidecis": "Software de inteligencia decisional para la cadena de suministro (2026) | Aidecis",
+  "A 2026 buyer's guide to decision intelligence software for supply chain, and where Aidecis, Aera, o9, Kinaxis, Blue Yonder, SAP IBP and others each fit.": "Guía de compra 2026 del software de inteligencia decisional para la cadena de suministro, y dónde encajan Aidecis, Aera, o9, Kinaxis, Blue Yonder, SAP IBP y otros.",
+  "Decision intelligence software": "Software de inteligencia decisional",
   "For finance and audit | Aidecis": "Para finanzas y auditoría | Aidecis",
   "For finance and audit: the delegation of authority run as executable decision rights, every write checked against it, with an open-source ledger verifier.": "Para finanzas y auditoría: la delegación de autoridad ejecutada como derechos de decisión aplicables, cada escritura comprobada frente a ella, con un verificador de registro de código abierto.",
   "For finance and audit": "Para finanzas y auditoría",
@@ -77,6 +80,9 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
   "Fashion, textile and retail supply-chain decisions on late shipments, air freight and sourcing due diligence, with authority and evidence on record.": "Decisiones de la cadena de suministro de moda, textil y retail sobre envíos retrasados, transporte aéreo y diligencia debida en el abastecimiento, con autoridad y evidencias registradas."
 });
 Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
+  "Decision intelligence software for supply chain (2026) | Aidecis": "Decision-intelligencesoftware voor supply chain (2026) | Aidecis",
+  "A 2026 buyer's guide to decision intelligence software for supply chain, and where Aidecis, Aera, o9, Kinaxis, Blue Yonder, SAP IBP and others each fit.": "Koopgids 2026 voor decision-intelligencesoftware voor supply chain, en waar Aidecis, Aera, o9, Kinaxis, Blue Yonder, SAP IBP en andere elk passen.",
+  "Decision intelligence software": "Decision-intelligencesoftware",
   "For finance and audit | Aidecis": "Voor finance en audit | Aidecis",
   "For finance and audit: the delegation of authority run as executable decision rights, every write checked against it, with an open-source ledger verifier.": "Voor finance en audit: de delegatie van bevoegdheid uitgevoerd als uitvoerbare beslisrechten, elke schrijfactie eraan getoetst, met een open-source grootboekverifier.",
   "For finance and audit": "Voor finance en audit",
