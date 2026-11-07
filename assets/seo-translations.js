@@ -2,6 +2,10 @@
 // site.js looks these up by the exact English text, so keep both sides in sync with the <title> and description of each page.
 window.AIDECIS_TRANSLATIONS = window.AIDECIS_TRANSLATIONS || {};
 Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
+  "The decision replay assessment | Aidecis": "La evaluación de repetición de decisiones | Aidecis",
+  "The decision replay assessment: four weeks, a fixed fee, read-only on your own SAP purchasing history, the way in to the Aidecis layer for supply chain.": "La evaluación de repetición de decisiones: cuatro semanas, tarifa fija, solo lectura sobre su propio histórico de compras en SAP, la vía de entrada a la capa de Aidecis para la cadena de suministro.",
+  "Next to your decision platform | Aidecis": "Junto a su plataforma de decisiones | Aidecis",
+  "Already run a planning or decision platform? Aidecis governs what it cannot see: the steps in other systems and teams, the authority and the chain outcome.": "¿Ya usa una plataforma de planificación o de decisiones? Aidecis gobierna lo que no puede ver: los pasos en otros sistemas y equipos, la autoridad y el resultado de la cadena.",
   "Where supply-chain decisions lose their owner | Aidecis": "Dónde las decisiones de la cadena de suministro pierden a su responsable | Aidecis",
   "People, your own algorithms and vendors' agents take supply-chain decisions. Aidecis gives them one authority model and one decision record, linked to outcomes.": "Personas, sus propios algoritmos y los agentes de sus proveedores toman las decisiones de la cadena de suministro. Aidecis les da un solo modelo de autoridad y un solo registro de decisiones, vinculado a los resultados.",
   "Aidecis | Supply-chain decision intelligence and accountability": "Aidecis | Inteligencia y responsabilidad en las decisiones de la cadena de suministro",
@@ -70,6 +74,10 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
   "Fashion, textile and retail supply-chain decisions on late shipments, air freight and sourcing due diligence, with authority and evidence on record.": "Decisiones de la cadena de suministro de moda, textil y retail sobre envíos retrasados, transporte aéreo y diligencia debida en el abastecimiento, con autoridad y evidencias registradas."
 });
 Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
+  "The decision replay assessment | Aidecis": "Het decision-replay-assessment | Aidecis",
+  "The decision replay assessment: four weeks, a fixed fee, read-only on your own SAP purchasing history, the way in to the Aidecis layer for supply chain.": "Het decision-replay-assessment: vier weken, vaste prijs, alleen-lezen op uw eigen SAP-inkoopgeschiedenis, de ingang tot de Aidecis-laag voor de supply chain.",
+  "Next to your decision platform | Aidecis": "Naast uw beslisplatform | Aidecis",
+  "Already run a planning or decision platform? Aidecis governs what it cannot see: the steps in other systems and teams, the authority and the chain outcome.": "Gebruikt u al een planning- of beslisplatform? Aidecis bestuurt wat het niet kan zien: de stappen in andere systemen en teams, de bevoegdheid en het ketenresultaat.",
   "Where supply-chain decisions lose their owner | Aidecis": "Waar supply-chainbeslissingen hun eigenaar kwijtraken | Aidecis",
   "People, your own algorithms and vendors' agents take supply-chain decisions. Aidecis gives them one authority model and one decision record, linked to outcomes.": "Mensen, uw eigen algoritmen en de agents van leveranciers nemen supply-chainbeslissingen. Aidecis geeft ze één bevoegdhedenmodel en één beslisdossier, gekoppeld aan resultaten.",
   "Aidecis | Supply-chain decision intelligence and accountability": "Aidecis | Decision intelligence en verantwoording voor supply chains",
