@@ -16,15 +16,24 @@
 :root[data-theme="dark"] {
   --paper: #0b2630;
   --cream: #0f2d38;
-  --ink: #e8f0f1;
-  --muted: #9fb6bd;
+  --ink: #eaf1f2;         /* near-white body text (brand dark fields use white text) */
+  --muted: #b7c8ce;       /* a lighter tint of brand Muted #5E7682, for readability */
   --line: #27454f;
   --pale: #123540;
-  --navy: #8ccfe6;        /* light accent, for text and links */
-  --gold: #f5a623;
+  --navy: #eef4f5;        /* text that was Deep Ocean becomes near-white, as on the brand's dark fields */
+  --gold: #f5a623;        /* Warm Gold, unchanged */
+  --ice: #4db8e8;         /* brand Ice Blue, for links and connections */
   --green: #4fae89;
   color-scheme: dark;
 }
+
+/* Links and connective accents use the brand Ice Blue on dark, not white. */
+:root[data-theme="dark"] .text-link,
+:root[data-theme="dark"] .round-link,
+:root[data-theme="dark"] .site-header nav a:hover,
+:root[data-theme="dark"] .contact-details a,
+:root[data-theme="dark"] .arch-link,
+:root[data-theme="dark"] .industry-teaser > a:hover { color: #4db8e8 !important; }
 
 :root[data-theme="dark"] body { background: var(--paper); color: var(--ink); }
 
@@ -99,7 +108,7 @@
 
 /* Nav and hardcoded light body text → light. */
 :root[data-theme="dark"] .site-header nav a,
-:root[data-theme="dark"] .industry-dropdown summary { color: #cfe0e6 !important; }
+:root[data-theme="dark"] .industry-dropdown summary { color: var(--ink) !important; }
 :root[data-theme="dark"] .hero-copy .hero-lead,
 :root[data-theme="dark"] .industry-lead,
 :root[data-theme="dark"] .supply-copy > p:not(.eyebrow),
@@ -111,7 +120,7 @@
 :root[data-theme="dark"] .europe-section > div:nth-child(2) > p:last-child,
 :root[data-theme="dark"] .europe-points p,
 :root[data-theme="dark"] .pilot-investment p,
-:root[data-theme="dark"] .contact-details { color: #bccdd2 !important; }
+:root[data-theme="dark"] .contact-details { color: var(--muted) !important; }
 :root[data-theme="dark"] .industry-row { border-top-color: var(--line) !important; }
 
 /* Benefits calculator sets its own light vars; redefine for dark. */
@@ -124,3 +133,76 @@
 :root[data-theme="dark"] .accountability-hero { background: var(--cream); }
 :root[data-theme="dark"] .trust-grid > li,
 :root[data-theme="dark"] .trust-facts > li { background: #0f2d38; border-color: var(--line); }
+
+/* Lighten the brand blue-grey body text on dark for readability (uses the dark --muted tint). */
+:root[data-theme="dark"] .accountability-cta > p:not(.eyebrow),
+:root[data-theme="dark"] .business-case-intro,
+:root[data-theme="dark"] .canvas-bar,
+:root[data-theme="dark"] .canvas-footer,
+:root[data-theme="dark"] .canvas-ref,
+:root[data-theme="dark"] .case-category,
+:root[data-theme="dark"] .case-columns > p,
+:root[data-theme="dark"] .case-content > p:not(.case-category),
+:root[data-theme="dark"] .case-scorecard dt,
+:root[data-theme="dark"] .closing > p:not(.eyebrow),
+:root[data-theme="dark"] .comparison-head p:last-child,
+:root[data-theme="dark"] .comparison-row > *,
+:root[data-theme="dark"] .contact-details,
+:root[data-theme="dark"] .contact-form ::placeholder,
+:root[data-theme="dark"] .contact-form-note,
+:root[data-theme="dark"] .contact-page .booking-actions p,
+:root[data-theme="dark"] .crises-heading > p:last-child,
+:root[data-theme="dark"] .crisis-card p,
+:root[data-theme="dark"] .decision-facts small,
+:root[data-theme="dark"] .decision-facts span,
+:root[data-theme="dark"] .decision-family ul,
+:root[data-theme="dark"] .decision-library-head p:not(.eyebrow),
+:root[data-theme="dark"] .decision-library-note,
+:root[data-theme="dark"] .decision-map-flow dt,
+:root[data-theme="dark"] .decision-map-head > p:not(.eyebrow),
+:root[data-theme="dark"] .decision-map-text,
+:root[data-theme="dark"] .decision-modes-grid p,
+:root[data-theme="dark"] .decision-modes-head > p:last-child,
+:root[data-theme="dark"] .decision-modes-points p,
+:root[data-theme="dark"] .decision-proof-grid p,
+:root[data-theme="dark"] .decision-proof-heading > p:last-child,
+:root[data-theme="dark"] .demo-copy > p:not(.eyebrow),
+:root[data-theme="dark"] .europe-points p,
+:root[data-theme="dark"] .europe-section > div:nth-child(2) > p:last-child,
+:root[data-theme="dark"] .hero-copy .hero-lead,
+:root[data-theme="dark"] .hero-lead,
+:root[data-theme="dark"] .industry-body p,
+:root[data-theme="dark"] .industry-lead,
+:root[data-theme="dark"] .industry-row p,
+:root[data-theme="dark"] .news-meta,
+:root[data-theme="dark"] .news-source .news-source-note,
+:root[data-theme="dark"] .per-site-label,
+:root[data-theme="dark"] .pilot-intro > p:not(.eyebrow),
+:root[data-theme="dark"] .pilot-price,
+:root[data-theme="dark"] .pilot-steps p,
+:root[data-theme="dark"] .platform-intro > p:last-child,
+:root[data-theme="dark"] .pricing-cta > div p,
+:root[data-theme="dark"] .pricing-floor span,
+:root[data-theme="dark"] .route-point small,
+:root[data-theme="dark"] .scorecard-groups li,
+:root[data-theme="dark"] .scorecard-intro-head > p:not(.eyebrow),
+:root[data-theme="dark"] .site-header nav a,
+:root[data-theme="dark"] .statement-side,
+:root[data-theme="dark"] .status-intro > p:last-child,
+:root[data-theme="dark"] .supply-copy > p:not(.eyebrow),
+:root[data-theme="dark"] .team-card span,
+:root[data-theme="dark"] .trust-boundary,
+:root[data-theme="dark"] .trust-facts span,
+:root[data-theme="dark"] .trust-grid p,
+:root[data-theme="dark"] .trust-head > p:not(.eyebrow),
+:root[data-theme="dark"] .trust-person p,
+:root[data-theme="dark"] .trust-table td,
+:root[data-theme="dark"] .use-case p,
+:root[data-theme="dark"] .use-case small,
+:root[data-theme="dark"] .use-case-close > p:not(.eyebrow),
+:root[data-theme="dark"] .use-case-lead,
+:root[data-theme="dark"] /* News index and articles: the industry-page system plus a readable article column. */
+.news-num,
+:root[data-theme="dark"] body .europe-section .europe-points p,
+:root[data-theme="dark"] body .europe-section > div:nth-child(2) > p:last-child,
+:root[data-theme="dark"] footer { color: var(--muted) !important; }
