@@ -264,6 +264,11 @@
 :root[data-theme="dark"] .benefits-calculator .panel,:root[data-theme="dark"] .benefits-calculator .benefit,:root[data-theme="dark"] .benefits-calculator .result{background:var(--surface)!important;color:var(--ink)!important}
 :root[data-theme="dark"] .benefits-calculator .big,:root[data-theme="dark"] .benefits-calculator .per-site-value{color:var(--gold)!important}
 :root[data-theme="dark"] .brand img,:root[data-theme="dark"] footer img{background:transparent!important;padding:0!important;border-radius:0!important}
+/* Logo per theme, driven by the pre-paint data-theme in CSS (no JS, no flash, no
+   cache dependency): light shows the primary lockup, dark the reverse lockup. */
+.logo-dark{display:none!important}
+:root[data-theme="dark"] .logo-light{display:none!important}
+:root[data-theme="dark"] .logo-dark{display:block!important}
 
 /* The benefits calculator redefines --ink/--paper/--line/--navy locally (light values);
    override them for dark so its inputs, panels and figures read correctly. */
