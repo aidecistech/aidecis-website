@@ -9,14 +9,9 @@
   function sysDark() { return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches; }
   function resolved(c) { return c === 'dark' || (c === 'system' && sysDark()) ? 'dark' : 'light'; }
   function swapLogos(mode) {
-    // Dark uses the brand reverse (light) lockup; light uses the primary.
-    var want = mode === 'dark' ? 'aidecis-logo-reverse.png' : 'aidecis-logo.png';
-    var other = mode === 'dark' ? 'aidecis-logo.png' : 'aidecis-logo-reverse.png';
-    [].forEach.call(document.querySelectorAll('img[src*="aidecis-logo"]'), function (img) {
-      if (img.getAttribute('src').indexOf(other) !== -1) {
-        img.setAttribute('src', img.getAttribute('src').replace(other, want));
-      }
-    });
+    // Logo swap is now handled entirely in CSS (.logo-light / .logo-dark toggled by
+    // [data-theme]), so it is set before paint with no flash and no JS/cache dependency.
+    // This stays a no-op for backward compatibility with any cached caller.
   }
   function apply(c) { var m = resolved(c); root.setAttribute('data-theme', m); root.setAttribute('data-theme-choice', c); swapLogos(m); }
   apply(choice());
