@@ -3,7 +3,7 @@
 // Loaded after the other translation files and before site.js; site.js looks these up by the exact English text.
 window.AIDECIS_TRANSLATIONS = window.AIDECIS_TRANSLATIONS || {};
 Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
-  "Aidecis is the decision intelligence and control layer for consequential supply-chain decisions.": "Aidecis es la capa de inteligencia decisional y control para las decisiones críticas de la cadena de suministro.",
+  "Aidecis is the decision intelligence layer for supply chain.": "Aidecis es la capa de inteligencia decisional para la cadena de suministro.",
   "Enforced before execution through the Aidecis gateway; observed and reconciled after execution for registered actors outside it.": "Control aplicado antes de la ejecución a través de la pasarela de Aidecis; para los actores registrados que actúan fuera de ella, control observado y conciliado después de la ejecución.",
   "Actions through the Aidecis gateway are enforced before they run. Registered actors that write in their own systems, such as the carrier's agent, are observed and reconciled after execution.": "Las acciones que pasan por la pasarela de Aidecis se controlan antes de ejecutarse. Los actores registrados que escriben en sus propios sistemas, como el agente del transportista, se observan y se concilian después de la ejecución.",
   "Source:": "Fuente:",
@@ -23,7 +23,7 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
   "This article is available in English only.": "Este artículo solo está disponible en inglés.",
 });
 Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
-  "Aidecis is the decision intelligence and control layer for consequential supply-chain decisions.": "Aidecis is de decision-intelligence- en controlelaag voor ingrijpende beslissingen in de supply chain.",
+  "Aidecis is the decision intelligence layer for supply chain.": "Aidecis is de decision-intelligencelaag voor de supply chain.",
   "Enforced before execution through the Aidecis gateway; observed and reconciled after execution for registered actors outside it.": "Afgedwongen vóór de uitvoering via de Aidecis-gateway; voor geregistreerde actoren daarbuiten waargenomen en afgestemd na de uitvoering.",
   "Actions through the Aidecis gateway are enforced before they run. Registered actors that write in their own systems, such as the carrier's agent, are observed and reconciled after execution.": "Acties via de Aidecis-gateway worden afgedwongen voordat ze worden uitgevoerd. Geregistreerde actoren die in hun eigen systemen schrijven, zoals de agent van de vervoerder, worden na de uitvoering waargenomen en afgestemd.",
   "Source:": "Bron:",
