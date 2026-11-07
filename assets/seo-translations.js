@@ -2,6 +2,9 @@
 // site.js looks these up by the exact English text, so keep both sides in sync with the <title> and description of each page.
 window.AIDECIS_TRANSLATIONS = window.AIDECIS_TRANSLATIONS || {};
 Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
+  "For finance and audit | Aidecis": "Para finanzas y auditoría | Aidecis",
+  "For finance and audit: the delegation of authority run as executable decision rights, every write checked against it, with an open-source ledger verifier.": "Para finanzas y auditoría: la delegación de autoridad ejecutada como derechos de decisión aplicables, cada escritura comprobada frente a ella, con un verificador de registro de código abierto.",
+  "For finance and audit": "Para finanzas y auditoría",
   "The decision replay assessment | Aidecis": "La evaluación de repetición de decisiones | Aidecis",
   "The decision replay assessment: four weeks, a fixed fee, read-only on your own SAP purchasing history, the way in to the Aidecis layer for supply chain.": "La evaluación de repetición de decisiones: cuatro semanas, tarifa fija, solo lectura sobre su propio histórico de compras en SAP, la vía de entrada a la capa de Aidecis para la cadena de suministro.",
   "Next to your decision platform | Aidecis": "Junto a su plataforma de decisiones | Aidecis",
@@ -74,6 +77,9 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
   "Fashion, textile and retail supply-chain decisions on late shipments, air freight and sourcing due diligence, with authority and evidence on record.": "Decisiones de la cadena de suministro de moda, textil y retail sobre envíos retrasados, transporte aéreo y diligencia debida en el abastecimiento, con autoridad y evidencias registradas."
 });
 Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
+  "For finance and audit | Aidecis": "Voor finance en audit | Aidecis",
+  "For finance and audit: the delegation of authority run as executable decision rights, every write checked against it, with an open-source ledger verifier.": "Voor finance en audit: de delegatie van bevoegdheid uitgevoerd als uitvoerbare beslisrechten, elke schrijfactie eraan getoetst, met een open-source grootboekverifier.",
+  "For finance and audit": "Voor finance en audit",
   "The decision replay assessment | Aidecis": "Het decision-replay-assessment | Aidecis",
   "The decision replay assessment: four weeks, a fixed fee, read-only on your own SAP purchasing history, the way in to the Aidecis layer for supply chain.": "Het decision-replay-assessment: vier weken, vaste prijs, alleen-lezen op uw eigen SAP-inkoopgeschiedenis, de ingang tot de Aidecis-laag voor de supply chain.",
   "Next to your decision platform | Aidecis": "Naast uw beslisplatform | Aidecis",

@@ -100,6 +100,9 @@ PAGES = {
     'platform-adjacent.html': ('Next to your decision platform | Aidecis',
                                'Already run a planning or decision platform? Aidecis governs what it cannot see: the steps in other systems and teams, the authority and the chain outcome.',
                                'Next to your decision platform', []),
+    'finance-audit.html': ('For finance and audit | Aidecis',
+                           'For finance and audit: the delegation of authority run as executable decision rights, every write checked against it, with an open-source ledger verifier.',
+                           'For finance and audit', []),
 }
 for file, name, title, desc in INDUSTRIES:
     PAGES[file] = (title, desc, name, [('Industries', 'industries.html')])
@@ -224,7 +227,7 @@ def lastmod(file):
     out = subprocess.run(['git', 'log', '-1', '--format=%cs', '--', file], cwd=ROOT, capture_output=True, text=True).stdout.strip()
     return out or '2026-10-26'
 
-order = ['index.html', 'use-cases.html', 'benefits.html', 'industries.html', 'accountability.html', 'security.html', 'company.html', 'team.html', 'contact.html', 'assessment.html', 'platform-adjacent.html'] + \
+order = ['index.html', 'use-cases.html', 'benefits.html', 'industries.html', 'accountability.html', 'security.html', 'company.html', 'team.html', 'contact.html', 'assessment.html', 'platform-adjacent.html', 'finance-audit.html'] + \
         [f for f, *_ in INDUSTRIES] + ['news.html'] + ARTICLES + ['privacy-policy.html', 'cookie-policy.html', 'terms.html']
 lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
 for f in order:
