@@ -35,7 +35,7 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
   "The first slice is always read-only, and a shadow result is a valid outcome. Only after the assessment and a shadow run does one decision move to a single gated write route into your own SAP test system, under its own authority.": "El primer tramo siempre es de solo lectura, y un resultado en sombra es un resultado válido. Solo tras la evaluación y una ejecución en sombra, una decisión pasa a una única ruta de escritura controlada hacia su propio sistema de pruebas de SAP, bajo su propia autoridad.",
   "Start here": "Empiece aquí",
   "Book a decision replay assessment.": "Reserve una evaluación de repetición de decisiones.",
-  "SAP S/4 process manufacturers in the Netherlands and Belgium first. Pilot or evidence sprint: €16,000 to €24,000 (10 to 15 days).": "Fabricantes de proceso con SAP S/4 en los Países Bajos y Bélgica primero. Piloto o sprint de evidencia: 16.000 € a 24.000 € (de 10 a 15 días).",
+  "Built for SAP S/4 process manufacturers across European industry. Pilot or evidence sprint: €16,000 to €24,000 (10 to 15 days).": "Diseñado para fabricantes de proceso con SAP S/4 en toda la industria europea. Piloto o sprint de evidencia: 16.000 € a 24.000 € (de 10 a 15 días).",
   "Book a decision replay assessment": "Reserve una evaluación de repetición de decisiones",
   "Estimate the investment": "Estime la inversión",
 });
@@ -73,7 +73,7 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "The first slice is always read-only, and a shadow result is a valid outcome. Only after the assessment and a shadow run does one decision move to a single gated write route into your own SAP test system, under its own authority.": "Het eerste deel is altijd alleen-lezen, en een schaduwresultaat is een geldige uitkomst. Pas na het assessment en een schaduwrun gaat één beslissing naar één gecontroleerde schrijfroute in uw eigen SAP-testsysteem, onder zijn eigen bevoegdheid.",
   "Start here": "Begin hier",
   "Book a decision replay assessment.": "Boek een decision-replay-assessment.",
-  "SAP S/4 process manufacturers in the Netherlands and Belgium first. Pilot or evidence sprint: €16,000 to €24,000 (10 to 15 days).": "SAP S/4-procesfabrikanten in Nederland en België eerst. Pilot of evidence-sprint: € 16.000 tot € 24.000 (10 tot 15 dagen).",
+  "Built for SAP S/4 process manufacturers across European industry. Pilot or evidence sprint: €16,000 to €24,000 (10 to 15 days).": "Gebouwd voor SAP S/4-procesfabrikanten in de hele Europese industrie. Pilot of evidence-sprint: € 16.000 tot € 24.000 (10 tot 15 dagen).",
   "Book a decision replay assessment": "Boek een decision-replay-assessment",
   "Estimate the investment": "Schat de investering",
 });
