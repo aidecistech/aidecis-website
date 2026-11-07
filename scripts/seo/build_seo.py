@@ -50,10 +50,10 @@ INDUSTRIES = [
      'Fashion, textile and retail supply-chain decisions on late shipments, air freight and sourcing due diligence, with authority and evidence on record.'),
 ]
 
-USE_CASES = ['Expedite freight after disruption', 'Inventory reallocation', 'Demand surge allocation',
+USE_CASES = ['Procurement price, quantity or PO exception', 'Inventory reallocation', 'Demand surge allocation',
              'Supplier disruption and alternate source', 'Quality hold, release or substitute', 'Production rescheduling',
              'Logistics reroute or carrier choice', 'Customer promise and backorder priority',
-             'Procurement price, quantity or PO exception', 'Invoice variance, claim and close-out',
+             'Expedite freight after disruption', 'Invoice variance, claim and close-out',
     'Unplanned failure: run reduced or stop to repair', 'Buy a cargo, and the decisions it sets in motion']
 
 # file: (title, description, breadcrumb name or None for the home page, parent [(name, file)])
