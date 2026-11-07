@@ -50,25 +50,25 @@ INDUSTRIES = [
      'Fashion, textile and retail supply-chain decisions on late shipments, air freight and sourcing due diligence, with authority and evidence on record.'),
 ]
 
-USE_CASES = ['Expedite freight after disruption', 'Inventory reallocation', 'Demand surge allocation',
+USE_CASES = ['Procurement price, quantity or PO exception', 'Inventory reallocation', 'Demand surge allocation',
              'Supplier disruption and alternate source', 'Quality hold, release or substitute', 'Production rescheduling',
              'Logistics reroute or carrier choice', 'Customer promise and backorder priority',
-             'Procurement price, quantity or PO exception', 'Invoice variance, claim and close-out',
+             'Expedite freight after disruption', 'Invoice variance, claim and close-out',
     'Unplanned failure: run reduced or stop to repair', 'Buy a cargo, and the decisions it sets in motion']
 
 # file: (title, description, breadcrumb name or None for the home page, parent [(name, file)])
 PAGES = {
     'index.html': ('Aidecis | Supply-chain decision intelligence and accountability',
-                   'Aidecis is the decision intelligence and control layer for consequential supply-chain decisions, taken by people, algorithms or AI agents.',
+                   'Aidecis is the decision intelligence layer for supply chain, governing consequential decisions taken by people, algorithms or AI agents from signal to outcome.',
                    None, []),
     'use-cases.html': ('Supply-chain decision intelligence use cases | Aidecis',
-                       'Aidecis is the decision intelligence and control layer for consequential supply-chain decisions: twelve families and 71 decisions, from freight to trading.',
+                       'Aidecis is the decision intelligence layer for supply chain: it governs twelve families and 71 decision types end to end, from freight to trading.',
                        'Use cases', []),
     'benefits.html': ('Business case and ROI calculator | Aidecis',
                       'Model a transparent business case for supply-chain decision intelligence with your own assumptions: subscription, onboarding and pilot investment.',
                       'Benefits', []),
     'industries.html': ('Decision intelligence for 11 supply-chain industries | Aidecis',
-                        'Aidecis is the decision intelligence and control layer for consequential supply-chain decisions in eleven industries, from automotive to retail.',
+                        'Aidecis is the decision intelligence layer for supply chain, in eleven industries from automotive to retail.',
                         'Industries', []),
     'accountability.html': ('Where supply-chain decisions lose their owner | Aidecis',
                             'People, your own algorithms and vendors\' agents take supply-chain decisions. Aidecis gives them one authority model and one decision record, linked to outcomes.',
@@ -80,10 +80,10 @@ PAGES = {
                      'Aidecis is an Angeleus SLU company in Andorra. How we work with clients, who owns what, and how results are published.',
                      'Company', []),
     'team.html': ('Team: founding team and advisory board | Aidecis',
-                  'The founding team and advisory board behind Aidecis, the decision intelligence and control layer for supply-chain decisions.',
+                  'The founding team and advisory board behind Aidecis, the decision intelligence layer for supply chain.',
                   'Team', []),
     'contact.html': ('Contact Aidecis | Request a demo or pilot',
-                     'Contact Aidecis, the decision intelligence and control layer for consequential supply-chain decisions, to request a demo or discuss a pilot.',
+                     'Contact Aidecis, the decision intelligence layer for supply chain, to request a demo or discuss a pilot.',
                      'Contact', []),
     'privacy-policy.html': ('Privacy Policy | Aidecis',
                             'How Aidecis handles personal data, which rights you have and how to contact us about privacy.',
@@ -94,6 +94,15 @@ PAGES = {
     'terms.html': ('Terms of Service | Aidecis',
                    'The terms of service that apply when you use the Aidecis website and services.',
                    'Terms of service', []),
+    'assessment.html': ('The decision replay assessment | Aidecis',
+                        'The decision replay assessment: four weeks, a fixed fee, read-only on your own SAP purchasing history, the way in to the Aidecis layer for supply chain.',
+                        'Decision replay assessment', []),
+    'platform-adjacent.html': ('Next to your decision platform | Aidecis',
+                               'Already run a planning or decision platform? Aidecis governs what it cannot see: the steps in other systems and teams, the authority and the chain outcome.',
+                               'Next to your decision platform', []),
+    'finance-audit.html': ('For finance and audit | Aidecis',
+                           'For finance and audit: the delegation of authority run as executable decision rights, every write checked against it, with an open-source ledger verifier.',
+                           'For finance and audit', []),
 }
 for file, name, title, desc in INDUSTRIES:
     PAGES[file] = (title, desc, name, [('Industries', 'industries.html')])
@@ -114,7 +123,7 @@ for path in sorted((ROOT / 'news').glob('*.html')):
 ORG = {
     '@type': 'Organization', '@id': BASE + '#organization', 'name': 'Aidecis', 'url': BASE,
     'logo': {'@type': 'ImageObject', 'url': BASE + 'assets/aidecis-logo.png', 'width': 1983, 'height': 793},
-    'description': 'Aidecis is the decision intelligence and control layer for consequential supply-chain decisions.',
+    'description': 'Aidecis is the decision intelligence layer for supply chain.',
     'slogan': 'Intelligence into every decision. Accountability behind every action.',
     'email': 'william.johnson@aidecis.com',
     'address': {'@type': 'PostalAddress', 'streetAddress': 'Fiter i Rossel 46, 5A', 'addressLocality': 'Escaldes-Engordany', 'addressCountry': 'AD'},
@@ -218,7 +227,7 @@ def lastmod(file):
     out = subprocess.run(['git', 'log', '-1', '--format=%cs', '--', file], cwd=ROOT, capture_output=True, text=True).stdout.strip()
     return out or '2026-10-26'
 
-order = ['index.html', 'use-cases.html', 'benefits.html', 'industries.html', 'accountability.html', 'security.html', 'company.html', 'team.html', 'contact.html'] + \
+order = ['index.html', 'use-cases.html', 'benefits.html', 'industries.html', 'accountability.html', 'security.html', 'company.html', 'team.html', 'contact.html', 'assessment.html', 'platform-adjacent.html', 'finance-audit.html'] + \
         [f for f, *_ in INDUSTRIES] + ['news.html'] + ARTICLES + ['privacy-policy.html', 'cookie-policy.html', 'terms.html']
 lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
 for f in order:
