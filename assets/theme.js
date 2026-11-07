@@ -8,7 +8,17 @@
   function choice() { var c = stored(); return c === 'light' || c === 'system' ? c : 'dark'; }
   function sysDark() { return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches; }
   function resolved(c) { return c === 'dark' || (c === 'system' && sysDark()) ? 'dark' : 'light'; }
-  function apply(c) { root.setAttribute('data-theme', resolved(c)); root.setAttribute('data-theme-choice', c); }
+  function swapLogos(mode) {
+    // Dark uses the brand reverse (light) lockup; light uses the primary.
+    var want = mode === 'dark' ? 'aidecis-logo-reverse.png' : 'aidecis-logo.png';
+    var other = mode === 'dark' ? 'aidecis-logo.png' : 'aidecis-logo-reverse.png';
+    [].forEach.call(document.querySelectorAll('img[src*="aidecis-logo"]'), function (img) {
+      if (img.getAttribute('src').indexOf(other) !== -1) {
+        img.setAttribute('src', img.getAttribute('src').replace(other, want));
+      }
+    });
+  }
+  function apply(c) { var m = resolved(c); root.setAttribute('data-theme', m); root.setAttribute('data-theme-choice', c); swapLogos(m); }
   apply(choice());
   var mq = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
   if (mq && mq.addEventListener) mq.addEventListener('change', function () { if (choice() === 'system') { apply('system'); refresh(); } });
