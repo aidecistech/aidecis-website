@@ -66,6 +66,11 @@
 :root[data-theme="dark"] body .europe-section,
 :root[data-theme="dark"] body .site-header,
 :root[data-theme="dark"] footer {background:var(--surface)!important;}
+/* Header: align the menu bar to the logo's reverse-plate navy (#133C58) so the logo
+   sits flush in the bar, and the bar reads as distinct from the page (--paper #0d3f52). */
+:root[data-theme="dark"] .site-header,
+:root[data-theme="dark"] body .site-header,
+:root[data-theme="dark"] .site-header nav {background:#133c58!important;border-bottom-color:#214a66!important;}
 /* light borders -> rule */
 :root[data-theme="dark"] .canvas-bar,
 :root[data-theme="dark"] .case-columns > p,
