@@ -1,0 +1,101 @@
+/* Theme toggle control + dark theme. Loaded last so its overrides win.
+   The site's colours come from CSS variables plus many hardcoded light surfaces in
+   overhaul.css / website-refresh-2026.css; dark mode redefines the variables and
+   overrides those surfaces. --navy becomes a light accent for text; its background
+   uses are overridden explicitly. */
+
+/* The segmented Dark/Light/System control, next to the language selector. */
+.theme-switch { display: inline-flex; gap: 2px; align-items: center; padding: 2px; border: 1px solid var(--line); border-radius: 999px; }
+.theme-switch button { display: grid; place-items: center; width: 30px; height: 27px; padding: 0; border: 0; border-radius: 999px; background: transparent; color: var(--muted); cursor: pointer; transition: background .15s, color .15s; }
+.theme-switch button:hover { color: var(--ink); }
+.theme-switch button svg { width: 15px; height: 15px; }
+.theme-switch button[aria-pressed="true"] { background: var(--navy); color: #fff; }
+.theme-switch button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+/* ---- Dark theme ---- */
+:root[data-theme="dark"] {
+  --paper: #0b2630;
+  --cream: #0f2d38;
+  --ink: #e8f0f1;
+  --muted: #9fb6bd;
+  --line: #27454f;
+  --pale: #123540;
+  --navy: #8ccfe6;        /* light accent, for text and links */
+  --gold: #f5a623;
+  --green: #4fae89;
+  color-scheme: dark;
+}
+
+:root[data-theme="dark"] body { background: var(--paper); color: var(--ink); }
+
+/* Logo kept on a white plate in dark mode (brand-compliant: the JPEG logo stays on white). */
+:root[data-theme="dark"] .brand img,
+:root[data-theme="dark"] footer img { background: #fff; padding: 7px 10px; border-radius: 8px; box-sizing: content-box; }
+
+/* Header, footer and light section backgrounds → dark. */
+:root[data-theme="dark"] .site-header { background: #0b2630 !important; border-bottom-color: var(--line); }
+:root[data-theme="dark"] .flow-feature,
+:root[data-theme="dark"] .europe-section,
+:root[data-theme="dark"] .platform-section,
+:root[data-theme="dark"] .comparison-section,
+:root[data-theme="dark"] body > footer { background: var(--paper) !important; color: var(--ink); }
+:root[data-theme="dark"] .supply-section,
+:root[data-theme="dark"] .closing,
+:root[data-theme="dark"] .industry-cta,
+:root[data-theme="dark"] .portal-section { background: var(--cream) !important; }
+:root[data-theme="dark"] .industry-dropdown-panel { background: #0f2d38 !important; border-color: var(--line); }
+:root[data-theme="dark"] .industry-dropdown-panel a { border-bottom-color: var(--line) !important; }
+:root[data-theme="dark"] .review-status { background: #0f2d38f0 !important; border-color: var(--line); color: var(--muted); }
+
+/* Sections that are intentionally dark already use --navy as a background; keep them dark. */
+:root[data-theme="dark"] .decision-lifecycle { background: #071d26 !important; }
+:root[data-theme="dark"] .benefit-strip,
+:root[data-theme="dark"] .demo-launch-panel,
+:root[data-theme="dark"] .portal-reveal { background: #0a2832 !important; }
+
+/* Cards and panels. */
+:root[data-theme="dark"] .arch-cloud,
+:root[data-theme="dark"] .arch-customer { background: var(--cream) !important; border-color: var(--line) !important; }
+:root[data-theme="dark"] .arch-items > div,
+:root[data-theme="dark"] .arch-flow > div { background: #0f2d38 !important; border-color: var(--line) !important; }
+:root[data-theme="dark"] .arch-gateway { background: #12596f !important; border-color: #12596f !important; color: #fff; }
+:root[data-theme="dark"] .aidecis-column { background: #123540 !important; }
+:root[data-theme="dark"] .comparison-labels .aidecis-column { background: #12596f !important; color: #fff; }
+
+/* Buttons: --navy is now a light accent, so set an explicit dark-mode button. */
+:root[data-theme="dark"] .button,
+:root[data-theme="dark"] .booking-button,
+:root[data-theme="dark"] .contact-submit { background: #12596f !important; border-color: #12596f !important; color: #fff !important; }
+:root[data-theme="dark"] .button:hover,
+:root[data-theme="dark"] .booking-button:hover { background: #0d4759 !important; }
+:root[data-theme="dark"] .skip-link { background: #12596f; }
+:root[data-theme="dark"] .button-outline,
+:root[data-theme="dark"] .button-light { background: transparent !important; color: var(--ink) !important; border-color: var(--line) !important; }
+
+/* Nav and hardcoded light body text → light. */
+:root[data-theme="dark"] .site-header nav a,
+:root[data-theme="dark"] .industry-dropdown summary { color: #cfe0e6 !important; }
+:root[data-theme="dark"] .hero-copy .hero-lead,
+:root[data-theme="dark"] .industry-lead,
+:root[data-theme="dark"] .supply-copy > p:not(.eyebrow),
+:root[data-theme="dark"] .platform-intro > p:last-child,
+:root[data-theme="dark"] .comparison-head p:last-child,
+:root[data-theme="dark"] .comparison-row > *,
+:root[data-theme="dark"] .closing > p:not(.eyebrow),
+:root[data-theme="dark"] .industry-row p,
+:root[data-theme="dark"] .europe-section > div:nth-child(2) > p:last-child,
+:root[data-theme="dark"] .europe-points p,
+:root[data-theme="dark"] .pilot-investment p,
+:root[data-theme="dark"] .contact-details { color: #bccdd2 !important; }
+:root[data-theme="dark"] .industry-row { border-top-color: var(--line) !important; }
+
+/* Benefits calculator sets its own light vars; redefine for dark. */
+:root[data-theme="dark"] .benefits-calculator { --ink: #e8f0f1; --paper: #0f2d38; --line: #27454f; background: var(--paper); }
+:root[data-theme="dark"] .benefits-calculator .panel { background: #123540 !important; }
+
+/* Shell pages (assessment, platform, finance, company, accountability) are variable-driven;
+   lift a few surfaces that read as near-white. */
+:root[data-theme="dark"] .trust-section.alt,
+:root[data-theme="dark"] .accountability-hero { background: var(--cream); }
+:root[data-theme="dark"] .trust-grid > li,
+:root[data-theme="dark"] .trust-facts > li { background: #0f2d38; border-color: var(--line); }
