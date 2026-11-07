@@ -53,6 +53,31 @@
 :root[data-theme="dark"] .demo-launch-panel,
 :root[data-theme="dark"] .portal-reveal { background: #0a2832 !important; }
 
+/* --navy is now a light text accent, so every component that used it as a BACKGROUND
+   (white text on navy) must be kept dark, or the text would sit on a light fill. */
+:root[data-theme="dark"] .shared-workflow,
+:root[data-theme="dark"] .use-case-featured,
+:root[data-theme="dark"] .status-banner,
+:root[data-theme="dark"] .hero-gif,
+:root[data-theme="dark"] .hero-video,
+:root[data-theme="dark"] .pilot-video { background: #0a2832 !important; }
+:root[data-theme="dark"] .cookie-banner,
+:root[data-theme="dark"] .cookie-settings-trigger,
+:root[data-theme="dark"] .business-case-results,
+:root[data-theme="dark"] .language-selector { background: #0e2c38 !important; }
+:root[data-theme="dark"] .cookie-banner { border-color: var(--line) !important; }
+:root[data-theme="dark"] .trust-initials,
+:root[data-theme="dark"] .trust-node,
+:root[data-theme="dark"] .language-selector button[aria-pressed="true"],
+:root[data-theme="dark"] .theme-switch button[aria-pressed="true"],
+:root[data-theme="dark"] .comparison-labels .aidecis-column { background: #15596e !important; color: #fff !important; }
+
+/* News article callouts keep a hardcoded light fill; give them a dark surface. */
+:root[data-theme="dark"] .news-download,
+:root[data-theme="dark"] .news-source { background: #0f2d38 !important; border-color: var(--line) !important; }
+:root[data-theme="dark"] .news-download p,
+:root[data-theme="dark"] .news-source p { color: var(--ink) !important; }
+
 /* Cards and panels. */
 :root[data-theme="dark"] .arch-cloud,
 :root[data-theme="dark"] .arch-customer { background: var(--cream) !important; border-color: var(--line) !important; }

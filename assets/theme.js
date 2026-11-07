@@ -11,7 +11,7 @@
   function apply(c) { root.setAttribute('data-theme', resolved(c)); root.setAttribute('data-theme-choice', c); }
   apply(choice());
   var mq = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
-  if (mq && mq.addEventListener) mq.addEventListener('change', function () { if (choice() === 'system') apply('system'); render(); });
+  if (mq && mq.addEventListener) mq.addEventListener('change', function () { if (choice() === 'system') { apply('system'); refresh(); } });
 
   var ICONS = {
     dark: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>',
@@ -20,6 +20,15 @@
   };
   var OPTS = [['dark', 'Dark'], ['light', 'Light'], ['system', 'System']];
 
+  function refresh() {
+    // Update the pressed state in place so the focused button is never removed from the DOM.
+    var host = document.getElementById('theme-switch');
+    if (!host) return;
+    var c = choice();
+    [].forEach.call(host.querySelectorAll('button'), function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-theme-value') === c));
+    });
+  }
   function render() {
     var host = document.getElementById('theme-switch');
     if (!host) return;
@@ -33,7 +42,7 @@
         var v = b.getAttribute('data-theme-value');
         try { localStorage.setItem(KEY, v); } catch (e) { }
         apply(v);
-        render();
+        refresh();   // keeps b in the DOM, so its focus and focus ring stay
       });
     });
   }
