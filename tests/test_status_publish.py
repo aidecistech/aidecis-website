@@ -23,9 +23,9 @@ class PublishTests(unittest.TestCase):
     def test_status_survives_publish_and_is_excluded_from_live_comparison(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
-            for name in ("assets", "demo", "demo-v9.1", "news", "status", "bin", "server"):
+            for name in ("assets", "demo", "demo-v9.1", "demo-v9.2", "news", "status", "bin", "server"):
                 (root / name).mkdir()
-            for name in ("index.html", "robots.txt", "llms.txt", "sitemap.xml", "assets/style.css", "demo/index.html", "demo-v9.1/index.html", "news/example.html"):
+            for name in ("index.html", "robots.txt", "llms.txt", "sitemap.xml", "assets/style.css", "demo/index.html", "demo-v9.1/index.html", "demo-v9.2/index.html", "news/example.html"):
                 (root / name).write_text("published " + name)
             (root / "status/template.html").write_text("private template")
             (root / "status/incidents.json").write_text("[]")
@@ -33,6 +33,7 @@ class PublishTests(unittest.TestCase):
                        FAKE_ROOT=str(root), GITHUB_RUN_ID="123")
             subprocess.run(["bash", "-c", self.steps["Collect the publishable files"]["run"]], cwd=root, env=env, check=True, capture_output=True)
             self.assertFalse((root / "site/status").exists())
+            self.assertEqual((root / "site/demo-v9.2/index.html").read_text(), "published demo-v9.2/index.html")
             shutil.copytree(root / "site", root / "server", dirs_exist_ok=True)
             (root / "server/status").mkdir()
             (root / "server/status/status.json").write_text("independently generated")
@@ -57,7 +58,7 @@ sys.stdout.buffer.write((root / 'server' / path).read_bytes())
                 executable.chmod(0o755)
             result = subprocess.run(["bash", "-c", self.steps["Check the live site"]["run"]], cwd=root, env=env, capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-            self.assertEqual(len((root / "requests").read_text().splitlines()), 8)  # one request per published file, news included
+            self.assertEqual(len((root / "requests").read_text().splitlines()), 9)  # one request per published file, both demos and news included
             self.assertNotIn("status/", (root / "requests").read_text())
             env.update(SFTP_KEY="", LFTP_PASSWORD="fake-password", HOST="fake.example", SFTP_USER="fake", REMOTE="www", DRY="--dry-run")
             subprocess.run(["bash", "-c", self.steps["Upload over SFTP"]["run"]], cwd=root, env=env, check=True, capture_output=True)
