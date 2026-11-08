@@ -3,5 +3,6 @@ node_modules/
 dist/
 build/
 demo-v9.1/
+demo-v9.2/
 assets/vendor/
 assets/*.min.js
