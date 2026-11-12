@@ -71,6 +71,9 @@
 :root[data-theme="dark"] .site-header,
 :root[data-theme="dark"] body .site-header,
 :root[data-theme="dark"] .site-header nav {background:#133c58!important;border-bottom-color:#214a66!important;}
+/* Footer: the same reverse-plate navy, so the footer logo sits flush instead of on a visible box. */
+:root[data-theme="dark"] body > footer {background:#133c58!important;border-top-color:#214a66!important;}
+:root[data-theme="dark"] body > footer .footer-throughline {color:#9fb4be!important;}
 /* light borders -> rule */
 :root[data-theme="dark"] .canvas-bar,
 :root[data-theme="dark"] .case-columns > p,
