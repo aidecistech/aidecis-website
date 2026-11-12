@@ -8,7 +8,7 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='15' r='8' fill='%23D7A35B'/%3E%3Ccircle cx='14' cy='47' r='8' fill='%23173F57'/%3E%3Ccircle cx='50' cy='47' r='8' fill='%23173F57'/%3E%3Cpath d='M27 21 18 40M37 21l9 19M22 47h20' stroke='%23D7A35B' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
   <link rel="preload" as="image" href="assets/media/aidecis-supply-chain-interruption.gif" type="image/gif" fetchpriority="high">
   <link rel="stylesheet" href="assets/styles.css">
-<meta name="robots" content="index,follow"><link rel="stylesheet" href="assets/overhaul.css?v=20261112-footer1"><link rel="stylesheet" href="assets/icons-update.css?v=20261029-icons1">
+<meta name="robots" content="index,follow"><link rel="stylesheet" href="assets/overhaul.css?v=20261112-merge33"><link rel="stylesheet" href="assets/icons-update.css?v=20261029-icons1">
 <link rel="stylesheet" href="assets/website-refresh-2026.css?v=20261028-pricing1">
 <style>
 .flow-caption { max-width: 1440px; margin: 18px auto 0; color: #52646d; font-size: 15px; line-height: 1.6; }
@@ -43,6 +43,8 @@
 .modes-gate h3 { margin: 0 0 8px; color: var(--navy, #173f57); font-size: 20px; }
 .modes-gate p { margin: 0; color: #45545d; font-size: 16px; }
 .modes-gate ul { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; padding: 0; list-style: none; }
+.modes-gate p + p { margin-top: 10px; }
+.modes-gate .modes-status { color: #5e7682; font-size: 14px; }
 .modes-gate li { padding: 6px 12px; border: 1px solid var(--line, #d8e1e5); border-radius: 999px; color: var(--navy, #173f57); font-size: 14px; }
 .decision-modes-head > p.modes-maturity { margin-top: 22px; font-size: 16px; }
 </style>
@@ -66,7 +68,7 @@
 {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://www.aidecis.com/#organization","name":"Aidecis","url":"https://www.aidecis.com/","logo":{"@type":"ImageObject","url":"https://www.aidecis.com/assets/aidecis-logo.png","width":1983,"height":793},"description":"Aidecis is the decision intelligence layer for supply chain.","slogan":"Intelligence into every decision. Accountability behind every action.","email":"william.johnson@aidecis.com","address":{"@type":"PostalAddress","streetAddress":"Fiter i Rossel 46, 5A","addressLocality":"Escaldes-Engordany","addressCountry":"AD"},"parentOrganization":{"@type":"Organization","name":"Angeleus SLU"},"knowsAbout":["Decision intelligence","Supply-chain decision making","AI agent governance","Decision accountability","Delegation of authority","Human-in-the-loop approval","Supply-chain risk management"]},{"@type":"WebSite","@id":"https://www.aidecis.com/#website","name":"Aidecis","url":"https://www.aidecis.com/","inLanguage":"en","publisher":{"@id":"https://www.aidecis.com/#organization"}},{"@type":"WebPage","@id":"https://www.aidecis.com/#webpage","url":"https://www.aidecis.com/","name":"Aidecis | Supply-chain decision intelligence and accountability","description":"Aidecis is the decision intelligence layer for supply chain, governing consequential decisions taken by people, algorithms or AI agents from signal to outcome.","inLanguage":"en","isPartOf":{"@id":"https://www.aidecis.com/#website"},"about":{"@id":"https://www.aidecis.com/#organization"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://www.aidecis.com/assets/media/supply-chain-poster.jpg"}},{"@type":"SoftwareApplication","@id":"https://www.aidecis.com/#software","name":"Aidecis","applicationCategory":"BusinessApplication","applicationSubCategory":"Supply-chain decision intelligence","operatingSystem":"Web","url":"https://www.aidecis.com/","publisher":{"@id":"https://www.aidecis.com/#organization"},"description":"Aidecis governs consequential supply-chain decisions taken by people, existing bots and AI agents: who had authority, which policy applied, who approved the exception, what executed and what happened next. Policies are managed in a European cloud; a gateway in the customer environment carries out only permitted actions.","featureList":["Decision registry with evidence and outcome record","Policy library for authority, limits and operating rules","Approval routing and escalation to the accountable owner","Gateway for scoped execution in ERP, WMS, TMS and MES","Registration of bots and AI agents with owner, limits and version","Advice when a decision can move between people and bots"]}]}
 </script>
 <!-- seo:end -->
-<link rel="stylesheet" href="assets/theme.css?v=20261112-footer1"></head>
+<link rel="stylesheet" href="assets/theme.css?v=20261112-merge33"></head>
 <body>
   <div id="cookie-consent-banner" class="cookie-banner" role="dialog" aria-label="Cookie consent">
     <div class="cookie-content">
@@ -191,7 +193,21 @@
           </ul>
           <p>When one of them stops holding, the decision moves back down.</p>
         </div>
-        <p class="modes-maturity">How far a decision can move up the scale depends on your maturity in that decision family: basic, digital, advanced or leading. For basic or digital organisations we propose reviewed assistance and bounded pilots, not bot mode. Agent-to-agent chains (autonomy level 3 to 4) are not offered at launch.</p>
+        <p class="modes-maturity">How far a decision can move up the scale depends on your maturity in that decision family: basic, digital, advanced or leading. For basic or digital organisations we propose reviewed assistance and bounded pilots, not bot mode.</p>
+        <div class="modes-gate modes-chain" id="agent-to-agent">
+          <h3>Agent-to-agent chains: one chain at a time, never by default</h3>
+          <p>When one bot's output becomes the next bot's input, an error can travel down the chain with no person in between. So agent-to-agent (autonomy level 4) is never switched on for a whole decision family. A single chain qualifies when all of these hold:</p>
+          <ul>
+            <li>A closed process</li>
+            <li>Every agent through the enforced gateway</li>
+            <li>One owner for the whole chain</li>
+            <li>A cap on total value at risk</li>
+            <li>Reversible steps, tested rollback</li>
+            <li>Release conditions met on replayed decisions</li>
+          </ul>
+          <p>A closed process has fixed inputs, systems and outputs, and clear limits. Your confidence that a process is stable is where we start; replaying your own decisions is how we prove it. A breach at any step returns the whole chain to hybrid.</p>
+          <p class="modes-status">Status: in development for the founding-client pilot. No agent-to-agent chain runs in production today.</p>
+        </div>
       </div>
       <div class="decision-modes-grid">
         <article><span>01</span><h3>People</h3><p>A person with the right authority decides. Agents can prepare the evidence and the options.</p><p class="mode-scale">Human-to-agent · autonomy level 1, assisted</p></article>
@@ -209,13 +225,17 @@
       <div class="decision-modes-head">
         <p class="eyebrow">Two levels of control</p>
         <h2>Enforced where the action runs through Aidecis. Observed where it does not.</h2>
-        <p>Not every actor will act through Aidecis. A vendor's agent or your own MRP run often writes straight into the ERP, TMS or WMS with its own credentials. Aidecis covers both cases, and every decision record shows which level applied.</p>
+        <p>Not every actor will act through Aidecis on day one. A vendor's agent or your own MRP run often writes straight into the ERP, TMS or WMS with its own credentials. You do not have to change those write permissions to start. Aidecis covers both cases, and every decision record shows which level applied.</p>
       </div>
       <div class="decision-modes-grid">
-        <article><span>01</span><h3>Enforced control</h3><p>The action runs only through the Aidecis gateway, with a single-use grant that matches what was approved. Without the grant, nothing runs.</p><p class="mode-scale">What it proves: the exact action was authorised before it ran</p></article>
-        <article><span>02</span><h3>Observed control</h3><p>An agent or algorithm that writes in its own system is detected afterwards from that system's change records, matched against its registered role, limits and mode, and recorded. If it went outside them, it is flagged within minutes. Observed control never prevents an action; it shows it.</p><p class="mode-scale">What it proves: what ran, by whom, against which role and limit, within minutes after the fact</p></article>
+        <article><span>01</span><h3>Enforced control</h3><p>The action runs only through the Aidecis gateway, with a single-use grant that matches what was approved. Without the grant, nothing runs. Use it where an action must not run unapproved: above a set amount, or where it cannot be undone.</p><p class="mode-scale">What it proves: the exact action was authorised before it ran</p></article>
+        <article><span>02</span><h3>Observed control</h3><p>An agent or algorithm that writes in its own system is detected afterwards from that system's change records, matched against its registered role, limits and mode, and recorded. If it went outside them, it is flagged within minutes for its owner to act on. Observed control does not stop an action. It makes sure no action runs unseen.</p><p class="mode-scale">What it proves: what ran, by whom, against which role and limit, within minutes after the fact</p></article>
       </div>
-      <p class="control-levels-note">You decide when an actor moves from observed to enforced, per decision type, for example for every write above a set amount.</p>
+      <div class="decision-modes-points control-path">
+        <div><h3>1 · Observe first</h3><p>Register the actors and change no permissions. Measure how often their writes fall outside role or limit.</p></div>
+        <div><h3>2 · Decide on evidence</h3><p>The deviation rate per decision type shows where enforcement is worth the extra step, and where observing is enough.</p></div>
+        <div><h3>3 · Enforce where it matters</h3><p>Move an actor to enforced per decision type, for example for every write above a set amount. Aidecis can recommend it; you decide.</p></div>
+      </div>
     </section>
 
     <section class="decision-proof" aria-label="Next to a decision platform"><div class="decision-proof-heading"><p class="eyebrow">Already run a decision platform?</p><h2>Govern what your platform cannot see.</h2><p>Aidecis does not compete for a planning or decision platform's logic. It takes the platform in as one actor in the chain and governs the steps, the authority and the outcome around it.</p></div><a class="round-link" href="platform-adjacent.html">See how Aidecis sits next to it <span aria-hidden="true">↗</span></a></section>
@@ -391,7 +411,7 @@
     <img src="assets/aidecis-logo.png" alt="Aidecis" class="logo-light"><img src="assets/aidecis-logo-reverse.png" alt="Aidecis" class="logo-dark">
     <span><span>Intelligence into every decision. Accountability behind every action.</span><span class="footer-throughline" style="display:block;margin-top:6px;color:#5E7682;font-size:13px;letter-spacing:.02em">Authority before autonomy · Evidence follows the action · Learn within governed boundaries</span></span>
     <div class="footer-legal">
-      <a href="use-cases.html">Use cases</a><a href="benefits.html">Benefits</a><a href="assessment.html">How to start</a><a href="finance-audit.html">For finance and audit</a><a href="industries.html">Industries</a><a href="decision-intelligence-software-supply-chain.html">Compare</a><a href="news.html">News</a><a href="company.html">Company</a><a href="team.html">Team</a><a href="security.html">Security and data</a><a href="contact.html">Contact</a>
+      <a href="use-cases.html">Use cases</a><a href="benefits.html">Benefits</a><a href="assessment.html">How to start</a><a href="finance-audit.html">For finance and audit</a><a href="industries.html">Industries</a><a href="decision-intelligence-software-supply-chain.html">Compare</a><a href="buyer-questions.html">Buyer questions</a><a href="news.html">News</a><a href="company.html">Company</a><a href="team.html">Team</a><a href="security.html">Security and data</a><a href="contact.html">Contact</a>
       <a href="privacy-policy.html">Privacy policy</a>
       <a href="cookie-policy.html">Cookie policy</a>
       <a href="terms.html">Terms of service</a>
@@ -399,7 +419,7 @@
   </footer>
 
   <script src="assets/translations.js?v=20261029-vision1"></script>
-  <script src="assets/proposal-translations.js?v=20261029-vision1"></script><script src="assets/brand-refresh-translations.js?v=20261025-modes1"></script><script src="assets/site-copy-editorial.js?v=20261017-pilotcopy1"></script><script src="assets/seo-translations.js?v=20261107-seo3"></script><script src="assets/pricing-translations.js?v=20261029-vision1"></script><script src="assets/positioning-translations.js?v=20261029-review1"></script><script src="assets/home-3-4-translations.js?v=20261029-review1"></script><script src="assets/claims-review-translations.js?v=20261029-review1"></script><script src="assets/trust-review-translations.js?v=20261029-review2"></script><script src="assets/procurement-focus-translations.js?v=20261030-focus1"></script><script src="assets/positioning-layer-translations.js?v=20261107-layer1"></script><script src="assets/site.js?v=20261106-visitors1"></script>
+  <script src="assets/proposal-translations.js?v=20261029-vision1"></script><script src="assets/brand-refresh-translations.js?v=20261025-modes1"></script><script src="assets/site-copy-editorial.js?v=20261017-pilotcopy1"></script><script src="assets/seo-translations.js?v=20261112-seo4"></script><script src="assets/pricing-translations.js?v=20261029-vision1"></script><script src="assets/positioning-translations.js?v=20261029-review1"></script><script src="assets/home-3-4-translations.js?v=20261029-review1"></script><script src="assets/claims-review-translations.js?v=20261029-review1"></script><script src="assets/trust-review-translations.js?v=20261029-review2"></script><script src="assets/procurement-focus-translations.js?v=20261030-focus1"></script><script src="assets/positioning-layer-translations.js?v=20261107-layer1"></script><script src="assets/buyer-review-translations.js?v=20261112-buyer2"></script><script src="assets/site.js?v=20261106-visitors1"></script>
 <script src="assets/overhaul.js?v=20261017-review5"></script><script src="assets/icons-update.js?v=20261029-review1"></script>
 
 <script src="assets/theme.js?v=20261107-theme7"></script></body>

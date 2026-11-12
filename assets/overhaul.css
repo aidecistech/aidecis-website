@@ -38,6 +38,7 @@ body > footer {
 body > footer .footer-throughline { text-align: left !important; }
 body > footer > img { grid-column: 1 !important; grid-row: 1 !important; display:block; width:100%; max-width:130px; height:auto; object-fit:contain; }
 body > footer > span { grid-column: 2 !important; grid-row: 1 !important; text-align: left !important; }
+body > footer > span > span { display: block !important; text-align: left !important; }
 body > footer > .footer-legal {
   grid-column: 1 / -1 !important; grid-row: 2 !important;
   display: flex !important; flex-wrap: wrap;

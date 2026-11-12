@@ -105,8 +105,12 @@ PAGES = {
                            'For finance and audit', []),
     'decision-intelligence-software-supply-chain.html': (
         'Decision intelligence software for supply chain (2026) | Aidecis',
-        "A 2026 buyer's guide to decision intelligence software for supply chain, and where Aidecis, Aera, o9, Kinaxis, Blue Yonder, SAP IBP and others each fit.",
+        "A 2026 buyer's guide to decision intelligence software for supply chain: where Aidecis, Aera, o9, Kinaxis, SAP, Celonis, Palantir and others each fit.",
         'Decision intelligence software', []),
+    'buyer-questions.html': (
+        'Buyer questions: what Aidecis does and does not do | Aidecis',
+        'Straight answers to what buyers ask about Aidecis: SAP, MES and OEE, references, what is available now, agent-to-agent chains and pricing.',
+        'Buyer questions', []),
 }
 for file, name, title, desc in INDUSTRIES:
     PAGES[file] = (title, desc, name, [('Industries', 'industries.html')])
@@ -176,6 +180,12 @@ def jsonld(file, title, desc, crumb, parents):
     if file == 'use-cases.html':
         graph.append({'@type': 'ItemList', 'name': 'Consequential supply-chain decisions', 'itemListElement': [
             {'@type': 'ListItem', 'position': i + 1, 'name': n, 'url': f'{url}#decision-{i + 1}'} for i, n in enumerate(USE_CASES)]})
+    if file == 'buyer-questions.html':
+        # FAQPage built from the questions in the page itself, so the structured data never drifts from the copy.
+        text = (ROOT / file).read_text()
+        faqs = re.findall(r'<details(?: open)?><summary>([^<]+)</summary><p>([^<]+)</p></details>', text)
+        graph.append({'@type': 'FAQPage', '@id': url + '#faq', 'mainEntity': [
+            {'@type': 'Question', 'name': unescape(q), 'acceptedAnswer': {'@type': 'Answer', 'text': unescape(a)}} for q, a in faqs]})
     if file == 'industries.html':
         graph.append({'@type': 'ItemList', 'name': 'Industries', 'itemListElement': [
             {'@type': 'ListItem', 'position': i + 1, 'name': n, 'url': page_url(f)} for i, (f, n, _, _) in enumerate(INDUSTRIES)]})
@@ -231,7 +241,7 @@ def lastmod(file):
     out = subprocess.run(['git', 'log', '-1', '--format=%cs', '--', file], cwd=ROOT, capture_output=True, text=True).stdout.strip()
     return out or '2026-10-26'
 
-order = ['index.html', 'use-cases.html', 'benefits.html', 'industries.html', 'accountability.html', 'security.html', 'company.html', 'team.html', 'contact.html', 'assessment.html', 'platform-adjacent.html', 'finance-audit.html', 'decision-intelligence-software-supply-chain.html'] + \
+order = ['index.html', 'use-cases.html', 'benefits.html', 'industries.html', 'accountability.html', 'security.html', 'company.html', 'team.html', 'contact.html', 'assessment.html', 'platform-adjacent.html', 'finance-audit.html', 'decision-intelligence-software-supply-chain.html', 'buyer-questions.html'] + \
         [f for f, *_ in INDUSTRIES] + ['news.html'] + ARTICLES + ['privacy-policy.html', 'cookie-policy.html', 'terms.html']
 lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
 for f in order:
