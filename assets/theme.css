@@ -71,6 +71,9 @@
 :root[data-theme="dark"] .site-header,
 :root[data-theme="dark"] body .site-header,
 :root[data-theme="dark"] .site-header nav {background:#133c58!important;border-bottom-color:#214a66!important;}
+/* Footer: the same reverse-plate navy, so the footer logo sits flush instead of on a visible box. */
+:root[data-theme="dark"] body > footer {background:#133c58!important;border-top-color:#214a66!important;}
+:root[data-theme="dark"] body > footer .footer-throughline {color:#9fb4be!important;}
 /* light borders -> rule */
 :root[data-theme="dark"] .canvas-bar,
 :root[data-theme="dark"] .case-columns > p,
@@ -377,10 +380,6 @@
 :root[data-theme="dark"] .trust-node,
 :root[data-theme="dark"] .comparison-labels .aidecis-column { background: #15596e !important; color: #fff !important; }
 
-/* The footer carries the reverse logo, whose own background is #133c58: the footer takes the same colour as the header,
-   so the logo does not sit in a box. The second tagline line stays readable on it. */
-:root[data-theme="dark"] body > footer{background:#133c58!important;border-top-color:#214a66!important}
-:root[data-theme="dark"] body > footer .footer-throughline{color:var(--muted)!important}
 /* Pages that carry one logo only (the news articles): in the dark theme the reverse logo takes its place, in the header
    and in the footer, so the navy logo never sits on a navy bar. */
 :root[data-theme="dark"] img[src$="aidecis-logo.png"]:not(.logo-light){content:url("aidecis-logo-reverse.png")}
