@@ -56,3 +56,17 @@ body > footer > .footer-legal {
 .menu-toggle { display:none !important; }
 @media(max-width:860px){.site-header{height:auto;min-height:78px;flex-wrap:wrap;justify-content:space-between;padding-top:12px;padding-bottom:12px}.site-header nav{display:flex!important;position:static;order:3;flex:1 0 100%;width:100%;flex-direction:row;flex-wrap:wrap;justify-content:flex-start;gap:10px 20px;margin:0;padding:10px 0 0;background:transparent;border:0}.site-header nav a,.site-header nav summary{font-size:12px}}
 @media(max-width:480px){.site-header nav{gap:9px 14px}}
+/* Medium widths (861 to 1280px): a menu label never breaks inside itself ("Use cases" on two lines), and the menu never
+   disappears (861 to 940px had none). Up to 1100px the
+   links take their own row under the logo, as below 860px; above it the spacing tightens so everything fits on one row. */
+.site-header nav > a, .site-header nav summary { white-space: nowrap; }
+@media (min-width: 1101px) and (max-width: 1280px) {
+  .site-header { gap: 14px !important; padding-left: 24px !important; padding-right: 24px !important; }
+  .site-header nav { gap: 14px !important; }
+}
+@media (min-width: 861px) and (max-width: 1100px) {
+  .site-header { height: auto !important; min-height: 92px; flex-wrap: wrap !important; row-gap: 0 !important; padding-top: 10px !important; padding-bottom: 8px !important; }
+  /* An older rule (styles.css) hides the menu below 940px, and only the rule below 860px shows it again: show it here. */
+  .site-header nav { display: flex !important; flex-wrap: wrap; order: 9; flex: 1 0 100%; justify-content: flex-start; margin: 0 !important; padding: 4px 0 4px; }
+  .site-header .header-contact { margin-left: auto; }
+}
