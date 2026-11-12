@@ -175,3 +175,14 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "Team: founding team and advisory board | Aidecis": "Team: founding team en advisory board | Aidecis",
   "The founding team and advisory board behind Aidecis, the decision intelligence layer for supply chain.": "Het founding team en de advisory board achter Aidecis, de decision-intelligencelaag voor de supply chain."
 });
+// Buyer review (12 Nov 2026): buyer questions page and the updated compare description.
+Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
+  "A 2026 buyer's guide to decision intelligence software for supply chain: where Aidecis, Aera, o9, Kinaxis, SAP, Celonis, Palantir and others each fit.": "Guía de compra 2026 del software de inteligencia decisional para la cadena de suministro: dónde encajan Aidecis, Aera, o9, Kinaxis, SAP, Celonis, Palantir y otros.",
+  "Buyer questions: what Aidecis does and does not do | Aidecis": "Preguntas de compradores: qué hace Aidecis y qué no | Aidecis",
+  "Straight answers to what buyers ask about Aidecis: SAP, MES and OEE, references, what is available now, agent-to-agent chains and pricing.": "Respuestas directas a lo que preguntan los compradores sobre Aidecis: SAP, MES y OEE, referencias, qué está disponible hoy, cadenas de agente a agente y precios."
+});
+Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
+  "A 2026 buyer's guide to decision intelligence software for supply chain: where Aidecis, Aera, o9, Kinaxis, SAP, Celonis, Palantir and others each fit.": "Koopgids 2026 voor decision-intelligencesoftware voor supply chain: waar Aidecis, Aera, o9, Kinaxis, SAP, Celonis, Palantir en andere elk passen.",
+  "Buyer questions: what Aidecis does and does not do | Aidecis": "Vragen van kopers: wat Aidecis wel en niet doet | Aidecis",
+  "Straight answers to what buyers ask about Aidecis: SAP, MES and OEE, references, what is available now, agent-to-agent chains and pricing.": "Rechtstreekse antwoorden op wat kopers over Aidecis vragen: SAP, MES en OEE, referenties, wat nu beschikbaar is, ketens van agent naar agent en prijzen."
+});
