@@ -30,27 +30,33 @@ body > footer {
   gap: 14px clamp(12px, 2vw, 30px) !important;
   padding-block: 14px !important;
 }
-body > footer > :first-child { grid-column: 1 !important; grid-row: 1 !important; }
-body > footer > img { display:block; width:100%; max-width:130px; height:auto; object-fit:contain; }
-body > footer > :nth-child(2) { grid-column: 2 !important; grid-row: 1 !important; text-align: left !important; }
-body > footer > :nth-child(3) {
+/* Placed by what each part is, not by its position: the footer carries a light and a dark logo, so counting children
+   put the tagline and the links in the wrong columns. */
+body > footer > img { grid-column: 1 !important; grid-row: 1 !important; display:block; width:100%; max-width:130px; height:auto; object-fit:contain; }
+body > footer > span { grid-column: 2 !important; grid-row: 1 !important; display: block !important; text-align: left !important; }
+body > footer > span > span { display: block !important; text-align: left !important; }
+body > footer > .footer-legal {
   grid-column: 3 !important; grid-row: 1 !important;
   display: flex !important; flex-wrap: wrap;
   align-items: center !important; justify-content: flex-end !important;
   gap: 10px clamp(10px, 1.3vw, 20px) !important;
+  max-width: min(52vw, 760px);
   margin: 0 !important;
 }
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   body > footer { grid-template-columns: minmax(96px, 110px) minmax(0, 1fr) !important; }
-  body > footer > :nth-child(3) { grid-column: 1 / -1 !important; grid-row: 2 !important; justify-content: flex-start !important; }
+  body > footer > .footer-legal { grid-column: 1 / -1 !important; grid-row: 2 !important; justify-content: flex-start !important; max-width: none; }
 }
 @media (max-width: 600px) {
   body > footer { grid-template-columns: 1fr !important; gap: 12px !important; }
-  body > footer > :first-child, body > footer > :nth-child(2), body > footer > :nth-child(3) { grid-column: 1 !important; grid-row: auto !important; }
-  body > footer > :nth-child(3) { justify-content: flex-start !important; }
+  body > footer > img, body > footer > span, body > footer > .footer-legal { grid-column: 1 !important; grid-row: auto !important; }
+  body > footer > .footer-legal { justify-content: flex-start !important; }
 }
 
 /* Keep every navigation item visible and wrapped across all viewports. */
 .menu-toggle { display:none !important; }
 @media(max-width:860px){.site-header{height:auto;min-height:78px;flex-wrap:wrap;justify-content:space-between;padding-top:12px;padding-bottom:12px}.site-header nav{display:flex!important;position:static;order:3;flex:1 0 100%;width:100%;flex-direction:row;flex-wrap:wrap;justify-content:flex-start;gap:10px 20px;margin:0;padding:10px 0 0;background:transparent;border:0}.site-header nav a,.site-header nav summary{font-size:12px}}
 @media(max-width:480px){.site-header nav{gap:9px 14px}}
+/* Between 861px and 1100px the links sit on their own row at the left: the footer reserves room for the fixed
+   cookie-settings control there, so it never covers the first link. */
+@media (min-width: 861px) and (max-width: 1100px) { html body > footer { padding-bottom: 64px !important; } }
