@@ -132,7 +132,7 @@
     <section class="decision-proof" aria-label="A connected decision"><div class="decision-proof-heading"><p class="eyebrow">One chain, not one decision</p><h2>A late PO line, followed to the customer promise.</h2><p>A consequential decision rarely stays in one system or one team. One change moves through the chain, and each step opens the next, under its own authority.</p></div><div class="decision-proof-grid"><article><span class="proof-icon" data-proof-icon="evidence" aria-hidden="true"></span><h3>See the consequences</h3><p>A late PO line changes material availability, which moves a production order, which puts a customer promise at risk.</p></article><article><span class="proof-icon" data-proof-icon="approve" aria-hidden="true"></span><h3>Check the authority at each step</h3><p>Every step is taken by the person, or the agent, allowed to take it, within the limit that applies.</p></article><article><span class="proof-icon" data-proof-icon="handoff" aria-hidden="true"></span><h3>Prove the whole chain</h3><p>One record across the systems, teams and vendors' agents the chain touches, linked to the outcome of the whole.</p></article></div><a class="round-link" href="use-cases.html">Follow one decision chain <span aria-hidden="true">↗</span></a></section><section class="flow-feature"><button class="hero-gif" id="flow-animation-open" type="button" aria-label="Open the animation full screen" aria-haspopup="dialog" aria-controls="flow-animation-viewer">
         <img src="assets/media/aidecis-supply-chain-interruption.gif" alt="Supply-chain network showing port congestion, an alternate route, and recovery" width="1400" height="700" fetchpriority="high" decoding="async">
         <span class="hero-gif-prompt">Click to view full screen <span aria-hidden="true">⤢</span></span>
-      </button><p class="flow-caption">Every orange point is a decision: a planner books the reroute, your planning system moves stock, a carrier's agent changes the booking. Aidecis applies one set of rules to all three and keeps one record.</p><p class="flow-caption flow-coverage">Where you want enforced control, your own integration checks Aidecis's single-use grant before an action runs. Registered actors that write in their own systems, such as the carrier's agent, are observed and reconciled after execution.</p></section><section class="comparison-section">
+      </button><p class="flow-caption">Every orange point is a decision: a planner books the reroute, your planning system moves stock, a carrier's agent changes the booking. Aidecis applies one set of rules to all three and keeps one record.</p><p class="flow-caption flow-coverage">With enforced control, your own integration checks Aidecis's single-use grant before an action runs. Registered actors that write in their own systems, such as the carrier's agent, are observed and reconciled after execution.</p></section><section class="comparison-section">
       <div class="comparison-head">
         <p class="eyebrow">What Aidecis is</p>
         <h2>Operational decision control.</h2>
@@ -206,7 +206,6 @@
             <li>Release conditions met on replayed decisions</li>
           </ul>
           <p>A closed process has fixed inputs, systems and outputs, and clear limits. Your confidence that a process is stable is where we start; replaying your own decisions is how we prove it. A breach at any step returns the whole chain to hybrid.</p>
-          <p class="modes-status">Status: in development for the founding-client pilot. No agent-to-agent chain runs in production today.</p>
         </div>
       </div>
       <div class="decision-modes-grid">
@@ -228,7 +227,7 @@
         <p>Not every actor will be under enforced control on day one. A vendor's agent or your own MRP run often writes straight into the ERP, TMS or WMS with its own credentials. You do not have to change those write permissions to start. Aidecis covers both cases, and every decision record shows which level applied.</p>
       </div>
       <div class="decision-modes-grid">
-        <article><span>01</span><h3>Enforced control</h3><p>Aidecis issues a signed, single-use grant for exactly the approved action. Where you want enforced control, your own integration checks that grant before it executes: without a valid grant, the action does not run. Use it where an action must not run unapproved: above a set amount, or where it cannot be undone.</p><p class="mode-scale">What it proves: the exact action was authorised before it ran</p></article>
+        <article><span>01</span><h3>Enforced control</h3><p>Aidecis issues a signed, single-use grant for exactly the approved action. With enforced control, your own integration checks that grant before it executes: without a valid grant, the action does not run. Use it where an action must not run unapproved: above a set amount, or where it cannot be undone.</p><p class="mode-scale">What it proves: the exact action was authorised before it ran</p></article>
         <article><span>02</span><h3>Observed control</h3><p>An agent or algorithm that writes in its own system is detected afterwards from that system's change records, matched against its registered role, limits and mode, and recorded. If it went outside them, it is flagged within minutes for its owner to act on. Observed control does not stop an action. It makes sure no action runs unseen.</p><p class="mode-scale">What it proves: what ran, by whom, against which role and limit, within minutes after the fact</p></article>
       </div>
       <div class="decision-modes-points control-path">
@@ -289,7 +288,7 @@
       <div class="section-intro platform-intro">
         <p class="eyebrow">One product, two operating environments</p>
         <h2>Managed in the European cloud.<br>Executed in your environment.</h2>
-        <p>Aidecis manages policies and decision logic in its European cloud. Aidecis never writes into your systems. Your people, systems or bots execute the approved action, and Aidecis reads each execution back and reconciles it against the approval. SAP stays your single source of truth. Where you want enforced control, your own integration checks Aidecis's single-use grant before it executes: without a valid grant, the action does not run.</p>
+        <p>Aidecis manages policies and decision logic in its European cloud. Aidecis never writes into your systems. Your people, systems or bots execute the approved action, and Aidecis reads each execution back and reconciles it against the approval. SAP stays your single source of truth. With enforced control, your own integration checks Aidecis's single-use grant before it executes: without a valid grant, the action does not run.</p>
         <p>In the demo, execution and read-back run against simulated systems.</p>
       </div>
       <div class="architecture">
