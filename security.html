@@ -72,8 +72,8 @@
       <div class="accountability-hero-inner">
         <p class="eyebrow"><span></span> Security and data</p>
         <h1>How Aidecis protects <em>your data and your authority</em></h1>
-        <p class="accountability-intro">This page is for procurement, security and risk teams. It sets out how Aidecis is built, which data it reads and writes, where that data is hosted, who processes it, and what you keep if you leave. You can read it without a sales call.</p>
-        <p class="accountability-summary">Aidecis is the decision intelligence layer for supply chain. It writes to your systems only through a gateway that runs in your environment, and only when your policy allows the action.</p>
+        <p class="accountability-intro">This page is for procurement, security and risk teams. It sets out how Aidecis is built, which data it reads and records, where that data is hosted, who processes it, and what you keep if you leave. You can read it without a sales call.</p>
+        <p class="accountability-summary">Aidecis is the decision intelligence layer for supply chain. Aidecis reads from your systems and never writes into them. Your people, systems or bots execute the approved action, and Aidecis reads each execution back and reconciles it against the approval. SAP stays your single source of truth.</p>
         <a class="text-link" href="#architecture">Read the architecture <span aria-hidden="true">↓</span></a>
       </div>
     </section>
@@ -87,8 +87,8 @@
         </div>
         <div class="trust-diagram" role="img" aria-label="Your systems, the Aidecis gateway in your environment, the Aidecis control plane and the model gateway, both hosted in the EU.">
           <div class="trust-node client"><small>Your systems</small><strong>ERP, TMS, WMS, MES, quality</strong><span>Your source records stay where they are.</span></div>
-          <div class="trust-link"><span>Approved writes only</span></div>
-          <div class="trust-node client"><small>Your environment</small><strong>Aidecis gateway</strong><span>The only path for writes into your systems.</span></div>
+          <div class="trust-link"><span>Read only</span></div>
+          <div class="trust-node client"><small>Your environment</small><strong>Aidecis gateway</strong><span>Reads your systems. Holds no write rights in them.</span></div>
           <div class="trust-link"><span>Outbound only</span></div>
           <div class="trust-node aidecis"><small>EU-hosted</small><strong>Aidecis control plane</strong><span>Policies, approvals and the decision record.</span></div>
           <div class="trust-link"><span>Minimal fields</span></div>
@@ -97,11 +97,11 @@
         <div class="trust-boundary" aria-hidden="true"><span>Your side</span><span>Aidecis side, in the EU</span></div>
         <ul class="trust-grid">
           <li><b>Control plane</b><p>Holds your policies, delegation of authority, approval routing and the decision record. It is one shared platform for all clients; each client is a separate tenant, and row-level security in the database scopes every request to that one tenant. The policy kernel is deterministic code. No AI decides what is allowed.</p></li>
-          <li><b>Execution gateway, on your side</b><p>Software that runs on a virtual machine or container in your environment. It runs an action only with a signed, single-use grant bound to the exact route, object, action, amount, target and policy version. A tampered, expired, replayed or broadened grant does not execute, and a retry cannot create a second action.</p></li>
-          <li><b>Model gateway, hosted in the EU</b><p>Language models draft briefs and explain flags. They run behind one model gateway on EU-owned infrastructure. It keeps no prompts or answers beyond the request, keeps tenants apart, holds no credentials and has no network path beyond its approved route. A model never sets an amount, approves or writes.</p></li>
+          <li><b>Gateway and grants, on your side</b><p>Software that runs on a virtual machine or container in your environment. It reads approved sources and holds no write rights in your systems. For each approved action, Aidecis issues a signed, single-use grant bound to the exact route, object, action, amount, target and policy version. Where you want enforced control, your own integration checks that grant before it executes: a tampered, expired, replayed or broadened grant does not run, and a retry cannot create a second action.</p></li>
+          <li><b>Model gateway, hosted in the EU</b><p>Language models draft briefs and explain flags. They run behind one model gateway on EU-owned infrastructure. It keeps no prompts or answers beyond the request, keeps tenants apart, holds no credentials and has no network path beyond its approved route. A model never decides, computes authority or an amount, approves or acts.</p></li>
           <li><b>Hash-chained decision record</b><p>Every step, review, approval, grant, execution and outcome is written to an append-only record in which each event carries the hash of the one before. Corrections are new events. A changed, removed or reordered event breaks the chain.</p></li>
         </ul>
-        <p class="trust-note">Fail-safe by default: when policy, identity, evidence or the gateway cannot be trusted, or the control plane cannot be reached, consequential writes hold. Your own systems keep running and your people decide as before.</p>
+        <p class="trust-note">Fail-safe by default: when policy, identity, evidence or the gateway cannot be trusted, or the control plane cannot be reached, Aidecis issues no grant, and where your integration checks grants, the consequential action holds. Your own systems keep running and your people decide as before.</p>
       </div>
     </section>
 
@@ -109,13 +109,13 @@
       <div class="trust-inner">
         <div class="trust-head">
           <p class="eyebrow"><span></span> Data flows</p>
-          <h2>What Aidecis reads, writes and shows a model.</h2>
-          <p>Access is declared per decision type in a data contract, and it grows in stages that you approve: files, read-only, live evidence, then a write route. The first slice of every pilot is read-only.</p>
+          <h2>What Aidecis reads, records and shows a model.</h2>
+          <p>Access is declared per decision type in a data contract, and it grows in stages that you approve: files, read-only, live evidence, then governed execution. The first slice of every pilot is read-only.</p>
         </div>
         <ul class="trust-grid three">
           <li><small>Read</small><b>Only what the data contract declares</b><p>Approved sources and fields, at the freshness the contract sets. Sensitive fields are excluded by default. Every fact keeps its source system, source record and time, so you can see where it came from.</p></li>
-          <li><small>Write</small><b>Only through the gateway</b><p>Only approved actions, on routes certified one object and one operation at a time, never a whole system. Each write carries an idempotency key and its result is reconciled into the decision record.</p></li>
-          <li><small>Model</small><b>Minimal fields, nothing kept</b><p>A model receives only the fields a step needs, without your tenant identity or any credentials. Source text is treated as data, never as instructions. Nothing is stored after the request, and your data is never used to train or fine-tune a model unless you explicitly opt in.</p></li>
+          <li><small>Execute</small><b>By you, read back by Aidecis</b><p>Aidecis never writes into your systems. Your people, systems or bots execute the approved action, and Aidecis reads each execution back and reconciles its amount, quantity and object against the approval. A difference is held and settled by the deciding seat, never by the proposer. The decision record points to the SAP document.</p></li>
+          <li><small>Model</small><b>Minimal fields, nothing kept</b><p>A model receives only the fields a step needs, without your tenant identity or any credentials. Source text is treated as data, never as instructions. Nothing is stored after the request, and your data is never used to train or fine-tune a model unless you explicitly opt in. The Aidecis model, in development, is trained on Aidecis's own decision library, synthetic cases and fictional demo data, never on your content such as names, suppliers, materials, amounts, documents or free text. Your written opt-in covers only de-identified decision-process records (decision type, the amount as a share of the mandate limit, seat tier, route, timings, rework and outcome class), and you see what left.</p></li>
         </ul>
         <p class="trust-note">Your administrator consents to scopes, purposes, processors, regions, model providers and any learning participation. Retention, deletion, export and legal-hold rules are set per data class and per contract. Connector access is reviewed on personnel change, incident, contract end and at each recertification.</p>
       </div>
@@ -165,10 +165,10 @@
         <div class="trust-head">
           <p class="eyebrow"><span></span> Control coverage</p>
           <h2>What Aidecis enforces, and what it observes.</h2>
-          <p>Enforced before execution through the Aidecis gateway; observed and reconciled after execution for registered actors outside it.</p>
+          <p>Enforced before execution where your own integration checks the Aidecis grant; observed and reconciled after execution for registered actors outside it.</p>
         </div>
         <ul class="trust-grid">
-          <li><small>Before the action</small><b>Enforced control</b><p>For actions that run through the Aidecis gateway. Policy and authority are checked before the action runs. Without a valid grant, the action does not execute.</p></li>
+          <li><small>Before the action</small><b>Enforced control</b><p>Policy and authority are checked before Aidecis issues a single-use grant. Where you want enforced control, your own integration checks that grant before it executes: without a valid grant, the action does not run.</p></li>
           <li><small>After the action</small><b>Observed control</b><p>For registered actors that write in their own systems with their own credentials, such as a vendor's agent or your own algorithm. Aidecis reads their writes from the systems' change records, checks them against the actor's role and limits, reconciles them into the decision record and flags a breach within the agreed time.</p></li>
         </ul>
         <p class="trust-note">Observed control never prevents an action; it shows it. An observed decision is never labelled as authorised before the fact. You choose which actors move from observed to enforced.</p>
@@ -184,7 +184,7 @@
         <ul class="trust-grid">
           <li><b>Identity and segregation of duties</b><p>Single sign-on with your identity provider over OIDC, multi-factor authentication through that provider, and SCIM provisioning. Nobody approves their own proposal, and the sponsor of an agent cannot approve that agent's proposals.</p></li>
           <li><b>Agents with limited keys</b><p>Each agent has its own key, stored only as a hash, limited to reading and proposing, and valid for at most 90 days. Switching off the agent or its sponsor stops the next request.</p></li>
-          <li><b>Containment of language models</b><p>A model runs as a separate process with no credentials, no write tools and no network access beyond its approved endpoint. An instruction planted in an e-mail, a supplier message or an ERP text field cannot cause an action, because only the gateway writes, and only with a grant no model can create.</p></li>
+          <li><b>Containment of language models</b><p>A model runs as a separate process with no credentials, no write tools and no network access beyond its approved endpoint. An instruction planted in an e-mail, a supplier message or an ERP text field cannot cause an action, because Aidecis holds no write rights in your systems, and an enforced action runs only with a grant no model can create.</p></li>
           <li><b>Engineering and operations</b><p>Every change goes through a reviewed pull request. Dependencies, secrets, container images and code are scanned automatically on every change and every week. Backups run nightly, are encrypted off-site and are restore-tested.</p></li>
         </ul>
       </div>
@@ -213,7 +213,7 @@
           <h2>No certification claimed. Documentation on request.</h2>
           <p>Aidecis does not hold a security or AI certification and does not claim one.</p>
           <p>Our security and AI-governance documentation is mapped to ISO/IEC 42001 and to your deployer duties under the EU AI Act. It is available on request in the vendor-trust pack, with the threat model, the security baseline, the incident-response and restore runbooks, the data processing agreement and the subprocessor schedule.</p>
-          <p>An independent penetration test is scheduled for December 2026.</p>
+          <p>Security is improved continuously under a documented process on the ISO/IEC 27001 model: a risk register reviewed monthly, scanning on every change to code, dependencies and containers, security acceptance tests run as a regression set, a log of findings and fixes with dates, and a monthly management review. The process and its log are in the vendor-trust pack.</p>
         </div>
       </div>
     </section>
