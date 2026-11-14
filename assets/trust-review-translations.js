@@ -156,7 +156,7 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
   "Evidence": "Evidencia",
   "Results are published only with the client's approval.": "Los resultados solo se publican con la aprobación del cliente.",
   "Each case study states its baseline, scope, period, measure, result and limitations. The first will appear here once a client approves it.": "Cada caso de estudio indica su línea base, alcance, periodo, medida, resultado y limitaciones. El primero aparecerá aquí en cuanto un cliente lo apruebe.",
-  "The demo and the story tour run on fictional data and simulated systems. They show how Aidecis works; they are not client results.": "La demostración y el recorrido guiado funcionan con datos ficticios y sistemas simulados. Muestran cómo funciona Aidecis; no son resultados de clientes.",
+  "The demo and the story tour run on a fictional company, so you can see how Aidecis works before you share any data.": "La demostración y el recorrido guiado funcionan con una empresa ficticia, para que vea cómo funciona Aidecis antes de compartir ningún dato.",
   "Due diligence": "Diligencia debida",
   "Check us before you sign.": "Compruébenos antes de firmar.",
   "Ask for the vendor-trust pack, or read how Aidecis handles security and data.": "Solicite el paquete de confianza para proveedores o lea cómo gestiona Aidecis la seguridad y los datos."
@@ -316,7 +316,7 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "Evidence": "Bewijs",
   "Results are published only with the client's approval.": "Resultaten worden alleen gepubliceerd met toestemming van de klant.",
   "Each case study states its baseline, scope, period, measure, result and limitations. The first will appear here once a client approves it.": "Elke case study vermeldt de baseline, de scope, de periode, de maatstaf, het resultaat en de beperkingen. De eerste verschijnt hier zodra een klant die goedkeurt.",
-  "The demo and the story tour run on fictional data and simulated systems. They show how Aidecis works; they are not client results.": "De demo en de verhaaltour draaien op fictieve data en gesimuleerde systemen. Ze laten zien hoe Aidecis werkt; het zijn geen klantresultaten.",
+  "The demo and the story tour run on a fictional company, so you can see how Aidecis works before you share any data.": "De demo en de verhaaltour draaien op een fictief bedrijf, zodat u ziet hoe Aidecis werkt voordat u gegevens deelt.",
   "Due diligence": "Due diligence",
   "Check us before you sign.": "Controleer ons voordat u tekent.",
   "Ask for the vendor-trust pack, or read how Aidecis handles security and data.": "Vraag het vendor-trustpakket aan, of lees hoe Aidecis met beveiliging en data omgaat."

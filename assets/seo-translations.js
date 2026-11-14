@@ -186,3 +186,13 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "Buyer questions: what Aidecis does and does not do | Aidecis": "Vragen van kopers: wat Aidecis wel en niet doet | Aidecis",
   "Straight answers to what buyers ask about Aidecis: SAP, MES and OEE, references, what is available now, agent-to-agent chains and pricing.": "Rechtstreekse antwoorden op wat kopers over Aidecis vragen: SAP, MES en OEE, referenties, wat nu beschikbaar is, ketens van agent naar agent en prijzen."
 });
+
+// S-CLAIM page (14 Nov 2026).
+Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
+  "Meet S-CLAIM, the Supply Chain Learning AI Model | Aidecis": "Conozca S-CLAIM, el Supply Chain Learning AI Model | Aidecis",
+  "S-CLAIM is the Aidecis model for supply-chain decisions: trained on a decision library, rules judged by practitioners and realistic cases, never on client data.": "S-CLAIM es el modelo de Aidecis para decisiones de cadena de suministro: entrenado con una biblioteca de decisiones, reglas evaluadas por profesionales y casos realistas, nunca con datos de clientes."
+});
+Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
+  "Meet S-CLAIM, the Supply Chain Learning AI Model | Aidecis": "Maak kennis met S-CLAIM, het Supply Chain Learning AI Model | Aidecis",
+  "S-CLAIM is the Aidecis model for supply-chain decisions: trained on a decision library, rules judged by practitioners and realistic cases, never on client data.": "S-CLAIM is het Aidecis-model voor supply-chainbeslissingen: getraind op een beslisbibliotheek, regels beoordeeld door vakmensen en realistische cases, nooit op klantdata."
+});
