@@ -1,0 +1,44 @@
+/* Animated architecture on the home page (14 Nov 2026). Positions come from the markup (--l/--t/--w/--h landscape, --pl/--pt/--pw/--ph portrait). */
+.flowviz{--fv-cloud:#e9f0f2;--fv-cloud-line:#b9ced6;--fv-site-line:#cfcdc3;--fv-node:#fff;--fv-node-line:#cad7dc;--fv-title:#173f57;--fv-small:#52646d;--fv-tag:#a66b2a;--fv-gate:#173f57;--fv-gold:#d7a35b;--fv-bubble:#fff;--fv-bubble-text:#173f57;--fv-path:rgba(215,163,91,.45);max-width:var(--max,1440px);margin:62px auto 0}
+:root[data-theme="dark"] .flowviz{--fv-cloud:rgba(255,255,255,.035);--fv-cloud-line:rgba(215,163,91,.35);--fv-site-line:rgba(255,255,255,.22);--fv-node:#123247;--fv-node-line:rgba(255,255,255,.16);--fv-title:#fff;--fv-small:#b9cdd6;--fv-tag:#d7a35b;--fv-gate:#0b2433;--fv-bubble:#f6f1e6;--fv-bubble-text:#173f57;--fv-path:rgba(215,163,91,.5)}
+.fv-stage{position:relative;width:100%;aspect-ratio:1200/830;container-type:inline-size}
+.fv-lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.fv-port{display:none}
+.fv-path{fill:none;stroke:var(--fv-path);stroke-width:2;stroke-dasharray:6 7;vector-effect:non-scaling-stroke}
+.fv-path.is-live{stroke:var(--fv-gold);stroke-dasharray:none}
+.fv-pulse{fill:var(--fv-gold)}
+.fv-pulse-halo{fill:var(--fv-gold);opacity:.28}
+.fv-band,.fv-node,.fv-bubble{position:absolute;left:var(--l);top:var(--t);width:var(--w);box-sizing:border-box}
+.fv-band,.fv-node{height:var(--h)}
+.fv-band{border:1px solid var(--fv-cloud-line);border-radius:18px;background:var(--fv-cloud)}
+.fv-band-site{background:transparent;border-color:var(--fv-site-line);border-style:dashed}
+.fv-band span{position:absolute;left:2cqw;top:1.4cqw;color:var(--fv-tag);font-size:.95cqw;font-weight:700;letter-spacing:.1em}
+.fv-node{display:flex;flex-direction:column;justify-content:center;padding:0 1.6cqw;background:var(--fv-node);border:1px solid var(--fv-node-line);border-radius:12px;transition:border-color .35s,box-shadow .35s,transform .35s}
+.fv-node b{color:var(--fv-title);font-size:1.5cqw;font-weight:600;line-height:1.2}
+.fv-node small{margin-top:.5cqw;color:var(--fv-small);font-size:1.12cqw;line-height:1.35}
+.fv-gate{background:var(--fv-gate);border-color:var(--fv-gate)}
+.fv-gate b{color:#fff}.fv-gate small{color:#d9e8ec}
+.fv-node[data-node="sclaim"] b{color:var(--fv-gold)}
+.fv-node.is-active{border-color:var(--fv-gold);box-shadow:0 0 0 3px rgba(215,163,91,.28),0 10px 28px rgba(9,30,42,.18);transform:translateY(-2px)}
+.fv-bubble{z-index:2;padding:1.1cqw 1.4cqw;background:var(--fv-bubble);color:var(--fv-bubble-text);border-left:4px solid var(--fv-gold);border-radius:14px;box-shadow:0 14px 36px rgba(9,30,42,.22);font-size:1.3cqw;line-height:1.4;opacity:0;transform:translateY(8px) scale(.97);transition:opacity .45s,transform .45s;pointer-events:none}
+.fv-bubble b{display:block;margin-bottom:.25cqw;color:#a66b2a;font-size:.95cqw;letter-spacing:.1em;text-transform:uppercase}
+.fv-bubble.is-on{opacity:1;transform:none}
+.fv-bubble:after{content:'';position:absolute;left:50%;width:16px;height:16px;margin-left:-8px;background:var(--fv-bubble);transform:rotate(45deg)}
+.fv-tail-down:after{bottom:-7px}.fv-tail-up:after{top:-7px}
+.flowviz figcaption{display:flex;justify-content:flex-end;margin-top:14px}
+.fv-steps{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.fv-toggle{font:inherit;font-size:12px;padding:8px 16px;border:1px solid currentColor;border-radius:999px;background:transparent;color:inherit;cursor:pointer}
+@media (max-width:900px){
+  .fv-stage{aspect-ratio:600/1240}
+  .fv-land{display:none}.fv-port{display:block}
+  .fv-band,.fv-node,.fv-bubble{left:var(--pl);top:var(--pt);width:var(--pw)}
+  .fv-band,.fv-node{height:var(--ph)}
+  .fv-band span{left:4cqw;top:3cqw;font-size:2.4cqw}
+  .fv-node{padding:0 3.2cqw}
+  .fv-node b{font-size:3.9cqw}.fv-node small{font-size:3cqw;margin-top:1cqw}
+  .fv-bubble{padding:2.6cqw 3.4cqw;font-size:3.4cqw}
+  .fv-bubble b{font-size:2.4cqw}
+  .fv-bubble:after{top:auto;bottom:auto}
+  .fv-ptail-down:after{bottom:-7px}.fv-ptail-up:after{top:-7px}
+}
+@media (prefers-reduced-motion:reduce){.fv-node,.fv-bubble{transition:opacity .2s}.fv-bubble{transform:none}.fv-node.is-active{transform:none}}

@@ -68,7 +68,7 @@
 {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://www.aidecis.com/#organization","name":"Aidecis","url":"https://www.aidecis.com/","logo":{"@type":"ImageObject","url":"https://www.aidecis.com/assets/aidecis-logo.png","width":1983,"height":793},"description":"Aidecis is the decision intelligence layer for supply chain.","slogan":"Intelligence into every decision. Accountability behind every action.","email":"william.johnson@aidecis.com","address":{"@type":"PostalAddress","streetAddress":"Fiter i Rossel 46, 5A","addressLocality":"Escaldes-Engordany","addressCountry":"AD"},"parentOrganization":{"@type":"Organization","name":"Angeleus SLU"},"knowsAbout":["Decision intelligence","Supply-chain decision making","AI agent governance","Decision accountability","Delegation of authority","Human-in-the-loop approval","Supply-chain risk management"]},{"@type":"WebSite","@id":"https://www.aidecis.com/#website","name":"Aidecis","url":"https://www.aidecis.com/","inLanguage":"en","publisher":{"@id":"https://www.aidecis.com/#organization"}},{"@type":"WebPage","@id":"https://www.aidecis.com/#webpage","url":"https://www.aidecis.com/","name":"Aidecis | Supply-chain decision intelligence and accountability","description":"Aidecis is the decision intelligence layer for supply chain, governing consequential decisions taken by people, algorithms or AI agents from signal to outcome.","inLanguage":"en","isPartOf":{"@id":"https://www.aidecis.com/#website"},"about":{"@id":"https://www.aidecis.com/#organization"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://www.aidecis.com/assets/media/supply-chain-poster.jpg"}},{"@type":"SoftwareApplication","@id":"https://www.aidecis.com/#software","name":"Aidecis","applicationCategory":"BusinessApplication","applicationSubCategory":"Supply-chain decision intelligence","operatingSystem":"Web","url":"https://www.aidecis.com/","publisher":{"@id":"https://www.aidecis.com/#organization"},"description":"Aidecis governs consequential supply-chain decisions taken by people, existing bots and AI agents: who had authority, which policy applied, who approved the exception, what executed and what happened next. Policies are managed in a European cloud; Aidecis never writes into the customer's systems, and reads each approved action back after the customer executes it.","featureList":["Decision registry with evidence and outcome record","Policy library for authority, limits and operating rules","Approval routing and escalation to the accountable owner","Single-use grants and read-back reconciliation of execution in ERP, WMS, TMS and MES","Registration of bots and AI agents with owner, limits and version","Advice when a decision can move between people and bots"]}]}
 </script>
 <!-- seo:end -->
-<link rel="stylesheet" href="assets/theme.css?v=20261112-merge33"></head>
+<link rel="stylesheet" href="assets/theme.css?v=20261112-merge33"><link rel="stylesheet" href="assets/flowviz.css?v=20261114-flow1"></head>
 <body>
   <div id="cookie-consent-banner" class="cookie-banner" role="dialog" aria-label="Cookie consent">
     <div class="cookie-content">
@@ -291,26 +291,42 @@
         <h2>Managed in the European cloud.<br>Executed in your environment.</h2>
         <p>Aidecis manages policies and decision logic in its European cloud. Aidecis never writes into your systems. Your people, systems or bots execute the approved action, and Aidecis reads each execution back and reconciles it against the approval. SAP stays your single source of truth. With enforced control, your own integration checks Aidecis's single-use grant before it executes: without a valid grant, the action does not run.</p>
       </div>
-      <div class="architecture">
-        <div class="arch-cloud">
-          <span class="arch-tag">AIDECIS CLOUD CONTROL PLANE</span>
-          <div class="arch-items">
-            <div><b>Policy library</b><small>Authority, limits and operating rules</small></div>
-            <div><b>Decision registry</b><small>Evidence and outcome record</small></div>
-            <div><b>Approval control</b><small>Routes, escalations and ownership</small></div>
-            <div><b>Observed control</b><small>Writes by registered actors in their own systems, matched to role and limits</small></div>
-          </div>
+      <figure class="flowviz" data-flowviz>
+        <div class="fv-stage" aria-hidden="true">
+          <svg class="fv-lines fv-land" viewBox="0 0 1200 830" preserveAspectRatio="none" focusable="false"><path class="fv-path" data-path="a" d="M360,595 L455,595"/><path class="fv-path" data-path="b" d="M600,530 L600,400 L195,400 L195,290"/><path class="fv-path" data-path="c" d="M320,227 L340,227"/><path class="fv-path" data-path="d" d="M590,227 L610,227"/><path class="fv-path" data-path="e" d="M735,290 L735,400 L985,400 L985,530"/><path class="fv-path" data-path="f" d="M985,660 L985,685 L215,685 L215,660"/><path class="fv-path" data-path="g" d="M360,620 L700,620 L700,440 L1005,440 L1005,290"/><circle class="fv-pulse-halo" r="16" cx="-50" cy="-50"/><circle class="fv-pulse" r="7" cx="-50" cy="-50"/></svg>
+          <svg class="fv-lines fv-port" viewBox="0 0 600 1240" preserveAspectRatio="none" focusable="false"><path class="fv-path" data-path="a" d="M165,880 L165,850 L300,850 L300,810"/><path class="fv-path" data-path="b" d="M300,690 L300,335 L165,335 L165,315"/><path class="fv-path" data-path="c" d="M290,255 L310,255"/><path class="fv-path" data-path="d" d="M435,315 L435,350"/><path class="fv-path" data-path="e" d="M560,410 L575,410 L575,945 L560,945"/><path class="fv-path" data-path="f" d="M435,1010 L435,1035 L165,1035 L165,1010"/><path class="fv-path" data-path="g" d="M165,880 L165,850 L250,850 L250,520 L165,520 L165,470"/><circle class="fv-pulse-halo" r="16" cx="-50" cy="-50"/><circle class="fv-pulse" r="7" cx="-50" cy="-50"/></svg>
+          <div class="fv-band fv-band-cloud" style="--l:3.333%;--t:14.458%;--w:93.333%;--pl:2.500%;--pt:12.097%;--pw:95.000%;--h:24.096%;--ph:27.823%"><span>AIDECIS EUROPEAN CLOUD</span></div>
+          <div class="fv-band fv-band-site" style="--l:3.333%;--t:57.831%;--w:93.333%;--pl:2.500%;--pt:51.613%;--pw:95.000%;--h:26.506%;--ph:33.871%"><span>YOUR ENVIRONMENT · YOUR DATA STAYS HERE</span></div>
+          <div class="fv-node fv-cloud" data-node="sclaim" style="--l:5.833%;--t:19.880%;--w:20.833%;--pl:6.667%;--pt:15.726%;--pw:41.667%;--h:15.060%;--ph:9.677%"><b>S-CLAIM</b><small>Recognises the decision and warns before friction</small></div>
+          <div class="fv-node fv-cloud" data-node="policy" style="--l:28.333%;--t:19.880%;--w:20.833%;--pl:51.667%;--pt:15.726%;--pw:41.667%;--h:15.060%;--ph:9.677%"><b>Policy library</b><small>Your authority, limits and operating rules</small></div>
+          <div class="fv-node fv-cloud" data-node="approval" style="--l:50.833%;--t:19.880%;--w:20.833%;--pl:51.667%;--pt:28.226%;--pw:41.667%;--h:15.060%;--ph:9.677%"><b>Approval routing</b><small>The right owner, with the evidence</small></div>
+          <div class="fv-node fv-cloud" data-node="record" style="--l:73.333%;--t:19.880%;--w:20.833%;--pl:6.667%;--pt:28.226%;--pw:41.667%;--h:15.060%;--ph:9.677%"><b>Decision record</b><small>Evidence and outcome, hash-chained</small></div>
+          <div class="fv-node fv-site" data-node="systems" style="--l:5.833%;--t:63.855%;--w:24.167%;--pl:6.667%;--pt:70.968%;--pw:41.667%;--h:15.663%;--ph:10.484%"><b>Your systems</b><small>SAP · ERP · TMS · WMS · MES</small></div>
+          <div class="fv-node fv-gate" data-node="gateway" style="--l:37.917%;--t:63.855%;--w:24.167%;--pl:29.167%;--pt:55.645%;--pw:41.667%;--h:15.663%;--ph:9.677%"><b>Aidecis gateway</b><small>In your environment, read-only</small></div>
+          <div class="fv-node fv-site" data-node="people" style="--l:70.000%;--t:63.855%;--w:24.167%;--pl:51.667%;--pt:70.968%;--pw:41.667%;--h:15.663%;--ph:10.484%"><b>Your people and bots</b><small>Decide and execute</small></div>
+          <div class="fv-bubble fv-tail-up fv-ptail-up" data-bubble="0" style="--l:4.583%;--t:85.783%;--w:27.500%;--pl:5.000%;--pt:86.694%;--pw:90.000%"><b>Signal</b><span>TMS alert: a shipment is 2 days late and stock cover is 1 day.</span></div>
+          <div class="fv-bubble fv-tail-down fv-ptail-down" data-bubble="1" style="--l:36.667%;--t:41.566%;--w:26.667%;--pl:5.000%;--pt:40.726%;--pw:90.000%"><b>Read-only</b><span>Only the fields this decision needs leave your site. No credentials, no write access.</span></div>
+          <div class="fv-bubble fv-tail-down fv-ptail-down" data-bubble="2" style="--l:3.333%;--t:0.964%;--w:26.667%;--pl:5.000%;--pt:1.210%;--pw:90.000%"><b>S-CLAIM</b><span>Expedite freight, €4,000. Escalation risk high. Time comes first.</span></div>
+          <div class="fv-bubble fv-tail-down fv-ptail-down" data-bubble="3" style="--l:26.250%;--t:0.964%;--w:25.000%;--pl:5.000%;--pt:1.210%;--pw:90.000%"><b>Your policy</b><span>Up to €5,000 the logistics manager decides.</span></div>
+          <div class="fv-bubble fv-tail-down fv-ptail-up" data-bubble="4" style="--l:48.750%;--t:0.964%;--w:25.000%;--pl:5.000%;--pt:40.726%;--pw:90.000%"><b>Routed</b><span>To the logistics manager, with the evidence and a 2-hour deadline.</span></div>
+          <div class="fv-bubble fv-tail-up fv-ptail-up" data-bubble="5" style="--l:67.917%;--t:85.783%;--w:27.500%;--pl:5.000%;--pt:86.694%;--pw:90.000%"><b>Approved</b><span>Approved in 12 minutes. Your team books the expedite.</span></div>
+          <div class="fv-bubble fv-tail-up fv-ptail-up" data-bubble="6" style="--l:4.583%;--t:85.783%;--w:27.500%;--pl:5.000%;--pt:86.694%;--pw:90.000%"><b>Executed</b><span>Your team executes in the TMS. Aidecis never writes into your systems.</span></div>
+          <div class="fv-bubble fv-tail-down fv-ptail-up" data-bubble="7" style="--l:70.417%;--t:0.964%;--w:26.667%;--pl:5.000%;--pt:40.726%;--pw:90.000%"><b>Read back</b><span>Executed as approved. Recorded with its evidence.</span></div>
         </div>
-        <div class="arch-link"><span>signed policy</span><i></i><span>evidence</span></div>
-        <div class="arch-customer">
-          <span class="arch-tag">CUSTOMER OPERATING ENVIRONMENT</span>
-          <div class="arch-flow">
-            <div class="arch-source"><b>People, agents<br>and local tools</b><small>Propose an action</small></div>
-            <div class="arch-gateway"><b>Your own<br>integration</b><small>Checks the single-use grant<br>then executes</small></div>
-            <div class="arch-target"><b>ERP · WMS · TMS<br>MES · quality · APIs</b><small>Read back by Aidecis</small></div>
-          </div>
-        </div>
-      </div>
+        <figcaption>
+          <ol class="fv-steps">
+            <li><b>Signal</b> <span>TMS alert: a shipment is 2 days late and stock cover is 1 day.</span></li>
+            <li><b>Read-only</b> <span>Only the fields this decision needs leave your site. No credentials, no write access.</span></li>
+            <li><b>S-CLAIM</b> <span>Expedite freight, €4,000. Escalation risk high. Time comes first.</span></li>
+            <li><b>Your policy</b> <span>Up to €5,000 the logistics manager decides.</span></li>
+            <li><b>Routed</b> <span>To the logistics manager, with the evidence and a 2-hour deadline.</span></li>
+            <li><b>Approved</b> <span>Approved in 12 minutes. Your team books the expedite.</span></li>
+            <li><b>Executed</b> <span>Your team executes in the TMS. Aidecis never writes into your systems.</span></li>
+            <li><b>Read back</b> <span>Executed as approved. Recorded with its evidence.</span></li>
+          </ol>
+          <button class="fv-toggle" type="button" data-fv-toggle hidden>Pause</button>
+        </figcaption>
+      </figure>
     </section>
 
     <section class="benefit-strip"><div><p class="eyebrow">Benefits</p><h2>What could better decisions be worth?</h2></div><a class="round-link" href="benefits.html">Build a transparent business case <span aria-hidden="true">↗</span></a></section><section class="demo-section" id="demo">
@@ -418,7 +434,7 @@
   </footer>
 
   <script src="assets/translations.js?v=20261029-vision1"></script>
-  <script src="assets/proposal-translations.js?v=20261029-vision1"></script><script src="assets/brand-refresh-translations.js?v=20261025-modes1"></script><script src="assets/site-copy-editorial.js?v=20261017-pilotcopy1"></script><script src="assets/seo-translations.js?v=20261112-seo4"></script><script src="assets/pricing-translations.js?v=20261029-vision1"></script><script src="assets/positioning-translations.js?v=20261029-review1"></script><script src="assets/home-3-4-translations.js?v=20261029-review1"></script><script src="assets/claims-review-translations.js?v=20261029-review1"></script><script src="assets/trust-review-translations.js?v=20261029-review2"></script><script src="assets/procurement-focus-translations.js?v=20261030-focus1"></script><script src="assets/positioning-layer-translations.js?v=20261107-layer1"></script><script src="assets/buyer-review-translations.js?v=20261112-buyer2"></script><script src="assets/s-claim-translations.js?v=20261114-sclaim1"></script><script src="assets/site.js?v=20261106-visitors1"></script>
+  <script src="assets/proposal-translations.js?v=20261029-vision1"></script><script src="assets/brand-refresh-translations.js?v=20261025-modes1"></script><script src="assets/site-copy-editorial.js?v=20261017-pilotcopy1"></script><script src="assets/seo-translations.js?v=20261112-seo4"></script><script src="assets/pricing-translations.js?v=20261029-vision1"></script><script src="assets/positioning-translations.js?v=20261029-review1"></script><script src="assets/home-3-4-translations.js?v=20261029-review1"></script><script src="assets/claims-review-translations.js?v=20261029-review1"></script><script src="assets/trust-review-translations.js?v=20261029-review2"></script><script src="assets/procurement-focus-translations.js?v=20261030-focus1"></script><script src="assets/positioning-layer-translations.js?v=20261107-layer1"></script><script src="assets/buyer-review-translations.js?v=20261112-buyer2"></script><script src="assets/s-claim-translations.js?v=20261114-sclaim1"></script><script src="assets/site.js?v=20261106-visitors1"></script><script src="assets/flowviz.js?v=20261114-flow1"></script>
 <script src="assets/overhaul.js?v=20261017-review5"></script><script src="assets/icons-update.js?v=20261029-review1"></script>
 
 <script src="assets/theme.js?v=20261107-theme7"></script></body>
