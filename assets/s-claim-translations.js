@@ -189,3 +189,15 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "Pause": "Pauze",
   "Play": "Afspelen"
 });
+
+// S-CLAIM page: the decision flow section (14 Nov 2026).
+Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
+  "S-CLAIM in one decision": "S-CLAIM en una decisión",
+  "From signal to recorded outcome.": "De la señal al resultado registrado.",
+  "Follow one late shipment through Aidecis: what S-CLAIM reads, what it concludes, and what stays in your environment.": "Siga un envío retrasado a través de Aidecis: qué lee S-CLAIM, qué concluye y qué se queda en su entorno."
+});
+Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
+  "S-CLAIM in one decision": "S-CLAIM in één beslissing",
+  "From signal to recorded outcome.": "Van signaal tot vastgelegde uitkomst.",
+  "Follow one late shipment through Aidecis: what S-CLAIM reads, what it concludes, and what stays in your environment.": "Volg één late zending door Aidecis: wat S-CLAIM leest, wat het concludeert en wat in uw omgeving blijft."
+});
