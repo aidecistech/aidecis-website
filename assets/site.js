@@ -181,6 +181,7 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     const before = hasAnalyticsConsent();
     const beforeMarketing = hasMarketingConsent();
     reviewStorage.setItem(storageKey, JSON.stringify(consent));
+    if (window.aidecisUpdateGoogleConsent) window.aidecisUpdateGoogleConsent(consent);
     if (consent.analytics && (!before || (consent.marketing && !beforeMarketing && pendingRef()))) trackVisit();
     if (!consent.analytics && before) revokeVisits();
     else if (consent.analytics && beforeMarketing && !consent.marketing) unlinkVisitor();
