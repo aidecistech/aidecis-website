@@ -3,7 +3,7 @@
   // Google Consent Mode before the container can run, and do not contact Google
   // at all until analytics consent has been granted.
   const consentKey = 'aidecis_consent';
-  const containerId = 'GTM-KBG3L9NP';
+  const measurementId = 'G-249T3D83TS';
   const hostAllowed = /^(www\.)?aidecis\.com$/.test(location.hostname);
   const readConsent = () => {
     try {
@@ -39,11 +39,11 @@
     if (!hostAllowed || !consent.analytics || loaded) return;
 
     loaded = true;
-    window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = `https://www.googletagmanager.com/gtm.js?id=${encodeURIComponent(containerId)}`;
-    document.head.appendChild(script);
+    window.gtag('config', measurementId);
+    const analyticsScript = document.createElement('script');
+    analyticsScript.async = true;
+    analyticsScript.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
+    document.head.appendChild(analyticsScript);
   };
 
   window.aidecisUpdateGoogleConsent = applyConsent;
