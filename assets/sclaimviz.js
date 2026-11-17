@@ -61,7 +61,8 @@
 
   // One cycle: the source lights, pulses run out to the four models, the models light, pulses run in to the dossier,
   // the dossier lights, a pulse runs to the person, the person lights.
-  const PH = [['source', 1600], ['out', 1000], ['models', 2600], ['in', 1000], ['dossier', 1500], ['last', 800], ['person', 2600]];
+  // Slow enough to read each bubble (Neil, 17 Nov 2026): at least 3.5 s per bubble.
+  const PH = [['source', 3500], ['out', 1400], ['models', 4000], ['in', 1400], ['dossier', 3500], ['last', 1000], ['person', 4000]];
   const TOTAL = PH.reduce((a, [, ms]) => a + ms, 0);
   const ease = (x) => (x < .5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2);
   const set = (c, x, y) => { c.forEach((e) => { e.setAttribute('cx', x); e.setAttribute('cy', y); }); };
