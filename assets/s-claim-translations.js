@@ -222,9 +222,7 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
   "S-CLAIM reads": "S-CLAIM lee",
   "Stop work or evacuate on a safety risk. Key figure: people exposed, not in the signal.": "Parar el trabajo o evacuar ante un riesgo de seguridad. Cifra clave: personas expuestas, no está en la señal.",
   "Checks the reading": "Comprueba la lectura",
-  "Is the figure really in the signal, in the type's own unit? A figure the model guessed is never used.": "¿Está la cifra realmente en la señal, en la unidad propia del tipo? Una cifra que el modelo ha supuesto nunca se usa.",
   "Code finds": "El código detecta",
-  "No figure in the signal: no route on a guess. The case is held and the figure is asked for.": "No hay cifra en la señal: ninguna ruta basada en una suposición. El caso queda retenido y se pide la cifra.",
   "Completes the facts": "Completa los hechos",
   "The person on duty, or the system of record, fills in what the signal left out.": "La persona de guardia, o el sistema de registro, completa lo que la señal dejó fuera.",
   "Entered": "Introducido",
@@ -242,7 +240,6 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
   "Immediate danger": "Peligro inmediato",
   "Held for a person, escalation high, top of the queue, under a red banner.": "Retenido para una persona, escalada alta, primero en la cola, bajo un aviso rojo.",
   "Explains the route": "Explica la ruta",
-  "Who decides and why, in the language of the signal. Code flags any number that is not in the signal or the route.": "Quién decide y por qué, en el idioma de la señal. El código marca cualquier número que no esté en la señal ni en la ruta.",
   "S-CLAIM explains": "S-CLAIM explica",
   "Gas with an unknown source while production runs: the shift manager decides, and the hall is cleared first.": "Gas de origen desconocido con la producción en marcha: decide el jefe de turno y primero se despeja la nave.",
   "Reviews the answer": "Revisa la respuesta",
@@ -252,16 +249,12 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
   "Illustrative: a test signal on the Aidecis staging environment, November 2026.": "Ilustrativo: una señal de prueba en el entorno de pruebas de Aidecis, noviembre de 2026.",
   "How each version gets better": "Cómo mejora cada versión",
   "Rules judged by practitioners": "Reglas valoradas por profesionales",
-  "When a decision escalates, is reopened, is held or is urgent, written per decision type.": "Cuándo una decisión escala, se reabre, se retiene o es urgente, escrito por tipo de decisión.",
   "Cases in three languages": "Casos en tres idiomas",
-  "Thousands of cases from those rules, plus free-text signals checked against the same rules.": "Miles de casos a partir de esas reglas, más señales en texto libre comprobadas con las mismas reglas.",
   "Trained in the EU": "Entrenado en la UE",
   "An open-weight model, fine-tuned on Aidecis's own servers. No client data.": "Un modelo de pesos abiertos, ajustado en los propios servidores de Aidecis. Sin datos de clientes.",
   "A blind exam": "Un examen a ciegas",
-  "300 test cases and 60 safety signals, answered beforehand by Aidecis's supply-chain leadership.": "300 casos de prueba y 60 señales de seguridad, respondidos de antemano por la dirección de cadena de suministro de Aidecis.",
   "Released only when better": "Solo se publica si mejora",
   "A version replaces the last one only when it scores better on that exam.": "Una versión sustituye a la anterior solo si puntúa mejor en ese examen.",
-  "Reviews from fictional demo cases feed the next round of rules and cases. A client's cases only measure S-CLAIM, never train it.": "Las revisiones de casos ficticios de la demostración alimentan la siguiente ronda de reglas y casos. Los casos de un cliente solo miden S-CLAIM, nunca lo entrenan."
 });
 Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
   "Inside S-CLAIM": "Binnen in S-CLAIM",
@@ -282,9 +275,7 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "S-CLAIM reads": "S-CLAIM leest",
   "Stop work or evacuate on a safety risk. Key figure: people exposed, not in the signal.": "Werk stilleggen of evacueren bij een veiligheidsrisico. Kerncijfer: blootgestelde personen, niet in het signaal.",
   "Checks the reading": "Controleert de lezing",
-  "Is the figure really in the signal, in the type's own unit? A figure the model guessed is never used.": "Staat het cijfer echt in het signaal, in de eigen eenheid van het type? Een cijfer dat het model gokte, wordt nooit gebruikt.",
   "Code finds": "Code vindt",
-  "No figure in the signal: no route on a guess. The case is held and the figure is asked for.": "Geen cijfer in het signaal: geen route op een gok. De casus wordt aangehouden en het cijfer wordt gevraagd.",
   "Completes the facts": "Vult de feiten aan",
   "The person on duty, or the system of record, fills in what the signal left out.": "De dienstdoende persoon, of het bronsysteem, vult aan wat het signaal openliet.",
   "Entered": "Ingevuld",
@@ -302,7 +293,6 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "Immediate danger": "Direct gevaar",
   "Held for a person, escalation high, top of the queue, under a red banner.": "Aangehouden voor een mens, escalatie hoog, bovenaan de wachtrij, onder een rode banner.",
   "Explains the route": "Legt de route uit",
-  "Who decides and why, in the language of the signal. Code flags any number that is not in the signal or the route.": "Wie beslist en waarom, in de taal van het signaal. Code markeert elk getal dat niet in het signaal of de route staat.",
   "S-CLAIM explains": "S-CLAIM legt uit",
   "Gas with an unknown source while production runs: the shift manager decides, and the hall is cleared first.": "Gas met een onbekende bron terwijl de productie draait: de ploegchef beslist, en eerst wordt de hal ontruimd.",
   "Reviews the answer": "Beoordeelt het antwoord",
@@ -312,14 +302,30 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "Illustrative: a test signal on the Aidecis staging environment, November 2026.": "Illustratief: een testsignaal op de testomgeving van Aidecis, november 2026.",
   "How each version gets better": "Hoe elke versie beter wordt",
   "Rules judged by practitioners": "Regels beoordeeld door praktijkmensen",
-  "When a decision escalates, is reopened, is held or is urgent, written per decision type.": "Wanneer een beslissing escaleert, wordt heropend, wordt aangehouden of urgent is, per beslistype vastgelegd.",
   "Cases in three languages": "Casussen in drie talen",
-  "Thousands of cases from those rules, plus free-text signals checked against the same rules.": "Duizenden casussen uit die regels, plus vrije-tekstsignalen die tegen dezelfde regels worden gecontroleerd.",
   "Trained in the EU": "Getraind in de EU",
   "An open-weight model, fine-tuned on Aidecis's own servers. No client data.": "Een open-weight model, bijgetraind op eigen servers van Aidecis. Geen klantdata.",
   "A blind exam": "Een blind examen",
-  "300 test cases and 60 safety signals, answered beforehand by Aidecis's supply-chain leadership.": "300 testcasussen en 60 veiligheidssignalen, vooraf beantwoord door de supply-chainleiding van Aidecis.",
   "Released only when better": "Alleen uitgebracht als het beter is",
   "A version replaces the last one only when it scores better on that exam.": "Een versie vervangt de vorige alleen als ze beter scoort op dat examen.",
-  "Reviews from fictional demo cases feed the next round of rules and cases. A client's cases only measure S-CLAIM, never train it.": "Beoordelingen van fictieve democasussen voeden de volgende ronde regels en casussen. De casussen van een klant meten S-CLAIM alleen, ze trainen het nooit."
+});
+
+Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
+  "What the model read is checked before anything is routed. A guess is never used.": "Lo que ha leído el modelo se comprueba antes de enrutar nada. Una suposición nunca se usa.",
+  "The figure is missing: no route on a guess. The case is held and the figure is asked for.": "Falta la cifra: ninguna ruta basada en una suposición. El caso queda retenido y se pide la cifra.",
+  "Who decides and why, in the language of the signal, checked against the facts before anyone reads it.": "Quién decide y por qué, en el idioma de la señal, comprobado con los hechos antes de que nadie lo lea.",
+  "Written per decision type and judged by Aidecis's supply-chain leadership.": "Escritas por tipo de decisión y valoradas por la dirección de cadena de suministro de Aidecis.",
+  "Thousands of realistic cases in English, Dutch and German.": "Miles de casos realistas en inglés, neerlandés y alemán.",
+  "A fixed set of test cases, safety signals among them, answered blind by Aidecis's supply-chain leadership.": "Un conjunto fijo de casos de prueba, entre ellos señales de seguridad, respondidos a ciegas por la dirección de cadena de suministro de Aidecis.",
+  "Reviews from fictional demo cases feed the next round. A client's cases only measure S-CLAIM, never train it.": "Las revisiones de casos ficticios de la demostración alimentan la siguiente ronda. Los casos de un cliente solo miden S-CLAIM, nunca lo entrenan."
+});
+
+Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
+  "What the model read is checked before anything is routed. A guess is never used.": "Wat het model las, wordt gecontroleerd voordat er iets wordt gerouteerd. Een gok wordt nooit gebruikt.",
+  "The figure is missing: no route on a guess. The case is held and the figure is asked for.": "Het cijfer ontbreekt: geen route op een gok. De casus wordt aangehouden en het cijfer wordt gevraagd.",
+  "Who decides and why, in the language of the signal, checked against the facts before anyone reads it.": "Wie beslist en waarom, in de taal van het signaal, getoetst aan de feiten voordat iemand het leest.",
+  "Written per decision type and judged by Aidecis's supply-chain leadership.": "Per beslistype vastgelegd en beoordeeld door de supply-chainleiding van Aidecis.",
+  "Thousands of realistic cases in English, Dutch and German.": "Duizenden realistische casussen in het Engels, Nederlands en Duits.",
+  "A fixed set of test cases, safety signals among them, answered blind by Aidecis's supply-chain leadership.": "Een vaste set testcasussen, waaronder veiligheidssignalen, blind beantwoord door de supply-chainleiding van Aidecis.",
+  "Reviews from fictional demo cases feed the next round. A client's cases only measure S-CLAIM, never train it.": "Beoordelingen van fictieve democasussen voeden de volgende ronde. De casussen van een klant meten S-CLAIM alleen, ze trainen het nooit."
 });
