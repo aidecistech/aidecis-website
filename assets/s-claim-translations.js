@@ -281,3 +281,31 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "A version replaces the last one only when it scores better on that exam.": "Een versie vervangt de vorige alleen als ze beter scoort op dat examen.",
   "Reviews from fictional demo cases feed the next round. A client's cases only measure S-CLAIM, never train it.": "Beoordelingen van fictieve democasussen voeden de volgende ronde. De casussen van een klant meten S-CLAIM alleen, ze trainen het nooit."
 });
+
+// S-CLAIM page: S-CLAIM as the whole model with four modules (Neil, 17 Nov 2026).
+Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
+  "Inside S-CLAIM": "Dentro de S-CLAIM",
+  "Four modules. One better decision.": "Cuatro módulos. Una decisión mejor.",
+  "A signal arrives from your own systems. S-CLAIM reads it with four modules, each from its own angle, and brings everything together in one decision dossier for the person who decides.": "Una señal llega desde sus propios sistemas. S-CLAIM la lee con cuatro módulos, cada uno desde su propio ángulo, y lo reúne todo en un único expediente de decisión para la persona que decide.",
+  "S-CLAIM · four modules": "S-CLAIM · cuatro módulos",
+  "Our proprietary Supply Chain LLM": "Nuestro LLM propio de cadena de suministro",
+  "Your policies in S-CLAIM": "Sus políticas en S-CLAIM",
+  "What your own history says, kept in your environment": "Lo que dice su propio historial, guardado en su entorno",
+  "Early warning patterns": "Patrones de alerta temprana",
+  "Our LLM": "Nuestro LLM",
+  "Reads and writes in your natural language": "Lee y escribe en su propio idioma",
+  "Its policy module applies your own delegation-of-authority matrix. S-CLAIM never sets a limit or grants an approval.": "Su módulo de políticas aplica su propia matriz de delegación de autoridad. S-CLAIM nunca fija un límite ni concede una aprobación."
+});
+Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
+  "Inside S-CLAIM": "Binnen in S-CLAIM",
+  "Four modules. One better decision.": "Vier modules. Eén betere beslissing.",
+  "A signal arrives from your own systems. S-CLAIM reads it with four modules, each from its own angle, and brings everything together in one decision dossier for the person who decides.": "Een signaal komt binnen uit uw eigen systemen. S-CLAIM leest het met vier modules, elk vanuit een eigen invalshoek, en brengt alles samen in één beslisdossier voor de persoon die beslist.",
+  "S-CLAIM · four modules": "S-CLAIM · vier modules",
+  "Our proprietary Supply Chain LLM": "Ons eigen Supply Chain LLM",
+  "Your policies in S-CLAIM": "Uw beleid in S-CLAIM",
+  "What your own history says, kept in your environment": "Wat uw eigen historie zegt, binnen uw omgeving",
+  "Early warning patterns": "Patronen voor vroege waarschuwing",
+  "Our LLM": "Ons LLM",
+  "Reads and writes in your natural language": "Leest en schrijft in uw eigen taal",
+  "Its policy module applies your own delegation-of-authority matrix. S-CLAIM never sets a limit or grants an approval.": "De beleidsmodule past uw eigen bevoegdhedenmatrix toe. S-CLAIM zet nooit een limiet en geeft nooit een goedkeuring."
+});

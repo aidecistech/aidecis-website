@@ -3,7 +3,8 @@
 :root[data-theme="dark"] .sclaimviz,:root[data-theme="dark"] .sv-loop,:root[data-theme="dark"] .sv-loop-title,:root[data-theme="dark"] .sv-loop-back{--sv-card:#123247;--sv-card-line:rgba(255,255,255,.16);--sv-title:#fff;--sv-text:#c9d9e0;--sv-out:#0b2433;--sv-out-text:#f6f1e6;--sv-gold-text:#d7a35b;--sv-navy:#0b2433}
 .sclaimviz{margin:8px 0 0}
 .sv-board{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr) minmax(0,1fr);column-gap:64px;align-items:center}
-.sv-models{display:grid;gap:14px}
+.sv-models{position:relative;z-index:2;display:grid;gap:14px;padding:40px 14px 14px;border:1px dashed var(--sv-gold);border-radius:16px;background:rgba(215,163,91,.07)}
+.sv-frame-label{position:absolute;left:16px;top:13px;color:var(--sv-gold-text);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
 .sv-end{display:grid;gap:56px}
 .sv-card{position:relative;z-index:2;display:block;padding:16px 18px;background:var(--sv-card);border:1px solid var(--sv-card-line);border-radius:12px;transition:box-shadow .35s,transform .35s,border-color .35s}
 .sv-card>b{display:block;color:var(--sv-title);font-size:17px;line-height:1.3}

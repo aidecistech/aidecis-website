@@ -32,7 +32,7 @@
 {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://www.aidecis.com/#organization","name":"Aidecis","url":"https://www.aidecis.com/","logo":{"@type":"ImageObject","url":"https://www.aidecis.com/assets/aidecis-logo.png","width":1983,"height":793},"description":"Aidecis is the decision intelligence layer for supply chain.","slogan":"Intelligence into every decision. Accountability behind every action.","email":"william.johnson@aidecis.com","address":{"@type":"PostalAddress","streetAddress":"Fiter i Rossel 46, 5A","addressLocality":"Escaldes-Engordany","addressCountry":"AD"},"parentOrganization":{"@type":"Organization","name":"Angeleus SLU"},"knowsAbout":["Decision intelligence","Supply-chain decision making","AI agent governance","Decision accountability","Delegation of authority","Human-in-the-loop approval","Supply-chain risk management"]},{"@type":"WebSite","@id":"https://www.aidecis.com/#website","name":"Aidecis","url":"https://www.aidecis.com/","inLanguage":"en","publisher":{"@id":"https://www.aidecis.com/#organization"}},{"@type":"WebPage","@id":"https://www.aidecis.com/s-claim.html#webpage","url":"https://www.aidecis.com/s-claim.html","name":"Meet S-CLAIM, the Supply Chain Learning AI Model | Aidecis","description":"S-CLAIM is the Aidecis model for supply-chain decisions: trained on a decision library, rules judged by practitioners and realistic cases, never on client data.","inLanguage":"en","isPartOf":{"@id":"https://www.aidecis.com/#website"},"about":{"@id":"https://www.aidecis.com/#organization"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://www.aidecis.com/assets/media/supply-chain-poster.jpg"},"breadcrumb":{"@id":"https://www.aidecis.com/s-claim.html#breadcrumb"}},{"@type":"BreadcrumbList","@id":"https://www.aidecis.com/s-claim.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.aidecis.com/"},{"@type":"ListItem","position":2,"name":"S-CLAIM","item":"https://www.aidecis.com/s-claim.html"}]}]}
 </script>
 <!-- seo:end -->
-<link rel="stylesheet" href="assets/theme.css?v=20261112-merge33"><link rel="stylesheet" href="assets/flowviz.css?v=20261114-flow1"><link rel="stylesheet" href="assets/sclaimviz.css?v=20261117-inside3"></head>
+<link rel="stylesheet" href="assets/theme.css?v=20261112-merge33"><link rel="stylesheet" href="assets/flowviz.css?v=20261114-flow1"><link rel="stylesheet" href="assets/sclaimviz.css?v=20261117-modules1"></head>
 <body>
   <div id="cookie-consent-banner" class="cookie-banner" role="dialog" aria-label="Cookie consent">
     <div class="cookie-content">
@@ -144,18 +144,18 @@
     <section class="trust-section" id="inside">
       <div class="trust-inner">
         <div class="trust-head">
-          <p class="eyebrow"><span></span> Inside a decision</p>
-          <h2>Several models. One better decision.</h2>
-          <p>A signal arrives from your own systems. Several Aidecis models each read it from their own angle, and everything comes together in one decision dossier for the person who decides.</p>
+          <p class="eyebrow"><span></span> Inside S-CLAIM</p>
+          <h2>Four modules. One better decision.</h2>
+          <p>A signal arrives from your own systems. S-CLAIM reads it with four modules, each from its own angle, and brings everything together in one decision dossier for the person who decides.</p>
         </div>
         <figure class="sclaimviz" data-sclaimviz>
           <div class="sv-board">
             <div class="sv-card sv-source" data-node="source"><b>From your systems</b><small>SAP and other ERPs · TMS · WMS · MES · EHS</small><span class="sv-out"><b>SAP, 07:12</b><span>Supplier confirms the resin delivery 6 days late. Stock cover: 3 days.</span></span><span class="sv-hint">No extra form: the signal comes from the systems you already use.</span></div>
-            <div class="sv-models">
-              <div class="sv-card sv-model sv-gold" data-node="sclaim"><b>S-CLAIM</b><small>Which decision this is, and what it protects first</small><span class="sv-out"><span>Alternate source after a supplier disruption. Time comes first; escalation risk high.</span></span></div>
-              <div class="sv-card sv-model" data-node="policy"><b>Your policy engine</b><small>Who decides, under which limit</small><span class="sv-out"><span>Up to €50,000, the procurement manager decides.</span></span></div>
-              <div class="sv-card sv-model" data-node="history"><b>Early warnings</b><small>What your own history says</small><span class="sv-out"><span>This supplier was late on 4 of its last 10 orders.</span></span></div>
-              <div class="sv-card sv-model" data-node="language"><b>Language model</b><small>The evidence in plain words</small><span class="sv-out"><span>Two qualified alternatives can deliver within 2 days.</span></span></div>
+            <div class="sv-models"><span class="sv-frame-label">S-CLAIM · four modules</span>
+              <div class="sv-card sv-model sv-gold" data-node="sclaim"><b>Our proprietary Supply Chain LLM</b><small>Which decision this is, and what it protects first</small><span class="sv-out"><span>Alternate source after a supplier disruption. Time comes first; escalation risk high.</span></span></div>
+              <div class="sv-card sv-model" data-node="policy"><b>Your policies in S-CLAIM</b><small>Who decides, under which limit</small><span class="sv-out"><span>Up to €50,000, the procurement manager decides.</span></span></div>
+              <div class="sv-card sv-model" data-node="history"><b>Early warning patterns</b><small>What your own history says, kept in your environment</small><span class="sv-out"><span>This supplier was late on 4 of its last 10 orders.</span></span></div>
+              <div class="sv-card sv-model" data-node="language"><b>Our LLM</b><small>Reads and writes in your natural language</small><span class="sv-out"><span>Two qualified alternatives can deliver within 2 days.</span></span></div>
             </div>
             <div class="sv-end">
               <div class="sv-card sv-dossier" data-node="dossier"><b>One decision dossier</b><small>The decision, the route, the evidence and the risks, on one page</small></div>
@@ -206,7 +206,7 @@
           <li><b>Owned, not borrowed</b><p>The decision library, the rules and the cases are Aidecis's own work, built from years of running supply chains.</p></li>
           <li><b>Your data stays yours</b><p>S-CLAIM is never trained on client content. Your knowledge base improves your own environment, and nothing else unless you explicitly opt in.</p></li>
           <li><b>European by design</b><p>S-CLAIM is built on an open-weight model and runs on EU-owned infrastructure. No third-party AI vendor is in the path.</p></li>
-          <li><b>It advises, your policy decides</b><p>S-CLAIM never sets a limit or grants an approval. Authority comes from your own delegation-of-authority matrix in the Aidecis policy engine.</p></li>
+          <li><b>It advises, your policy decides</b><p>Its policy module applies your own delegation-of-authority matrix. S-CLAIM never sets a limit or grants an approval.</p></li>
         </ul>
       </div>
     </section>
@@ -233,7 +233,7 @@
     </div>
   </footer>
   <script src="assets/translations.js?v=20261029-vision1"></script>
-  <script src="assets/proposal-translations.js?v=20261029-vision1"></script><script src="assets/brand-refresh-translations.js?v=20261019-tour2"></script><script src="assets/site-copy-editorial.js?v=20261017-editorial3"></script><script src="assets/seo-translations.js?v=20261112-seo4"></script><script src="assets/trust-review-translations.js?v=20261029-review2"></script><script src="assets/positioning-layer-translations.js?v=20261107-layer1"></script><script src="assets/s-claim-translations.js?v=20261117-inside3"></script><script src="assets/buyer-review-translations.js?v=20261112-buyer2"></script><script src="assets/site.js?v=20261106-visitors1"></script><script src="assets/flowviz.js?v=20261114-flow1"></script><script src="assets/sclaimviz.js?v=20261117-inside3"></script>
+  <script src="assets/proposal-translations.js?v=20261029-vision1"></script><script src="assets/brand-refresh-translations.js?v=20261019-tour2"></script><script src="assets/site-copy-editorial.js?v=20261017-editorial3"></script><script src="assets/seo-translations.js?v=20261112-seo4"></script><script src="assets/trust-review-translations.js?v=20261029-review2"></script><script src="assets/positioning-layer-translations.js?v=20261107-layer1"></script><script src="assets/s-claim-translations.js?v=20261117-modules1"></script><script src="assets/buyer-review-translations.js?v=20261112-buyer2"></script><script src="assets/site.js?v=20261106-visitors1"></script><script src="assets/flowviz.js?v=20261114-flow1"></script><script src="assets/sclaimviz.js?v=20261117-modules1"></script>
 <script src="assets/overhaul.js?v=20261017-review5"></script><script src="assets/icons-update.js?v=20261029-icons1"></script>
 <script src="assets/theme.js?v=20261107-theme7"></script></body>
 </html>
