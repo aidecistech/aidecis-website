@@ -1,71 +1,80 @@
-// Inside S-CLAIM (17 Nov 2026): one signal travels the steps. Dashed connectors join the steps; a gold pulse runs the
-// connector to the next step, which then lights up. All text stays visible; motion only highlights.
+// Inside a decision (17 Nov 2026): a signal from the client's systems fans out to the models, their answers come
+// together in one decision dossier, and the dossier goes to the person who decides. Motion only highlights.
 (() => {
   const fig = document.querySelector('[data-sclaimviz]');
   if (!fig) return;
   const board = fig.querySelector('.sv-board');
-  const steps = [...fig.querySelectorAll('.sv-step')];
+  const node = (id) => fig.querySelector(`[data-node="${id}"]`);
+  const MODELS = ['sclaim', 'policy', 'history', 'language'];
+  const src = node('source'), dossier = node('dossier'), person = node('person');
+  if (!board || !src || !dossier || !person || MODELS.some((m) => !node(m))) return;
   const toggle = fig.querySelector('[data-sv-toggle]');
-  if (!board || !steps.length) return;
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const wide = window.matchMedia('(min-width: 901px)');
   const NS = 'http://www.w3.org/2000/svg';
-  const STEP_MS = 3000, MOVE_MS = 1000;
-
   const layer = (cls) => { const s = document.createElementNS(NS, 'svg'); s.setAttribute('class', cls); s.setAttribute('aria-hidden', 'true'); s.setAttribute('focusable', 'false'); board.appendChild(s); return s; };
-  const lines = layer('sv-lines');
-  const top = layer('sv-pulse-layer');
-  const halo = document.createElementNS(NS, 'circle'); halo.setAttribute('class', 'sv-pulse-halo'); halo.setAttribute('r', '15');
-  const dot = document.createElementNS(NS, 'circle'); dot.setAttribute('class', 'sv-pulse'); dot.setAttribute('r', '7');
-  top.append(halo, dot);
-  let paths = [];
-
-  // An elbow from the centre of one step to the centre of the next: across in one row, or down through the gap between rows.
+  const lines = layer('sv-lines'), top = layer('sv-pulse-layer');
+  const pulses = MODELS.map(() => {
+    const h = document.createElementNS(NS, 'circle'); h.setAttribute('class', 'sv-pulse-halo'); h.setAttribute('r', '14');
+    const d = document.createElementNS(NS, 'circle'); d.setAttribute('class', 'sv-pulse'); d.setAttribute('r', '6');
+    top.append(h, d); return [h, d];
+  });
+  // Paths: out[i] source -> model i, in[i] model i -> dossier, last dossier -> person.
+  let out = [], into = [], last = null;
   const draw = () => {
-    lines.innerHTML = '';
-    paths = [];
+    lines.innerHTML = ''; out = []; into = []; last = null;
     const b = board.getBoundingClientRect();
-    [lines, top].forEach((s) => { s.setAttribute('viewBox', `0 0 ${b.width} ${b.height}`); });
+    [lines, top].forEach((s) => s.setAttribute('viewBox', `0 0 ${b.width} ${b.height}`));
     if (!wide.matches) return;
-    const box = (el) => { const r = el.getBoundingClientRect(); return { l: r.left - b.left, r: r.right - b.left, t: r.top - b.top, b: r.bottom - b.top, x: (r.left + r.right) / 2 - b.left, y: (r.top + r.bottom) / 2 - b.top }; };
-    for (let i = 1; i < steps.length; i++) {
-      const a = box(steps[i - 1]), c = box(steps[i]);
-      let d;
-      if (c.t >= a.b - 1) { const my = (a.b + c.t) / 2; d = `M${a.x},${a.b} V${my} H${c.x} V${c.t}`; }
-      else d = `M${a.r},${a.y} H${c.l}`;
-      const p = document.createElementNS(NS, 'path'); p.setAttribute('d', d); p.setAttribute('class', 'sv-path'); lines.appendChild(p);
-      paths.push(p);
-    }
+    const box = (el) => { const r = el.getBoundingClientRect(); return { l: r.left - b.left, r: r.right - b.left, t: r.top - b.top, b: r.bottom - b.top, y: (r.top + r.bottom) / 2 - b.top, x: (r.left + r.right) / 2 - b.left }; };
+    const add = (d) => { const p = document.createElementNS(NS, 'path'); p.setAttribute('d', d); p.setAttribute('class', 'sv-path'); lines.appendChild(p); return p; };
+    const s = box(src), dz = box(dossier), pe = box(person);
+    MODELS.forEach((m) => {
+      const k = box(node(m));
+      const mx1 = (s.r + k.l) / 2, mx2 = (k.r + dz.l) / 2;
+      out.push(add(`M${s.r},${s.y} H${mx1} V${k.y} H${k.l}`));
+      into.push(add(`M${k.r},${k.y} H${mx2} V${dz.y} H${dz.l}`));
+    });
+    last = add(`M${dz.x},${dz.b} V${pe.t}`);
   };
   draw();
-  window.addEventListener('resize', () => { draw(); });
+  window.addEventListener('resize', draw);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
   document.addEventListener('aidecis:languagechange', () => requestAnimationFrame(draw));
   if (reduce) return;
 
-  let start = performance.now(), paused = false, pausedAt = 0, visible = false;
+  // One cycle: the source lights, pulses run out to the four models, the models light, pulses run in to the dossier,
+  // the dossier lights, a pulse runs to the person, the person lights.
+  const PH = [['source', 1600], ['out', 1000], ['models', 2600], ['in', 1000], ['dossier', 1500], ['last', 800], ['person', 2600]];
+  const TOTAL = PH.reduce((a, [, ms]) => a + ms, 0);
   const ease = (x) => (x < .5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2);
-  const place = (x, y) => { [dot, halo].forEach((c) => { c.setAttribute('cx', x); c.setAttribute('cy', y); }); };
+  const set = (c, x, y) => { c.forEach((e) => { e.setAttribute('cx', x); e.setAttribute('cy', y); }); };
+  const hideAll = () => pulses.forEach((p) => set(p, -50, -50));
+  const at = (path, f) => path.getPointAtLength(path.getTotalLength() * ease(f));
+  let start = performance.now(), paused = false, pausedAt = 0, visible = false;
+  const lit = (ids) => { ['source', ...MODELS, 'dossier', 'person'].forEach((id) => node(id).classList.toggle('is-active', ids.includes(id))); };
   const render = (t) => {
-    const total = steps.length * STEP_MS;
-    const e = ((t % total) + total) % total;
-    const k = Math.floor(e / STEP_MS), within = e - k * STEP_MS;
-    const path = k > 0 ? paths[k - 1] : null;
-    const moving = !!path && within < MOVE_MS;
-    paths.forEach((p, i) => p.classList.toggle('is-live', i === k - 1));
-    if (moving) { const pt = path.getPointAtLength(path.getTotalLength() * ease(within / MOVE_MS)); place(pt.x, pt.y); }
-    else place(-50, -50);
-    steps.forEach((s, i) => s.classList.toggle('is-active', i === k && !moving));
+    let e = ((t % TOTAL) + TOTAL) % TOTAL, k = 0;
+    while (e >= PH[k][1]) { e -= PH[k][1]; k++; }
+    const [name, ms] = PH[k], f = e / ms;
+    [...out, ...into, ...(last ? [last] : [])].forEach((p) => p.classList.remove('is-live'));
+    hideAll();
+    if (name === 'source') lit(['source']);
+    else if (name === 'out') { lit([]); out.forEach((p, i) => { p.classList.add('is-live'); const pt = at(p, f); set(pulses[i], pt.x, pt.y); }); }
+    else if (name === 'models') lit(MODELS);
+    else if (name === 'in') { lit([]); into.forEach((p, i) => { p.classList.add('is-live'); const pt = at(p, f); set(pulses[i], pt.x, pt.y); }); }
+    else if (name === 'dossier') lit(['dossier']);
+    else if (name === 'last') { lit([]); if (last) { last.classList.add('is-live'); const pt = at(last, f); set(pulses[0], pt.x, pt.y); } }
+    else lit(['person']);
   };
   const frame = (now) => { if (!paused && visible) render(now - start); requestAnimationFrame(frame); };
-  const setPlaying = () => fig.classList.toggle('is-playing', !paused && visible);
   if (toggle) {
     toggle.hidden = false;
     const label = () => { const w = paused ? 'Play' : 'Pause'; toggle.textContent = window.AidecisI18n ? window.AidecisI18n.t(w) : w; };
     toggle.addEventListener('click', () => {
       paused = !paused;
       if (paused) pausedAt = performance.now() - start; else start = performance.now() - pausedAt;
-      label(); setPlaying();
+      label();
     });
     document.addEventListener('aidecis:languagechange', label);
     label();
@@ -75,8 +84,7 @@
       const was = visible; visible = en.isIntersecting;
       if (visible && !was && !paused) { start = performance.now() - (pausedAt || 0); draw(); }
       if (!visible && was) pausedAt = performance.now() - start;
-      setPlaying();
     }, { threshold: 0.15 }).observe(fig);
-  } else { visible = true; setPlaying(); }
+  } else visible = true;
   requestAnimationFrame(frame);
 })();
