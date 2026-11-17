@@ -309,3 +309,23 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "Reads and writes in your natural language": "Leest en schrijft in uw eigen taal",
   "Its policy module applies your own delegation-of-authority matrix. S-CLAIM never sets a limit or grants an approval.": "De beleidsmodule past uw eigen bevoegdhedenmatrix toe. S-CLAIM zet nooit een limiet en geeft nooit een goedkeuring."
 });
+
+// S-CLAIM page: speech bubbles in the four-module visual (17 Nov 2026). "Signal" is already translated.
+Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
+  "Your SAP flags a late delivery. Nobody types anything.": "Su SAP señala una entrega retrasada. Nadie escribe nada.",
+  "Four modules": "Cuatro módulos",
+  "S-CLAIM reads the same signal four ways at once.": "S-CLAIM lee la misma señal de cuatro maneras a la vez.",
+  "One dossier": "Un expediente",
+  "The decision, who decides, the history and the evidence, together.": "La decisión, quién decide, el historial y la evidencia, juntos.",
+  "Better decision": "Mejor decisión",
+  "Everything on one page: decided in minutes, and recorded.": "Todo en una página: decidido en minutos y registrado."
+});
+Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
+  "Your SAP flags a late delivery. Nobody types anything.": "Uw SAP meldt een late levering. Niemand typt iets in.",
+  "Four modules": "Vier modules",
+  "S-CLAIM reads the same signal four ways at once.": "S-CLAIM leest hetzelfde signaal tegelijk op vier manieren.",
+  "One dossier": "Eén dossier",
+  "The decision, who decides, the history and the evidence, together.": "De beslissing, wie beslist, de historie en het bewijs, bij elkaar.",
+  "Better decision": "Betere beslissing",
+  "Everything on one page: decided in minutes, and recorded.": "Alles op één pagina: in minuten beslist, en vastgelegd."
+});

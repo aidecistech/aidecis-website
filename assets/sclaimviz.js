@@ -20,12 +20,28 @@
     top.append(h, d); return [h, d];
   });
   // Paths: out[i] source -> model i, in[i] model i -> dossier, last dossier -> person.
+  // Speech bubbles: one per stage, above (or below) the part they explain, kept inside the board.
+  const bubbles = { source: src, models: fig.querySelector('.sv-models'), dossier, person };
+  const bubbleEls = Object.fromEntries(Object.keys(bubbles).map((k) => [k, fig.querySelector(`[data-bubble="${k}"]`)]));
+  const placeBubbles = (b) => {
+    Object.entries(bubbles).forEach(([k, target]) => {
+      const el = bubbleEls[k];
+      if (!el || !target) return;
+      const r = target.getBoundingClientRect(), w = el.offsetWidth, h = el.offsetHeight;
+      const cx = (r.left + r.right) / 2 - b.left;
+      const left = Math.max(0, Math.min(b.width - w, cx - w / 2));
+      const top = el.classList.contains('sv-below') ? r.bottom - b.top + 12 : r.top - b.top - h - 12;
+      el.style.left = `${left}px`; el.style.top = `${top}px`;
+      el.style.setProperty('--tail', `${Math.max(16, Math.min(w - 16, cx - left))}px`);
+    });
+  };
   let out = [], into = [], last = null;
   const draw = () => {
     lines.innerHTML = ''; out = []; into = []; last = null;
     const b = board.getBoundingClientRect();
     [lines, top].forEach((s) => s.setAttribute('viewBox', `0 0 ${b.width} ${b.height}`));
     if (!wide.matches) return;
+    placeBubbles(b);
     const box = (el) => { const r = el.getBoundingClientRect(); return { l: r.left - b.left, r: r.right - b.left, t: r.top - b.top, b: r.bottom - b.top, y: (r.top + r.bottom) / 2 - b.top, x: (r.left + r.right) / 2 - b.left }; };
     const add = (d) => { const p = document.createElementNS(NS, 'path'); p.setAttribute('d', d); p.setAttribute('class', 'sv-path'); lines.appendChild(p); return p; };
     const s = box(src), dz = box(dossier), pe = box(person);
@@ -52,6 +68,7 @@
   const hideAll = () => pulses.forEach((p) => set(p, -50, -50));
   const at = (path, f) => path.getPointAtLength(path.getTotalLength() * ease(f));
   let start = performance.now(), paused = false, pausedAt = 0, visible = false;
+  const say = (k) => Object.entries(bubbleEls).forEach(([id, el]) => { if (el) el.classList.toggle('is-on', id === k); });
   const lit = (ids) => { ['source', ...MODELS, 'dossier', 'person'].forEach((id) => node(id).classList.toggle('is-active', ids.includes(id))); };
   const render = (t) => {
     let e = ((t % TOTAL) + TOTAL) % TOTAL, k = 0;
@@ -59,6 +76,7 @@
     const [name, ms] = PH[k], f = e / ms;
     [...out, ...into, ...(last ? [last] : [])].forEach((p) => p.classList.remove('is-live'));
     hideAll();
+    say(name === 'source' ? 'source' : name === 'out' || name === 'models' ? 'models' : name === 'in' || name === 'dossier' ? 'dossier' : 'person');
     if (name === 'source') lit(['source']);
     else if (name === 'out') { lit([]); out.forEach((p, i) => { p.classList.add('is-live'); const pt = at(p, f); set(pulses[i], pt.x, pt.y); }); }
     else if (name === 'models') lit(MODELS);
