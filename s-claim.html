@@ -32,7 +32,7 @@
 {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://www.aidecis.com/#organization","name":"Aidecis","url":"https://www.aidecis.com/","logo":{"@type":"ImageObject","url":"https://www.aidecis.com/assets/aidecis-logo.png","width":1983,"height":793},"description":"Aidecis is the decision intelligence layer for supply chain.","slogan":"Intelligence into every decision. Accountability behind every action.","email":"william.johnson@aidecis.com","address":{"@type":"PostalAddress","streetAddress":"Fiter i Rossel 46, 5A","addressLocality":"Escaldes-Engordany","addressCountry":"AD"},"parentOrganization":{"@type":"Organization","name":"Angeleus SLU"},"knowsAbout":["Decision intelligence","Supply-chain decision making","AI agent governance","Decision accountability","Delegation of authority","Human-in-the-loop approval","Supply-chain risk management"]},{"@type":"WebSite","@id":"https://www.aidecis.com/#website","name":"Aidecis","url":"https://www.aidecis.com/","inLanguage":"en","publisher":{"@id":"https://www.aidecis.com/#organization"}},{"@type":"WebPage","@id":"https://www.aidecis.com/s-claim.html#webpage","url":"https://www.aidecis.com/s-claim.html","name":"Meet S-CLAIM, the Supply Chain Learning AI Model | Aidecis","description":"S-CLAIM is the Aidecis model for supply-chain decisions: trained on a decision library, rules judged by practitioners and realistic cases, never on client data.","inLanguage":"en","isPartOf":{"@id":"https://www.aidecis.com/#website"},"about":{"@id":"https://www.aidecis.com/#organization"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://www.aidecis.com/assets/media/supply-chain-poster.jpg"},"breadcrumb":{"@id":"https://www.aidecis.com/s-claim.html#breadcrumb"}},{"@type":"BreadcrumbList","@id":"https://www.aidecis.com/s-claim.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.aidecis.com/"},{"@type":"ListItem","position":2,"name":"S-CLAIM","item":"https://www.aidecis.com/s-claim.html"}]}]}
 </script>
 <!-- seo:end -->
-<link rel="stylesheet" href="assets/theme.css?v=20261112-merge33"><link rel="stylesheet" href="assets/sclaimviz.css?v=20261117-bubbles1"></head>
+<link rel="stylesheet" href="assets/theme.css?v=20261112-merge33"><link rel="stylesheet" href="assets/sclaimviz.css?v=20261117-bubbles1"><link rel="stylesheet" href="assets/layerviz.css?v=20261119-layer7"></head>
 <body>
   <div id="cookie-consent-banner" class="cookie-banner" role="dialog" aria-label="Cookie consent">
     <div class="cookie-content">
@@ -102,27 +102,43 @@
           <h2>Four modules. One better decision.</h2>
           <p>A signal arrives from your own systems. S-CLAIM reads it with four modules, each from its own angle, and brings everything together in one decision dossier for the person who decides.</p>
         </div>
-        <figure class="sclaimviz" data-sclaimviz>
-          <div class="sv-board">
-            <div class="sv-bubble" data-bubble="source" aria-hidden="true"><b>Signal</b><span>Your SAP flags a late delivery. Nobody types anything.</span></div>
-            <div class="sv-bubble" data-bubble="models" aria-hidden="true"><b>Four modules</b><span>S-CLAIM reads the same signal four ways at once.</span></div>
-            <div class="sv-bubble" data-bubble="dossier" aria-hidden="true"><b>One dossier</b><span>The decision, who decides, the history and the evidence, together.</span></div>
-            <div class="sv-bubble sv-below" data-bubble="person" aria-hidden="true"><b>Better decision</b><span>Everything on one page: decided in minutes, and recorded.</span></div>
-            <div class="sv-card sv-source" data-node="source"><b>From your systems</b><small>SAP and other ERPs · TMS · WMS · MES · EHS</small><span class="sv-out"><b>SAP, 07:12</b><span>Supplier confirms the resin delivery 6 days late. Stock cover: 3 days.</span></span><span class="sv-hint">No extra form: the signal comes from the systems you already use.</span></div>
-            <div class="sv-models"><span class="sv-frame-label">S-CLAIM · four modules</span>
-              <div class="sv-card sv-model sv-gold" data-node="sclaim"><b>Our proprietary Supply Chain LLM</b><small>Which decision this is, and what it protects first</small><span class="sv-out"><span>Alternate source after a supplier disruption. Time comes first; escalation risk high.</span></span></div>
-              <div class="sv-card sv-model" data-node="policy"><b>Your policies in S-CLAIM</b><small>Who decides, under which limit</small><span class="sv-out"><span>Up to €50,000, the procurement manager decides.</span></span></div>
-              <div class="sv-card sv-model" data-node="history"><b>Early warning patterns</b><small>What your own history says, kept in your environment</small><span class="sv-out"><span>This supplier was late on 4 of its last 10 orders.</span></span></div>
-              <div class="sv-card sv-model" data-node="language"><b>Our LLM</b><small>Reads and writes in your natural language</small><span class="sv-out"><span>Two qualified alternatives can deliver within 2 days.</span></span></div>
+        <figure class="layerviz claimviz" data-claimviz>
+          <div class="lv-scroll">
+          <div class="lv-board cv-board">
+            <div class="lv-cloud" data-cloud aria-hidden="true"><span></span></div>
+            <div class="lv-col">
+              <span class="lv-col-label">The signal</span>
+              <div class="lv-card lv-src is-sent" data-node="signal"><span class="lv-tag">SAP · 07:12</span><span>Supplier confirmation: PO 4500077103/00010 moves from 20 to 27 November.</span></div>
+              <p class="lv-more">The same four modules read every source: email, o9, WhatsApp, your own agents. <a class="text-link" href="decision-layer.html">See the whole flow</a></p>
             </div>
-            <div class="sv-end">
-              <div class="sv-card sv-dossier" data-node="dossier"><b>One decision dossier</b><small>The decision, the route, the evidence and the risks, on one page</small></div>
-              <div class="sv-card sv-person" data-node="person"><b>Your decision-maker</b><small>Decides, better informed</small><span class="sv-out"><span>Approved in 15 minutes: half the volume from the alternate supplier.</span></span></div>
+            <div class="lv-col cv-modules">
+              <span class="lv-col-label">S-CLAIM · four modules</span>
+              <div class="lv-card cv-mod cv-model" data-node="llm"><span class="lv-tag">Model · trained by Aidecis</span><b>Supply-chain decision model</b><small>Which of the <a class="text-link" href="use-cases.html#decision-library">71 supply-chain decision types</a> this is, from expediting freight to a product recall; its key figure, what it protects first and how urgent it is.</small><span class="cv-out" data-out>A purchase-order exception: the supplier moved the date by 7 days. Time comes first; urgent today.</span></div>
+              <div class="lv-card cv-mod cv-code" data-node="policy"><span class="lv-tag">Code · your rules</span><b>Your policies</b><small>Your delegation of authority: who decides, under which limit, and when a case must wait for a person.</small><span class="cv-out" data-out>Within €50,000: the procurement manager decides.</span></div>
+              <div class="lv-card cv-mod cv-code" data-node="history"><span class="lv-tag">Code · your history</span><b>Early-warning patterns</b><small>What your own decisions and outcomes show, computed in your environment and kept there.</small><span class="cv-out" data-out>DeltaRevin was late on 4 of its last 10 orders.</span></div>
+              <div class="lv-card cv-mod cv-model" data-node="language"><span class="lv-tag">Model · your language</span><b>Language model</b><small>Reads the signal as people write it, in English, Dutch or German, and writes the explanation in plain words.</small><span class="cv-out" data-out>Writes the question for Anna, with the reason in one line.</span></div>
+            </div>
+            <div class="lv-col">
+              <span class="lv-col-label">One reading</span>
+              <div class="lv-card lv-case" data-node="reading">
+                <b>On the case</b>
+                <small>Each line says where it came from, so it can be checked</small>
+                <ul class="lv-chips" aria-label="What S-CLAIM adds to the case">
+                  <li data-chip="1">Decision: purchase-order exception, time first, urgent today</li>
+                  <li data-chip="2">Decides: procurement manager, within €50,000</li>
+                  <li data-chip="3">Warning: this supplier is often late</li>
+                  <li data-chip="4">In plain words, in your language</li>
+                </ul>
+                <span class="lv-route" data-route>A missing fact is asked for, never guessed.</span>
+              </div>
             </div>
           </div>
-          <figcaption class="sv-foot">
-            <p class="sv-note">Illustrative example.</p>
-            <button class="sv-toggle" type="button" data-sv-toggle hidden>Pause</button>
+          </div>
+          <figcaption class="lv-foot">
+            <p class="lv-note">Illustrative example with fictional names and figures.</p>
+            <p class="lv-caption" aria-live="polite" data-caption>A signal reaches S-CLAIM.</p>
+            <p class="lv-swipe">Swipe sideways to follow the flow.</p>
+            <button class="lv-toggle" type="button" data-lv-toggle hidden>Pause</button>
           </figcaption>
         </figure>
         <h3 class="sv-loop-title">How each version gets better</h3>
@@ -191,7 +207,7 @@
     </div>
   </footer>
   <script src="assets/translations.js?v=20261029-vision1"></script>
-  <script src="assets/proposal-translations.js?v=20261029-vision1"></script><script src="assets/brand-refresh-translations.js?v=20261019-tour2"></script><script src="assets/site-copy-editorial.js?v=20261017-editorial3"></script><script src="assets/seo-translations.js?v=20261112-seo4"></script><script src="assets/trust-review-translations.js?v=20261029-review2"></script><script src="assets/positioning-layer-translations.js?v=20261107-layer1"></script><script src="assets/s-claim-translations.js?v=20261117-bubbles1"></script><script src="assets/buyer-review-translations.js?v=20261112-buyer2"></script><script src="assets/site.js?v=20261106-visitors1"></script><script src="assets/sclaimviz.js?v=20261117-slower1"></script>
+  <script src="assets/proposal-translations.js?v=20261029-vision1"></script><script src="assets/brand-refresh-translations.js?v=20261019-tour2"></script><script src="assets/site-copy-editorial.js?v=20261017-editorial3"></script><script src="assets/seo-translations.js?v=20261112-seo4"></script><script src="assets/trust-review-translations.js?v=20261029-review2"></script><script src="assets/positioning-layer-translations.js?v=20261107-layer1"></script><script src="assets/s-claim-translations.js?v=20261117-bubbles1"></script><script src="assets/buyer-review-translations.js?v=20261112-buyer2"></script><script src="assets/site.js?v=20261106-visitors1"></script><script src="assets/layerviz.js?v=20261119-layer7"></script>
 <script src="assets/overhaul.js?v=20261017-review5"></script><script src="assets/icons-update.js?v=20261029-icons1"></script>
 <script src="assets/theme.js?v=20261107-theme7"></script></body>
 </html>
