@@ -144,3 +144,122 @@
     new IntersectionObserver(function (es, o) { if (es[0].isIntersecting) { o.disconnect(); play(); } }, { threshold: 0.3 }).observe(fig);
   } else play();
 })();
+
+/* Inside S-CLAIM (19 Nov 2026): one signal, read by four modules in turn, each adding one line to the case. Same
+   grammar as the flow above: left to right, the explanation in a cloud above the step, pause, reduced motion. */
+(function () {
+  var fig = document.querySelector('[data-claimviz]');
+  if (!fig) return;
+  var board = fig.querySelector('.lv-board');
+  var q = function (s) { return fig.querySelector(s); };
+  var NS = 'http://www.w3.org/2000/svg';
+  var svg = document.createElementNS(NS, 'svg');
+  svg.setAttribute('class', 'lv-lines');
+  svg.setAttribute('aria-hidden', 'true');
+  board.insertBefore(svg, board.firstChild);
+  var caption = q('[data-caption]'), toggle = q('[data-lv-toggle]');
+  var cloud = q('[data-cloud]'), cloudText = cloud.querySelector('span');
+  var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var mods = ['llm', 'policy', 'history', 'language'];
+  var SAY = {
+    llm: 'Trained by Aidecis on 71 kinds of supply-chain decision, from expediting freight to a recall. This one: a purchase-order exception, urgent today.',
+    policy: 'Your policies, applied by code: within €50,000 the procurement manager decides.',
+    history: 'Your own history, computed in your environment: this supplier is often late.',
+    language: 'The language model reads it as people write it, and puts the reason in plain words.',
+  };
+  var paths = {};
+  function box(el) {
+    var b = board.getBoundingClientRect(), r = el.getBoundingClientRect();
+    return { l: r.left - b.left, r: r.right - b.left, t: r.top - b.top, b: r.bottom - b.top, cy: r.top - b.top + r.height / 2 };
+  }
+  function curve(a, b) { var mx = (a.x + b.x) / 2; return 'M' + a.x + ' ' + a.y + ' C' + mx + ' ' + a.y + ' ' + mx + ' ' + b.y + ' ' + b.x + ' ' + b.y; }
+  function draw() {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    paths = {};
+    var sig = box(q('[data-node="signal"]')), out = box(q('[data-node="reading"]'));
+    var add = function (key, d) { var p = document.createElementNS(NS, 'path'); p.setAttribute('d', d); p.setAttribute('class', 'lv-path'); svg.appendChild(p); paths[key] = p; };
+    mods.forEach(function (m) {
+      var r = box(q('[data-node="' + m + '"]'));
+      add('in-' + m, curve({ x: sig.r, y: sig.cy }, { x: r.l, y: r.cy }));
+      add('out-' + m, curve({ x: r.r, y: r.cy }, { x: out.l, y: out.cy }));
+    });
+  }
+  function travel(key, ms) {
+    return new Promise(function (done) {
+      var p = paths[key];
+      if (!p || reduced) return done();
+      p.classList.add('is-live');
+      var len = p.getTotalLength(), dot = document.createElementNS(NS, 'circle');
+      dot.setAttribute('r', '5'); dot.setAttribute('class', 'lv-dot'); svg.appendChild(dot);
+      var t0 = performance.now();
+      (function step(now) {
+        var k = Math.min(1, (now - t0) / ms), pt = p.getPointAtLength(len * k);
+        dot.setAttribute('cx', pt.x); dot.setAttribute('cy', pt.y);
+        if (k < 1) requestAnimationFrame(step); else { if (dot.parentNode) dot.parentNode.removeChild(dot); p.classList.remove('is-live'); done(); }
+      })(t0);
+    });
+  }
+  var sayT;
+  function say(node, text) {
+    caption.textContent = text;
+    var el = q('[data-node="' + node + '"]');
+    var place = function () {
+      cloudText.textContent = text;
+      var r = box(el), w = cloud.offsetWidth, bw = board.offsetWidth;
+      var center = (r.l + r.r) / 2, left = Math.max(0, Math.min(bw - w, center - w / 2));
+      cloud.style.left = left + 'px'; cloud.style.top = '0px';
+      cloud.style.setProperty('--tail', Math.max(14, Math.min(w - 14, center - left)) + 'px');
+      cloud.classList.add('is-on');
+      var sc = fig.querySelector('.lv-scroll');
+      if (sc && sc.scrollWidth > sc.clientWidth) sc.scrollTo({ left: Math.max(0, center - sc.clientWidth / 2), behavior: reduced ? 'auto' : 'smooth' });
+    };
+    clearTimeout(sayT);
+    if (reduced || !cloud.classList.contains('is-on')) return place();
+    cloud.classList.remove('is-on');
+    sayT = setTimeout(place, 260);
+  }
+  var wait = function (ms) { return new Promise(function (r) { setTimeout(r, reduced ? 0 : ms); }); };
+  var paused = false;
+  function until() { return new Promise(function (r) { (function c() { paused ? setTimeout(c, 200) : r(); })(); }); }
+  function node(n) { return q('[data-node="' + n + '"]'); }
+  function reset() { fig.querySelectorAll('.is-in,.is-active,.is-done').forEach(function (el) { el.classList.remove('is-in', 'is-active', 'is-done'); }); cloud.classList.remove('is-on'); }
+  function finished() {
+    mods.forEach(function (m) { node(m).classList.add('is-done'); });
+    fig.querySelectorAll('[data-chip],[data-route]').forEach(function (el) { el.classList.add('is-in'); });
+    say('reading', 'One reading on the case, each line traceable to its module. The person decides.');
+  }
+  async function play() {
+    for (;;) {
+      reset();
+      node('signal').classList.add('is-active');
+      say('signal', 'A signal reaches S-CLAIM: one supplier confirmation from SAP.');
+      await wait(2000);
+      node('signal').classList.remove('is-active');
+      for (var i = 0; i < mods.length; i++) {
+        await until();
+        var m = mods[i];
+        await travel('in-' + m, 800);
+        node(m).classList.add('is-active');
+        say(m, SAY[m]); await wait(700);
+        node(m).classList.add('is-done'); await wait(1900);
+        await travel('out-' + m, 800);
+        node(m).classList.remove('is-active');
+        q('[data-chip="' + (i + 1) + '"]').classList.add('is-in');
+      }
+      await until();
+      q('[data-route]').classList.add('is-in'); node('reading').classList.add('is-active');
+      say('reading', 'One reading on the case, each line traceable to its module. A missing fact is asked for, never guessed.');
+      await wait(4500); node('reading').classList.remove('is-active');
+    }
+  }
+  draw();
+  var t;
+  var redraw = function () { clearTimeout(t); t = setTimeout(draw, 150); };
+  window.addEventListener('resize', redraw);
+  if ('ResizeObserver' in window) new ResizeObserver(redraw).observe(board);
+  if (reduced) { finished(); return; }
+  toggle.hidden = false;
+  toggle.addEventListener('click', function () { paused = !paused; toggle.textContent = paused ? 'Play' : 'Pause'; });
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (es, o) { if (es[0].isIntersecting) { o.disconnect(); play(); } }, { threshold: 0.3 }).observe(fig);
+  else play();
+})();
