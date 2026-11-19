@@ -11,6 +11,7 @@
   svg.setAttribute('aria-hidden', 'true');
   board.insertBefore(svg, board.firstChild);
   var caption = q('[data-caption]');
+  var cloud = q('[data-cloud]'), cloudText = cloud.querySelector('span');
   var toggle = q('[data-lv-toggle]');
   var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var srcs = ['sap', 'email', 'o9', 'whatsapp'];
@@ -58,13 +59,39 @@
       (function step(now) {
         var k = Math.min(1, (now - t0) / ms), pt = p.getPointAtLength(len * k);
         dot.setAttribute('cx', pt.x); dot.setAttribute('cy', pt.y);
-        if (k < 1) requestAnimationFrame(step); else { svg.removeChild(dot); p.classList.remove('is-live'); done(); }
+        if (k < 1) requestAnimationFrame(step); else { if (dot.parentNode) dot.parentNode.removeChild(dot); p.classList.remove('is-live'); done(); }
       })(t0);
     });
   }
   var wait = function (ms) { return new Promise(function (r) { setTimeout(r, reduced ? 0 : ms); }); };
   var paused = false, running = false;
   function until() { return new Promise(function (r) { (function c() { paused ? setTimeout(c, 200) : r(); })(); }); }
+  /** The explanation in a cloud above the step it is about, and the same words for screen readers. */
+  var sayT;
+  function say(node, text) {
+    caption.textContent = text;
+    var el = q('[data-node="' + node + '"]');
+    if (!el) return;
+    // Fade out, move to the step, then show the new words: the cloud never shows one step's words over another.
+    var place = function () {
+      cloudText.textContent = text;
+      var r = box(el), w = cloud.offsetWidth, h = cloud.offsetHeight, bw = board.offsetWidth;
+      var center = (r.l + r.r) / 2, left = Math.max(0, Math.min(bw - w, center - w / 2));
+      cloud.style.left = left + 'px';
+      // A row of its own above the flow: it moves left to right with the story and never covers a card.
+      cloud.style.top = '0px';
+      cloud.style.setProperty('--tail', Math.max(14, Math.min(w - 14, center - left)) + 'px');
+      cloud.classList.add('is-on');
+      // Keep the active step in view when the flow scrolls sideways on a small screen.
+      var sc = fig.querySelector('.lv-scroll');
+      if (sc && sc.scrollWidth > sc.clientWidth) sc.scrollTo({ left: Math.max(0, center - sc.clientWidth / 2), behavior: reduced ? 'auto' : 'smooth' });
+    };
+    clearTimeout(sayT);
+    if (reduced || !cloud.classList.contains('is-on')) return place();
+    cloud.classList.remove('is-on');
+    sayT = setTimeout(place, 260);
+  }
+  function hush() { cloud.classList.remove('is-on'); }
   function active(node, on) { var el = q('[data-node="' + node + '"]'); if (el) el.classList.toggle('is-active', on); }
   function reset() {
     fig.querySelectorAll('.is-sent,.is-in,.is-active').forEach(function (el) { el.classList.remove('is-sent', 'is-in', 'is-active'); });
@@ -73,37 +100,43 @@
     fig.querySelectorAll('.lv-src').forEach(function (el) { el.classList.add('is-sent'); });
     fig.querySelectorAll('[data-chip],[data-route],[data-decided]').forEach(function (el) { el.classList.add('is-in'); });
     caption.textContent = 'Four signals, one case, one decision: recorded with every signal, the rule and the reason.';
+    say('person', caption.textContent);
   }
   async function play() {
     if (running) return; running = true;
     for (;;) {
-      reset();
+      reset(); hush();
       caption.textContent = 'Four signals arrive in four places.';
-      await wait(1200);
+      await wait(1000);
       for (var i = 0; i < srcs.length; i++) {
         await until();
         var s = srcs[i];
         active(s, true); q('[data-node="' + s + '"]').classList.add('is-sent');
-        caption.textContent = CAPTIONS[i];
-        await travel(s, 1100); active(s, false);
-        active('door', true); await travel('read', 500); active('door', false);
-        active('read', true); await travel('case', 900); active('read', false);
+        say(s, CAPTIONS[i]); await wait(1600);
+        await travel(s, 1000); active(s, false);
+        active('door', true);
+        if (i === 0) { say('door', 'One door: each source becomes one standard signal.'); await wait(1600); }
+        await travel('read', 450); active('door', false);
+        active('read', true);
+        if (i === 0) { say('read', 'S-CLAIM reads which decision this is and what it protects first.'); await wait(1800); }
+        await travel('case', 850); active('read', false);
         q('[data-chip="' + (i + 1) + '"]').classList.add('is-in');
-        active('case', true); await wait(700); active('case', false);
+        active('case', true); say('case', i === 0 ? 'A new case on PO line 4500077103/00010.' : 'Same PO line: added to the same case, by code.'); await wait(1500); active('case', false);
       }
       await until();
-      caption.textContent = 'Same order line: code joins them into one case and applies your authority rule.';
-      q('[data-route]').classList.add('is-in'); active('case', true); await wait(1600); active('case', false);
-      caption.textContent = 'One question goes to the person whose mandate covers it.';
-      await travel('person', 1100); active('person', true); await wait(1500);
+      q('[data-route]').classList.add('is-in'); active('case', true);
+      say('case', 'Your authority rule: within €50,000 the procurement manager decides.'); await wait(2200); active('case', false);
+      hush(); await travel('person', 1000); active('person', true);
+      say('person', 'One question for Anna, with all four signals and the evidence one tap away.'); await wait(2400);
       q('[data-decided]').classList.add('is-in');
-      caption.textContent = 'Decided in minutes, and recorded with every signal, the rule and the reason.';
-      await wait(4200); active('person', false);
+      say('person', 'Approved at 08:34. Recorded with every signal, the rule and the reason.');
+      await wait(4200); active('person', false); hush();
     }
   }
   draw();
   var resizeT;
   window.addEventListener('resize', function () { clearTimeout(resizeT); resizeT = setTimeout(draw, 150); });
+  if ('ResizeObserver' in window) new ResizeObserver(function () { clearTimeout(resizeT); resizeT = setTimeout(draw, 150); }).observe(board);
   if (reduced) { finished(); return; }
   toggle.hidden = false;
   toggle.addEventListener('click', function () { paused = !paused; toggle.textContent = paused ? 'Play' : 'Pause'; });
