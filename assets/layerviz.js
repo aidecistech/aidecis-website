@@ -177,7 +177,7 @@
   var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var mods = ['llm', 'policy', 'history', 'language'];
   var SAY = {
-    llm: 'Trained by Aidecis on 71 kinds of supply-chain decision, from expediting freight to a recall. This one: a purchase-order exception, urgent today.',
+    llm: 'Trained by Aidecis on 72 kinds of supply-chain decision, from expediting freight to a recall. This one: a purchase-order exception, urgent today.',
     policy: 'Your policies, applied by code: within €50,000 the procurement manager decides.',
     history: 'Your own history, computed in your environment: this supplier is often late.',
     language: 'The language model reads it as people write it, and puts the reason in plain words.',
