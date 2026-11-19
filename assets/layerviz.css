@@ -1,0 +1,75 @@
+/* The decision layer (19 Nov 2026): four channels, one door, one case, one decision. Same palette as sclaimviz. */
+.layerviz,.lv-steps,.lv-status{--lv-card:#fff;--lv-line:#cad7dc;--lv-title:#173f57;--lv-text:#3f4f58;--lv-out:#f1f5f6;--lv-gold:#d7a35b;--lv-gold-text:#8a5a22;--lv-navy:#173f57;--lv-path:rgba(215,163,91,.45);--lv-ice:#4db8e8;--lv-green:#1e7a4c}
+:root[data-theme="dark"] .layerviz,:root[data-theme="dark"] .lv-steps,:root[data-theme="dark"] .lv-status{--lv-card:#123247;--lv-line:rgba(255,255,255,.16);--lv-title:#fff;--lv-text:#c9d9e0;--lv-out:#0b2433;--lv-gold-text:#d7a35b;--lv-navy:#0b2433;--lv-green:#4fae89}
+.layerviz{margin:8px 0 0}
+.lv-scroll{overflow-x:auto;overflow-y:visible;-webkit-overflow-scrolling:touch;padding:0 2px 6px}
+.lv-board{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.85fr) minmax(0,1fr) minmax(0,.95fr);column-gap:44px;align-items:center;min-width:900px;padding-top:84px}
+.lv-col{position:relative;z-index:2;display:grid;gap:10px;align-content:center}
+.lv-col-label{color:var(--lv-gold-text);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.lv-card{position:relative;display:block;padding:10px 14px;background:var(--lv-card);border:1px solid var(--lv-line);border-radius:12px;color:var(--lv-text);font-size:13px;line-height:1.45;transition:box-shadow .35s,transform .35s,border-color .35s,opacity .35s}
+.lv-card>b{display:block;color:var(--lv-title);font-size:15px;line-height:1.3}
+.lv-card>small{display:block;margin-top:3px;color:var(--lv-text);font-size:12.5px;line-height:1.4}
+.lv-tag{display:block;margin-bottom:3px;color:var(--lv-gold-text);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.lv-src{opacity:.55}
+.lv-src.is-sent{opacity:1}
+.lv-more{margin:2px 0 0;color:var(--lv-text);font-size:12px}
+.lv-gate{border-style:dashed;border-color:var(--lv-gold);background:rgba(215,163,91,.08)}
+.lv-case{background:var(--lv-navy);border-color:var(--lv-navy)}
+.lv-case>b{color:#fff}.lv-case>small{color:#d9e8ec}
+.lv-chips{display:grid;gap:5px;margin:9px 0 0;padding:0;list-style:none}
+.lv-chips li{padding:5px 9px;border-radius:8px;background:rgba(255,255,255,.1);color:#f6f1e6;font-size:12.5px;opacity:.18;transform:translateX(-6px);transition:opacity .4s,transform .4s}
+.lv-chips li.is-in{opacity:1;transform:none}
+.lv-route{display:block;margin-top:9px;padding-top:8px;border-top:1px solid rgba(255,255,255,.18);color:var(--lv-gold);font-size:12.5px;font-weight:600;opacity:.25;transition:opacity .4s}
+.lv-route.is-in{opacity:1}
+.lv-person>b{margin-top:2px}
+.lv-decided{display:block;margin-top:8px;padding:6px 10px;border-radius:8px;background:var(--lv-out);color:var(--lv-green);font-size:12.5px;font-weight:600;opacity:.2;transition:opacity .4s}
+.lv-decided.is-in{opacity:1}
+.lv-card.is-active{border-color:var(--lv-gold);box-shadow:0 0 0 3px rgba(215,163,91,.3),0 12px 28px rgba(9,30,42,.16);transform:translateY(-2px)}
+.lv-lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:1}
+.lv-path{fill:none;stroke:var(--lv-path);stroke-width:2;stroke-dasharray:6 7}
+.lv-path.is-live{stroke:var(--lv-gold);stroke-dasharray:none}
+.lv-dot{fill:var(--lv-gold)}
+.lv-cloud{position:absolute;z-index:5;left:0;top:0;width:max-content;max-width:280px;padding:9px 13px;border-radius:16px;background:var(--lv-gold);color:#0d3f52;font-size:13px;font-weight:600;line-height:1.4;box-shadow:0 10px 24px rgba(9,30,42,.22);opacity:0;transform:translateY(6px);transition:opacity .25s,transform .25s;pointer-events:none}
+.lv-cloud.is-on{opacity:1;transform:none}
+.lv-cloud:after{content:'';position:absolute;left:var(--tail,50%);bottom:-8px;width:16px;height:16px;margin-left:-8px;background:var(--lv-gold);transform:rotate(45deg);border-radius:3px}
+.lv-cloud span{position:relative;z-index:1;display:block}
+.lv-swipe{display:none;margin:0;color:var(--lv-text);font-size:12px}
+.lv-foot{display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:space-between;align-items:center;margin-top:12px}
+.lv-note{margin:0;color:var(--lv-text);font-size:13px}
+.lv-caption{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.lv-toggle{font:inherit;font-size:12px;padding:8px 16px;border:1px solid currentColor;border-radius:999px;background:transparent;color:inherit;cursor:pointer}
+.lv-steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:40px 0 0;padding:0;list-style:none;counter-reset:lv}
+.lv-steps li{position:relative;padding:14px 14px 16px;background:var(--lv-card);border:1px solid var(--lv-line);border-top:2px solid var(--lv-gold);border-radius:10px}
+.lv-steps li:not(:last-child):after{content:'\2192';position:absolute;right:-12px;top:50%;transform:translate(50%,-50%);color:var(--lv-gold-text);font-size:16px;z-index:1}
+.lv-steps b{display:block;color:var(--lv-title);font-size:15px;line-height:1.3;margin-bottom:6px}
+.lv-steps span{display:block;color:var(--lv-text);font-size:13.5px;line-height:1.45}
+.lv-status{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:0;padding:0;list-style:none}
+.lv-status li{padding:16px;background:var(--lv-card);border:1px solid var(--lv-line);border-radius:12px}
+.lv-status p{margin:10px 0 0;color:var(--lv-text);font-size:14px;line-height:1.5}
+.lv-badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.04em}
+.lv-now{background:rgba(30,122,76,.14);color:var(--lv-green)}
+.lv-demo{background:rgba(77,184,232,.16);color:var(--lv-title)}
+.lv-pilot{background:rgba(215,163,91,.18);color:var(--lv-gold-text)}
+@media (max-width:980px){
+  .lv-swipe{display:block}
+  .lv-steps,.lv-status{grid-template-columns:1fr}
+  .lv-steps li:not(:last-child):after{content:'\2193';right:50%;top:auto;bottom:-14px;transform:translateX(50%)}
+}
+@media (prefers-reduced-motion:reduce){.lv-card,.lv-chips li,.lv-route,.lv-decided{transition:none}}
+
+/* Inside S-CLAIM (19 Nov 2026): one signal, four modules, one reading on the case. */
+.cv-board{grid-template-columns:minmax(0,.85fr) minmax(0,1.4fr) minmax(0,.95fr)}
+.cv-modules{padding:30px 12px 12px;border:1px dashed var(--lv-gold);border-radius:16px;background:rgba(215,163,91,.07)}
+.cv-modules>.lv-col-label{position:absolute;left:14px;top:9px}
+.cv-mod{opacity:.7}
+.cv-mod.is-active,.cv-mod.is-done{opacity:1}
+.cv-model .lv-tag{color:var(--lv-gold-text)}
+.cv-code .lv-tag{color:var(--lv-ice)}
+/* The output's room is kept from the start, so the page never shifts while the modules fill in. */
+.cv-out{display:block;margin-top:7px;padding:6px 10px;border-radius:8px;background:var(--lv-out);color:var(--lv-title);font-size:12.5px;line-height:1.4;opacity:0;transition:opacity .4s}
+.cv-mod.is-done .cv-out{opacity:1}
+.cv-steps{grid-template-columns:repeat(4,minmax(0,1fr))}
+.lv-read .text-link{display:inline-block;margin-top:4px;font-size:12px}
+@media (max-width:980px){.cv-steps{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.cv-out{transition:none}}
+.cv-mod small .text-link{font-size:inherit}

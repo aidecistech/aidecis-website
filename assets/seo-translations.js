@@ -196,3 +196,13 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "Meet S-CLAIM, the Supply Chain Learning AI Model | Aidecis": "Maak kennis met S-CLAIM, het Supply Chain Learning AI Model | Aidecis",
   "S-CLAIM is the Aidecis model for supply-chain decisions: trained on a decision library, rules judged by practitioners and realistic cases, never on client data.": "S-CLAIM is het Aidecis-model voor supply-chainbeslissingen: getraind op een beslisbibliotheek, regels beoordeeld door vakmensen en realistische cases, nooit op klantdata."
 });
+
+// The decision layer page (19 Nov 2026).
+Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
+  "One door for every signal: the decision layer | Aidecis": "Una sola puerta para cada señal: la capa de decisión | Aidecis",
+  "Aidecis reads signals from SAP, o9, email and WhatsApp, joins those about one problem into one case, and asks the person with the authority one question.": "Aidecis lee señales de SAP, o9, correo y WhatsApp, une las que tratan un mismo problema en un caso y hace una pregunta a la persona con la autoridad.",
+});
+Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
+  "One door for every signal: the decision layer | Aidecis": "Eén ingang voor elk signaal: de beslislaag | Aidecis",
+  "Aidecis reads signals from SAP, o9, email and WhatsApp, joins those about one problem into one case, and asks the person with the authority one question.": "Aidecis leest signalen uit SAP, o9, e-mail en WhatsApp, voegt die over één probleem samen tot één casus en stelt degene met de bevoegdheid één vraag.",
+});
