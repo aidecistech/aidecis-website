@@ -62,7 +62,7 @@ PAGES = {
                    'Aidecis is the decision intelligence layer for supply chain, governing consequential decisions taken by people, algorithms or AI agents from signal to outcome.',
                    None, []),
     'use-cases.html': ('Supply-chain decision intelligence use cases | Aidecis',
-                       'Aidecis is the decision intelligence layer for supply chain: it governs twelve families and 71 decision types end to end, from freight to trading.',
+                       'Aidecis is the decision intelligence layer for supply chain: it governs twelve families and 72 decision types end to end, from freight to trading.',
                        'Use cases', []),
     'benefits.html': ('Business case and ROI calculator | Aidecis',
                       'Model a transparent business case for supply-chain decision intelligence with your own assumptions: subscription, onboarding and pilot investment.',

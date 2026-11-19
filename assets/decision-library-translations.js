@@ -1,7 +1,7 @@
 // Spanish and Dutch for the decision library and the two new use cases on use-cases.html (taxonomy of 26 Oct 2026).
 window.AIDECIS_TRANSLATIONS = window.AIDECIS_TRANSLATIONS || {};
 Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
-  "71 consequential decisions in twelve families.": "71 decisiones consecuentes en doce familias.",
+  "72 consequential decisions in twelve families.": "72 decisiones consecuentes en doce familias.",
   "Every consequential supply-chain decision Aidecis governs belongs to one of twelve families. In a guided decision assessment we map with you which decisions are yours, how they score and where to start.": "Cada decisión consecuente de la cadena de suministro que Aidecis gobierna pertenece a una de doce familias. En una evaluación de decisiones guiada identificamos con usted qué decisiones son suyas, cómo puntúan y por dónde empezar.",
   "Book a guided decision assessment": "Reservar una evaluación de decisiones guiada",
   "Trading and commodity positions": "Trading y posiciones en materias primas",
@@ -26,7 +26,7 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
   "Twelve families of consequential supply-chain decisions. One accountable workflow.": "Doce familias de decisiones consecuentes en la cadena de suministro. Un flujo de trabajo responsable.",
   "Maintenance": "Mantenimiento",
   "Trading": "Trading",
-  "All 71 decisions": "Las 71 decisiones",
+  "All 72 decisions": "Las 72 decisiones",
   "Maintenance · asset failure": "Mantenimiento · avería de activos",
   "A priority-1 maintenance notification on a critical asset, such as a seal leak on a refinery feed pump, with the spare part days away.": "Un aviso de mantenimiento de prioridad 1 en un activo crítico, como una fuga en el sello de una bomba de alimentación de una refinería, con la pieza de repuesto a días de distancia.",
   "Compare running at a reduced rate, stopping to repair and switching to standby equipment on lost throughput, margin, safety, permits and spare-part lead time. Route the choice to the site owner within the stop-duration envelope, then schedule the work order and the rate plan only after approval.": "Comparar funcionar a ritmo reducido, parar para reparar y pasar al equipo de reserva según producción perdida, margen, seguridad, permisos y plazo de la pieza. Enviar la elección al responsable del centro dentro del margen de duración de la parada y programar la orden de trabajo y el plan de ritmo solo tras la aprobación.",
@@ -43,7 +43,7 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
   "The library holds the structure of each decision, not the answer: your own limits, systems and history are added with you, and examples stay labelled illustrative until real cases prove them.": "La biblioteca contiene la estructura de cada decisión, no la respuesta: sus propios límites, sistemas e historial se añaden con usted, y los ejemplos se etiquetan como ilustrativos hasta que casos reales los demuestren."
 });
 Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
-  "71 consequential decisions in twelve families.": "71 ingrijpende beslissingen in twaalf families.",
+  "72 consequential decisions in twelve families.": "72 ingrijpende beslissingen in twaalf families.",
   "Every consequential supply-chain decision Aidecis governs belongs to one of twelve families. In a guided decision assessment we map with you which decisions are yours, how they score and where to start.": "Elke ingrijpende supply-chainbeslissing die Aidecis beheerst, hoort bij een van twaalf families. In een begeleide beslissingsassessment brengen we samen met u in kaart welke beslissingen van u zijn, hoe ze scoren en waar u begint.",
   "Book a guided decision assessment": "Plan een begeleide beslissingsassessment",
   "Trading and commodity positions": "Trading en grondstofposities",
@@ -68,7 +68,7 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "Twelve families of consequential supply-chain decisions. One accountable workflow.": "Twaalf families van ingrijpende supply-chainbeslissingen. Eén verantwoorde workflow.",
   "Maintenance": "Onderhoud",
   "Trading": "Trading",
-  "All 71 decisions": "Alle 71 beslissingen",
+  "All 72 decisions": "Alle 72 beslissingen",
   "Maintenance · asset failure": "Onderhoud · storing aan assets",
   "A priority-1 maintenance notification on a critical asset, such as a seal leak on a refinery feed pump, with the spare part days away.": "Een onderhoudsmelding met prioriteit 1 op een kritisch asset, zoals een lekkende afdichting van een voedingspomp in een raffinaderij, terwijl het reserveonderdeel nog dagen weg is.",
   "Compare running at a reduced rate, stopping to repair and switching to standby equipment on lost throughput, margin, safety, permits and spare-part lead time. Route the choice to the site owner within the stop-duration envelope, then schedule the work order and the rate plan only after approval.": "Vergelijk gereduceerd draaien, stoppen voor reparatie en overschakelen op reserveapparatuur op verloren doorzet, marge, veiligheid, vergunningen en levertijd van het onderdeel. Leg de keuze bij de verantwoordelijke van de locatie binnen de bevoegdheid voor de stopduur en plan de werkorder en het capaciteitsplan pas na goedkeuring.",
