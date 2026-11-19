@@ -206,3 +206,13 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "One door for every signal: the decision layer | Aidecis": "Eén ingang voor elk signaal: de beslislaag | Aidecis",
   "Aidecis reads signals from SAP, o9, email and WhatsApp, joins those about one problem into one case, and asks the person with the authority one question.": "Aidecis leest signalen uit SAP, o9, e-mail en WhatsApp, voegt die over één probleem samen tot één casus en stelt degene met de bevoegdheid één vraag.",
 });
+
+// The decision intelligence layer page (19 Nov 2026): the decision layer and S-CLAIM in one page.
+Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
+  "Decision intelligence layer: one door for every signal, with S-CLAIM | Aidecis": "Capa de inteligencia de decisión: una sola puerta para cada señal, con S-CLAIM | Aidecis",
+  "Aidecis reads signals from SAP, o9, email and WhatsApp; S-CLAIM, its decision model, joins them into one case for the person with the authority.": "Aidecis lee señales de SAP, o9, correo y WhatsApp; S-CLAIM, su modelo de decisión, las une en un caso para la persona con la autoridad.",
+});
+Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
+  "Decision intelligence layer: one door for every signal, with S-CLAIM | Aidecis": "Beslisintelligentielaag: één ingang voor elk signaal, met S-CLAIM | Aidecis",
+  "Aidecis reads signals from SAP, o9, email and WhatsApp; S-CLAIM, its decision model, joins them into one case for the person with the authority.": "Aidecis leest signalen uit SAP, o9, e-mail en WhatsApp; S-CLAIM, het beslismodel, voegt ze samen tot één casus voor degene met de bevoegdheid.",
+});
