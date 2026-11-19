@@ -55,15 +55,30 @@
       p.classList.add('is-live');
       var len = p.getTotalLength(), dot = document.createElementNS(NS, 'circle');
       dot.setAttribute('r', '5'); dot.setAttribute('class', 'lv-dot'); svg.appendChild(dot);
-      var t0 = performance.now();
+      var t0 = performance.now(), last = t0;
       (function step(now) {
+        if (paused) t0 += now - last;
+        last = now;
         var k = Math.min(1, (now - t0) / ms), pt = p.getPointAtLength(len * k);
         dot.setAttribute('cx', pt.x); dot.setAttribute('cy', pt.y);
         if (k < 1) requestAnimationFrame(step); else { if (dot.parentNode) dot.parentNode.removeChild(dot); p.classList.remove('is-live'); done(); }
       })(t0);
     });
   }
-  var wait = function (ms) { return new Promise(function (r) { setTimeout(r, reduced ? 0 : ms); }); };
+  // Pause freezes the step in progress: waits count only time that is not paused, and a dot in flight holds still
+  // (Codex P2 on website PR 47).
+  var wait = function (ms) {
+    return new Promise(function (r) {
+      if (reduced) return r();
+      var left = ms, last = performance.now();
+      (function tick() {
+        var now = performance.now();
+        if (!paused) left -= now - last;
+        last = now;
+        left <= 0 ? r() : setTimeout(tick, 50);
+      })();
+    });
+  };
   var paused = false, running = false;
   function until() { return new Promise(function (r) { (function c() { paused ? setTimeout(c, 200) : r(); })(); }); }
   /** The explanation in a cloud above the step it is about, and the same words for screen readers. */
@@ -191,8 +206,10 @@
       p.classList.add('is-live');
       var len = p.getTotalLength(), dot = document.createElementNS(NS, 'circle');
       dot.setAttribute('r', '5'); dot.setAttribute('class', 'lv-dot'); svg.appendChild(dot);
-      var t0 = performance.now();
+      var t0 = performance.now(), last = t0;
       (function step(now) {
+        if (paused) t0 += now - last;
+        last = now;
         var k = Math.min(1, (now - t0) / ms), pt = p.getPointAtLength(len * k);
         dot.setAttribute('cx', pt.x); dot.setAttribute('cy', pt.y);
         if (k < 1) requestAnimationFrame(step); else { if (dot.parentNode) dot.parentNode.removeChild(dot); p.classList.remove('is-live'); done(); }
@@ -218,7 +235,20 @@
     cloud.classList.remove('is-on');
     sayT = setTimeout(place, 260);
   }
-  var wait = function (ms) { return new Promise(function (r) { setTimeout(r, reduced ? 0 : ms); }); };
+  // Pause freezes the step in progress: waits count only time that is not paused, and a dot in flight holds still
+  // (Codex P2 on website PR 47).
+  var wait = function (ms) {
+    return new Promise(function (r) {
+      if (reduced) return r();
+      var left = ms, last = performance.now();
+      (function tick() {
+        var now = performance.now();
+        if (!paused) left -= now - last;
+        last = now;
+        left <= 0 ? r() : setTimeout(tick, 50);
+      })();
+    });
+  };
   var paused = false;
   function until() { return new Promise(function (r) { (function c() { paused ? setTimeout(c, 200) : r(); })(); }); }
   function node(n) { return q('[data-node="' + n + '"]'); }
