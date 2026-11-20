@@ -84,12 +84,12 @@
         <div class="trust-head">
           <p class="eyebrow"><span></span> Architecture</p>
           <h2>Four parts, one boundary.</h2>
-          <p>Your systems stay the systems of record. The gateway in your environment calls out to the Aidecis control plane; nothing connects into your network.</p>
+          <p>Your systems stay the systems of record. The read connection in your environment calls out to the Aidecis control plane; nothing connects into your network. It is planned <span class="claim claim-planned">Planned</span>: today Aidecis reads an extract you export, and its gateway runs only against the Aidecis simulated SAP and ERP.</p>
         </div>
-        <div class="trust-diagram" role="img" aria-label="Your systems, the Aidecis gateway in your environment, the Aidecis control plane and the model gateway, both hosted in the EU.">
+        <div class="trust-diagram" role="img" aria-label="Your systems, the Aidecis read connection in your environment, the Aidecis control plane and the model gateway, both hosted in the EU.">
           <div class="trust-node client"><small>Your systems</small><strong>ERP, TMS, WMS, MES, quality</strong><span>Your source records stay where they are.</span></div>
           <div class="trust-link"><span>Read only</span></div>
-          <div class="trust-node client"><small>Your environment</small><strong>Aidecis gateway</strong><span>Reads your systems. Holds no write rights in them.</span></div>
+          <div class="trust-node client"><small>Your environment</small><strong>Aidecis read connection</strong><span>Reads your systems. Holds no write rights in them. Planned; today Aidecis reads an extract you export.</span></div>
           <div class="trust-link"><span>Outbound only</span></div>
           <div class="trust-node aidecis"><small>EU-hosted</small><strong>Aidecis control plane</strong><span>Policies, approvals and the decision record.</span></div>
           <div class="trust-link"><span>Minimal fields</span></div>
@@ -98,7 +98,7 @@
         <div class="trust-boundary" aria-hidden="true"><span>Your side</span><span>Aidecis side, in the EU</span></div>
         <ul class="trust-grid">
           <li><b>Control plane</b><p>Holds your policies, delegation of authority, approval routing and the decision record. It is one shared platform for all clients; each client is a separate tenant, and row-level security in the database scopes every request to that one tenant. The policy kernel is deterministic code. No AI decides what is allowed.</p></li>
-          <li><b>Gateway and grants, on your side</b><p>Software that runs on a virtual machine or container in your environment. It reads approved sources and holds no write rights in your systems. For each approved action, Aidecis issues a signed, single-use grant bound to the exact route, object, action, amount, target and policy version. With enforced control, your own integration checks that grant before it executes: a tampered, expired, replayed or broadened grant does not run, and a retry cannot create a second action.</p></li>
+          <li><b>Gateway and grants, on your side</b><p>Software that runs on a virtual machine or container in your environment. It reads approved sources and holds no write rights in your systems. For each approved action, Aidecis issues a signed, single-use grant bound to the exact route, object, action, amount, target and policy version. With enforced control, your own integration checks that grant before it executes: a tampered, expired, replayed or broadened grant does not run, and a retry cannot create a second action. Enforced control <span class="claim claim-simulated">Simulated</span> is built on the Aidecis simulated SAP and ERP; running it in a client system is planned, after a shadow run.</p></li>
           <li><b>Model gateway, hosted in the EU</b><p>Language models draft briefs and explain flags. They run behind one model gateway on EU-owned infrastructure. It keeps no prompts or answers beyond the request, keeps tenants apart, holds no credentials and has no network path beyond its approved route. A model never decides, computes authority or an amount, approves or acts.</p></li>
           <li><b>Hash-chained decision record</b><p>Every step, review, approval, grant, execution and outcome is written to an append-only record in which each event carries the hash of the one before. Corrections are new events. A changed, removed or reordered event breaks the chain.</p></li>
         </ul>
@@ -116,7 +116,7 @@
         <ul class="trust-grid three">
           <li><small>Read</small><b>Only what the data contract declares</b><p>Approved sources and fields, at the freshness the contract sets. Sensitive fields are excluded by default. Every fact keeps its source system, source record and time, so you can see where it came from.</p></li>
           <li><small>Execute</small><b>By you, read back by Aidecis</b><p>Aidecis never writes into your systems. Your people, systems or bots execute the approved action, and Aidecis reads each execution back and reconciles its amount, quantity and object against the approval. A difference is held and settled by the deciding seat, never by the proposer. The decision record points to the SAP document.</p></li>
-          <li><small>Model</small><b>Minimal fields, nothing kept</b><p>A model receives only the fields a step needs, without your tenant identity or any credentials. Source text is treated as data, never as instructions. Nothing is stored after the request, and your data is never used to train or fine-tune a model unless you explicitly opt in. The Aidecis model, in development, is trained on Aidecis's own decision library, synthetic cases and fictional demo data, never on your content such as names, suppliers, materials, amounts, documents or free text. Your written opt-in covers only de-identified decision-process records (decision type, the amount as a share of the mandate limit, seat tier, route, timings, rework and outcome class), and you see what left.</p></li>
+          <li><small>Model</small><b>Minimal fields, nothing kept</b><p>A model receives only the fields a step needs, without your tenant identity or any credentials. Source text is treated as data, never as instructions. Nothing is stored after the request, and your data is never used to train or fine-tune a model unless you explicitly opt in. S-CLAIM, the Aidecis model, has run in production since 18 November 2026 <span class="claim claim-built">Built</span> on Aidecis's own EU host. It is trained on Aidecis's own decision library, synthetic cases and fictional demo data, never on your content such as names, suppliers, materials, amounts, documents or free text. Your written opt-in covers only de-identified decision-process records (decision type, the amount as a share of the mandate limit, seat tier, route, timings, rework and outcome class), and you see what left.</p></li>
         </ul>
         <p class="trust-note">Your administrator consents to scopes, purposes, processors, regions, model providers and any learning participation. Retention, deletion, export and legal-hold rules are set per data class and per contract. Connector access is reviewed on personnel change, incident, contract end and at each recertification.</p>
       </div>
@@ -126,7 +126,7 @@
       <div class="trust-inner">
         <div class="trust-head">
           <p class="eyebrow"><span></span> Deployment options</p>
-          <h2>The gateway always runs with you. You choose where the rest runs.</h2>
+          <h2>The read connection always runs with you. You choose where the rest runs.</h2>
           <p>Aidecis supplies software only. Whichever option you choose, the policy kernel, evidence rules and containment rules are identical.</p>
         </div>
         <ul class="trust-grid">
@@ -213,7 +213,7 @@
           <p class="eyebrow"><span></span> Certification status</p>
           <h2>No certification claimed. Documentation on request.</h2>
           <p>Aidecis does not hold a security or AI certification and does not claim one.</p>
-          <p>Our security and AI-governance documentation is mapped to ISO/IEC 42001 and to your deployer duties under the EU AI Act. It is available on request in the vendor-trust pack, with the threat model, the security baseline, the incident-response and restore runbooks, the data processing agreement and the subprocessor schedule.</p>
+          <p>Our security and AI-governance documentation is available on request. The mapping to ISO/IEC 42001 and to your deployer duties under the EU AI Act is planned for the first quarter of 2027 <span class="claim claim-planned">Planned</span>. It is available on request in the vendor-trust pack, with the threat model, the security baseline, the incident-response and restore runbooks, the data processing agreement and the subprocessor schedule.</p>
           <p>Security is improved continuously under a documented process on the ISO/IEC 27001 model: a risk register reviewed monthly, scanning on every change to code, dependencies and containers, security acceptance tests run as a regression set, a log of findings and fixes with dates, and a monthly management review. The process and its log are in the vendor-trust pack.</p>
         </div>
       </div>
