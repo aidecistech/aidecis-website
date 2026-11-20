@@ -48,7 +48,12 @@ SMALL = ParagraphStyle('small', fontName='Inter-Regular', fontSize=8.5, leading=
 
 
 def text(fragment):
-    """Visible text of an HTML fragment, escaped for ReportLab's paragraph markup."""
+    """Visible text of an HTML fragment, escaped for ReportLab's paragraph markup.
+
+    A claim label (<span class="claim ...">Built</span>) is a badge on the page; with its tags stripped it would land
+    as a bare word in the middle of a sentence, so it is bracketed here: "observed control [Built], which ...".
+    """
+    fragment = re.sub(r'<span class="claim[^"]*">([^<]*)</span>', r'[\1]', fragment)
     return escape(re.sub(r'\s+', ' ', unescape(re.sub(r'<[^>]+>', '', fragment))).strip(), quote=False)
 
 
