@@ -192,13 +192,3 @@ body.flow-viewer-open { overflow: hidden; }
   .cookie-settings-trigger { position: absolute; bottom: 16px; left: 16px; width: 36px; height: 36px; font-size: 16px; }
   html body > footer { padding-bottom: 68px !important; }
 }
-
-/* Claim labels (Neil, 20 Nov 2026), replacing the 29 Oct rule that the site carried none. Every capability says
-   whether it is live in production (built), proven on the Aidecis simulated SAP and ERP (simulated), or planned.
-   Unstyled it still reads as plain words, so it degrades safely. */
-.claim { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
-  padding: 2px 7px; border-radius: 999px; border: 1px solid; vertical-align: 2px; white-space: nowrap; }
-.claim-built { color: #2f6b52; background: #e8f1ec; border-color: #bcd8c9; }
-.claim-simulated { color: #8a6418; background: #f8f0df; border-color: #e6d2a6; }
-.claim-planned { color: #41566b; background: #eaeff4; border-color: #c7d4de; }
-.claim-key { color: var(--muted); }
