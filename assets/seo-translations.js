@@ -47,7 +47,7 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
   "Refinery, terminal and energy decisions on unplanned maintenance, rate cuts, cargoes and storage, with authority and safety evidence on record.": "Decisiones de refinerías, terminales y energía sobre mantenimiento imprevisto, ritmo, cargamentos y almacenamiento, con autoridad y evidencia registradas.",
   "Explore the decision library": "Explorar la biblioteca de decisiones",
   "Supply-chain decision intelligence use cases | Aidecis": "Casos de uso de inteligencia decisional en la cadena de suministro | Aidecis",
-  "Aidecis is the decision intelligence layer for supply chain: it governs twelve families and 71 decision types end to end, from freight to trading.": "Aidecis es la capa de inteligencia decisional para la cadena de suministro: doce familias y 71 decisiones, del transporte al trading.",
+  "Aidecis is the decision intelligence layer for supply chain: it governs twelve families and 72 decision types end to end, from freight to trading.": "Aidecis es la capa de inteligencia decisional para la cadena de suministro: doce familias y 72 decisiones, del transporte al trading.",
   "Ten supply-chain decisions governed end to end: expedited freight, inventory reallocation, supplier disruption, quality holds, PO and invoice exceptions.": "Diez decisiones de la cadena de suministro gobernadas de principio a fin: transporte urgente, reasignación de inventario, interrupción de proveedores, bloqueos de calidad y excepciones de pedidos y facturas.",
   "Business case and ROI calculator | Aidecis": "Caso de negocio y calculadora de retorno | Aidecis",
   "Model a transparent business case for supply-chain decision intelligence with your own assumptions: subscription, onboarding and pilot investment.": "Modele un caso de negocio transparente para la inteligencia decisional en la cadena de suministro con sus propios supuestos: suscripción, puesta en marcha e inversión en el piloto.",
@@ -125,7 +125,7 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "Refinery, terminal and energy decisions on unplanned maintenance, rate cuts, cargoes and storage, with authority and safety evidence on record.": "Beslissingen in raffinaderijen, terminals en energie over ongepland onderhoud, capaciteit, ladingen en opslag, met bevoegdheid en bewijs vastgelegd.",
   "Explore the decision library": "Bekijk de beslissingsbibliotheek",
   "Supply-chain decision intelligence use cases | Aidecis": "Use cases voor decision intelligence in de supply chain | Aidecis",
-  "Aidecis is the decision intelligence layer for supply chain: it governs twelve families and 71 decision types end to end, from freight to trading.": "Aidecis is de decision-intelligencelaag voor de supply chain: twaalf families en 71 beslissingen, van vracht tot trading.",
+  "Aidecis is the decision intelligence layer for supply chain: it governs twelve families and 72 decision types end to end, from freight to trading.": "Aidecis is de decision-intelligencelaag voor de supply chain: twaalf families en 72 beslissingen, van vracht tot trading.",
   "Ten supply-chain decisions governed end to end: expedited freight, inventory reallocation, supplier disruption, quality holds, PO and invoice exceptions.": "Tien supply-chainbeslissingen van begin tot eind bestuurd: spoedtransport, herverdeling van voorraad, leveranciersverstoring, kwaliteitsblokkades en uitzonderingen op inkooporders en facturen.",
   "Business case and ROI calculator | Aidecis": "Businesscase en ROI-calculator | Aidecis",
   "Model a transparent business case for supply-chain decision intelligence with your own assumptions: subscription, onboarding and pilot investment.": "Bouw een transparante businesscase voor decision intelligence in de supply chain met je eigen aannames: abonnement, onboarding en pilotinvestering.",
@@ -195,4 +195,24 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
 Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
   "Meet S-CLAIM, the Supply Chain Learning AI Model | Aidecis": "Maak kennis met S-CLAIM, het Supply Chain Learning AI Model | Aidecis",
   "S-CLAIM is the Aidecis model for supply-chain decisions: trained on a decision library, rules judged by practitioners and realistic cases, never on client data.": "S-CLAIM is het Aidecis-model voor supply-chainbeslissingen: getraind op een beslisbibliotheek, regels beoordeeld door vakmensen en realistische cases, nooit op klantdata."
+});
+
+// The decision layer page (19 Nov 2026).
+Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
+  "One door for every signal: the decision layer | Aidecis": "Una sola puerta para cada señal: la capa de decisión | Aidecis",
+  "Aidecis reads signals from SAP, o9, email and WhatsApp, joins those about one problem into one case, and asks the person with the authority one question.": "Aidecis lee señales de SAP, o9, correo y WhatsApp, une las que tratan un mismo problema en un caso y hace una pregunta a la persona con la autoridad.",
+});
+Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
+  "One door for every signal: the decision layer | Aidecis": "Eén ingang voor elk signaal: de beslislaag | Aidecis",
+  "Aidecis reads signals from SAP, o9, email and WhatsApp, joins those about one problem into one case, and asks the person with the authority one question.": "Aidecis leest signalen uit SAP, o9, e-mail en WhatsApp, voegt die over één probleem samen tot één casus en stelt degene met de bevoegdheid één vraag.",
+});
+
+// The decision intelligence layer page (19 Nov 2026): the decision layer and S-CLAIM in one page.
+Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
+  "Decision intelligence layer: one door for every signal, with S-CLAIM | Aidecis": "Capa de inteligencia de decisión: una sola puerta para cada señal, con S-CLAIM | Aidecis",
+  "Aidecis reads signals from SAP, o9, email and WhatsApp; S-CLAIM, its decision model, joins them into one case for the person with the authority.": "Aidecis lee señales de SAP, o9, correo y WhatsApp; S-CLAIM, su modelo de decisión, las une en un caso para la persona con la autoridad.",
+});
+Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
+  "Decision intelligence layer: one door for every signal, with S-CLAIM | Aidecis": "Beslisintelligentielaag: één ingang voor elk signaal, met S-CLAIM | Aidecis",
+  "Aidecis reads signals from SAP, o9, email and WhatsApp; S-CLAIM, its decision model, joins them into one case for the person with the authority.": "Aidecis leest signalen uit SAP, o9, e-mail en WhatsApp; S-CLAIM, het beslismodel, voegt ze samen tot één casus voor degene met de bevoegdheid.",
 });

@@ -62,7 +62,7 @@ PAGES = {
                    'Aidecis is the decision intelligence layer for supply chain, governing consequential decisions taken by people, algorithms or AI agents from signal to outcome.',
                    None, []),
     'use-cases.html': ('Supply-chain decision intelligence use cases | Aidecis',
-                       'Aidecis is the decision intelligence layer for supply chain: it governs twelve families and 71 decision types end to end, from freight to trading.',
+                       'Aidecis is the decision intelligence layer for supply chain: it governs twelve families and 72 decision types end to end, from freight to trading.',
                        'Use cases', []),
     'benefits.html': ('Business case and ROI calculator | Aidecis',
                       'Model a transparent business case for supply-chain decision intelligence with your own assumptions: subscription, onboarding and pilot investment.',
@@ -97,6 +97,9 @@ PAGES = {
     'assessment.html': ('The decision replay assessment | Aidecis',
                         'The decision replay assessment: four weeks, a fixed fee, read-only on your own SAP purchasing history, the way in to the Aidecis layer for supply chain.',
                         'Decision replay assessment', []),
+    'decision-intelligence-layer.html': ('Decision intelligence layer: one door for every signal, with S-CLAIM | Aidecis',
+                                         'Aidecis reads signals from SAP, o9, email and WhatsApp; S-CLAIM, its decision model, joins them into one case for the person with the authority.',
+                                         'Decision intelligence layer', []),
     'platform-adjacent.html': ('Next to your decision platform | Aidecis',
                                'Already run a planning or decision platform? Aidecis governs what it cannot see: the steps in other systems and teams, the authority and the chain outcome.',
                                'Next to your decision platform', []),
@@ -147,9 +150,9 @@ PRODUCT = {
     'operatingSystem': 'Web', 'url': BASE, 'publisher': {'@id': BASE + '#organization'},
     'description': 'Aidecis governs consequential supply-chain decisions taken by people, existing bots and AI agents: '
                    'who had authority, which policy applied, who approved the exception, what executed and what happened next. '
-                   'Policies are managed in a European cloud; a gateway in the customer environment carries out only permitted actions.',
+                   "Policies are managed in a European cloud; Aidecis never writes into the customer's systems, and reads each approved action back after the customer executes it.",
     'featureList': ['Decision registry with evidence and outcome record', 'Policy library for authority, limits and operating rules',
-                    'Approval routing and escalation to the accountable owner', 'Gateway for scoped execution in ERP, WMS, TMS and MES',
+                    'Approval routing and escalation to the accountable owner', 'Single-use grants and read-back reconciliation of execution in ERP, WMS, TMS and MES',
                     'Registration of bots and AI agents with owner, limits and version', 'Advice when a decision can move between people and bots'],
 }
 
@@ -197,6 +200,17 @@ def attr(value):
     return value.replace('&', '&amp;').replace('"', '&quot;').replace('<', '&lt;')
 
 
+# The sitemap's page order.
+order = ['index.html', 'use-cases.html', 'benefits.html', 'industries.html', 'accountability.html', 'decision-intelligence-layer.html', 'security.html', 'company.html', 'team.html', 'contact.html', 'assessment.html', 'platform-adjacent.html', 'finance-audit.html', 'decision-intelligence-software-supply-chain.html', 'buyer-questions.html'] + \
+        [f for f, *_ in INDUSTRIES] + ['news.html'] + ARTICLES + ['privacy-policy.html', 'cookie-policy.html', 'terms.html']
+# Every public page must be in PAGES and in the sitemap; a page that only forwards (meta refresh) stays out.
+# Stop rather than write a sitemap that silently leaves a page out (decision-intelligence-layer.html, 19 Nov 2026).
+public = {str(f.relative_to(ROOT)) for f in [*ROOT.glob('*.html'), *ROOT.glob('news/*.html')]
+          if 'http-equiv="refresh"' not in f.read_text()}
+missing = sorted((public - set(PAGES)) | (public - set(order)) | (set(order) - public) | (set(PAGES) - public))
+if missing or len(order) != len(set(order)):
+    sys.exit('build_seo.py: PAGES and the sitemap order must list every public page once; fix: ' + ', '.join(missing or ['duplicates in order']))
+
 for file, (title, desc, crumb, parents) in PAGES.items():
     path = ROOT / file
     html = path.read_text()
@@ -241,8 +255,6 @@ def lastmod(file):
     out = subprocess.run(['git', 'log', '-1', '--format=%cs', '--', file], cwd=ROOT, capture_output=True, text=True).stdout.strip()
     return out or '2026-10-26'
 
-order = ['index.html', 'use-cases.html', 'benefits.html', 'industries.html', 'accountability.html', 'security.html', 'company.html', 'team.html', 'contact.html', 'assessment.html', 'platform-adjacent.html', 'finance-audit.html', 'decision-intelligence-software-supply-chain.html', 'buyer-questions.html'] + \
-        [f for f, *_ in INDUSTRIES] + ['news.html'] + ARTICLES + ['privacy-policy.html', 'cookie-policy.html', 'terms.html']
 lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
 for f in order:
     lines.append(f'  <url><loc>{page_url(f)}</loc><lastmod>{lastmod(f)}</lastmod></url>')

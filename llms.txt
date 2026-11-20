@@ -29,7 +29,7 @@ Key facts:
 - [Decision accountability](https://www.aidecis.com/accountability.html): ten common supply-chain decision scenarios and how authority, policy, approval, execution and outcome are kept in one chain.
 - [Benefits and business case](https://www.aidecis.com/benefits.html): a calculator for the pilot, subscription and implementation at the published prices, and a business case with your own assumptions, net of review effort and compute, with today's response time to a disruption as the resilience baseline.
 - [Industries](https://www.aidecis.com/industries.html): how the same decision accountability applies across eleven industries.
-- [S-CLAIM](https://www.aidecis.com/s-claim.html): the Supply Chain Learning AI Model. What it does (recognise the decision, warn before friction, say what comes first, explain the route) and how it is trained: the decision library of 71 types in 12 families, rules judged by practitioners, realistic cases in English, Dutch and German, cases where the right answer is to hold, and a fixed blind exam before each release. Never trained on client content.
+- [Decision intelligence layer](https://www.aidecis.com/decision-intelligence-layer.html): one page for the layer and the intelligence inside it. Signals from SAP, o9, email, WhatsApp and the client's own agents come in through one entry point; S-CLAIM, the Aidecis decision model (a supply-chain decision model trained by Aidecis, the client's policies applied by code, early-warning patterns from the client's own history, and a language model), reads each one; code joins the signals about the same order or shipment into one case, routes it by the client's own delegation of authority, and one person decides. S-CLAIM is trained on a decision library of 72 types in 12 families, practitioner-judged rules and realistic cases in English, Dutch and German, with a fixed blind exam before each release; client data trains it only with that client's written opt-in. Read-only towards the client's systems.
 - [Security and data](https://www.aidecis.com/security.html): architecture, data flows, deployment options, EU hosting and subprocessors, control coverage, continuity and exit, and certification status (no certification claimed; security improved continuously under a documented process on the ISO/IEC 27001 model).
 - [Company](https://www.aidecis.com/company.html): the company (an Angeleus SLU company in Andorra), how Aidecis works with clients, and how case studies are published.
 - [Team](https://www.aidecis.com/team.html): the founding team and the advisory board.
@@ -52,7 +52,7 @@ Key facts:
 11. Health, safety and environment: permit or emission limit exceedance
 12. Finance and close-out (later phase): invoice variance, claim and close-out
 
-The full decision library (71 decision types) is used with clients in a guided decision assessment inside the Aidecis platform; contact Aidecis to book one.
+The full decision library (72 decision types) is used with clients in a guided decision assessment inside the Aidecis platform; contact Aidecis to book one.
 
 ## Industries
 
