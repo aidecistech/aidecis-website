@@ -40,6 +40,14 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
   "Govern what your platform cannot see.": "Gobierne lo que su plataforma no puede ver.",
   "Aidecis does not compete for a planning or decision platform's logic. It takes the platform in as one actor in the chain and governs the steps, the authority and the outcome around it.": "Aidecis no compite por la lógica de una plataforma de planificación o de decisiones. La incorpora como un actor más en la cadena y gobierna los pasos, la autoridad y el resultado que la rodean.",
   "See how Aidecis sits next to it": "Vea cómo Aidecis se sitúa junto a ella",
+  "One door": "Una sola puerta",
+  "Every signal about the same order line ends up in one case.": "Cada señal sobre la misma línea de pedido acaba en un mismo caso.",
+  "Your systems": "Sus sistemas",
+  "SAP reads for purchase-order and reroute decisions, and messages pasted into the signal inbox. Signals joined into one case on the same order line or shipment.": "Lecturas de SAP para decisiones de pedidos de compra y de redirección, y mensajes pegados en la bandeja de señales. Las señales se unen en un mismo caso sobre la misma línea de pedido o el mismo envío.",
+  "Every channel": "Todos los canales",
+  "o9 alerts, WhatsApp messages and supplier emails come in through the same door, each in its own format.": "Las alertas de o9, los mensajes de WhatsApp y los correos de proveedores entran por la misma puerta, cada uno en su propio formato.",
+  "Your own accounts": "Sus propias cuentas",
+  "Your own o9, the mailboxes of the key people and your WhatsApp Business account, connected with their consent.": "Su propio o9, los buzones de las personas clave y su cuenta de WhatsApp Business, conectados con su consentimiento.",
 });
 Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
   "Aidecis governs every consequential supply-chain decision end to end: it sees the change, weighs the consequences across the chain, makes sure the decision is taken by someone, or something, allowed to take it, and proves what happened.": "Aidecis bestuurt elke ingrijpende supply-chainbeslissing van begin tot eind: het ziet de verandering, weegt de gevolgen over de hele keten, zorgt dat de beslissing wordt genomen door iemand, of iets, dat daartoe bevoegd is, en bewijst wat er is gebeurd.",
@@ -79,4 +87,12 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "Govern what your platform cannot see.": "Bestuur wat uw platform niet kan zien.",
   "Aidecis does not compete for a planning or decision platform's logic. It takes the platform in as one actor in the chain and governs the steps, the authority and the outcome around it.": "Aidecis concurreert niet om de logica van een planning- of beslisplatform. Het neemt het platform op als één actor in de keten en bestuurt de stappen, de bevoegdheid en het resultaat eromheen.",
   "See how Aidecis sits next to it": "Zie hoe Aidecis ernaast staat",
+  "One door": "Één deur",
+  "Every signal about the same order line ends up in one case.": "Elk signaal over dezelfde orderregel komt in één dossier terecht.",
+  "Your systems": "Uw systemen",
+  "SAP reads for purchase-order and reroute decisions, and messages pasted into the signal inbox. Signals joined into one case on the same order line or shipment.": "SAP-uitlezingen voor inkooporder- en omleidingsbeslissingen, en berichten die in de signaalinbox worden geplakt. Signalen worden samengevoegd tot één dossier op dezelfde orderregel of zending.",
+  "Every channel": "Alle kanalen",
+  "o9 alerts, WhatsApp messages and supplier emails come in through the same door, each in its own format.": "o9-meldingen, WhatsApp-berichten en e-mails van leveranciers komen door dezelfde deur binnen, elk in hun eigen formaat.",
+  "Your own accounts": "Uw eigen accounts",
+  "Your own o9, the mailboxes of the key people and your WhatsApp Business account, connected with their consent.": "Uw eigen o9, de mailboxen van de sleutelpersonen en uw WhatsApp Business-account, aangesloten met hun toestemming.",
 });

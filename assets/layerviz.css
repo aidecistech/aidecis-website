@@ -46,10 +46,7 @@
 .lv-status{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:0;padding:0;list-style:none}
 .lv-status li{padding:16px;background:var(--lv-card);border:1px solid var(--lv-line);border-radius:12px}
 .lv-status p{margin:10px 0 0;color:var(--lv-text);font-size:14px;line-height:1.5}
-.lv-badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.04em}
-.lv-now{background:rgba(30,122,76,.14);color:var(--lv-green)}
-.lv-demo{background:rgba(77,184,232,.16);color:var(--lv-title)}
-.lv-pilot{background:rgba(215,163,91,.18);color:var(--lv-gold-text)}
+.lv-status li>b{display:block;color:var(--lv-title);font-size:15px;letter-spacing:.01em}
 @media (max-width:980px){
   .lv-swipe{display:block}
   .lv-steps,.lv-status{grid-template-columns:1fr}
