@@ -240,7 +240,6 @@ Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es 
   "A fixed set of test cases, safety signals among them, answered blind by those same experts.": "Un conjunto fijo de casos de prueba, entre ellos señales de seguridad, respondidos a ciegas por esos mismos expertos.",
   "Released only when better": "Solo se publica si mejora",
   "A version replaces the last one only when it scores better on that exam.": "Una versión sustituye a la anterior solo si puntúa mejor en ese examen.",
-  "Reviews from fictional demo cases feed the next round. A client's cases only measure S-CLAIM, never train it.": "Las revisiones de casos ficticios de la demostración alimentan la siguiente ronda. Los casos de un cliente solo miden S-CLAIM, nunca lo entrenan."
 });
 Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
   "Inside a decision": "Binnen in een beslissing",
@@ -279,7 +278,6 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "A fixed set of test cases, safety signals among them, answered blind by those same experts.": "Een vaste set testcasussen, waaronder veiligheidssignalen, blind beantwoord door diezelfde experts.",
   "Released only when better": "Alleen uitgebracht als het beter is",
   "A version replaces the last one only when it scores better on that exam.": "Een versie vervangt de vorige alleen als ze beter scoort op dat examen.",
-  "Reviews from fictional demo cases feed the next round. A client's cases only measure S-CLAIM, never train it.": "Beoordelingen van fictieve democasussen voeden de volgende ronde. De casussen van een klant meten S-CLAIM alleen, ze trainen het nooit."
 });
 
 // S-CLAIM page: S-CLAIM as the whole model with four modules (Neil, 17 Nov 2026).
