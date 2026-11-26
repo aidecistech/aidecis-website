@@ -5,6 +5,17 @@
 .company-kpi-grid label { display:block; margin:0 0 6px; color:var(--navy); font-weight:700; }
 .company-kpi-grid input { width:100%; }
 .company-kpi-grid small { display:block; margin-top:5px; color:#526f79; }
+.kpi-label-row { position:relative; z-index:1; display:flex; align-items:center; gap:8px; margin:0 0 6px; }
+.company-kpi-grid .kpi-label-row label { margin:0; }
+.kpi-help-wrap { position:relative; display:inline-flex; flex:0 0 auto; }
+.benefits-calculator button.kpi-help { display:grid; place-items:center; width:22px; height:22px; padding:0; border:1px solid #d7a35b; border-radius:50%; background:transparent; color:var(--navy); font:700 13px/1 system-ui,sans-serif; }
+.benefits-calculator button.kpi-help:hover,
+.benefits-calculator button.kpi-help[aria-expanded="true"] { background:#d7a35b; color:#0d3f52; }
+.benefits-calculator button.kpi-help:focus-visible { outline:3px solid #d7a35b; outline-offset:3px; }
+.kpi-tooltip { position:absolute; top:calc(100% + 9px); left:-8px; z-index:20; width:min(340px,calc(100vw - 48px)); padding:12px 14px; border:1px solid #d7a35b; border-radius:6px; background:#0d3f52; box-shadow:0 10px 25px #06233155; color:#f7fbfc; font-size:13px; font-weight:450; line-height:1.5; opacity:0; pointer-events:none; transform:translateY(-3px); visibility:hidden; transition:opacity .14s ease,transform .14s ease,visibility .14s ease; }
+.kpi-help-wrap:hover .kpi-tooltip,
+.kpi-help:focus-visible + .kpi-tooltip,
+.kpi-help[aria-expanded="true"] + .kpi-tooltip { opacity:1; pointer-events:auto; transform:translateY(0); visibility:visible; }
 .decision-pricing-note { max-width:880px; margin:18px 0 0; padding:12px 16px; color:var(--ink); background:var(--surface,var(--pale)); border-left:3px solid var(--gold); font-size:14px; line-height:1.5; }
 .slice-picker { margin:0 0 22px; padding:0; border:0; }
 .slice-picker legend { margin-bottom:8px; color:var(--navy); font-size:21px; font-weight:700; }
