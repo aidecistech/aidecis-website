@@ -1,5 +1,10 @@
 .decision-case-grid { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr); gap:24px; margin-top:24px; align-items:start; }
 .decision-case-inputs, .business-case-results { min-width:0; }
+.company-kpi-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px 16px; max-width:1100px; margin:20px 0 8px; }
+.company-kpi-grid .business-case-field { min-width:0; }
+.company-kpi-grid label { display:block; margin:0 0 6px; color:var(--navy); font-weight:700; }
+.company-kpi-grid input { width:100%; }
+.company-kpi-grid small { display:block; margin-top:5px; color:#526f79; }
 .decision-pricing-note { max-width:880px; margin:18px 0 0; padding:12px 16px; color:var(--ink); background:var(--surface,var(--pale)); border-left:3px solid var(--gold); font-size:14px; line-height:1.5; }
 .slice-picker { margin:0 0 22px; padding:0; border:0; }
 .slice-picker legend { margin-bottom:8px; color:var(--navy); font-size:21px; font-weight:700; }
@@ -12,6 +17,8 @@
 .decision-slice-option input:checked::after, .knowledge-check input:checked::after { content:""; width:8px; height:4px; margin-top:-2px; border-bottom:2px solid #fff; border-left:2px solid #fff; transform:rotate(-45deg); }
 .slice-option-copy { min-width:0; display:grid; gap:4px; }
 .slice-option-copy b { color:var(--navy); }
+.slice-option-copy small { color:#526f79; font-size:12px; line-height:1.4; }
+.knowledge-option { border-left:3px solid var(--gold); }
 .decision-slice-option:focus-within, .knowledge-check:focus-within { outline:3px solid #82c7d8; outline-offset:2px; }
 .decision-slice-cards { display:grid; gap:16px; }
 .decision-slice-card { padding:18px; background:#fff; border:1px solid var(--line); border-left:3px solid var(--gold); }
@@ -22,7 +29,11 @@
 .slice-measure-note { margin:0 0 8px; color:var(--navy); }
 .slice-benchmark { margin:0 0 15px; padding:10px 12px; color:#45616b; background:#f2f6f7; font-size:13px; line-height:1.45; }
 .slice-benchmark a { display:inline-block; margin-top:5px; color:#0b647b; font-weight:700; }
-:root[data-theme="dark"] .slice-benchmark { color:#173f57; background:#edf5f7; }
+.slice-benchmark-eyebrow { margin:0 0 4px; color:#876432; font-size:10px; font-weight:750; letter-spacing:.1em; text-transform:uppercase; }
+.slice-benchmark-value { display:block; color:#0d3f52; font-size:clamp(24px,3vw,32px); line-height:1.12; font-weight:750; font-variant-numeric:tabular-nums; }
+.slice-benchmark-label { display:block; margin-top:2px; color:#173f57; font-weight:700; }
+.slice-benchmark-scope { margin:6px 0 0; color:#405963; font-size:12px; line-height:1.45; }
+:root[data-theme="dark"] .slice-benchmark a { color:#0b647b; }
 .slice-input-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 16px; }
 .slice-estimate-line { display:flex; justify-content:space-between; gap:12px; margin:0; padding-top:12px; border-top:1px solid var(--line); color:var(--navy); }
 .slice-estimate-line strong { color:#0b5264; text-align:right; font-variant-numeric:tabular-nums; }
@@ -40,11 +51,20 @@
 .slice-breakdown-row { display:flex; justify-content:space-between; gap:12px; padding:7px 0; border-bottom:1px solid rgba(255,255,255,.18); }
 .slice-breakdown-row > span { min-width:0; }
 .slice-breakdown-row small { display:block; color:#c7d9dd; font-size:12px; }
+.slice-scope { margin-top:4px; color:#c7d9dd; font-size:12px; line-height:1.45; }
+.slice-scope summary { cursor:pointer; color:#f1c776; }
+.slice-scope a, .method-sources a { color:#f1c776; font-weight:700; }
 .slice-breakdown-row strong { white-space:nowrap; text-align:right; font-variant-numeric:tabular-nums; }
 .business-case-results .business-case-assumptions { margin-top:20px; padding-top:16px; border-top:1px solid rgba(255,255,255,.25); }
 .business-case-results .business-case-assumptions p { color:#d2e1e5; }
+.business-case-results .business-case-assumptions ul { padding-left:20px; color:#d2e1e5; }
+.business-case-results .business-case-assumptions li { margin:0 0 8px; }
+.method-detail { margin-top:10px; color:#d2e1e5; }
+.method-detail summary { cursor:pointer; color:#f1c776; font-weight:700; }
 @media(max-width:900px) { .decision-case-grid { grid-template-columns:1fr; } }
-@media(max-width:650px) { .decision-slice-options, .slice-input-grid { grid-template-columns:1fr; } .decision-case-inputs, .business-case-results { padding:17px; } .decision-slice-card { padding:14px; } }
+@media(max-width:900px) { .company-kpi-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:650px) { .decision-slice-options, .slice-input-grid, .company-kpi-grid { grid-template-columns:1fr; } .decision-case-inputs, .business-case-results { padding:17px; } .decision-slice-card { padding:14px; } }
+.calculator-privacy-note { max-width:850px; margin:12px 0 0; padding:12px 16px; color:#173f57; background:#edf5f7; border-left:3px solid var(--gold); font-size:14px; line-height:1.5; }
 :root[data-theme="dark"] .decision-slice-option,
 :root[data-theme="dark"] .decision-slice-card,
 :root[data-theme="dark"] .knowledge-readiness,
@@ -59,6 +79,7 @@
 :root[data-theme="dark"] .decision-slice-card h4,
 :root[data-theme="dark"] .knowledge-readiness h3,
 :root[data-theme="dark"] .decision-slice-card .business-case-field label { color:#173f57 !important; }
+:root[data-theme="dark"] .benefits-calculator .decision-slice-option .slice-option-copy small { color:#405963 !important; }
 :root[data-theme="dark"] .decision-slice-card .slice-estimate-line { color:#173f57 !important; }
 :root[data-theme="dark"] .decision-case-inputs > .business-case-field label { color:#eaf1f2 !important; }
 :root[data-theme="dark"] .decision-slice-card .business-case-field small { color:#405963 !important; }
