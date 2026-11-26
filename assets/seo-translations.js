@@ -216,3 +216,17 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "Decision intelligence layer: one door for every signal, with S-CLAIM | Aidecis": "Beslisintelligentielaag: één ingang voor elk signaal, met S-CLAIM | Aidecis",
   "Aidecis reads signals from SAP, o9, email and WhatsApp; S-CLAIM, its decision model, joins them into one case for the person with the authority.": "Aidecis leest signalen uit SAP, o9, e-mail en WhatsApp; S-CLAIM, het beslismodel, voegt ze samen tot één casus voor degene met de bevoegdheid.",
 });
+
+// New website pages (26 Nov 2026). Keep these exact metadata strings synchronized with page heads.
+Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
+  "Executive app for supply-chain decisions | Aidecis": "Aplicación ejecutiva para decisiones de la cadena de suministro | Aidecis",
+  "Review supply-chain decisions, see the evidence and authority route, then approve, decline or delegate within your organisation’s policy.": "Revise decisiones de la cadena de suministro, consulte las pruebas y la ruta de autoridad, y apruebe, rechace o delegue según la política de su organización.",
+  "The cost of supply-chain decisions | Aidecis": "El coste de las decisiones en la cadena de suministro | Aidecis",
+  "Published evidence on the costs around consequential supply-chain decisions: downtime, disruption, freight rates, invoice processing and purchasing exposure.": "Evidencia publicada sobre los costes de decisiones clave de la cadena de suministro: paradas, interrupciones, tarifas de transporte, facturas y exposición de compras."
+});
+Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
+  "Executive app for supply-chain decisions | Aidecis": "Executive app voor beslissingen in de supply chain | Aidecis",
+  "Review supply-chain decisions, see the evidence and authority route, then approve, decline or delegate within your organisation’s policy.": "Beoordeel beslissingen in de supply chain, bekijk het bewijs en de bevoegdheidsroute en keur goed, wijs af of delegeer volgens het beleid van uw organisatie.",
+  "The cost of supply-chain decisions | Aidecis": "De kosten van beslissingen in de supply chain | Aidecis",
+  "Published evidence on the costs around consequential supply-chain decisions: downtime, disruption, freight rates, invoice processing and purchasing exposure.": "Gepubliceerd bewijs over kosten rond belangrijke supplychainbeslissingen: stilstand, verstoringen, vrachttarieven, factuurverwerking en inkooprisico."
+});
