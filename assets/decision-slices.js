@@ -92,11 +92,11 @@
     const pilotMidpoint = ((pricing.sprintLow || 0) + (pricing.sprintHigh || 0)) / 2;
     const annualInvestment = (pricing.annual || 0) + ((pricing.implementation || 0) + pilotMidpoint) / 3;
     $('annual-cost').textContent = pricing.annual ? formatMoney(annualInvestment, lang) : '—';
-    $('annual-net').textContent = allReady ? `${formatMoney(totalLow - annualInvestment, lang)} – ${formatMoney(totalHigh - annualInvestment, lang)}` : '—';
-    $('annual-value-cost-ratio').textContent = allReady && annualInvestment > 0 ? `${(totalMid / annualInvestment).toFixed(1)}×` : '—';
+    $('annual-net').textContent = estimateReady ? `${formatMoney(totalLow - annualInvestment, lang)} – ${formatMoney(totalHigh - annualInvestment, lang)}` : '—';
+    $('annual-value-cost-ratio').textContent = estimateReady && annualInvestment > 0 ? `${(totalMid / annualInvestment).toFixed(1)}×` : '—';
     const annualSurplus = totalMid - (pricing.annual || 0);
     const paybackMonths = annualSurplus > 0 ? Math.ceil(((pricing.implementation || 0) + pilotMidpoint) / (annualSurplus / 12)) : 0;
-    $('payback').textContent = allReady && paybackMonths > 0 ? t(paybackMonths === 1 ? '1 month' : '{months} months').replace('{months}', paybackMonths) : '—';
+    $('payback').textContent = estimateReady && paybackMonths > 0 ? t(paybackMonths === 1 ? '1 month' : '{months} months').replace('{months}', paybackMonths) : '—';
   }
 
   renderOptions();
