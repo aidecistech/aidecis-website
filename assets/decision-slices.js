@@ -15,6 +15,7 @@
   const t = (source) => window.AidecisI18n?.t(source) || source;
   const selected = new Set();
   const knowledgeId = 'governed-knowledge';
+  let lastAnnouncedSliceCount = null;
   const formatMoney = (value, lang) => new Intl.NumberFormat({ en: 'en-IE', es: 'es-ES', nl: 'nl-NL' }[lang] || 'en-IE', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(value);
 
   function profile() {
@@ -39,7 +40,6 @@
   function renderResults() {
     const lang = window.AidecisI18n?.language || 'en';
     const data = profile();
-    const kpiCount = ['revenue', 'supplyChain', 'freight', 'inventory', 'downtime'].filter((key) => data[key] > 0).length;
     const chosen = slices.filter((slice) => selected.has(slice.id));
     const knowledgeSelected = selected.has(knowledgeId);
     const results = chosen.map((slice) => {
@@ -52,18 +52,42 @@
       const enabled = data[slice.kpi] > 0;
       return { slice, exposure, potential, enabled };
     });
-    const low = results.reduce((sum, row) => sum + row.potential * .05, 0);
-    const mid = results.reduce((sum, row) => sum + row.potential * .10, 0);
-    const high = results.reduce((sum, row) => sum + row.potential * .15, 0);
+    const scenarioRates = (row) => row.slice.id === 'demand-surge'
+      ? { low: .10, mid: .10, high: .10 }
+      : { low: .05, mid: .10, high: .15 };
+    const availableResults = results.filter((row) => row.enabled);
+    const low = availableResults.reduce((sum, row) => sum + row.potential * scenarioRates(row).low, 0);
+    const mid = availableResults.reduce((sum, row) => sum + row.potential * scenarioRates(row).mid, 0);
+    const high = availableResults.reduce((sum, row) => sum + row.potential * scenarioRates(row).high, 0);
     const knowledgeUplift = knowledgeSelected ? mid * .10 : 0;
     const totalLow = low + knowledgeUplift * .5;
     const totalMid = mid + knowledgeUplift;
     const totalHigh = high + knowledgeUplift * 1.5;
     $('selected-slice-count').textContent = t('{count} selected').replace('{count}', chosen.length + (knowledgeSelected ? 1 : 0));
-    $('slice-value-breakdown').innerHTML = results.map(({ slice, exposure, potential, enabled }) => `<div class="slice-breakdown-row"><span>${t(slice.title)}<small>${enabled ? `${t('Modeled cost pool')}: ${formatMoney(exposure, lang)} · ${Math.round(slice.share * 100)}% allocation` : t('Enter the matching KPI above')}</small>${enabled ? `<details class="slice-scope"><summary>${slice.benchmarkValue} · ${t(slice.benchmarkLabel)}</summary><span>${t(slice.benchmarkScope)} <a href="${slice.url}" target="_blank" rel="noopener">${t(slice.source)} ↗</a></span></details>` : ''}</span><strong>${enabled ? `${formatMoney(potential * .05, lang)} – ${formatMoney(potential * .15, lang)}` : '—'}</strong></div>`).join('') + (knowledgeSelected ? `<div class="slice-breakdown-row"><span>${t('Governed Knowledge')}<small>${t('10% modeled uplift on selected slice scenarios')}</small></span><strong>${formatMoney(knowledgeUplift, lang)}</strong></div>` : '');
-    const allReady = results.length > 0 && data.revenue > 0 && kpiCount >= 3 && results.every((row) => row.enabled);
-    $('net-after-trust').textContent = allReady ? `${formatMoney(totalLow, lang)} – ${formatMoney(totalHigh, lang)}` : '—';
-    $('business-case-check').textContent = !chosen.length && !knowledgeSelected ? t('Choose one or more decision slices to see a live scenario.') : allReady ? t('Illustrative annual savings range, before investment. Use the method and source notes below to review assumptions.') : (kpiCount < 3 || data.revenue <= 0) ? t('Enter at least three company KPIs, including annual revenue. Add the KPI needed for each selected slice.') : t('Enter the company KPIs that match your selected slices.');
+    const selectedCount = chosen.length + (knowledgeSelected ? 1 : 0);
+    if (selectedCount !== lastAnnouncedSliceCount) {
+      lastAnnouncedSliceCount = selectedCount;
+      document.dispatchEvent(new CustomEvent('aidecis:sliceschanged', { detail: { count: selectedCount } }));
+    }
+    $('slice-value-breakdown').innerHTML = results.map(({ slice, exposure, potential, enabled }) => {
+      const rates = scenarioRates({ slice });
+      const estimate = rates.low === rates.high
+        ? formatMoney(potential * rates.mid, lang)
+        : `${formatMoney(potential * rates.low, lang)} – ${formatMoney(potential * rates.high, lang)}`;
+      return `<div class="slice-breakdown-row"><span>${t(slice.title)}<small>${enabled ? `${t('Modeled cost pool')}: ${formatMoney(exposure, lang)} · ${Math.round(slice.share * 100)}% allocation` : t('Enter the matching KPI above')}</small>${enabled ? `<details class="slice-scope"><summary>${slice.benchmarkValue} · ${t(slice.benchmarkLabel)}</summary><span>${t(slice.benchmarkScope)} <a href="${slice.url}" target="_blank" rel="noopener">${t(slice.source)} ↗</a></span></details>` : ''}</span><strong>${enabled ? estimate : '—'}</strong></div>`;
+    }).join('') + (knowledgeSelected ? `<div class="slice-breakdown-row"><span>${t('Governed Knowledge')}<small>${t('10% modeled uplift on selected slice scenarios')}</small></span><strong>${formatMoney(knowledgeUplift, lang)}</strong></div>` : '');
+    const estimateReady = availableResults.length > 0 && data.revenue > 0;
+    const missingCount = results.length - availableResults.length;
+    $('net-after-trust').textContent = estimateReady ? `${formatMoney(totalLow, lang)} – ${formatMoney(totalHigh, lang)}` : '—';
+    $('business-case-check').textContent = !chosen.length && !knowledgeSelected
+      ? t('Choose one or more decision slices to see a live scenario.')
+      : data.revenue <= 0
+        ? t('Enter annual revenue to calculate your company-scale estimate.')
+        : !estimateReady
+          ? t('Enter the KPI needed for at least one selected slice to see an estimate.')
+          : missingCount > 0
+            ? t('{available} of {selected} selected decision slices have the KPIs needed for an estimate. Add the missing optional KPI figures to include the other slices.').replace('{available}', availableResults.length).replace('{selected}', results.length)
+            : t('Illustrative annual savings range, before investment. Use the method and source notes below to review assumptions.');
     const pricing = window.aidecisPricingEstimate || { annual: 0, implementation: 0 };
     const pilotMidpoint = ((pricing.sprintLow || 0) + (pricing.sprintHigh || 0)) / 2;
     const annualInvestment = (pricing.annual || 0) + ((pricing.implementation || 0) + pilotMidpoint) / 3;
