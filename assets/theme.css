@@ -334,6 +334,16 @@
 :root[data-theme="dark"] h1 {color:var(--muted)!important;}
 :root[data-theme="dark"] .modes-gate p,:root[data-theme="dark"] .modes-gate li,:root[data-theme="dark"] .modes-gate b,:root[data-theme="dark"] .modes-gate h3{color:var(--ink)!important}
 
+/* Calculator cards stay light in dark mode, so keep their copy on the light-surface palette. */
+:root[data-theme="dark"] .benefits-calculator .decision-slice-card,
+:root[data-theme="dark"] .benefits-calculator .decision-slice-card .slice-measure-note,
+:root[data-theme="dark"] .benefits-calculator .decision-slice-card .slice-estimate-line,
+:root[data-theme="dark"] .benefits-calculator .decision-slice-card .slice-estimate-line strong { color:#173f57!important; }
+:root[data-theme="dark"] .benefits-calculator .decision-slice-card .business-case-field label { color:#173f57!important; }
+:root[data-theme="dark"] .benefits-calculator .decision-slice-card .business-case-field small { color:#405963!important; }
+:root[data-theme="dark"] .benefits-calculator .decision-slice-card .slice-remove,
+:root[data-theme="dark"] .benefits-calculator .decision-slice-card .slice-remove:hover { color:#173f57!important; background:#edf5f7!important; border-color:#9db4bb!important; }
+
 /* Final targeted contrast fixes. */
 :root[data-theme="dark"] .demo-icon-step,
 :root[data-theme="dark"] .demo-step,
