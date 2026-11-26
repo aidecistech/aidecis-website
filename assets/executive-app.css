@@ -1,0 +1,44 @@
+.executive-app-hero { display:grid; grid-template-columns:minmax(0,1fr) minmax(360px,.92fr); gap:58px; align-items:center; padding:78px max(28px,calc((100vw - var(--max)) / 2)); color:#fff; background:#123c56; }
+.executive-app-hero-copy { max-width:640px; }
+.executive-app-hero .eyebrow { color:#e8bc7d; }
+.executive-app-hero h1 { max-width:620px; margin:0 0 20px; font-size:clamp(42px,5.5vw,70px); line-height:1.02; letter-spacing:-.045em; }
+.executive-app-intro { max-width:590px; margin:0 0 26px; color:#d1e0e4; font-size:19px; line-height:1.5; }
+.executive-app-photo { position:relative; min-height:390px; overflow:hidden; border:1px solid rgba(255,255,255,.3); background:#0b2735; }
+.executive-app-photo:after { position:absolute; inset:40% 0 0; content:""; background:linear-gradient(0deg,rgba(7,29,40,.78),transparent); }
+.executive-app-photo img { display:block; width:100%; height:100%; min-height:390px; object-fit:cover; }
+.executive-app-photo span { position:absolute; z-index:1; right:20px; bottom:20px; left:20px; color:#fff; font-size:14px; font-weight:700; letter-spacing:.02em; }
+.executive-app-workflow,.app-delegation { padding:88px max(28px,calc((100vw - var(--max)) / 2)); }
+.app-section-heading { max-width:760px; margin:0 auto 42px; text-align:center; }
+.app-section-heading h2 { margin:0 0 14px; color:var(--navy); font-size:clamp(32px,4vw,48px); line-height:1.06; letter-spacing:-.04em; }
+.app-section-heading > p:last-child { max-width:710px; margin:0 auto; color:#596970; font-size:17px; line-height:1.55; }
+.app-phone-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px; max-width:1050px; margin:0 auto; }
+.app-phone-card { display:flex; flex-direction:column; align-items:center; }
+/* Keep the site's Georgia display heads and system sans-serif body. The embedded images retain native iOS type. */
+.executive-app-hero h1 { font-family:Georgia,"Times New Roman",serif; }
+.executive-app-workflow,.app-delegation { font-family:system-ui,-apple-system,"Segoe UI",sans-serif; }
+.app-native-screen { display:block; width:min(100%,320px); height:auto; border-radius:34px; box-shadow:0 20px 45px rgba(11,39,53,.18); }
+.app-screen-caption { max-width:320px; margin:19px 0 0; color:#65757a; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; font-size:13px; line-height:1.45; }
+.app-screen-caption b { display:block; margin-bottom:4px; color:#183e53; font-size:14px; }
+.app-illustrative-note,.app-config-note { max-width:900px; margin:34px auto 0; color:#65757a; text-align:center; font-size:12px; }
+.app-delegation { background:#f1f5f5; }
+.app-delegation .app-section-heading .eyebrow { color:#8a5822 !important; }
+.app-delegation .app-section-heading h2 { color:#143b51 !important; }
+.app-delegation .app-section-heading > p:last-child { color:#596970 !important; }
+.app-section-heading > p:last-child { color:#596970; }
+.app-screen-caption { color:#596970; }
+.app-screen-caption b { color:#183e53; }
+.app-illustrative-note { color:#596970; }
+:root[data-theme="dark"] .app-section-heading > p:last-child { color:#D1DEE2; }
+:root[data-theme="dark"] .app-screen-caption { color:#D1DEE2; }
+:root[data-theme="dark"] .app-screen-caption b { color:#FDFBF8; }
+:root[data-theme="dark"] .app-illustrative-note { color:#D1DEE2; }
+:root[data-theme="dark"] .app-delegation .app-section-heading .eyebrow { color:#8a5822 !important; }
+:root[data-theme="dark"] .app-delegation .app-section-heading h2:not(.film-story):not(.film-accessible) { color:#143b51 !important; }
+.app-delegation-steps { display:grid; grid-template-columns:repeat(3,1fr); max-width:1020px; margin:0 auto; padding:0; list-style:none; border-top:2px solid var(--navy); border-bottom:1px solid #cedbdd; }
+.app-delegation-steps li { min-height:160px; padding:22px 24px 22px 0; }
+.app-delegation-steps li+li { padding-left:24px; border-left:1px solid #cedbdd; }
+.app-delegation-steps span { display:block; margin-bottom:20px; color:#a66b2a; font-size:12px; font-weight:800; }
+.app-delegation-steps b { color:#163f54; font-size:19px; }
+.app-delegation-steps p { margin:8px 0 0; color:#596970; font-size:14px; line-height:1.45; }
+@media(max-width:850px) { .executive-app-hero { grid-template-columns:1fr; gap:34px; padding-top:58px; padding-bottom:58px; } .executive-app-photo { min-height:300px; } .executive-app-photo img { min-height:300px; } .app-phone-grid { gap:16px; } }
+@media(max-width:680px) { .executive-app-hero,.executive-app-workflow,.app-delegation { padding-right:18px; padding-left:18px; } .app-phone-grid { grid-template-columns:1fr; gap:34px; } .app-delegation-steps { grid-template-columns:1fr; } .app-delegation-steps li,.app-delegation-steps li+li { min-height:0; padding:18px 0; border-left:0; border-bottom:1px solid #cedbdd; } .app-delegation-steps span { margin-bottom:10px; } }
