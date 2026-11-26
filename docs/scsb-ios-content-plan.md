@@ -27,7 +27,7 @@ Branch: `feat/scsb-and-ios-content`. Approved for publication by Neil on 26 Nov 
 - `executive-app.html` introduces the executive app with three native iPhone screen images matching the supplied iOS references. The screenshot UI remains in English; the captions have Spanish and Dutch translations. The second caption says the CSCO only receives requests above the mandates they set for their teams, and that Aidecis follows each organisation’s own policies. The page uses the site’s Georgia display headings and system sans-serif body copy; public copy omits publication status.
 - `decision-costs.html` adds an evidence-led market-intelligence page with the ten decision slices, source-linked cost benchmarks and scope notes. It makes clear that the figures measure different exposures and are not Aidecis savings or one summed global total. The hero reuses the existing real port photograph; it does not use generated artwork. The page is linked from the homepage, use-cases page and executive-app page and is listed in the sitemap.
 - The unused, obviously generated `assets/media/aidecis-shipment-decision-flow.gif` illustration and its preload reference were removed. The individual iPhone screen previews are saved in `outputs/executive-app-screen-01.png`, `outputs/executive-app-screen-02.png` and `outputs/executive-app-screen-03.png` for review.
-- These are local review changes on this feature branch. The live site and App Store listing have not been changed.
+- These are review changes on this feature branch. The live site has not yet been updated. The selected-slice calculator rebuild is complete on this branch; publication still depends on the pull request.
 
 ## 1. Naming: Second Brain vs Academy
 
@@ -121,6 +121,9 @@ Add the ten names supplied by the user as a visible guided path on `use-cases.ht
 - [x] Review the site, app screens and translated copy with Neil; the screenshot UI remains English.
 - [x] Approve the public Governed Knowledge wording and source-linked cost evidence for the named material.
 - [x] Prepare this pull request for publication after approval.
+- [x] Rebuild the benefits calculator around selectable decision slices and five Governed Knowledge readiness checks. The ten slice choices stay compact; a choice reveals only that slice’s inputs and source context. Each chosen slice adds a company-entered annual baseline × addressable share × expected reduction. Published freight, invoice, purchasing, trade and downtime figures are source-linked context only; they are not savings multipliers. The model deducts shared impact, review effort and compute cost before comparing the scenario with the indicative network investment. The result is explicitly a scenario, not a forecast or guarantee.
+- [x] Put the decision assessment before network investment, state there is no per-slice fee, and explain that customers may use any or all of the ten supported slices with Governed Knowledge included; investment follows network coverage.
+- [x] Make Governed Knowledge discoverable from the calculator and decision-cost evidence page, with direct links to its explanation on the decision-intelligence layer page.
 - Match existing Aidecis typography (Georgia display headings and system sans-serif body), blue-green palette, amber accents and documentary supply-chain photography. Keep the supplied app screens in their native iOS typography. Do not introduce generic AI art or product-progress fractions.
 - Merge to `main` only after pull-request checks and review are clear; the configured workflow then publishes to TransIP and compares the live site with the published files.
 
@@ -128,4 +131,5 @@ Add the ten names supplied by the user as a visible guided path on `use-cases.ht
 
 - Neil approved the website mockups and asked to proceed with publication on 26 November 2026.
 - iPhone screenshot UI stays in English; page captions and the cost page support Spanish and Dutch.
+- The calculator and cost page are ready on the feature branch; publication and live-site comparison are pending pull-request merge and the publish workflow.
 - Pull-request checks and the live TransIP content comparison remain the release gates.

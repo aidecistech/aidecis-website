@@ -176,3 +176,19 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl, {
   "A company case measures contribution margin actually recovered, after fulfillment, logistics and displacement costs.": "Een bedrijfscasus meet de daadwerkelijk teruggewonnen contributiemarge na aftrek van leverings-, logistieke en verdringingskosten.",
   "These benchmarks frame the discussion. Aidecis customer value is measured against a documented decision baseline and realized outcomes.": "Deze benchmarks geven context aan het gesprek. De klantwaarde van Aidecis wordt gemeten aan de hand van een vastgelegde beslissingsbasislijn en gerealiseerde uitkomsten.",
 });
+
+Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
+  "How Governed Knowledge connects evidence, policy and outcomes": "Cómo el conocimiento gobernado conecta evidencia, política y resultados"
+});
+Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
+  "How Governed Knowledge connects evidence, policy and outcomes": "Hoe beheerde kennis bewijs, beleid en uitkomsten verbindt"
+});
+
+Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
+  "Build your company scenario": "Construya el escenario de su empresa",
+  "Discuss your decision baseline": "Analice la base de referencia de su decisión"
+});
+Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
+  "Build your company scenario": "Bouw het scenario voor uw bedrijf",
+  "Discuss your decision baseline": "Bespreek de uitgangswaarde van uw beslissing"
+});
