@@ -13,8 +13,7 @@
 .app-section-heading > p:last-child { max-width:710px; margin:0 auto; color:#596970; font-size:17px; line-height:1.55; }
 .app-phone-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px; max-width:1050px; margin:0 auto; }
 .app-phone-card { display:flex; flex-direction:column; align-items:center; }
-/* Keep the site's Georgia display heads and system sans-serif body. The embedded images retain native iOS type. */
-.executive-app-hero h1 { font-family:Georgia,"Times New Roman",serif; }
+/* Body text follows the site-wide system sans-serif. The embedded images retain native iOS type. */
 .executive-app-workflow,.app-delegation { font-family:system-ui,-apple-system,"Segoe UI",sans-serif; }
 .app-native-screen { display:block; width:min(100%,320px); height:auto; border-radius:34px; box-shadow:0 20px 45px rgba(11,39,53,.18); }
 .app-screen-caption { max-width:320px; margin:19px 0 0; color:#65757a; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; font-size:13px; line-height:1.45; }
