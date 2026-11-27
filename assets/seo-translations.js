@@ -230,3 +230,15 @@ Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl 
   "The cost of supply-chain decisions | Aidecis": "De kosten van beslissingen in de supply chain | Aidecis",
   "Published evidence on the costs around consequential supply-chain decisions: downtime, disruption, freight rates, invoice processing and purchasing exposure.": "Gepubliceerd bewijs over kosten rond belangrijke supplychainbeslissingen: stilstand, verstoringen, vrachttarieven, factuurverwerking en inkooprisico."
 });
+
+// Updated team and buyer-question metadata (27 Nov 2026).
+Object.assign(window.AIDECIS_TRANSLATIONS.es || (window.AIDECIS_TRANSLATIONS.es = {}), {
+  "The people behind Aidecis | Aidecis": "Las personas detrás de Aidecis | Aidecis",
+  "Meet the founding team and advisers behind Aidecis, the decision intelligence layer for supply chain.": "Conozca al equipo fundador y a los asesores de Aidecis, la capa de inteligencia decisional para la cadena de suministro.",
+  "Straight answers to what buyers ask about Aidecis: SAP, MES and OEE, references, what is available now, agent-to-agent chains and pricing.": "Respuestas directas a las preguntas de los compradores sobre Aidecis: SAP, MES y OEE, referencias, disponibilidad actual, cadenas de agentes y precios."
+});
+Object.assign(window.AIDECIS_TRANSLATIONS.nl || (window.AIDECIS_TRANSLATIONS.nl = {}), {
+  "The people behind Aidecis | Aidecis": "De mensen achter Aidecis | Aidecis",
+  "Meet the founding team and advisers behind Aidecis, the decision intelligence layer for supply chain.": "Maak kennis met het founding team en de adviseurs achter Aidecis, de decision-intelligencelaag voor de supply chain.",
+  "Straight answers to what buyers ask about Aidecis: SAP, MES and OEE, references, what is available now, agent-to-agent chains and pricing.": "Duidelijke antwoorden op vragen van kopers over Aidecis: SAP, MES en OEE, referenties, huidige beschikbaarheid, agentketens en prijzen."
+});

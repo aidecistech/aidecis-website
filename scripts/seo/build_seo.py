@@ -64,9 +64,12 @@ PAGES = {
     'use-cases.html': ('Supply-chain decision intelligence use cases | Aidecis',
                        'Aidecis is the decision intelligence layer for supply chain: it governs twelve families and 72 decision types end to end, from freight to trading.',
                        'Use cases', []),
-    'benefits.html': ('Business case and ROI calculator | Aidecis',
-                      'Model a transparent business case for supply-chain decision intelligence with your own assumptions: subscription, onboarding and pilot investment.',
-                      'Benefits', []),
+    'decision-costs.html': ('The cost of supply-chain decisions | Aidecis',
+                            'Published evidence on the costs around consequential supply-chain decisions: downtime, disruption, freight rates, invoice processing and purchasing exposure.',
+                            'Decision costs', []),
+    'executive-app.html': ('Executive app for supply-chain decisions | Aidecis',
+                           'Review supply-chain decisions, see the evidence and authority route, then approve, decline or delegate within your organisation’s policy.',
+                           'Executive app', []),
     'industries.html': ('Decision intelligence for 11 supply-chain industries | Aidecis',
                         'Aidecis is the decision intelligence layer for supply chain, in eleven industries from automotive to retail.',
                         'Industries', []),
@@ -79,8 +82,8 @@ PAGES = {
     'company.html': ('Company: who stands behind Aidecis | Aidecis',
                      'Aidecis is an Angeleus SLU company in Andorra. How we work with clients, who owns what, and how results are published.',
                      'Company', []),
-    'team.html': ('Team: founding team and advisory board | Aidecis',
-                  'The founding team and advisory board behind Aidecis, the decision intelligence layer for supply chain.',
+    'team.html': ('The people behind Aidecis | Aidecis',
+                  'Meet the founding team and advisers behind Aidecis, the decision intelligence layer for supply chain.',
                   'Team', []),
     'contact.html': ('Contact Aidecis | Request a demo or pilot',
                      'Contact Aidecis, the decision intelligence layer for supply chain, to request a demo or discuss a pilot.',
@@ -201,7 +204,7 @@ def attr(value):
 
 
 # The sitemap's page order.
-order = ['index.html', 'use-cases.html', 'benefits.html', 'industries.html', 'accountability.html', 'decision-intelligence-layer.html', 'security.html', 'company.html', 'team.html', 'contact.html', 'assessment.html', 'platform-adjacent.html', 'finance-audit.html', 'decision-intelligence-software-supply-chain.html', 'buyer-questions.html'] + \
+order = ['index.html', 'use-cases.html', 'decision-costs.html', 'executive-app.html', 'industries.html', 'accountability.html', 'decision-intelligence-layer.html', 'security.html', 'company.html', 'team.html', 'contact.html', 'assessment.html', 'platform-adjacent.html', 'finance-audit.html', 'decision-intelligence-software-supply-chain.html', 'buyer-questions.html'] + \
         [f for f, *_ in INDUSTRIES] + ['news.html'] + ARTICLES + ['privacy-policy.html', 'cookie-policy.html', 'terms.html']
 # Every public page must be in PAGES and in the sitemap; a page that only forwards (meta refresh) stays out.
 # Stop rather than write a sitemap that silently leaves a page out (decision-intelligence-layer.html, 19 Nov 2026).
