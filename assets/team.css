@@ -1,7 +1,7 @@
 /* Team page: management board and advisory board (30 Oct 2026). */
 .team-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; margin: 0; padding: 0; list-style: none; }
 .team-grid:empty { display: none; }
-.team-portrait-strip { width: 50%; margin: 30px auto 0; padding: 14px; overflow: hidden; border: 1px solid var(--line, #d8e1e5); border-radius: 16px; background: #fff; }
+.team-portrait-strip { width: 60%; margin: 30px 0 0; padding: 14px; overflow: hidden; border: 1px solid var(--line, #d8e1e5); border-radius: 16px; background: #fff; }
 .team-portrait-strip img { display: block; width: 100%; height: auto; }
 .team-card { display: flex; flex-direction: column; background: #fff; border-top: 2px solid var(--gold); }
 .team-card img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; background: #e9edf0; }
@@ -9,3 +9,5 @@
 .team-card span { display: block; padding: 4px 18px 18px; color: #4f5d65; font-size: 15px; line-height: 1.5; }
 @media (max-width: 960px) { .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 520px) { .team-grid { grid-template-columns: 1fr; } }
+
+@media (max-width: 760px) { .team-portrait-strip { width: 100%; } }
