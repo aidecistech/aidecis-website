@@ -284,7 +284,8 @@ window.AIDECIS_TRANSLATIONS = {
     "Request:": "Solicitud:",
     "Demo request": "Solicitud de demo",
     "Website question": "Consulta sobre el sitio web",
-    "Decision costs": "Costes de decisión"
+    "Decision costs": "Costes de decisión",
+    "Executive app": "Aplicación ejecutiva",
   },
   "nl": {
     "Aidecis | Decision accountability for supply chains": "Aidecis | Managed besluitvorming en acties van mensen en autonome agents in supply chains",
@@ -571,6 +572,7 @@ window.AIDECIS_TRANSLATIONS = {
     "Request:": "Type verzoek:",
     "Demo request": "Demo-aanvraag",
     "Website question": "Vraag over de website",
-    "Decision costs": "Beslissingskosten"
+    "Decision costs": "Beslissingskosten",
+    "Executive app": "Executive-app",
   }
 };
